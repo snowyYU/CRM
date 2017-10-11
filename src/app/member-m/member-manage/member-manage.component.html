@@ -1,0 +1,184 @@
+<div class="page-location">
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">会员管理</a>
+</div>
+<div class="wrapper ">
+  <div class="wrapper bg-white clearfix form-inline">
+    <div class="form-group">
+      <label for="appId">归属渠道:</label>
+      <select class="form-control" name="appId" [(ngModel)]="appId">
+      	<option  [ngValue]="item.resourceId" *ngFor="let item of appIdList">{{item.resourceName}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="memberType">类别:</label>
+      <select class="form-control" name="memberType" [(ngModel)]="memberType">
+      	<option [ngValue]="item.value" *ngFor="let item of memberTypeList">{{item.label}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+    	<label >会员名称:</label>
+    	<input type="text" name="memberName" [(ngModel)]="memberName" class="form-control">
+    </div>
+    <div class="form-group">
+    	<button class="btn btn-info" (click)='getListData()'>查询</button>
+    </div>
+  </div>
+  <div>
+    <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading">
+      <p-column field='companyName' header='会员名称'></p-column>
+      <p-column field='prmResourceRegister.resourceName' header='归属渠道'></p-column>
+      <p-column field='memberTypeDic' header='类别'></p-column>
+      <p-column field='memberRating' header='评定等级' styleClass="text-center"></p-column>
+      <p-column field='eaccountDic' header='电子账户'></p-column>
+      <p-column field='serviceMan' header='服务经理'></p-column>
+      <p-column field='createTime' header='创建日期' styleClass="text-center"></p-column>
+      <p-column field='' header='操作' >
+      	<ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
+          <div class="text-center">
+            <a class="table-btn text-info" (click)="detail(operation)">详情</a>
+            <a class="table-btn text-info" (click)="getModalList(operation)">授信额度</a>
+            <a *ngIf="authRole.roleIn(['008'])" class="table-btn text-info" (click)="changeManage(operation)">变更</a>
+    
+          </div>
+        </ng-template>
+      </p-column>
+      <p-footer>
+        <div class="clearfix">
+          <div class="pull-right">
+            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="getListData()" size="sm" [showTotal]="true"></paginator>
+          </div>
+        </div>
+      </p-footer>
+    </p-dataTable>
+  </div>
+</div>
+
+<!-- 模态框部分 -->
+<modal [(visible)]="vipMangeModal" [size]="modalSize">
+  <modal-header>
+    <h4 class="modal-title">授信额度</h4>
+  </modal-header>
+  <modal-body>
+    <div>
+      <p-dataTable tableStyleClass="table-style" [value]="modalDataList"   emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="modalListLoading" >
+        
+        <p-column field="" header="产品">
+          <ng-template let-productName="rowData" pTemplate="body" >
+            <div [class.lineThrough]='productName.lineThrough'>
+              {{productName.creditFacility.productName}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="类别">
+          <ng-template let-productTypeName="rowData" pTemplate="body" >
+            <div [class.lineThrough]='productTypeName.lineThrough'>
+              {{productTypeName.creditFacility.productTypeName}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="授信额度(元)">
+          <ng-template let-creditValue="rowData" pTemplate="body" >
+            <div class="text-right" [class.lineThrough]='creditValue.lineThrough'>
+              {{creditValue.creditFacility.creditValue | yuanFormat}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="可用额度(元)">
+          <ng-template let-creditBanlance="rowData" pTemplate="body" >
+            <div class="text-right" [class.lineThrough]='creditBanlance.lineThrough'>
+              {{creditBanlance.creditFacility.creditBanlance | yuanFormat}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="有效期" >
+        	<ng-template let-expiry="rowData" pTemplate="body" styleClass="text-center">
+        		<div class="text-center" [class.lineThrough]='expiry.lineThrough'>
+        			{{expiry.creditFacility.expiryDateBegin | effDateFormat}}至{{expiry.creditFacility.expiryDateEnd | effDateFormat}}
+        		</div>
+        	</ng-template>
+        </p-column>
+        <p-column field="" header="更新日期">
+          <ng-template let-updateTime="rowData" pTemplate="body" styleClass="text-center">
+            <div class="text-center" [class.lineThrough]='updateTime.lineThrough'>
+              {{updateTime.creditFacility.updateTime}}
+            </div>
+          </ng-template>
+        </p-column>
+        <!-- <p-column field="" header="系统时间">
+          <ng-template let-serverTime="rowData" pTemplate="body" styleClass="text-center">
+            <div class="text-center" [class.lineThrough]='serverTime.lineThrough'>
+              {{serverTime.serverTime}}
+            </div>
+          </ng-template>
+        </p-column> -->
+        <p-column field="" header="操作" *ngIf="authRole.roleIn(['007'])">
+        	<ng-template let-operation="rowData" pTemplate="body">
+        		<div class="text-center">
+              <button class="btn btn-info" *ngIf="!operation.lineThrough" (click)='checkApplyExist(1,operation)'>重新授信</button>
+              <button class="btn btn-info" *ngIf="operation.lineThrough" (click)='checkApplyExist(0,operation)'>添加</button>   
+            </div>
+        	</ng-template>
+        </p-column>
+        <p-footer>
+        <div class="clearfix">
+        	<div class="pull-left">
+        		<span>授信总额(元):{{totalCreditValue | yuanFormat}}</span>
+        		<span class="m-l-md">可用总额(元):{{totalCreditBanlance | yuanFormat}}</span>
+        	</div>
+          <div class="pull-right">
+           	<a class="text-info" (click)="goToNew()" *ngIf="authRole.roleIn(['007'])" >添加</a>
+          </div>
+        </div>
+      </p-footer>
+      </p-dataTable>
+    </div>
+  </modal-body>
+  <modal-footer>
+    <button class="btn btn-default" (click)="closeModal()">关闭</button>
+  </modal-footer>
+</modal>
+
+
+<!-- 变更服务经理模态框部分 -->
+<modal [(visible)]="changeManageModal" size="md">
+  <form #form="ngForm" (ngSubmit)="submit()">
+  <modal-header>
+    <h4 class="modal-title">变更服务经理</h4>
+  </modal-header>
+  <modal-body>
+    <div class="">
+      <div class="col-md-12">
+        <label for="" class="col-md-2">会员名称:</label>
+        <div class="col-md-8">
+          {{modalMemberName}} ({{modalMemberId}})
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label for="" class="col-md-2">来源渠道:</label>
+        <div class="col-md-8">
+          {{modalAppName}}
+        </div>
+      </div>
+      <div class="col-md-12 b text-2x wrapper-lg">
+        <div class="col-md-4 text-center">
+          {{modalServiceManO}}
+        </div>
+        <div class="col-md-4 text-center">
+          >>>>>
+        </div>
+        <div class="col-md-4 text-center m-t-xs">
+          <select name="changeServiceM" class="form-control" [(ngModel)]="modalServiceMan" required>
+            <option [value]="item.employeeName" *ngFor="let item of modalServiceManL">{{item.employeeName}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </modal-body>
+  <modal-footer>
+    <button class="btn btn-info" [disabled]="!form.valid" type="submit" >确定</button>
+
+    <button class="btn btn-default" type="button" (click)="closeModal()">关闭</button>
+  </modal-footer>
+  </form>
+</modal>

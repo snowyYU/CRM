@@ -1,0 +1,147 @@
+<root-container
+  [headerFixed]="setting.headerFixed"
+  [asideFixed]="setting.asideFixed"
+  [asideFolded]="setting.asideFolded"
+  [asideDock]="setting.asideDock"
+  [container]="setting.container"
+  [offScreen]="setting.offScreen">
+  <header theme="cerulean">
+
+  <a class="sys-name hidden-xs" routerLink="/home">
+  </ a>
+  <a class="btn-toggle-aside" (click)="toggleOffScreen()">
+    <i class="fa fa-reorder"></i>
+  </ a>
+  <a class="sys-name-xs" routerLink="/home">后台综合管理系统</ a>
+  <div class="dropdown user-box" toggleClass="open" [opt-revokable]="true">
+    <a  class="dropdown-toggle clear">
+      <i class="fa fa-user pad-r-xxs"></i><span class="hidden-xs">{{userName}}</span> <b class="caret"></b>
+    </ a>
+    <ul class="dropdown-menu animated fadeInRight w">
+      <li>
+        <a routerLink="/modifyPassword">
+          <span class="label bg-info pull-right"></span>
+          修改密码
+        </ a>
+      </li>
+      <li>
+        <a (click)="logOut()">退出登录</ a>
+      </li>
+    </ul>
+  </div>
+
+
+</header>
+  <!-- <header theme="cerulean">
+    <header-left theme="cerulean">
+      <button class="pull-right visible-xs" (click)="headerRight.toggleDropDown()" >
+        <i class="glyphicon glyphicon-cog"></i>
+      </button>
+      <button class="pull-right visible-xs"   (click)="toggleOffScreen()">
+        <i class="glyphicon glyphicon-align-justify"></i>
+      </button>
+      <a class="navbar-brand text-lt">
+        <i class="fa fa-btc logo"></i>
+        <span class="hidden-folded m-l-xs ng-binding">CRM</span>
+      </a>
+    </header-left>
+    <header-right  #headerRight>
+      <div class="nav navbar-nav hidden-xs" (click)="toggleAsideFolded()">
+        <a  class="btn no-shadow navbar-btn" >
+          <i class="fa fa-fw" [ngClass]="{'fa-dedent':!setting.asideFolded,'fa-indent':setting.asideFolded}" ></i>
+        </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li class="dropdown" toggleClass="open" [opt-revokable]="true">
+          <a  class="dropdown-toggle clear"  aria-haspopup="true" aria-expanded="false">
+              
+            <span class="hidden-sm hidden-md">{{userName}}</span> <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu animated fadeInRight w">
+            <li>
+              <a routerLink="/modifyPassword">修改密码</a>
+            </li>
+            <li>
+              <a (click)="logOut()">退出</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </header-right>
+  </header> -->
+  <aside-left theme="cerulean-outline">
+    <nav-wrap>
+      <!-- 拓展人员 -->
+      <nav-item icon="glyphicon glyphicon-briefcase" text="拓展管理" *ngIf="authRoleService.fnIn(['02','03'])">
+          <sub-nav-item text="客户名册" link="/business/customerList" *ngIf="authRoleService.fnIn(['02'])"></sub-nav-item>
+          <sub-nav-item text="拜访报告" link="/business/visitReport" *ngIf="authRoleService.fnIn(['03'])"></sub-nav-item>
+          <!-- <sub-nav-item text="认证申请" link="/business/authApply"></sub-nav-item> -->
+      </nav-item>
+      <!-- 拓展人员 -->
+      <nav-item icon="glyphicon glyphicon-user" text="会员管理" *ngIf="authRoleService.fnIn(['11','12','13','14'])">
+          <sub-nav-item text="会员管理" link="/memberM/memberManage" *ngIf="authRoleService.fnIn(['11'])"></sub-nav-item>
+          <sub-nav-item text="资料变更" link="/memberM/infoChange" *ngIf="authRoleService.fnIn(['12'])"></sub-nav-item>
+          <sub-nav-item text="授信申请" link="/memberM/getApply" *ngIf="authRoleService.fnIn(['13'])"></sub-nav-item>
+          <sub-nav-item text="关联企业" link="/memberM/relativeCompany" *ngIf="authRoleService.fnIn(['14'])"></sub-nav-item>
+      </nav-item>
+
+
+      <nav-item icon="glyphicon glyphicon-th-list" text="账户管理" *ngIf="authRoleService.fnIn(['22','23','24','25'])">
+          <sub-nav-item *ngIf="authRoleService.fnIn(['22','23'])" text="电子账户" >
+              <thirth-nav-item text="开户" link="/account/electricAcc/openAcc" *ngIf="authRoleService.fnIn(['22'])"></thirth-nav-item >
+              <thirth-nav-item text="电子签章" link="/account/electricAcc/signature" *ngIf="authRoleService.fnIn(['23'])"></thirth-nav-item>
+              
+          </sub-nav-item>
+          <sub-nav-item text="会员账户余额" link="/account/memberAccBalance" *ngIf="authRoleService.fnIn(['24'])"></sub-nav-item>
+          <sub-nav-item text="会员账户流水" link="/account/memberAccFlow" *ngIf="authRoleService.fnIn(['25'])"></sub-nav-item>
+      </nav-item>
+      <!-- 主管 -->
+      <!-- <nav-item text="账户管理" >
+          <sub-nav-item text="电子账户" >
+              <thirth-nav-item text="开户" link="/account/electricAcc/openAcc"></thirth-nav-item>
+              <thirth-nav-item text="电子签章" link="/account/electricAcc/electricSignature"></thirth-nav-item>
+          </sub-nav-item>
+          <sub-nav-item text="会员账户余额" link="/account/memberAccBalance"></sub-nav-item>
+          <sub-nav-item text="会员账户流水" link="/account/memberAccFlow"></sub-nav-item>
+      </nav-item> -->
+      <!-- 拓展人员, -->
+      <nav-item text="融资管理" icon="glyphicon glyphicon-usd">
+          <sub-nav-item text="在贷跟踪" link="/financingM/loanTrack"></sub-nav-item>
+          <sub-nav-item text="催收任务" link="/financingM/getMission"></sub-nav-item>
+          
+          <sub-nav-item text="贷款历史" link="/financingM/loanHistory"></sub-nav-item>
+          <sub-nav-item text="数据中心">
+              <thirth-nav-item text="业务数据" link="/financingM/dataCenter/businessData"></thirth-nav-item>
+              <thirth-nav-item text="融资合同" link="/financingM/dataCenter/financingDeal"></thirth-nav-item>
+          </sub-nav-item>
+      </nav-item>
+      
+      <nav-item icon="glyphicon glyphicon-list-alt" text="统计报告" *ngIf="role==='manage'">
+          <sub-nav-item text="融资排行榜" link="/statisticsReport/financingRanking" ></sub-nav-item>
+          <sub-nav-item text="业绩统计" link="/statisticsReport/performanceS" ></sub-nav-item>
+          <sub-nav-item text="逾期统计" link="/statisticsReport/overTimeS" ></sub-nav-item>
+          <sub-nav-item text="展期统计" link="/statisticsReport/" ></sub-nav-item>
+      </nav-item>
+
+      
+
+
+      
+    </nav-wrap>
+  </aside-left>
+  <div class="app-content" (click)="cancelOffScreen()">
+    <router-outlet></router-outlet>
+  </div>
+</root-container>
+
+
+
+
+
+
+
+
+
+
+

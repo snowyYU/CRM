@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+.ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td, .ui-datatable .ui-datatable-data>tr>td {
+  padding: .5em 1em;
+}
+.ui-datatable .label{
+  color:inherit;
+}
+
+.table-style{
+	table-layout: auto !important;
+}
+.ui-datatable-tablewrapper{
+	overflow: auto;
+}
+
+li{
+	list-style: none;
+}
+.p-l-none{
+	padding-left: 0 !important;
+}
+.p-r-none{
+	padding-right: 0 !important;
+}
+
+.p-t-none{
+	padding-top: 0 !important
+}
+
+.text-underline{
+	text-decoration: underline;
+}
+
+.bottmFixFather{
+	transform: scale3d(1, 1, 1);
+}
+
+.requiredSpan{
+	left: 5px
+}
+
+.app {
+    background-color: #ddd;
+}
+
+.wrapper{
+	padding: 20px
+}

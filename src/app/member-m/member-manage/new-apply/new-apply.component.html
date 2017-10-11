@@ -1,0 +1,51 @@
+<div class="page-location">
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item">会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">新增申请授信</a>
+</div>
+<div class="wrapper-md ">
+    <form #newApply="ngForm" (ngSubmit)='submit()'>
+  <section class="panel-body bg-white">
+    <div class="col-md-12 form-group">
+        <label class="col-md-3 label-control">会员名称:</label>
+        <span class="row-body">{{companyName}}  ({{memberId}})</span>
+    </div>
+    <div class="col-md-12 form-group form-inline">
+        <label class="col-md-3 label-control">申请产品:</label>
+        <select name="productId" id="" class="form-control" [(ngModel)]="productId" (ngModelChange)="selectProduct($event)" required>
+            <option [ngValue]="item.productId" *ngFor="let item of productList">{{item.productName}}</option>
+        </select>
+    </div>
+    <div class="col-md-12 form-group form-inline">
+        <label class="col-md-3 label-control">产品类别:</label>
+        <span class="row-body">{{productTypeName}}</span>
+    </div>
+    
+  </section >
+  <section class="panel-body bg-white m-t-md">
+    <div class="col-md-12 form-inline">
+        <label class="col-md-3 label-control">申请额度:</label>
+        <input type="text" name="addCreditValue" class="form-control text-right" [(ngModel)]="addCreditValue" required> 元
+    </div>
+    <!-- <div class="col-md-12 form-group form-inline">
+        <label class="col-md-3 label-control">原授信额度:</label>
+        <span class="row-body">￥0.00元</span>
+        
+    </div> -->
+  </section>
+	
+	
+	<section class="panel-body bg-white m-t-md form-inline">
+		<div class="col-md-12">
+			<label class="col-md-3 label-control">申请原因:</label>
+			<textarea name="authRemark" id="" cols="30" rows="5" class="form-control" [(ngModel)]="authRemark" required></textarea>
+		</div>
+	</section>
+    <section class="m-t-md">
+        <div class="text-center"> 
+            <button type="button" class="btn" (click)="cancel()">返回</button>
+            <button class="btn btn-info" [disabled]="!newApply.form.valid">提交申请</button>
+        </div>
+    </section>
+</form>
+</div>

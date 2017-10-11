@@ -1,0 +1,63 @@
+<div class="page-location">
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i>拓展管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item ">拜访报告<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">详情</a>
+</div>
+
+<div class="wrapper-md">
+  <section class="panel-body bg-white">
+    <div class="row">
+        <label class="col-md-3">客户名称:</label>
+        <span>{{guestName}}</span>
+    </div>
+    <div class="row">
+        <label class="col-md-3">拜访日期:</label>
+        <span>{{visitDate}}</span>
+    </div>
+    <div class="row">
+        <label class="col-md-3">拜访目的:</label>
+        <span>{{visitWhatDic}}</span>
+    </div>
+    <div class="row">
+        <label class="col-md-3">服务经理:</label>
+        <span>{{serviceMan}}</span>
+    </div>
+  </section >
+  <section class="panel-body bg-white m-t-md">
+    <div class="row">
+        <label class="col-md-3">联系人:</label>
+        <span>{{linkName}}</span>
+    </div>
+    <div class="row">
+        <label class="col-md-3">联系手机:</label>
+        <span>{{linkMobile}}</span>
+    </div>
+    <div class="row">
+        <label class="col-md-3">城市:</label>
+        <span>{{visitCity}}</span>
+    </div>
+    <div class="row">
+        <label class="col-md-3">地址:</label>
+        <span>{{companyAddress}}</span>
+    </div>
+    <div class="row">
+        <label class="col-md-3">交通:</label>
+        <span>{{visitVehicleDic}}</span>
+    </div>
+  </section>
+	
+	
+	<section class="panel-body bg-white m-t-md">
+		<div class="row">
+			<label class="col-md-3">备忘录</label>
+			<span>{{remark}}</span>
+		</div>
+	</section>
+    
+    <section class="panel-body text-center">
+        <div class="row">
+            <button class="btn" (click)="back()">返回</button>
+        </div>
+    </section>
+
+</div>

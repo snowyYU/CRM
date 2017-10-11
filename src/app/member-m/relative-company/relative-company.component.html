@@ -1,0 +1,34 @@
+<div class="wrapper">
+  <div>
+    <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading">
+      <p-column field="companyName" header="企业名称"></p-column>
+      <p-column field="memberName" header="企业性质"></p-column>
+      <p-column field="yeartotalValue" header="年度总产值(万元)">
+        <ng-template let-operation="rowData" pTemplate="body">
+          <div class="text-right">
+            {{operation.yeartotalValue | yuanFormat}}
+          </div>
+        </ng-template>
+      </p-column>
+      <p-column field="yeartotalGoods" header="年度发货总量(吨)"></p-column>
+      <p-column field="statusDic" header="财务纠纷"></p-column>
+      <p-column field="createTime" header="动产抵押"></p-column>
+      <p-column field="companyRating" header="评级"></p-column>
+      <p-column field="companyRatingGrate" header="评分"></p-column>
+      <p-column field="color" header="操作">
+        <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
+          <div class="text-center">
+            <a class="table-btn text-info"  (click)="detail(operation)">详情</a>
+          </div>
+        </ng-template>
+      </p-column>
+      <p-footer>
+        <div class="clearfix">
+          <div class="pull-right">
+            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="queryData()" size="sm" [showTotal]="true"></paginator>
+          </div>
+        </div>
+      </p-footer>
+    </p-dataTable>
+  </div>
+</div>

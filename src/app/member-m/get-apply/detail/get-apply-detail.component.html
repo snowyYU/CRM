@@ -1,0 +1,118 @@
+<div class="page-location">
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
+   <a class="page-location-item">授信申请<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">详情</a>
+</div>
+<div class="wrapper">
+  <form #form>
+    <section >
+      <div class="clearfix ">
+        <div class="col-md-6">
+          <label class="label-control label-special-w" for="geustName">申请ID:</label>
+          <div class="col-md-8 m-t-xs">
+            {{creditAuthId}}
+          </div>
+        </div>
+        <div class="col-md-6 ">
+          <label class="label-control label-special-w">申请时间:</label>
+          <div class="col-md-8 m-t-xs">
+            {{createTime}}
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="wrapper bg-white">
+      <div class="form-group clearfix row">
+        <div class="col-md-6">
+          <label class="label-control label-special-w" for="geustName">会员名称:</label>
+          <div class="col-md-8 m-t-xs">
+            {{memberName}}  ({{memberId}})
+          </div>
+        </div>
+        <div class="col-md-6 ">
+          <label class="label-control label-special-w">状态:</label>
+          <div class="col-md-8 m-t-xs">
+            {{statusDic}}
+          </div>
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <label class="label-control label-special-w">申请产品:</label>
+        <div class="col-md-4 m-t-xs">
+          {{productName}}
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <label class="label-control label-special-w">产品类型:</label>
+        <div class="col-md-4 m-t-xs">
+          {{productTypeName}}
+        </div>
+      </div>
+      <div class=" clearfix">
+        <label class="label-control label-special-w" for="geustName">服务经理:</label>
+        <div class="col-md-4 m-t-xs">
+          {{serviceMan}}
+        </div>
+      </div>
+    </section>
+    <section class="wrapperForTwo ">
+      <div class="p-t col-md-6 bg-white wrapperTwoLeft">
+        <div class="form-group clearfix m-t">
+          <label for="" class="label-control label-special-w">申请额度:</label>
+          <div class="col-md-8 m-t-xs">
+            {{addCreditValue | yuanFormat}} 元
+          </div>
+        </div>
+        <div class="form-group clearfix m-t">
+          <label for="" class="label-control label-special-w">原授信额度:</label>
+          <div class="col-md-8 m-t-xs">
+            {{oldCreditValue | yuanFormat}} 元
+          </div>
+        </div>
+        <div class="form-group clearfix m-t">
+          <label for="" class="label-control label-special-w">有效期:</label>
+          <div class="col-md-8 m-t-xs">
+            {{expiryDateBegin | effDateFormat}} <span *ngIf="expiryDateBegin">至</span> {{expiryDateEnd | effDateFormat}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 bg-white wrapperTwoRight">
+        <div class="form-group clearfix m-t">
+          <label for="" class="label-control label-special-w">申请原因:</label>
+          <div class="col-md-8 m-t-xs">
+            {{authRemark}}
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    <section class="wrapper bg-white">
+      <div class="form-group clearfix row">
+        <div class="col-md-6">
+          <label class="label-control label-special-w" for="geustName">审核员:</label>
+          <div class="col-md-8 m-t-xs">
+            {{auditBy}}
+          </div>
+        </div>
+        <div class="col-md-6 ">
+          <label class="label-control label-special-w">审核时间:</label>
+          <div class="col-md-8 m-t-xs">
+            {{auditDate}}
+          </div>
+        </div>
+      </div>
+      <div class="clearfix">
+        <label class="label-control label-special-w">审核意见:</label>
+        <div class="col-md-4 m-t-xs">
+          {{auditRemark}}
+        </div>
+      </div>
+      
+    </section>
+    <section class="wrapper">
+      <div class="col-md-12 text-center">
+        <button class="btn" (click)="back()">返回</button>
+      </div>
+    </section>
+  </form>
+</div>

@@ -1,0 +1,53 @@
+<div class="page-location">
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-th-list"></i>账户管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">账户流水</a>
+</div>
+<div class="wrapper ">
+	<div class="wrapper bg-white clearfix">
+		<div class="col-md-6 form-inline">
+			<label for="" class="">交易类型:</label>
+			<select type="text" name="tradeType" class="form-control" [(ngModel)]="tradeType">
+				<option [value]="item.value" *ngFor="let item of tradeTypeList">{{item.label}}</option>
+			</select>
+			<label for="" class="m-l-md">交易日期:</label>
+			<div class="input-group date-input-group">
+	          <input class="form-control" datePicker [(ngModel)]="startTime" name="startTime" placeholder="选择日期" />
+	          <span class="input-group-addon">至</span>
+	          <input class="form-control" datePicker [(ngModel)]="endTime" name="endTime" placeholder="选择日期" />
+	        </div>
+			
+		</div>
+		<div class="col-md-6 form-inline">
+			<button class="btn btn-info pull-right m-l-md" (click)="page=0;getDataList()" >查询</button>
+			<input type="text " name="memberName" class="form-control pull-right" [(ngModel)]="memberName" placeholder="会员名">
+			
+		</div>
+	</div>
+	<div>
+		<p-dataTable  [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading">
+	      <p-column field="flowId" header="流水号" [style]="{'width':'280px'}"></p-column>
+	      <p-column field="createTime" header="交易时间" [style]="{'width':'180px'}"></p-column>
+	      <p-column field="myAcctNo" header="出账账号" [style]="{'width':'200px'}"></p-column>
+	      <p-column field="myAcctName" header="出账账户名" [style]="{'width':'200px'}"></p-column>
+	      <p-column field="amount" header="发生金额(元)" [style]="{'width':'150px'}">
+	      	<ng-template let-row="rowData" pTemplate="body">
+          		<div class="text-right">
+            <!-- {{addCreditValue.addCreditValue | currency:'CNY' :true}} -->
+            		{{row.amount | yuanFormat}}
+       
+          		</div>
+        	</ng-template>
+	      </p-column>
+	      <p-column field="oppoAcctNo" header="入账账号" [style]="{'width':'200px'}"></p-column>
+	      <p-column field="oppoAcctName" header="入账账户名" [style]="{'width':'200px'}"></p-column>
+	      <p-column field="tradeTypeDic" header="交易类型" [style]="{'width':'100px'}"></p-column>
+	      <p-footer>
+	        <div class="clearfix">
+	          <div class="pull-right">
+	            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="getDataList()" size="sm" [showTotal]="true"></paginator>
+	          </div>
+	        </div>
+	      </p-footer>
+	    </p-dataTable>
+	</div>
+</div>

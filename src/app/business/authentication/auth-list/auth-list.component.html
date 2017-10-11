@@ -1,0 +1,39 @@
+<div class="page-location">
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i>拓展管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item ">客户名册<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">认证申请列表</a>
+</div>
+<div class="wrapper">
+  <div class="wrapper bg-white clearfix">
+    <div class="col-md-3 ">
+      <button class="btn" [class.btn-info]="authApplyReplyNum==1" (click)="getList(1)">认证中</button>
+      <button class="btn" [class.btn-info]="authApplyReplyNum==2" (click)="getList(2)">历史</button>
+    </div>
+    
+  </div>
+  <div>
+  	<p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading">
+      
+      <p-column field="authId" header="申请ID"></p-column>
+      <p-column field="companyName" header="客户名称"></p-column>
+      <p-column field="companyTypeDic" header="类别"></p-column>
+      <p-column field="serviceMan" header="服务经理"></p-column>
+      <p-column field="statusDic" header="状态"></p-column>
+      <p-column field="createTime" header="申请时间"></p-column>
+      <p-column field="ooo" header="操作">
+        <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
+          <div class="text-center">
+            <a class="table-btn text-info" (click)='detail(operation)'>查看</a>
+          </div>
+        </ng-template>
+      </p-column>
+      <p-footer>
+        <div class="clearfix">
+          <div class="pull-right">
+            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="getList(authApplyReplyNum)" size="sm" [showTotal]="true"></paginator>
+          </div>
+        </div>
+      </p-footer>
+    </p-dataTable>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="page-location">
+  <a class="h4 pad-r-xs font-bold">拜访报告</a>
+  <a class="page-location-item">
+    <!-- <i class="page-location-icon glyphicon glyphicon-briefcase"></i> -->
+    拓展管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">拜访报告</a>
+</div>
+<div class="wrapper">
+  <div class="wrapper bg-white">
+    <form class="form-inline clearfix form-search">
+      <div class="form-group" *ngIf="authRole.roleIn(['008'])">
+        <label class="control-label'" for="">服务经理:</label>
+        <select name="serviceMan" class="form-control" [(ngModel)]="serviceMan">
+          <option [value]="item.employeeName" *ngFor="let item of serviceManL">
+            <span *ngIf="item.employeeName">{{item.employeeName}}</span>
+            <span *ngIf="!item.employeeName">全部</span>
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="control-label ">拜访日期：</label>
+        <div class="input-group date-input-group">
+          <input class="form-control" datePicker [(ngModel)]="dateStart" name="dateStart" placeholder="选择日期" />
+          <span class="input-group-addon">至</span>
+          <input class="form-control" datePicker [(ngModel)]="dateEnd" name="dateEnd" placeholder="选择日期" />
+        </div>
+      </div>
+      <div class="form-group">
+        <a class="" [class.text-info]="monthSelectBtn===1&&submitAfterClick===false" (click)="monthSelect(1)">一个月</a>
+      </div>
+      <div class="form-group">
+        <a class="" [class.text-info]="monthSelectBtn===3&&submitAfterClick===false" (click)="monthSelect(3)">三个月</a>
+      </div>
+      <div class="form-group">
+        <button class="btn-def" type="button" [disabled]="submitting" (click)="serach()">查询<i class="fa fa-search"></i></button>
+
+      </div>
+      
+    </form>
+  </div>
+  <div>
+    <p-dataTable tableStyleClass="table-style" [value]="dateList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading">
+      <p-column field="serial" header="序号"></p-column>
+      <p-column field="guestName" header="客户名称"></p-column>
+      <p-column field="visitDate" header="拜访日期"></p-column>
+      <p-column field="visitWhatDic" header="拜访目的"></p-column>
+      <p-column field="serviceMan" header="服务经理"></p-column>
+      <p-column field="remark" header="备忘录"></p-column>
+      <p-column field="color" header="操作">
+        <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
+          <div class="text-center">
+            <a class="table-btn text-info" (click)="detail(operation)">查看</a>
+            <a class="table-btn text-info" (click)="edit(operation)" *ngIf="authRole.roleIn(['007'])">修改</a>
+          </div>
+        </ng-template>
+      </p-column>
+      <p-footer>
+        <div class="clearfix">
+          <div class="pull-left" *ngIf="authRole.roleIn(['007'])">
+            <button type="button" class="btn btn-info" (click)='add()' >新增</button>
+          </div>
+          <div class="pull-right">
+            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="queryData()" size="sm" [showTotal]="true"></paginator>
+          </div>
+        </div>
+      </p-footer>
+    </p-dataTable>
+  </div>
+</div>
+

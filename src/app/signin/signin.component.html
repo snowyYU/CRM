@@ -1,0 +1,66 @@
+
+
+
+
+<div class="signin org">
+    <div class="signin-header">
+        <h1>客户关系管理系统</h1>
+        <small>Customer Relationship Manage System</small>
+        <!--<div class="signin-logo hidden-xs"></div>-->
+    </div>
+    <div class="signin-body">
+        <div class="signin-content">
+
+            <div class="signin-baneners">
+                <a>
+                    <img src="assets/img/banner/banner.png"/>
+                </a>
+                <div class="signin-banener-nav">
+                    <a class="signin-banener-nav-item"></a>
+                    <a class="signin-banener-nav-item"></a>
+                    <a class="signin-banener-nav-item"></a>
+                    <a class="signin-banener-nav-item active" title="客户关系管理系统"></a>
+                    <a class="signin-banener-nav-item"></a>
+                    <a class="signin-banener-nav-item"></a>
+                </div>
+            </div>
+            <div class="signin-form">
+                <form class="form-horizontal" (submit)="signIn()">
+                    <fieldset class="h3">客户关系管理系统</fieldset>
+                    <div class="signin-form-lines">
+                    </div>
+                    <div class="signin-form-msg">
+                      <div class="form-group" *ngIf="msg">
+                        <div class="col-md-6 col-md-offset-4 text-warning" style="line-height: 70px;">
+                          {{msg}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4 no-r-padding">UserID:</label>
+                        <div class="col-md-6">
+                            <input class="form-control" placeholder="" [(ngModel)]="user" name="user"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4 no-r-padding">PassWord:</label>
+                        <div class="col-md-6">
+                            <input class="form-control" type="password" placeholder="" [(ngModel)]="password" name="password"/>
+                        </div>
+                    </div>
+                    <div class="form-group mar-t-md">
+                        <div class="col-md-6 col-md-offset-4 text-right">
+                            <button class="btn btn-default btn-sm" type="submit" [disabled]="submiting">{{submiting?'Login...':'Login'}}</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="signin-footer">
+        <small class="copyright">
+            Copyright © 2017 HaiTun56. All rights reserved
+        </small>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="page-location">
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item">会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item">会员详情<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">尽调报告</a>
+</div>
+<div class="wrapper">
+	<section class="col-md-12 bg-white wrapper">
+    <div class="col-md-12 text-center">
+      <img [src]="firstAttachSrc" alt="">
+      
+    </div>
+		<table class="table" border="1">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>尽调报告</th>
+					<th>更新者</th>
+					<th>更新日期</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+            <tbody>
+              <tr *ngFor="let item of attachList;let i=index">
+                <td>{{i+1}}</td>
+                <td>{{item.fileTypeDic}}</td>
+                <td>{{item.updateBy}}</td>
+                <td>{{item.updateTime}}</td>
+                <td><a class="text-info" (click)="show(item.fileNumber)">查看</a></td>
+              </tr>
+              
+              
+            </tbody>
+          </table>
+	</section>
+	<section class="col-md-12 m-t">
+      <div class="col-md-12 text-center" >
+        <button class="btn" (click)="back()">返回</button>
+      </div>
+    </section>
+</div>

@@ -1,0 +1,111 @@
+<div class="page-location">
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i>拓展管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item">客户名册<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">客户详情</a>
+</div>
+<div class="wrapper">
+  <form #form>
+    <section class="wrapper bg-white">
+      <div class="form-group clearfix row">
+        <div class="col-md-6">
+          <label class="label-control label-special-w" for="geustName">客户名称:</label>
+          <div class="col-md-8 m-t-xs">
+            {{guestName}}
+          </div>
+        </div>
+        <div class="col-md-6 ">
+          <label class="label-control label-special-w">创建时间:</label>
+          <div class="col-md-8 m-t-xs">
+            {{createTime}}
+          </div>
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <label class="label-control label-special-w">获客途径:</label>
+        <div class="col-md-4 m-t-xs">
+            {{guestFrom}}
+        </div>
+      </div>
+      <!-- <div class="form-group clearfix">
+        <label class="label-control label-special-w">归属渠道:</label>
+        <div class="col-md-4 m-t-xs">
+            {{appId}}
+        </div>
+      </div> -->
+      <div class="form-group clearfix row">
+        <div class="col-md-6">
+          <label class="label-control label-special-w" for="geustName">服务经理:</label>
+          <div class="col-md-8 m-t-xs">
+            {{serviceMan}}
+          </div>
+        </div>
+        <div class="col-md-6 ">
+          <label class="label-control label-special-w">状态:</label>
+          <div class="col-md-8 m-t-xs">
+            {{status}}
+          </div>
+        </div>
+      </div>
+      
+    </section>
+    <section class="wrapperForTwo ">
+      <div class="p-t col-md-6 bg-white wrapperTwoLeft">
+        <div class="form-group clearfix m-t">
+          <label for="" class="label-control label-special-w">公司类型:</label>
+          <div class="col-md-8 m-t-xs">
+            {{companyType}}
+          </div>
+        </div>
+        <div class="form-group clearfix">
+          <label for="" class="label-control label-special-w">成立时间:</label>
+          <div class="col-md-8 m-t-xs">
+            {{foundTime}}
+          </div>
+        </div>
+        <div class="form-group clearfix">
+          <label for="" class="label-control label-special-w">注册资金:</label>
+          <div class="col-md-8 m-t-xs">
+            {{registerCapital | yuanFormat}} 万元
+          </div>
+        </div>
+        <div class="form-group clearfix">
+          <label for="" class="label-control label-special-w">营业执照号:</label>
+          <div class="col-md-8 m-t-xs">
+            {{licenceNum}}
+          </div>
+        </div>
+        <div class="form-group clearfix">
+          <label for="" class="label-control label-special-w">公司地址:</label>
+          <div class="col-md-8 m-t-xs">
+            {{companyAddress}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 bg-white wrapperTwoRight">
+        <div class="form-group clearfix m-t">
+          <label for="" class="label-control label-special-w">联系人:</label>
+          <div class="col-md-8 m-t-xs">
+            {{linkName}}
+          </div>
+        </div>
+        <div class="form-group clearfix">
+          <label for="" class="label-control label-special-w">联系手机:</label>
+          <div class="col-md-8 m-t-xs">
+            {{linkMobile}}
+          </div>
+        </div>
+        <div class="form-group clearfix">
+          <label for="" class="label-control label-special-w">联系人职位:</label>
+          <div class="col-md-8 m-t-xs">
+            {{linkJob}}
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="m-t-md">
+      <div class="text-center">
+        <button class="btn" type="button" (click)="cancel()">返回</button>
+      </div>
+    </section>
+  </form>
+</div>

@@ -1,0 +1,159 @@
+<div class="page-location">
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item">会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item">会员详情<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">电子附件</a>
+</div>
+<div class="wrapper">
+
+	<section class="wrapperForTwo p-t-none">
+      <div class="p-t col-md-6 bg-white wrapperTwoLeft">
+        <div class="b-b col-md-12 wrapper">基本资质类</div>
+        <div class="col-md-12 wrapper">
+          <table class="table" border="1">
+            <tbody>
+              <tr>
+                <td>四证合一</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0101']" (click)="show('0101')">查看</a></td>
+              </tr>
+              <tr>
+                <td>公司章程</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0102']" (click)="show('0102')">查看</a></td>
+              </tr>
+              <tr>
+                <td>验资报告</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0103']" (click)="show('0103')">查看</a></td>
+              </tr>
+              <tr>
+                <td>申请人身份证（正面）</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0104']" (click)="show('0104')">查看</a></td>
+              </tr>
+              <tr>
+                <td>申请人身份证（反面）</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0105']" (click)="show('0105')">查看</a></td>
+              </tr>
+              <tr>
+                <td>配偶身份证（正面）</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0106']" (click)="show('0106')">查看</a></td>
+              </tr>
+              <tr>
+                <td>配偶身份证（反面）</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0107']" (click)="show('0107')">查看</a></td>
+              </tr>
+              <tr>
+                <td>户口本</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0110']" (click)="show('0110')">查看</a></td>
+              </tr>
+              
+              <tr>
+                <td>人行版征信报告</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0111']" (click)="show('0111')">查看</a></td>
+              </tr>
+              <tr>
+                <td>申请人与经营场所合照</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0112']" (click)="show('0112')">查看</a></td>
+              </tr>
+               <tr>
+                <td>公司门面照</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0113']" (click)="show('0113')">查看</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+       
+      </div>
+      <div class="col-md-6 bg-white wrapperTwoRight">
+        <div class="b-b col-md-12 wrapper">业务资质类</div>
+        <div class="col-md-12 wrapper">
+          <table class="table" border="1">
+            <tbody>
+              <tr>
+                <td>职业资格证书（财务）</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0201']" (click)="show('0201')">查看</a></td>
+              </tr>
+              <tr>
+                <td>道路运输可证</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0202']" (click)="show('0202')">查看</a></td>
+              </tr>
+              <tr>
+                <td>运输合作合同</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0203']" (click)="show('0203')">查看</a></td>
+              </tr>
+              <tr>
+                <td>营运车辆机动车登记证</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0204']" (click)="show('0204')">查看</a></td>
+              </tr>
+              <tr>
+                <td>行驶证</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0205']" (click)="show('0205')">查看</a></td>
+              </tr>
+              <tr>
+                <td>营运车辆挂靠协议</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0206']" (click)="show('0206')">查看</a></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </section>
+    <section class="wrapperForTwo p-t-none">
+      <div class="p-t col-md-6 bg-white wrapperTwoLeft">
+        <div class="b-b col-md-12 wrapper">资产类</div>
+        <div class="col-md-12 wrapper">
+          <table class="table" border="1">
+            <tbody>
+              <tr>
+                <td>房产证明</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0301']" (click)="show('0301')">查看</a></td>
+              </tr>
+              <tr>
+                <td>租赁（房）合同</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0302']" (click)="show('0302')">查看</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6 bg-white wrapperTwoRight">
+        <div class="b-b col-md-12 wrapper">银行类</div>
+        <div class="col-md-12 wrapper">
+          <table class="table" border="1">
+            <tbody>
+              <tr>
+                <td>开户证明</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0501']" (click)="show('0501')">查看</a></td>
+              </tr>
+              <tr>
+                <td>银行卡</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0502']" (click)="show('0502')">查看</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </section>
+    <section class="wrapperForTwo p-t-none">
+      <div class="p-t col-md-6 bg-white wrapperTwoLeft">
+        <div class="b-b col-md-12 wrapper">其他</div>
+        <div class="col-md-12 wrapper">
+          <table class="table" border="1">
+            <tbody>
+              <tr>
+                <td>房产证明</td>
+                <td><a class="text-disabled" [class.text-info]="attachment['0601']" (click)="show('0601')">查看</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+    </section>
+    <section>
+      <div class="col-md-12 text-center" >
+        <button class="btn" (click)="back()">返回</button>
+      </div>
+    </section>
+</div>

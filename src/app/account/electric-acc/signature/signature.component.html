@@ -1,0 +1,161 @@
+<div class="page-location">
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-th-list"></i>账户管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item">电子账户<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">电子签章</a>
+</div>
+<div class="wrapper-md">
+<form #form="ngForm" ngSubmit="openAcc()">
+    <section class="wrapper bg-white clearfix form-inline">
+        <input type="text " name="memberNameQ" class="form-control m-l-md" [(ngModel)]="memberNameQ" placeholder="会员名|会员id">
+        <button type="button" class="btn btn-info" (click)="getDetailData()" [disabled]="!memberNameQ">查询</button>
+       <!--  <button type="button" class="btn btn-info pull-right m-l-md" >电子签章</button>
+        <button type="button" class="btn  pull-right" (click)="eleAcc()">开户</button> -->
+        
+    </section>
+    <section class="wrapper bg-white" *ngIf="companyName">
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label class="control-label m-l-md">会员名称:</label>
+                <span *ngIf="companyName">{{companyName}}  ({{memberId}})</span>
+            </div>
+            <div class="col-md-6">
+                <label class="control-label m-l-md">状态:</label>
+                <span>{{signatureUserStatusDit}}</span>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="control-label m-l-md">归属渠道:</label>
+                <span>{{prmResourceRegister.resourceName}}</span>
+            </div>
+            
+        </div>
+    </section >
+    <!-- 已开通未开通的状态 -->
+    <section class="wrapper bg-white m-t-md " *ngIf="companyName">
+        <div class="row form-group">
+            <div class="col-md-6 m-t-xs">
+                <label class="control-label m-l-md">公司类型:</label>
+                <span>{{company.companyTypeName}}</span>
+            </div>
+            <div class="col-md-6">
+                <label class="control-label m-l-md">借款人:</label>
+                <span>{{companyborrower.borrwerPerson}}</span>
+            </div>
+            
+        </div>
+        <div class="row form-group">
+            <div class="col-md-6 m-t-xs">
+                <label class="control-label m-l-md">法人:</label>
+                <span>{{companyLegal.legalPerson}}</span>
+            </div>
+            <div class="col-md-6">
+                <label class="control-label m-l-md">借款人身份证:</label>
+                <span>{{companyborrower.borrwerIdcard}}</span>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-6 m-t-xs">
+                <label class="control-label m-l-md">营业执照号:</label>
+                <span>{{company.licenceNum}}</span>
+            </div>
+            <div class="col-md-6">
+                <label class="control-label m-l-md">借款人手机:</label>
+                <span>{{companyborrower.borrwerMobile}}</span>
+            </div>
+            
+        </div>
+        
+    </section>
+   
+	<!-- 已开通的状态 -->
+	<section class="wrapper bg-white clearfix m-t-md" *ngIf="signatureUserStatusDit=='已开通'">
+    <div class="row">
+        <div class="col-md-6 m-t-xs">
+            <label class="control-label m-l-md">公司签章:</label>
+            <img [src]="'data:image/png;base64,'+userSeal1Base64" alt="">
+            <button type="button" class="btn btn-info" *ngIf="!userSeal1Base64" (click)="openFun('1')">开通</button>
+            <button type="button" class="btn btn-danger" *ngIf="userSeal1Base64" (click)="destroy('1')">注销</button>
+        </div>
+        <div class="col-md-6">
+            <label class="control-label m-l-md">个人签章:</label>
+            <img [src]="'data:image/png;base64,'+userSeal2Base64" alt="">
+            <button type="button" class="btn btn-info" *ngIf="!userSeal2Base64" (click)="openFun('2')">开通</button>
+            <button type="button" class="btn btn-danger" *ngIf="userSeal2Base64" (click)="destroy('2')">注销</button>
+        </div>
+    </div>
+	</section>
+    <!-- 未开通的状态 -->
+    <section class="wrapper bg-white m-t-md clearfix" *ngIf="signatureUserStatusDit=='未开通'">
+        <div class="row">
+        <div class="col-md-6 m-t-xs">
+            <label class="control-label m-l-md">电子合同章:</label>
+            <span>{{companyName}}</span>
+            <!-- <span>{{eaccount.signatureid1}}</span> -->
+        </div>
+        <div class="col-md-6 m-t-xs">
+            <label class="control-label m-l-md">个人签章:</label>
+            <span>{{companyborrower.borrwerPerson}}</span>
+            <!-- <span>{{eaccount.signatureid2}}</span> -->
+        </div>
+    </div>
+    </section>
+    <section class="wrapper text-center" *ngIf="signatureUserStatusDit=='未开通'">  
+        <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="eleA">开通电子合同章</checkbox>
+        <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="person">开通个人签章</checkbox>
+
+        <!-- <div class="checkbox-inline">
+          <div class="inline-block m-l-sm m-t-sm w-auto">
+            <label class="i-checks">
+              <input type="checkbox" name="checkboxL" [(ngModel)]="eleA">
+              <i></i>
+              开通电子合同章
+            </label>
+          </div>
+          <div class="inline-block checkbox pull-left m-l-sm m-t-sm w-auto">
+            <label class="i-checks">
+              <input type="checkbox" name="checkboxL" [(ngModel)]="person">
+              <i></i>
+              开通个人签章
+            </label>
+          </div>
+        </div> -->
+        
+    </section>
+    <section class="clearfix text-center" *ngIf="companyName">
+        <!-- <button type="button" class="btn">返回</button> -->
+        <button type="submit" class="btn btn-info"  *ngIf="signatureUserStatusDit=='未开通'" (click)="openSig()">开通</button>
+    </section>
+</form>
+</div>
+
+
+
+
+<!-- 模态框部分 -->
+<modal [(visible)]="openVisiable" size="md">
+  <modal-header>
+    <h4 class="modal-title">结果——<span *ngIf="type=='3'">电子签章</span><span *ngIf="type=='1'">公司签章</span><span *ngIf="type=='2'">个人签章</span></h4>
+  </modal-header>
+  <modal-body>
+    <div class="wrapper text-center" *ngIf="type=='1'">
+      <img [src]="'data:image/png;base64,'+userSeal1Base64" alt="">
+    </div>
+    <div class="wrapper text-center" *ngIf="type=='2'">
+      <img [src]="'data:image/png;base64,'+userSeal2Base64" alt="">
+    </div>
+    <div class="col-md-6 b-r" *ngIf="type=='3'">
+      <img [src]="'data:image/png;base64,'+userSeal1Base64" alt="">
+    </div>
+    <div class="col-md-6" *ngIf="type=='3'">
+      <img [src]="'data:image/png;base64,'+userSeal2Base64" alt="">
+    </div>
+  </modal-body>
+  <modal-footer>
+    <button class="btn btn-default" (click)="closeModal()">关闭</button>
+    
+
+  </modal-footer>
+</modal>

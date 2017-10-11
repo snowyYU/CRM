@@ -1,0 +1,112 @@
+<!-- <div>
+  <ul class="breadcrumb1 bg-white b-a">
+    <li class="active"><i class="fa fa-home"></i>客户名册</li>
+  </ul>
+</div> -->
+<div class="page-location">
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i><span *ngIf="authRole.roleIn(['007'])">业务拓展</span><span *ngIf="authRole.roleIn(['008'])">拓展管理</span><i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">客户名册</a>
+</div>
+<div class="wrapper">
+  <div class="wrapper bg-white clearfix">
+    <!-- <button class="btn btn-default pull-right" [routerLink]="['/business/authList',0]">认证记录</button> -->
+    <div class="col-md-4 form-inline" *ngIf="authRole.roleIn(['008'])">
+      <label for="" class="m-t-xs m-r-xs">服务经理:</label>
+      <select name="serviceMan" class="form-control" [(ngModel)]="serviceMan" (change)="queryData()">
+        <option [value]="item.employeeName" *ngFor="let item of serviceManL">
+          <span *ngIf="item.employeeName">{{item.employeeName}}</span>
+          <span *ngIf="!item.employeeName">全部</span>
+        </option>
+      </select>
+    </div>
+    <div class="col-md-2" [class.pull-right]="authRole.roleIn(['008'])">
+      <a class="text-info text-lg text-underline" (click)="goToList()">认证申请回复</a>
+      <!-- <a class="text-danger text-lg" (click)='goToList()' *ngIf="authApplyReplyNum">{{authApplyReplyNum}}</a>
+      <span class="text-danger text-lg" *ngIf="!authApplyReplyNum">{{authApplyReplyNum}}</span> -->
+    </div>
+    
+    
+  </div>
+  <div>
+    <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading">
+      <p-column field="index" header="序号" styleClass="text-center "></p-column>
+      <p-column field="guestName" header="客户名称">
+      	<ng-template let-guestName="rowData" pTemplate="body">
+      		<div class="text-center">
+      			<a (click)="detail(guestName)" class="text-info">{{guestName.guestName}}</a>
+      		</div>
+      	</ng-template>
+      </p-column>
+      <p-column field="linkName" header="联系人"></p-column>
+      <p-column field="linkMobile" header="联系手机"></p-column>
+      <p-column field="guestFromDic" header="获客途径"></p-column>
+      <p-column field="serviceMan" header="服务经理"></p-column>
+      <p-column field="statusDic" header="状态">
+        <ng-template let-row="rowData" pTemplate="body">
+          <a *ngIf="row.status==1" [routerLink]="['/business/authDetail',row.guestId]">
+            {{row.statusDic}}
+          </a>
+          <div *ngIf="row.status!=1">
+            {{row.statusDic}}
+          </div>
+        </ng-template>
+      </p-column>
+      <p-column field="ooo" header="操作">
+        <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
+          <div class="text-center" >
+            <a class="table-btn text-info" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:applyAuth(operation)" *ngIf="authRole.roleIn(['007'])">申请认证</a>
+            <a class="table-btn text-info" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:edit(operation)" *ngIf="authRole.roleIn(['007'])">修改</a>
+            <a class="table-btn text-danger" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:delete(operation)" *ngIf="authRole.roleIn(['007'])">删除</a>
+            <a class="table-btn text-info" (click)="changeManage(operation)" *ngIf="authRole.roleIn(['008'])">变更经理</a>
+          </div>
+          
+        </ng-template>
+      </p-column>
+      <p-footer>
+        <div class="clearfix">
+          <button class="btn btn-info pull-left m-r-xs" [routerLink]="['/business/customerList/add']" *ngIf="authRole.roleIn(['007'])">新增</button>
+          <div class="pull-right">
+            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="queryData()" size="sm" [showTotal]="true"></paginator>
+          </div>
+        </div>
+      </p-footer>
+    </p-dataTable>
+  </div>
+</div>
+
+<!-- 模态框部分 -->
+<modal [(visible)]="changeManageModal" size="md">
+  <form #form="ngForm" (ngSubmit)="submit()">
+  <modal-header>
+    <h4 class="modal-title">变更服务经理</h4>
+  </modal-header>
+  <modal-body>
+    <div class="">
+      <div class="col-md-12">
+        <label for="" class="col-md-2">客户名称:</label>
+        <div class="col-md-8">
+          {{modalCompanyName}}
+        </div>
+      </div>
+      <div class="col-md-12 b text-2x wrapper-lg">
+        <div class="col-md-4 text-center">
+          {{modalServiceManO}}
+        </div>
+        <div class="col-md-4 text-center">
+          >>>>>
+        </div>
+        <div class="col-md-4 text-center m-t-xs">
+          <select name="changeServiceM" class="form-control" [(ngModel)]="modalServiceMan" required>
+            <option [value]="item.employeeName" *ngFor="let item of modalServiceManL">{{item.employeeName}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </modal-body>
+  <modal-footer>
+    <button class="btn btn-info" [disabled]="!form.valid" type="submit" >确定</button>
+
+    <button class="btn btn-default" type="button" (click)="closeModal()">关闭</button>
+  </modal-footer>
+  </form>
+</modal>
