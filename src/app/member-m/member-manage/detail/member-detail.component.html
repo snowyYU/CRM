@@ -1,5 +1,9 @@
 <div class="page-location">
-  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="h4 pad-r-xs font-bold">会员详情</a>
+
+  <a class="page-location-item">
+    <i class="page-location-icon glyphicon glyphicon-user"></i>
+    会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item">会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">会员详情</a>
 </div>
@@ -7,17 +11,17 @@
   <section class="panel-body bg-white">
     <div class="form-group clearfix">
         <label class="label-control">客户名称:</label>
-        <span class="col-md-7 row">{{companyName}}  ({{memberId}})</span>
+        <span class="col-md-7 row text-content">{{companyName}}  ({{memberId}})</span>
         <label class="label-control">创建日期:</label>
-        <span>{{createTime}}</span>
+        <span class="text-content">{{createTime}}</span>
     </div>
     <div class="form-group clearfix">
         <label class="label-control">归属渠道:</label>
-        <span>{{prmResourceRegister.resourceName}}</span>
+        <span class="text-content">{{prmResourceRegister.resourceName}}</span>
     </div>
     <div class="form-group clearfix">
         <label class="label-control">类别:</label>
-        <span>{{memberTypeDic}}</span>
+        <span class="text-content">{{memberTypeDic}}</span>
     </div>
     <div class="form-group clearfix">
         <label class="label-control">状态:</label>
@@ -25,7 +29,7 @@
     </div>
     <div class="form-group clearfix">
         <label class="label-control">服务经理:</label>
-        <span>{{serviceMan}}</span>
+        <span class="text-content">{{serviceMan}}</span>
     </div>
   </section >
   <section class="panel-body bg-white m-t-md">
@@ -60,17 +64,17 @@
         	<label class="label-control">尽调报告:</label>
         	<span class="col-md-7 row text-info" ><a [routerLink]="['/memberM/memberManage/detail',memberId,'memberReport']" class="text-info">查看</a></span>
         	<label class="label-control">更新时间:</label>
-        	<span>{{reportsVo.updateTime}}</span>
+        	<span class="text-content">{{reportsVo.updateTime}}</span>
     	</div>
     	<div class="form-group clearfix">
         	<label class="label-control">信用等级:</label>
         	<span class="col-md-7 row">{{memberRating}}</span>
         	<label class="label-control">评估日期:</label>
-        	<span>待处理</span>
+        	<span class="text-content">待处理</span>
     	</div>
     	<div class="form-group clearfix">
         	<label class="label-control">信用评分:</label>
-        	<span class="col-md-7 row">{{memberRatingGrate}}</span>
+        	<span class="col-md-7 row text-content">{{memberRatingGrate}}</span>
         	
     	</div>
 	</section>

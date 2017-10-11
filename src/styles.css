@@ -39,10 +39,10 @@ li{
 	left: 5px
 }
 
-.app {
-    background-color: #ddd;
-}
-
 .wrapper{
 	padding: 20px
+}
+
+.text-content{
+	color: #b6550f
 }
