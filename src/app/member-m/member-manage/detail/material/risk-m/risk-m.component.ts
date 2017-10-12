@@ -16,8 +16,11 @@ export class RiskMComponent implements OnInit {
 	attachment:object={}
 	memberId:number
 	part1:boolean=false
+	part1S:boolean=true
 	part2:boolean=false
+	part2S:boolean=true
 	part3:boolean=false
+	part3S:boolean=true
 
 	companyAsset:{
 		addAttachList?
