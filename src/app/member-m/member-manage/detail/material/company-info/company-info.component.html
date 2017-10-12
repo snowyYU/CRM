@@ -801,8 +801,9 @@
       <button type="submit" class="btn btn-info pull-right" *ngIf="part2" [disabled]="!part2F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part2" (click)="cancel('part2')">取消</button>
     </div> -->
-      <div class="padder-v clearfix col-md-12 row" *ngIf="!part2&&part2S">
-        <div class="form-group clearfix">
+      <div class="padder-v clearfix col-md-12" *ngIf="!part2&&part2S">
+        <div class="col-md-12 border-content">
+        <div class="form-group clearfix m-t">
           <div class="col-md-6">
             <label for="" class="control-label">公司名称:</label>
             <div class="col-md-6 text-content">{{memberVo.companyName}}</div>
@@ -839,10 +840,12 @@
           </div>
           <div class="col-md-6">
             <label for="" class="control-label">企业地址:</label>
-            <div class="col-md-6 text-content">{{companyVo.companyAddress}}</div>
+            <div class="col-md-7 text-content">{{companyVo.companyAddress}}</div>
           </div>
         </div>
-        <div class="form-group clearfix">
+      </div>
+      <div class="col-md-12 border-content m-t padder-v">
+        <div class="clearfix">
           <label for="" class="control-label col-md-3">相关证照:</label>
           <div class="col-md-6">
             <div class="form-group clearfix">
@@ -861,12 +864,13 @@
               <div class="col-md-6">职业资格证书（财务）</div>
               <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0201']" (click)="show('0201',$event)">查看</a></div>
             </div>
-            <div class="form-group clearfix">
+            <div class="clearfix">
               <div class="col-md-6">四证合一</div>
               <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0101']" (click)="show('0101',$event)">查看</a></div>
             </div>
           </div>
         </div>
+      </div>
       </div>
       <!-- 公司信息编辑模板 -->
       <div class="padder-v clearfix col-md-12 row" *ngIf="part2&&part2S">
@@ -1210,8 +1214,9 @@
       <button type="submit" class="btn btn-info pull-right" *ngIf="part3"  [disabled]="!part3F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part3" (click)="cancel('part3')">取消</button>
     </div> -->
-      <div class="padder-v clearfix col-md-12 row" *ngIf="!part3&&part3S">
-        <div class="form-group clearfix">
+      <div class="padder-v clearfix col-md-12" *ngIf="!part3&&part3S">
+        <div class="col-md-12 border-content">
+        <div class="form-group clearfix m-t-md">
           <div class="col-md-6">
             <label for="" class="control-label">法人姓名:</label>
             <div class="col-md-6 text-content">{{companyLegalVo.legalPerson}}</div>
@@ -1237,6 +1242,7 @@
             <div class="col-md-6 text-content">{{companyLegalVo.legalMobile}}</div>
           </div>
         </div>
+      </div>
       </div>
     </form>
     <!-- 编辑模板 -->
@@ -1308,8 +1314,8 @@
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part4" (click)="cancel('part4')">取消</button>
     </div> -->
       <div class="padder-v clearfix col-md-12">
-        <div class="clearfix m-t" *ngFor="let item of companyBankCardVos">
-          <div class="form-group clearfix">
+        <div class="col-md-12 border-content" *ngFor="let item of companyBankCardVos">
+          <div class="form-group clearfix m-t-md">
             <div class="col-md-6">
               <label for="" class="control-label">账户类型:</label>
               <div class="col-md-6 text-content">{{item.typeDic}}</div>
@@ -1339,9 +1345,9 @@
               <div class="col-md-6 text-content">{{item.isDefaultDic}}</div>
             </div>
           </div>
-        </div>
       </div>
-      <div class="form-group clearfix col-md-12" *ngIf="!part4">
+      <div class="col-md-12 border-content m-t padder-v" *ngIf="!part4&&part4S">
+        <div class="clearfix">
         <label for="" class="control-label col-md-3">相关证照:</label>
         <div class="col-md-6">
           <div class="form-group clearfix">
@@ -1352,12 +1358,14 @@
             <div class="col-md-6">银行卡</div>
             <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0502']" (click)="show('0502',$event)">查看</a></div>
           </div>
-          <div class="form-group clearfix">
+          <div class="clearfix">
             <div class="col-md-6">网银流水</div>
             <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0504']" (click)="show('0504',$event)">查看</a></div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
       <div class="form-group clearfix col-md-12" *ngIf="part4">
         <label for="" class="control-label col-md-3">相关证照:</label>
         <div class="col-md-12 p-r-none">
@@ -1514,7 +1522,7 @@
   </section>
   <section class="m-t text-center">
     <div class="col-md-12">
-      <button class="btn" (click)="back()">返回</button>
+      <button class="btn-def m-b-md" (click)="back()">返回</button>
     </div>
   </section>
 </div>
