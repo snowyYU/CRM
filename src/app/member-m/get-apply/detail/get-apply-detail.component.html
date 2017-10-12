@@ -5,88 +5,119 @@
 </div>
 <div class="wrapper">
   <form #form>
-    <section >
-      <div class="clearfix ">
+    <section class="wrapper b b-dark m-b-sm padder">
+      <div class="form-group clearfix row">  <!--该处修改-->
         <div class="col-md-6">
-          <label class="label-control label-special-w" for="geustName">申请ID:</label>
-          <div class="col-md-8 m-t-xs">
+          <label class="label-control label-special-w font-bold" for="geustName">申请ID:</label>
+          <div class="col-md-8 m-t-xs text-content">
             {{creditAuthId}}
           </div>
         </div>
         <div class="col-md-6 ">
-          <label class="label-control label-special-w">申请时间:</label>
-          <div class="col-md-8 m-t-xs">
+          <label class="label-control label-special-w font-bold">申请时间:</label>
+          <div class="col-md-8 m-t-xs text-content">
             {{createTime}}
           </div>
         </div>
       </div>
     </section>
-    <section class="wrapper bg-white">
+    <section class="wrapper b b-dark m-b-sm padder"> <!--更改-->
       <div class="form-group clearfix row">
         <div class="col-md-6">
-          <label class="label-control label-special-w" for="geustName">会员名称:</label>
-          <div class="col-md-8 m-t-xs">
+          <label class="label-control label-special-w font-bold" for="geustName">会员名称:</label>
+          <div class="col-md-9 m-t-xs text-content">
             {{memberName}}  ({{memberId}})
           </div>
         </div>
         <div class="col-md-6 ">
-          <label class="label-control label-special-w">状态:</label>
-          <div class="col-md-8 m-t-xs">
+          <label class="label-control label-special-w font-bold">状态:</label>
+          <div class="col-md-8 m-t-xs text-success">
             {{statusDic}}
           </div>
         </div>
       </div>
-      <div class="form-group clearfix">
-        <label class="label-control label-special-w">申请产品:</label>
-        <div class="col-md-4 m-t-xs">
-          {{productName}}
+      <div class="form-group clearfix row">
+        <div class="col-md-6">
+          <label class="label-control label-special-w font-bold">申请产品:</label>
+          <div class="col-md-4 m-t-xs text-content">
+            {{productName}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="label-control label-special-w font-bold">产品类型:</label>
+          <div class="col-md-4 m-t-xs text-content">
+            {{productTypeName}}
+          </div>
         </div>
       </div>
       <div class="form-group clearfix">
-        <label class="label-control label-special-w">产品类型:</label>
-        <div class="col-md-4 m-t-xs">
-          {{productTypeName}}
-        </div>
-      </div>
-      <div class=" clearfix">
-        <label class="label-control label-special-w" for="geustName">服务经理:</label>
-        <div class="col-md-4 m-t-xs">
+        <label class="label-control label-special-w font-bold" for="geustName">服务经理:</label>
+        <div class="col-md-4 m-t-xs text-content">
           {{serviceMan}}
         </div>
       </div>
     </section>
-    <section class="wrapperForTwo ">
-      <div class="p-t col-md-6 bg-white wrapperTwoLeft">
-        <div class="form-group clearfix m-t">
-          <label for="" class="label-control label-special-w">申请额度:</label>
-          <div class="col-md-8 m-t-xs">
-            {{addCreditValue | yuanFormat}} 元
+    <section class="wrapper b b-dark padder">
+      <div class="form-group clearfix row">
+        <div class="col-md-6">
+          <label class="label-control label-special-w font-bold" for="geustName">申请额度:</label>
+          <div class="col-md-8 m-t-xs text-content">
+            {{addCreditValue | yuanFormat}}
           </div>
         </div>
+        <div class="col-md-6 ">
+          <label class="label-control label-special-w font-bold">原授信额度:</label>
+          <div class="col-md-8 m-t-xs text-content">
+            {{oldCreditValue | yuanFormat}}
+          </div>
+        </div>
+      </div>
+      <div class="form-group clearfix row">
+        <div class="col-md-6">
+          <label class="label-control label-special-w font-bold">有效期:</label>
+          <div class="col-md-4 m-t-xs text-content">
+            {{expiryDateBegin | effDateFormat}} <span *ngIf="expiryDateBegin">至</span> {{expiryDateEnd | effDateFormat}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="label-control label-special-w font-bold">申请原因:</label>
+          <div class="col-md-4 m-t-xs text-content">
+            {{authRemark}}
+          </div>
+        </div>
+      </div>
+      
+      <!-- <div class="p-t col-md-6 wrapperTwoLeft accordion-group padder">
         <div class="form-group clearfix m-t">
-          <label for="" class="label-control label-special-w">原授信额度:</label>
-          <div class="col-md-8 m-t-xs">
-            {{oldCreditValue | yuanFormat}} 元
+          <label for="" class="label-control label-special-w">申请额度:</label>
+          <div class="col-md-8 m-t-xs text-content">
+            {{addCreditValue | yuanFormat}} 
           </div>
         </div>
         <div class="form-group clearfix m-t">
           <label for="" class="label-control label-special-w">有效期:</label>
-          <div class="col-md-8 m-t-xs">
+          <div class="col-md-8 m-t-xs text-content">
             {{expiryDateBegin | effDateFormat}} <span *ngIf="expiryDateBegin">至</span> {{expiryDateEnd | effDateFormat}}
           </div>
         </div>
       </div>
-      <div class="col-md-6 bg-white wrapperTwoRight">
+      <div class="col-md-6 wrapperTwoRight panel-default">
+        <div class="form-group clearfix m-t">
+          <label for="" class="label-control label-special-w">原授信额度:</label>
+          <div class="col-md-8 m-t-xs text-content">
+            {{oldCreditValue | yuanFormat}} 
+          </div>
+        </div>
         <div class="form-group clearfix m-t">
           <label for="" class="label-control label-special-w">申请原因:</label>
-          <div class="col-md-8 m-t-xs">
+          <div class="col-md-8 m-t-xs text-content">
             {{authRemark}}
           </div>
         </div>
         
-      </div>
+      </div> -->
     </section>
-    <section class="wrapper bg-white">
+    <!-- <section class="wrapper accordion-group">
       <div class="form-group clearfix row">
         <div class="col-md-6">
           <label class="label-control label-special-w" for="geustName">审核员:</label>
@@ -108,10 +139,10 @@
         </div>
       </div>
       
-    </section>
+    </section> -->
     <section class="wrapper">
       <div class="col-md-12 text-center">
-        <button class="btn" (click)="back()">返回</button>
+        <button class="btn-def" (click)="back()">返回</button>
       </div>
     </section>
   </form>
