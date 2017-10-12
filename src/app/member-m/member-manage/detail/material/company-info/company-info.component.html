@@ -20,67 +20,82 @@
       <button type="submit" class="btn btn-info pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
     </div> -->
-    <div class="padder-v clearfix col-md-12 row" *ngIf="!part1&&part1S">
-      <div class="form-group clearfix">
-        <div class="col-md-6">
-          <label for="" class="control-label">姓名:</label>
-          <div class="col-md-6 text-content">{{companyborrowerVo.borrwerPerson}}</div>
+    <div class="padder-v clearfix col-md-12" *ngIf="!part1&&part1S">
+      <div class="col-md-12 border-content ">
+        <div class="form-group clearfix m-t-md">
+          <div class="col-md-6">
+            <label for="" class="control-label">姓名:</label>
+            <div class="col-md-6 text-content">{{companyborrowerVo.borrwerPerson}}</div>
+          </div>
+          <div class="col-md-6">
+            <label for="" class="control-label">身份证号码:</label>
+            <div class="col-md-6 text-content">{{companyborrowerVo.borrwerIdcard}}</div>
+          </div>
         </div>
-        <div class="col-md-6">
-          <label for="" class="control-label">身份证号码:</label>
-          <div class="col-md-6 text-content">{{companyborrowerVo.borrwerIdcard}}</div>
+        <div class="form-group clearfix">
+          <div class="col-md-6">
+            <label for="" class="control-label">最高学历:</label>
+            <div class="col-md-6 text-content">{{companyborrowerVo.borrwerDegree}}</div>
+          </div>
+          <div class="col-md-6">
+            <label for="" class="control-label">联系手机:</label>
+            <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMobile}}</div>
+          </div>
         </div>
+        <div class="form-group clearfix">
+          <div class="col-md-6">
+            <label for="" class="control-label">婚姻状况:</label>
+            <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMarryDic}}</div>
+          </div>
+        </div>
+        
       </div>
-      <div class="form-group clearfix">
-        <div class="col-md-6">
-          <label for="" class="control-label">最高学历:</label>
-          <div class="col-md-6 text-content">{{companyborrowerVo.borrwerDegree}}</div>
-        </div>
-        <div class="col-md-6">
-          <label for="" class="control-label">联系手机:</label>
-          <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMobile}}</div>
-        </div>
-      </div>
-      <div class="form-group clearfix">
-        <div class="col-md-6">
-          <label for="" class="control-label">婚姻状况:</label>
-          <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMarryDic}}</div>
-        </div>
-      </div>
-      <div class="form-group clearfix">
-        <label for="" class="control-label col-md-3">相关证照:</label>
-        <div class="col-md-6">
-          <div class="form-group clearfix">
-            <div class="col-md-6">申请人身份证（正面）</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0104']" (click)="show('0104')">查看</a></div>
-          </div>
-          <div class="form-group clearfix">
-            <div class="col-md-6">申请人身份证（反面）</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0105']" (click)="show('0105')">查看</a></div>
-          </div>
-          <div class="form-group clearfix">
-            <div class="col-md-6">户口本</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0110']" (click)="show('0110')">查看</a></div>
-          </div>
-          <div class="form-group clearfix">
-            <div class="col-md-6">申请人与经营场所合照</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0112']" (click)="show('0112')">查看</a></div>
-          </div>
-          <div class="form-group clearfix">
-            <div class="col-md-6">结婚证（正面）</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0108']" (click)="show('0108')">查看</a></div>
-          </div>
-          <div class="form-group clearfix">
-            <div class="col-md-6">结婚证（反面）</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0109']" (click)="show('0109')">查看</a></div>
-          </div>
-          <div class="form-group clearfix">
-            <div class="col-md-6">配偶身份证（正面）</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0106']" (click)="show('0106')">查看</a></div>
-          </div>
-          <div class="form-group clearfix">
-            <div class="col-md-6">配偶身份证（反面）</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0107']" (click)="show('0107')">查看</a></div>
+      <div class="col-md-12 border-content m-t padder-v">
+        <div class="clearfix">
+          <label for="" class="control-label col-md-3">相关证照:</label>
+          <div class="col-md-9 row">
+            <div class="form-group clearfix">
+              <div class="col-md-6">
+                <div class="col-md-7">申请人身份证（正面）</div>
+                <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0104']" (click)="show('0104')">查看</a></div>
+              </div>
+              <div class="col-md-6">
+                <div class="col-md-7">申请人身份证（反面）</div>
+                <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0105']" (click)="show('0105')">查看</a></div>
+              </div>
+              
+            </div>
+            <div class="form-group clearfix">
+              <div class="col-md-6">
+                <div class="col-md-7">户口本</div>
+                <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0110']" (click)="show('0110')">查看</a></div>
+              </div>
+              <div class="col-md-6">
+                <div class="col-md-7">申请人与经营场所合照</div>
+                <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0112']" (click)="show('0112')">查看</a></div>
+              </div>
+            </div>
+            <div class="form-group clearfix">
+              <div class="col-md-6">
+                <div class="col-md-7">结婚证（正面）</div>
+                <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0108']" (click)="show('0108')">查看</a></div>
+              </div>
+              <div class="col-md-6">
+                <div class="col-md-7">结婚证（反面）</div>
+                <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0109']" (click)="show('0109')">查看</a></div>
+              </div>
+            </div>
+            <div class="clearfix">
+              <div class="col-md-6">
+                <div class="col-md-7">配偶身份证（正面）</div>
+                <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0106']" (click)="show('0106')">查看</a></div>
+              </div>
+              <div class="col-md-6">
+                <div class="col-md-7">配偶身份证（反面）</div>
+                <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0107']" (click)="show('0107')">查看</a></div>
+              </div>
+            </div>
+            
           </div>
         </div>
       </div>
@@ -542,7 +557,7 @@
       <button type="submit" class="btn btn-info pull-right" *ngIf="part2" [disabled]="!part2F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part2" (click)="cancel('part2')">取消</button>
     </div> -->
-    <div class="padder-v clearfix col-md-12 row" *ngIf="!part2">
+    <div class="padder-v clearfix col-md-12 row" *ngIf="!part2&&part2S">
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">公司名称:</label>
@@ -610,7 +625,7 @@
       </div>
     </div>
     <!-- 公司信息编辑模板 -->
-    <div class="padder-v clearfix col-md-12 row" *ngIf="part2">
+    <div class="padder-v clearfix col-md-12 row" *ngIf="part2&&part2S">
       <div class="form-group clearfix l-h-2x">
         <div class="col-md-6">
           <label for="" class="control-label">公司名称:</label>
@@ -940,13 +955,20 @@
   </section>
   <section class="m-t clearfix">
   	<form #part3F="ngForm" (ngSubmit)='save3()'>
-
-    <div class="col-md-12 padder-v b-b l-h-2x">法人基本情况
+    <div class="page-location">
+      <a class="h4 pad-r-xs font-bold">法人基本情况</a>
+      <i class="fa fa-caret-right text-lg" *ngIf="!part3S" (click)="part3S=!part3S"></i>
+      <i class="fa fa-caret-down text-lg" *ngIf="part3S" (click)="part3S=!part3S"></i>
+      <a class="text-info pull-right" *ngIf="!part3" (click)="edit('part3')">编辑</a>
+      <button type="submit" class="btn btn-info pull-right" *ngIf="part3&&part3S" [disabled]="!part3F.form.valid">保存</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part3&&part3S" (click)="cancel('part3')">取消</button>
+    </div>
+    <!-- <div class="col-md-12 padder-v b-b l-h-2x">法人基本情况
       <button type="button" class="btn pull-right" *ngIf="!part3" (click)="edit('part3')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part3"  [disabled]="!part3F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part3" (click)="cancel('part3')">取消</button>
-    </div>
-    <div class="padder-v clearfix col-md-12 row" *ngIf="!part3">
+    </div> -->
+    <div class="padder-v clearfix col-md-12 row" *ngIf="!part3&&part3S">
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">法人姓名:</label>
@@ -976,7 +998,7 @@
     </div>
     </form>
     <!-- 编辑模板 -->
-    <div class="padder-v clearfix col-md-12 row" *ngIf="part3">
+    <div class="padder-v clearfix col-md-12 row" *ngIf="part3&&part3S">
     	<div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">法人姓名:</label>
@@ -1024,12 +1046,19 @@
   </section>
   <section class="m-t clearfix">
   	<form #part4F="ngForm" (ngSubmit)='save4()'>
-
-    <div class="col-md-12 padder-v b-b l-h-2x">银行信息
+    <div class="page-location">
+      <a class="h4 pad-r-xs font-bold">银行信息</a>
+      <i class="fa fa-caret-right text-lg" *ngIf="!part4S" (click)="part4S=!part4S"></i>
+      <i class="fa fa-caret-down text-lg" *ngIf="part4S" (click)="part4S=!part4S"></i>
+      <a class="text-info pull-right" *ngIf="!part4" (click)="edit('part4')">编辑</a>
+      <button type="submit" class="btn btn-info pull-right" *ngIf="part4&&part4S" [disabled]="!part4F.form.valid">保存</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part4&&part4S" (click)="cancel('part4')">取消</button>
+    </div>
+    <!-- <div class="col-md-12 padder-v b-b l-h-2x">银行信息
       <button type="button" class="btn pull-right" *ngIf="!part4" (click)="edit('part4')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part4"  [disabled]="!part4F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part4" (click)="cancel('part4')">取消</button>
-    </div>
+    </div> -->
     <div class="padder-v clearfix col-md-12">
       <div class="clearfix m-t" *ngFor="let item of companyBankCardVos">
         <div class="form-group clearfix">

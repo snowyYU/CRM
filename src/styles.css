@@ -46,3 +46,7 @@ li{
 .text-content{
 	color: #b6550f
 }
+
+.border-content{
+	border: 1px solid #ababab
+}
