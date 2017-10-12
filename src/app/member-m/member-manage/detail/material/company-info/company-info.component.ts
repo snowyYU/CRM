@@ -15,7 +15,10 @@ declare let $:any
 export class CompanyInfoComponent implements OnInit {
 	//控制各个区域编辑和查看状态的切换
 	part1:boolean=false;
+	part1S:boolean=true;
 	part2:boolean=false;
+	part2S:boolean=true;
+
 	part2List:any[]=[
 			{name:'uploader2_1',type:'0102'},
 			{name:'uploader2_2',type:'0103'},
@@ -24,7 +27,11 @@ export class CompanyInfoComponent implements OnInit {
 			{name:'uploader2_5',type:'0101'},
 			]
 	part3:boolean=false;
+	part3S:boolean=true;
+
 	part4:boolean=false;
+	part4S:boolean=true;
+
 
 
 	//

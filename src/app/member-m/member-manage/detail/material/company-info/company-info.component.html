@@ -4,38 +4,47 @@
     <button class="btn" (click)="runSituation()">运营状况</button>
     <button class="btn" (click)="riskM()">风控补充</button>
   </section>
-  <section class="m-t bg-white clearfix">
+  <section class="m-t clearfix">
   	<form #part1F="ngForm" (ngSubmit)='save1()'>
-    <div class="col-md-12 padder-v b-b l-h-2x">借款人信息 <span>(注:申请人需为法定代表或直接控制人，占股不得少于20%)</span>
-      <button type="button" class="btn pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</button>
-      <button type="submit" class="btn btn-info pull-right" *ngIf="part1" [disabled]="!part1F.form.valid">保存</button>
-      <button type="button" class="btn pull-right m-r-xs" *ngIf="part1" (click)="cancel('part1')">取消</button>
+    <div class="page-location">
+      <a class="h4 pad-r-xs font-bold">借款人信息</a>
+      <i class="fa fa-caret-right text-lg" *ngIf="!part1S" (click)="part1S=!part1S"></i>
+      <i class="fa fa-caret-down text-lg" *ngIf="part1S" (click)="part1S=!part1S"></i>
+      <span class="m-l-sm">(注:申请人需为法定代表或直接控制人，占股不得少于20%)</span>
+      <a class="text-info pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</a>
+      <button type="submit" class="btn btn-info pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
     </div>
-    <div class="padder-v clearfix col-md-12 row" *ngIf="!part1">
+    <!-- <div class="col-md-12 padder-v b-b l-h-2x">借款人信息 <span>(注:申请人需为法定代表或直接控制人，占股不得少于20%)</span>
+      <button type="button" class="btn pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</button>
+      <button type="submit" class="btn btn-info pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
+    </div> -->
+    <div class="padder-v clearfix col-md-12 row" *ngIf="!part1&&part1S">
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">姓名:</label>
-          <div class="col-md-6">{{companyborrowerVo.borrwerPerson}}</div>
+          <div class="col-md-6 text-content">{{companyborrowerVo.borrwerPerson}}</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">身份证号码:</label>
-          <div class="col-md-6">{{companyborrowerVo.borrwerIdcard}}</div>
+          <div class="col-md-6 text-content">{{companyborrowerVo.borrwerIdcard}}</div>
         </div>
       </div>
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">最高学历:</label>
-          <div class="col-md-6">{{companyborrowerVo.borrwerDegree}}</div>
+          <div class="col-md-6 text-content">{{companyborrowerVo.borrwerDegree}}</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">联系手机:</label>
-          <div class="col-md-6">{{companyborrowerVo.borrwerMobile}}</div>
+          <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMobile}}</div>
         </div>
       </div>
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">婚姻状况:</label>
-          <div class="col-md-6">{{companyborrowerVo.borrwerMarryDic}}</div>
+          <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMarryDic}}</div>
         </div>
       </div>
       <div class="form-group clearfix">
@@ -77,7 +86,7 @@
       </div>
     </div>
     <!-- part1编辑模板 -->
-    <div class="padder-v clearfix col-md-12 row" *ngIf="part1">
+    <div class="padder-v clearfix col-md-12 row" *ngIf="part1&&part1S">
       <div class="form-group clearfix l-h-2x">
         <div class="col-md-6">
           <label for="" class="control-label">姓名:</label>
@@ -518,53 +527,60 @@
     </div>
     </form>
   </section>
-  <section class="m-t bg-white clearfix">
+  <section class="m-t clearfix">
   	<form #part2F="ngForm" (ngSubmit)='save2()'>
-	
-    <div class="col-md-12 padder-v b-b l-h-2x">公司信息
+    <div class="page-location">
+      <a class="h4 pad-r-xs font-bold">公司信息</a>
+      <i class="fa fa-caret-right text-lg" *ngIf="!part2S" (click)="part2S=!part2S"></i>
+      <i class="fa fa-caret-down text-lg" *ngIf="part2S" (click)="part2S=!part2S"></i>
+      <a class="text-info pull-right" *ngIf="!part2" (click)="edit('part2')">编辑</a>
+      <button type="submit" class="btn btn-info pull-right" *ngIf="part2&&part2S" [disabled]="!part2F.form.valid">保存</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part2&&part2S" (click)="cancel('part2')">取消</button>
+    </div>
+    <!-- <div class="col-md-12 padder-v b-b l-h-2x">公司信息
       <button type="button" class="btn pull-right" *ngIf="!part2" (click)="edit('part2')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part2" [disabled]="!part2F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part2" (click)="cancel('part2')">取消</button>
-    </div>
+    </div> -->
     <div class="padder-v clearfix col-md-12 row" *ngIf="!part2">
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">公司名称:</label>
-          <div class="col-md-6">{{memberVo.companyName}}</div>
+          <div class="col-md-6 text-content">{{memberVo.companyName}}</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">公司类型:</label>
-          <div class="col-md-6">{{companyVo.companyTypeName}}</div>
+          <div class="col-md-6 text-content">{{companyVo.companyTypeName}}</div>
         </div>
       </div>
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">注册资金:</label>
-          <div class="col-md-6">{{companyVo.registerCapital | yuanFormat}}万元</div>
+          <div class="col-md-6 text-content">{{companyVo.registerCapital | yuanFormat}}万元</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">注册时间:</label>
-          <div class="col-md-6">{{companyVo.foundTime}}</div>
+          <div class="col-md-6 text-content">{{companyVo.foundTime}}</div>
         </div>
       </div>
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">联系人:</label>
-          <div class="col-md-6">{{companyVo.linkName}}</div>
+          <div class="col-md-6 text-content">{{companyVo.linkName}}</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">联系手机:</label>
-          <div class="col-md-6">{{companyVo.linkMobile}}</div>
+          <div class="col-md-6 text-content">{{companyVo.linkMobile}}</div>
         </div>
       </div>
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">营业执照号:</label>
-          <div class="col-md-6">{{companyVo.licenceNum}}</div>
+          <div class="col-md-6 text-content">{{companyVo.licenceNum}}</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">企业地址:</label>
-          <div class="col-md-6">{{companyVo.companyAddress}}</div>
+          <div class="col-md-6 text-content">{{companyVo.companyAddress}}</div>
         </div>
       </div>
       <div class="form-group clearfix">
@@ -922,7 +938,7 @@
     </div>
     </form>
   </section>
-  <section class="m-t bg-white clearfix">
+  <section class="m-t clearfix">
   	<form #part3F="ngForm" (ngSubmit)='save3()'>
 
     <div class="col-md-12 padder-v b-b l-h-2x">法人基本情况
@@ -934,27 +950,27 @@
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">法人姓名:</label>
-          <div class="col-md-6">{{companyLegalVo.legalPerson}}</div>
+          <div class="col-md-6 text-content">{{companyLegalVo.legalPerson}}</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">法人身份证:</label>
-          <div class="col-md-6">{{companyLegalVo.legalIdcard}}</div>
+          <div class="col-md-6 text-content">{{companyLegalVo.legalIdcard}}</div>
         </div>
       </div>
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">最高学历:</label>
-          <div class="col-md-6">{{companyLegalVo.legalDegree}}</div>
+          <div class="col-md-6 text-content">{{companyLegalVo.legalDegree}}</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">婚姻状况:</label>
-          <div class="col-md-6">{{companyLegalVo.legalMarryDic}}</div>
+          <div class="col-md-6 text-content">{{companyLegalVo.legalMarryDic}}</div>
         </div>
       </div>
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">联系手机:</label>
-          <div class="col-md-6">{{companyLegalVo.legalMobile}}</div>
+          <div class="col-md-6 text-content">{{companyLegalVo.legalMobile}}</div>
         </div>
       </div>
     </div>
@@ -1006,7 +1022,7 @@
       </div>
     </div>
   </section>
-  <section class="m-t bg-white clearfix">
+  <section class="m-t clearfix">
   	<form #part4F="ngForm" (ngSubmit)='save4()'>
 
     <div class="col-md-12 padder-v b-b l-h-2x">银行信息
@@ -1019,31 +1035,31 @@
         <div class="form-group clearfix">
           <div class="col-md-6">
             <label for="" class="control-label">账户类型:</label>
-            <div class="col-md-6">{{item.typeDic}}</div>
+            <div class="col-md-6 text-content">{{item.typeDic}}</div>
           </div>
           <div class="col-md-6">
             <label for="" class="control-label">银行账号:</label>
-            <div class="col-md-6">{{item.cardNo}}</div>
+            <div class="col-md-6 text-content">{{item.cardNo}}</div>
           </div>
         </div>
         <div class="form-group clearfix">
           <div class="col-md-6">
             <label for="" class="control-label">银行名称:</label>
-            <div class="col-md-6">{{item.bankName}}</div>
+            <div class="col-md-6 text-content">{{item.bankName}}</div>
           </div>
           <div class="col-md-6">
             <label for="" class="control-label">支行名称:</label>
-            <div class="col-md-6">{{item.subbankName}}</div>
+            <div class="col-md-6 text-content">{{item.subbankName}}</div>
           </div>
         </div>
         <div class="form-group clearfix">
           <div class="col-md-6">
             <label for="" class="control-label">认证状态:</label>
-            <div class="col-md-6">{{item.authStatusDic}}</div>
+            <div class="col-md-6 text-content">{{item.authStatusDic}}</div>
           </div>
           <div class="col-md-6">
             <label for="" class="control-label">默认:</label>
-            <div class="col-md-6">{{item.isDefaultDic}}</div>
+            <div class="col-md-6 text-content">{{item.isDefaultDic}}</div>
           </div>
         </div>
       </div>
