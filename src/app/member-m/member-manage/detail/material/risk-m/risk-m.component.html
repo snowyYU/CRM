@@ -4,58 +4,70 @@
     <button class="btn" (click)="runSituation()">运营状况</button>
     <button class="btn btn-info" >风控补充</button>
   	</section>
-  	<section class="m-t bg-white clearfix">
+  	<!-- <section class="m-t bg-white clearfix">
   	<form #part1F="ngForm" (ngSubmit)='save1()'>
     <div class="col-md-12 padder-v b-b l-h-2x">资产信息 
       <button type="button" class="btn pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part1" [disabled]="!part1F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part1" (click)="cancel('part1')">取消</button>
+    </div> -->
+    <section class="clearfix">
+    <form #part1F="ngForm" (ngSubmit)='save1()'>
+    <div class="page-location">
+      <a class="h4 pad-r-xs font-bold">资产信息</a>
+      <i class="fa fa-caret-right text-lg" *ngIf="!part1S" (click)="part1S=!part1S"></i>
+      <i class="fa fa-caret-down text-lg" *ngIf="part1S" (click)="part1S=!part1S"></i>
+      <a class="text-info pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</a>
+      <button type="submit" class="btn btn-info pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
     </div>
-    <div class="padder-v clearfix col-md-12 row" *ngIf="!part1">
-      <div class="form-group clearfix l-h-2x">
+    <div class="padder-v clearfix col-md-12" *ngIf="!part1&&part1S">
+      <div class="col-md-12 border-content">
+      <div class="form-group clearfix l-h-2x  m-t-md">
         <div class="col-md-6">
           <label for="" class="control-label">家用轿车购买年份:</label>
-          <div class="col-md-6">{{companyAsset.buyCarYear}} 年</div>
+          <div class="col-md-6 text-content">{{companyAsset.buyCarYear}} 年</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">轿车价值:</label>
-          <div class="col-md-6">{{companyAsset.carValue}} 万元</div>
+          <div class="col-md-6 text-content">{{companyAsset.carValue}} 万元</div>
         </div>
       </div>
       <div class="form-group clearfix l-h-2x">
         <div class="col-md-6">
           <label for="" class="control-label">自有运营车辆数量:</label>
-          <div class="col-md-6">{{companyAsset.carNum}} 辆</div>
+          <div class="col-md-6 text-content">{{companyAsset.carNum}} 辆</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">本地租房状况:</label>
-          <div class="col-md-6">{{companyAsset.nativeRentingDic}}</div>
+          <div class="col-md-6 text-content">{{companyAsset.nativeRentingDic}}</div>
         </div>
       </div>
       <div class="form-group clearfix l-h-2x">
         <div class="col-md-6">
           <label for="" class="control-label">自有房产套数:</label>
-          <div class="col-md-6">{{companyAsset.houseNum}} 套</div>
+          <div class="col-md-6 text-content">{{companyAsset.houseNum}} 套</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">住房价值:</label>
-          <div class="col-md-6">{{companyAsset.houseValue}} 万元</div>
+          <div class="col-md-6 text-content">{{companyAsset.houseValue}} 万元</div>
         </div>
       </div>
       <div class="form-group clearfix l-h-2x">
         <div class="col-md-6">
           <label for="" class="control-label">应收账款价值:</label>
-          <div class="col-md-6">{{companyAsset.debtReceivableValue}} 万元</div>
+          <div class="col-md-6 text-content">{{companyAsset.debtReceivableValue}} 万元</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">应付账款额度:</label>
-          <div class="col-md-6">{{companyAsset.debtReceivableLimit}} 万元</div>
+          <div class="col-md-6 text-content">{{companyAsset.debtReceivableLimit}} 万元</div>
         </div>
       </div>
-      <div class="form-group clearfix">
+    </div>
+      <div class="col-md-12 border-content m-t padder-v clearfix">
         <label for="" class="control-label col-md-3">相关证照:</label>
         <div class="col-md-6">
-          <div class="form-group clearfix">
+          <div class="clearfix">
             <div class="col-md-6">房产证明</div>
             <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0301']" (click)="show('0301')">查看</a></div>
           </div>
@@ -190,41 +202,52 @@
     </form>
 
   	</section>
-  	<section class="m-t bg-white clearfix">
+  	<!-- <section class="m-t bg-white clearfix">
   	<form #part2F="ngForm" (ngSubmit)='save2()'>
     <div class="col-md-12 padder-v b-b l-h-2x">负债信息 
       <button type="button" class="btn pull-right" *ngIf="!part2" (click)="edit('part2')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part2" [disabled]="!part2F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part2" (click)="cancel('part2')">取消</button>
+    </div> -->
+    <section class="m-t clearfix">
+    <form #part1F="ngForm" (ngSubmit)='save2()'>
+    <div class="page-location">
+      <a class="h4 pad-r-xs font-bold">负债信息</a>
+      <i class="fa fa-caret-right text-lg" *ngIf="!part2S" (click)="part2S=!part2S"></i>
+      <i class="fa fa-caret-down text-lg" *ngIf="part2S" (click)="part2S=!part2S"></i>
+      <a class="text-info pull-right" *ngIf="!part2" (click)="edit('part2')">编辑</a>
+      <button type="submit" class="btn btn-info pull-right" *ngIf="part2&&part2S" [disabled]="!part2F.form.valid">保存</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part2&&part2S" (click)="cancel('part2')">取消</button>
     </div>
-    <div class="padder-v clearfix col-md-12 row" *ngIf="!part2">
-      <div class="form-group clearfix">
+    <div class="padder-v clearfix col-md-12" *ngIf="!part2&&part2S">
+      <div class="col-md-12 border-content">
+      <div class="form-group clearfix m-t-md">
         <div class="col-md-6">
           <label for="" class="control-label">征信负债状况:</label>
-          <div class="col-md-6">{{companyDebt.creditDebtSituation}} 万元</div>
+          <div class="col-md-6 text-content">{{companyDebt.creditDebtSituation}} 万元</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">住房按揭贷款金额:</label>
-          <div class="col-md-6">{{companyDebt.houseMortgageLoanamt}} 万元</div>
+          <div class="col-md-6 text-content">{{companyDebt.houseMortgageLoanamt}} 万元</div>
         </div>
       </div>
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">抵押贷占总贷款比例:</label>
-          <div class="col-md-6">{{companyDebt.mortgageLoanamtRate}} %</div>
+          <div class="col-md-6 text-content">{{companyDebt.mortgageLoanamtRate}} %</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">申请人每月需偿还的贷款额:</label>
-          <div class="col-md-6">{{companyDebt.repayLoanamtPermonth}} 万元</div>
+          <div class="col-md-6 text-content">{{companyDebt.repayLoanamtPermonth}} 万元</div>
         </div>
       </div>
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">应付账款:</label>
-          <div class="col-md-6">{{companyDebt.accountspayable}} 万元</div>
+          <div class="col-md-6 text-content">{{companyDebt.accountspayable}} 万元</div>
         </div>
       </div>
-      
+      </div>
     </div>
     <!-- part2编辑模板 -->
     <div class="padder-v clearfix col-md-12 row" *ngIf="part2">
@@ -269,64 +292,77 @@
     </form>
     
   </section>
-  <section class="m-t bg-white clearfix">
+  <!-- <section class="m-t bg-white clearfix">
   	<form #part3F="ngForm" (ngSubmit)='save3()'>
     <div class="col-md-12 padder-v b-b l-h-2x">履约信息 
       <button type="button" class="btn pull-right" *ngIf="!part3" (click)="edit('part3')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part3" [disabled]="!part3F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part3" (click)="cancel('part3')">取消</button>
+    </div> -->
+    <section class="m-t clearfix">
+    <form #part1F="ngForm" (ngSubmit)='save3()'>
+    <div class="page-location">
+      <a class="h4 pad-r-xs font-bold">履约信息</a>
+      <i class="fa fa-caret-right text-lg" *ngIf="!part3S" (click)="part3S=!part3S"></i>
+      <i class="fa fa-caret-down text-lg" *ngIf="part3S" (click)="part3S=!part3S"></i>
+      <a class="text-info pull-right" *ngIf="!part3" (click)="edit('part3')">编辑</a>
+      <button type="submit" class="btn btn-info pull-right" *ngIf="part3&&part3S" [disabled]="!part3F.form.valid">保存</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part3&&part3S" (click)="cancel('part3')">取消</button>
     </div>
-    <div class="padder-v clearfix col-md-12 row" *ngIf="!part3">
-      <div class="form-group clearfix">
+    <div class="padder-v clearfix col-md-12" *ngIf="!part3&&part3S">
+      <div class="col-md-12 border-content ">
+      <div class="form-group clearfix m-t-md">
         <div class="col-md-6">
           <label for="" class="control-label">信用卡最大逾期金额:</label>
-          <div class="col-md-6">{{companyCredit.maxamtofoverdueCreditcard}} 万元</div>
+          <div class="col-md-6 text-content">{{companyCredit.maxamtofoverdueCreditcard}} 万元</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">贷款最大逾期金额:</label>
-          <div class="col-md-6">{{companyCredit.maxamtofoverdueLoan}} 万元</div>
+          <div class="col-md-6 text-content">{{companyCredit.maxamtofoverdueLoan}} 万元</div>
         </div>
       </div>
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">信用卡/贷款逾期次数:</label>
-          <div class="col-md-6">{{companyCredit.overdueNum}} 次</div>
+          <div class="col-md-6 text-content">{{companyCredit.overdueNum}} 次</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">信用卡/贷款最大逾期天数:</label>
-          <div class="col-md-6">{{companyCredit.overdueDay}} 天</div>
+          <div class="col-md-6 text-content">{{companyCredit.overdueDay}} 天</div>
         </div>
       </div>
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">住房按揭贷款逾期次数:</label>
-          <div class="col-md-6">{{companyCredit.inquiriesnumWithintwoyear}} 次</div>
+          <div class="col-md-6 text-content">{{companyCredit.inquiriesnumWithintwoyear}} 次</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">两年内征信被查询次数:</label>
-          <div class="col-md-6">{{companyCredit.housemortgageloanOverdueNum}} 次</div>
+          <div class="col-md-6 text-content">{{companyCredit.housemortgageloanOverdueNum}} 次</div>
         </div>
       </div>
       <div class="form-group clearfix">
         <div class="col-md-6">
           <label for="" class="control-label">3个月内征信被查询次数:</label>
-          <div class="col-md-6">{{companyCredit.inquiriesnumWithinthreemonth}} 次</div>
+          <div class="col-md-6 text-content">{{companyCredit.inquiriesnumWithinthreemonth}} 次</div>
         </div>
         <div class="col-md-6">
           <label for="" class="control-label">征信评级:</label>
-          <div class="col-md-6">{{member.memberRatingGrate}}</div>
+          <div class="col-md-6 text-content">{{member.memberRatingGrate}}</div>
         </div>
       </div>
-      <div class="form-group clearfix">
+    </div>
+      <div class="col-md-12 border-content m-t padder-v clearfix">
         <label for="" class="control-label col-md-3">相关证照:</label>
         <div class="col-md-6">
-          <div class="form-group clearfix">
+          <div class="clearfix">
             <div class="col-md-6">人行版征信报告</div>
             <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0111']" (click)="show('0111')">查看</a></div>
           </div>
           
         </div>
       </div>
+
     </div>
     <!-- part3编辑模板 -->
     <div class="padder-v clearfix col-md-12 row" *ngIf="part3">
@@ -453,7 +489,7 @@
   	</section>
   	<section class="m-t text-center">
 		<div class="col-md-12">
-			<button class="btn" (click)="back()">返回</button>
+			<button class="btn-def m-b-md" (click)="back()">返回</button>
 		</div>
 	</section>
 </div>
