@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router'
 import { RiskMService,Part1Data,Part2Data,Part3Data } from './risk-m.service'
 import { PopService } from 'dolphinng'
 import { Uploader } from '../../../../../../utils/uploader/Uploader'
 import { API } from '../../../../../../services/config/app.config'
+import { GalleryComponent} from 'dolphinng';
 
 @Component({
 	moduleId: module.id,
@@ -127,6 +128,11 @@ export class RiskMComponent implements OnInit {
 
 	uploader1:Uploader=new Uploader()
 	uploader2:Uploader=new Uploader()
+
+
+	@ViewChild(GalleryComponent) gallery:GalleryComponent;
+
+
 	constructor(
 			private router:Router,
 			private route:ActivatedRoute,
@@ -291,12 +297,13 @@ export class RiskMComponent implements OnInit {
 	}
 
 
-	show(type){
+	show(e,type){
 		console.log(type)
 		console.log(this.attachment[type])
 		console.log(!this.attachment[type])
 		if (!!this.attachment[type]) {
-			window.open(this.riskM.getFileUrl(this.attachment[type].fileLoadId))
+			let url:any=this.riskM.getFileUrl(this.attachment[type].fileLoadId)
+			window.open(e,url)
 			
 		}else{
 			this.pop.error({

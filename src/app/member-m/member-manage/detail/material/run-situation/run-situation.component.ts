@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router'
 import { RunSituationService,SendData } from './run-situation.service'
 import { PopService } from 'dolphinng'
 import { Uploader } from '../../../../../../utils/uploader/Uploader'
 import { API } from '../../../../../../services/config/app.config'
+import { GalleryComponent} from 'dolphinng';
+
 @Component({
 	moduleId: module.id,
 	selector: 'run-situation',
@@ -54,6 +56,9 @@ export class RunSituationComponent implements OnInit {
 
 
 	attachment:object={}
+
+	@ViewChild(GalleryComponent) gallery:GalleryComponent;
+
 
 	constructor(
 			private router:Router,
@@ -205,14 +210,18 @@ export class RunSituationComponent implements OnInit {
 	    		let data=JSON.parse(uploader.queue[0].response)
 	    		this[upName].customData.data=data
 	      		if (data.status==200) {
-			      	this[upName].queue[0].setSuccess()
-			      	this.attachment[type]={
-			      		attachId:'',
-			      		attachName:uploader.queue[0].fileName,
-			      		fileType:type,
-			      		fileLoadId:data.body.fileId
-			      	}
-			      	console.log(this.attachment)
+	      			setTimeout(()=>{
+	      				this[upName].queue[0].setSuccess()
+				      	this.attachment[type]={
+				      		attachId:'',
+				      		attachName:uploader.queue[0].fileName,
+				      		fileType:type,
+				      		fileLoadId:data.body.fileId
+				      	}
+				      	console.log(this.attachment)
+	      			},1000)
+
+			      	
 			      	
 			     }
 	    	}
@@ -292,12 +301,13 @@ export class RunSituationComponent implements OnInit {
 	}			
 
 
-	show(type){
+	show(e,type){
 		console.log(type)
 		console.log(this.attachment[type])
 		console.log(!this.attachment[type])
 		if (!!this.attachment[type]) {
-			window.open(this.runS.getFileUrl(this.attachment[type].fileLoadId))
+			let url:any=this.runS.getFileUrl(this.attachment[type].fileLoadId)
+			this.gallery.open(e,url);
 			
 		}else{
 			this.pop.error({
