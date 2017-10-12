@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { Part1Data,Part2Data,Part3Data,Part4Data,CompanyInfoService } from './company-info.service'
 import { Uploader } from '../../../../../../utils/uploader/Uploader'
 import { API } from '../../../../../../services/config/app.config'
+import { GalleryComponent} from 'dolphinng';
+
+
 declare let $:any
 @Component({
 	moduleId: module.id,
@@ -217,6 +220,10 @@ export class CompanyInfoComponent implements OnInit {
 	// 		银行卡		0502
 	// 		对私网银流水	0504
 	// 		对公网银流水	0504
+
+	@ViewChild(GalleryComponent) gallery:GalleryComponent;
+
+
 	constructor(
 		private route:ActivatedRoute,
 		private router:Router,
@@ -297,14 +304,20 @@ export class CompanyInfoComponent implements OnInit {
 	    		let data=JSON.parse(uploader.queue[0].response)
 	    		this[upName].customData.data=data
 	      		if (data.status==200) {
-			      	this[upName].queue[0].setSuccess()
-			      	this.attachment[type]={
+	      			setTimeout(()=>{
+	      				this[upName].queue[0].setSuccess()
+
+	      				this.attachment[type]={
 			      		attachId:null,
 			      		attachName:uploader.queue[0].fileName,
 			      		fileType:type,
 			      		fileLoadId:data.body.fileId
-			      	}
-			      	console.log(this.attachment)
+			      		}
+			      		console.log(this.attachment)
+
+	      			},1000)
+			      	
+			      	
 			      	
 			     }
 	    	}
@@ -469,12 +482,13 @@ export class CompanyInfoComponent implements OnInit {
 	 * 查看附件，
 	 * @param {[type]} data [description]
 	 */
-	show(type){
+	show(type,e){
 		console.log(type)
 		console.log(this.attachment[type])
 		console.log(!this.attachment[type])
 		if (!!this.attachment[type]) {
-			window.open(this.companyInfo.getFileUrl(this.attachment[type].fileLoadId))
+			let url:any=this.companyInfo.getFileUrl(this.attachment[type].fileLoadId)
+			this.gallery.open(e,url);
 			
 		}else{
 			this.pop.error({
