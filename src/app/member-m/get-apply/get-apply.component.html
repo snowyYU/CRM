@@ -1,10 +1,13 @@
 <div class="page-location">
-  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="h4 pad-r-xs font-bold">授信申请</a>
+  <a class="page-location-item">
+    <!-- <i class="page-location-icon glyphicon glyphicon-user"></i> -->
+    会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">授信申请列表</a>
   
 </div>
 <div class="wrapper">
-  <div class="wrapper bg-white form-inline">
+  <div class="wrapper form-inline">
     <select name="qryStatus" class="form-control" [(ngModel)]="qryStatus" (change)="qryStatusChange()">
       <option [value]="0">申请中</option>
       <option [value]="1">已受理</option>
@@ -22,11 +25,12 @@
     <button class="btn btn-info" (click)="getDataList(qryStatus)">查询</button>
   </div>
   <div>
-    <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading">
-      <p-column field="creditAuthId" header="申请ID"></p-column>
-      <p-column field="memberName" header="会员名称"></p-column>
-      <p-column field="productName" header="产品"></p-column>
-      <p-column field="addCreditValue" header="申请额度(元)" styleClass="text-right">
+    <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading"
+              scrollable="true" scrollHeight="400px">
+      <p-column field="creditAuthId" header="申请ID" styleClass="text-center" [style]="{'width':'150px'}"></p-column>
+      <p-column field="memberName" header="会员名称" [style]="{'width':'200px'}"></p-column>
+      <p-column field="productName" header="产品" [style]="{'width':'110px'}"></p-column>
+      <p-column field="addCreditValue" header="申请额度(元)" styleClass="text-right" [style]="{'width':'120px'}">
         <ng-template let-addCreditValue="rowData" pTemplate="body">
           <div class="text-right">
             <!-- {{addCreditValue.addCreditValue | currency:'CNY' :true}} -->
@@ -35,7 +39,7 @@
           </div>
         </ng-template>
       </p-column>
-      <p-column field="oldCreditValue" header="原授信额度(元)" styleClass="text-right">
+      <p-column field="oldCreditValue" header="原授信额度(元)" styleClass="text-right" [style]="{'width':'120px'}">
         <ng-template let-row="rowData" pTemplate="body">
           <div class="text-right">
             <!-- {{addCreditValue.addCreditValue | currency:'CNY' :true}} -->
@@ -44,10 +48,10 @@
           </div>
         </ng-template>
       </p-column>
-      <p-column field="statusDic" header="状态"></p-column>
-      <p-column field="serviceMan" header="服务经理"></p-column>
-      <p-column field="createTime" header="申请日期"></p-column>
-      <p-column field="color" header="操作">
+      <p-column field="statusDic" header="状态" [style]="{'width':'80px'}"></p-column>
+      <p-column field="serviceMan" header="服务经理" [style]="{'width':'100px'}"></p-column>
+      <p-column field="createTime" header="申请日期" [style]="{'width':'160px'}"></p-column>
+      <p-column field="color" header="操作" [style]="{'width':'60px'}">
         <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
           <div class="text-center">
             <a class="table-btn text-info" (click)="detail(operation)">查看</a>
