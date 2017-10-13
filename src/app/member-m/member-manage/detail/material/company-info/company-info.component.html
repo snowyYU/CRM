@@ -1319,7 +1319,9 @@
       <button type="submit" class="btn btn-info pull-right" *ngIf="part4"  [disabled]="!part4F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part4" (click)="cancel('part4')">取消</button>
     </div> -->
-      <div class="clearfix col-md-12">
+
+      <div class="padder-v clearfix col-md-12">
+
         <div class="col-md-12 border-content" *ngFor="let item of companyBankCardVos">
           <div class="form-group clearfix m-t-md">
             <div class="col-md-6">
@@ -1373,9 +1375,11 @@
     </div>
   </div>
 
+
       <div class="col-md-12 padder-v" *ngIf="part4">
         <div class="clearfix border-content">
         <label for="" class="control-label col-md-3 m-t">相关证照:</label>
+
 
         <div class="col-md-12 p-r-none">
           <div class="form-group clearfix">
