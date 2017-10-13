@@ -156,6 +156,10 @@ export const API = {
     url:'sem/creditAuth/getProductsList',
     method:'post'
   },
+  getProductsParam:{
+    url:'sem/creditAuth/getProductsParam',
+    method:'post'
+  },
   creditAuthApply:{//保存产品授信|重新授信接口
     url:'sem/creditAuth/creditAuthApply',
     method:'post'

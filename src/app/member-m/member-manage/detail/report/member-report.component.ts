@@ -71,7 +71,10 @@ export class MemberReportComponent implements OnInit {
 
 		this.attachList=res.body.records
 		this.firstAttach=this.attachList.shift()
-		this.firstAttachSrc=this.memRepart.getFileUrl(this.attachment[this.firstAttach.fileNumber].fileLoadId)
+		if (this.firstAttach) {
+			this.firstAttachSrc=this.memRepart.getFileUrl(this.attachment[this.firstAttach.fileNumber].fileLoadId)
+			
+		}
 		console.log('response',res.body.records)
 		console.log('attachList',this.attachList)
 		console.log(this.attachment)

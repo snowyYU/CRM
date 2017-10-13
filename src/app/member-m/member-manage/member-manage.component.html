@@ -116,7 +116,7 @@
         	<ng-template let-operation="rowData" pTemplate="body">
         		<div class="text-center">
               <button class="btn btn-info" *ngIf="!operation.lineThrough" (click)='checkApplyExist(1,operation)'>重新授信</button>
-              <button class="btn btn-info" *ngIf="operation.lineThrough" (click)='checkApplyExist(0,operation)'>添加</button>   
+              <button class="btn btn-info" *ngIf="operation.lineThrough" (click)='checkApplyExist(1,operation)'>添加</button>   
             </div>
         	</ng-template>
         </p-column>
