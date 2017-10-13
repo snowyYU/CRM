@@ -14,8 +14,8 @@ import { PopService } from 'dolphinng'
 })
 export class SigninComponent {
 
-  user:string='业务主管';
-  password:string='222222';
+  user:string='拓展人员';
+  password:string='123456';
   submiting:boolean=false;
   msg:string;
 
