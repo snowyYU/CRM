@@ -1,148 +1,155 @@
 <div class="page-location">
+  <a class="h4 pad-r-xs font-bold">会员认证详情</a>
   <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i>拓展管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item ">客户名册<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">会员认证详情</a>
 </div>
 <div class="wrapper">
   <form #form>
-    <section >
-      <div class="clearfix ">
-        <div class="col-md-6">
-          <label class="label-control label-special-w" for="geustName">申请ID:</label>
-          <div class="col-md-8 m-t-xs">
+    <section class="form-horizontal form-label-7 clearfix no-t-padding">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label pull-left" >申请ID：</label>
+          <div class="form-control-static pull-left text-content">
             {{authId}}
           </div>
         </div>
-        <div class="col-md-6 ">
-          <label class="label-control label-special-w">申请时间:</label>
-          <div class="col-md-8 m-t-xs">
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label pull-left">申请时间：</label>
+          <div class="form-control-static pull-left">
             {{createTime}}
           </div>
         </div>
       </div>
     </section>
-    <section class="wrapper bg-white">
-      <div class="form-group clearfix row">
-        <div class="col-md-6">
-          <label class="label-control label-special-w" for="geustName">客户名称:</label>
-          <div class="col-md-8 m-t-xs">
+    <section class="mar-b-sm form-horizontal form-label-7 group clearfix">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label pull-left" >客户名称：</label>
+          <div class="form-control-static pull-left">
             {{companyName}}
           </div>
         </div>
-        <div class="col-md-6 ">
-          <label class="label-control label-special-w">状态:</label>
-          <div class="col-md-8 m-t-xs">
+        <div class="form-group">
+          <label class="control-label pull-left" >归属渠道：</label>
+          <div class="form-control-static pull-left">
+            {{appName}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label pull-left" >类别：</label>
+          <div class="form-control-static pull-left">
+            {{memberTypeDic}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label pull-left" >服务经理：</label>
+          <div class="form-control-static pull-left">
+            {{serviceMan}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label pull-left">状态：</label>
+          <div class="form-control-static pull-left">
             {{statusDic}}
           </div>
         </div>
       </div>
-      <div class="form-group clearfix">
-        <label class="label-control label-special-w">归属渠道:</label>
-        <div class="col-md-4 m-t-xs">
-          {{appName}}
-        </div>
-      </div>
-      <div class="form-group clearfix">
-        <label class="label-control label-special-w">类别:</label>
-        <div class="col-md-4 m-t-xs">
-          {{memberTypeDic}}
-        </div>
-      </div>
-      <div class=" clearfix">
-        <label class="label-control label-special-w" for="geustName">服务经理:</label>
-        <div class="col-md-4 m-t-xs">
-          {{serviceMan}}
-        </div>
-      </div>
     </section>
-    <section class="wrapperForTwo ">
-      <div class="p-t col-md-6 bg-white wrapperTwoLeft">
-        <div class="form-group clearfix m-t">
-          <label for="" class="label-control label-special-w">公司类型:</label>
-          <div class="col-md-8 m-t-xs">
-            {{companyTypeDic}}
-          </div>
-        </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">成立时间:</label>
-          <div class="col-md-8 m-t-xs">
-            {{foundTime}}
-          </div>
-        </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">注册资金:</label>
-          <div class="col-md-8 m-t-xs">
-            {{registerCapital | yuanFormat}} 万元
-          </div>
-        </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">营业执照号:</label>
-          <div class="col-md-8 m-t-xs">
-            {{licenceNum}}
-          </div>
-        </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">公司地址:</label>
-          <div class="col-md-8 m-t-xs">
-            {{companyAddress}}
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 bg-white wrapperTwoRight">
-        <div class="form-group clearfix m-t">
-          <label for="" class="label-control label-special-w">联系人:</label>
-          <div class="col-md-8 m-t-xs">
+    <section class="mar-b-sm form-horizontal form-label-7 group clearfix">
+      <div class="col-md-6 ">
+        <div class="form-group ">
+          <label  class="control-label pull-left">联系人：</label>
+          <div class="form-control-static pull-left">
             {{linkName}}
           </div>
         </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">联系手机:</label>
-          <div class="col-md-8 m-t-xs">
+        <div class="form-group">
+          <label  class="control-label pull-left">联系手机：</label>
+          <div class="form-control-static pull-left">
             {{linkMobile}}
           </div>
         </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">联系人职位:</label>
-          <div class="col-md-8 m-t-xs">
+        <div class="form-group">
+          <label  class="control-label pull-left">联系人职位：</label>
+          <div class="form-control-static pull-left">
             {{linkJob}}
           </div>
         </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">是否法人:</label>
-          <div class="col-md-8 m-t-xs">
+        <div class="form-group">
+          <label  class="control-label pull-left">是否法人：</label>
+          <div class="form-control-static pull-left">
             {{isLegalDic}}
           </div>
         </div>
       </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label  class="control-label pull-left">营业执照号：</label>
+          <div class="form-control-static pull-left">
+            {{licenceNum}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label  class="control-label pull-left">公司类型：</label>
+          <div class="form-control-static pull-left">
+            {{companyTypeDic}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label  class="control-label pull-left">注册资金：</label>
+          <div class="form-control-static pull-left">
+            {{registerCapital | yuanFormat}} 万元
+          </div>
+        </div>
+        <div class="form-group">
+          <label  class="control-label pull-left">成立时间：</label>
+          <div class="form-control-static pull-left">
+            {{foundTime}}
+          </div>
+        </div>
+        <div class="form-group clearfix">
+          <label  class="control-label pull-left">公司地址：</label>
+          <div class="form-control-static pull-left">
+            {{companyAddress}}
+          </div>
+        </div>
+      </div>
     </section>
-    <section class="wrapper bg-white" *ngIf="statusDic!='认证中'">
-      <div class="form-group clearfix row">
-        <div class="col-md-6">
-          <label class="label-control label-special-w" for="geustName">审核人:</label>
-          <div class="col-md-8 m-t-xs">
+    <section class="mar-b-sm form-horizontal form-label-7 group clearfix" *ngIf="statusDic!=='认证中'">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label pull-left" >审核人：</label>
+          <div class="form-control-static pull-left">
             {{auditBy}}
           </div>
         </div>
-        <div class="col-md-6 ">
-          <label class="label-control label-special-w">审核时间:</label>
-          <div class="col-md-8 m-t-xs">
+        <div class="form-group">
+          <label class="control-label pull-left" >审核意见：</label>
+          <div class="form-control-static pull-left">
+            {{auditRemark}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label pull-left">审核时间：</label>
+          <div class="form-control-static pull-left">
             {{auditDate}}
           </div>
         </div>
       </div>
-      <div class="clearfix">
-        <label class="label-control label-special-w">审核意见:</label>
-        <div class="col-md-4 m-t-xs">
-          {{auditRemark}}
-        </div>
-      </div>
-      
     </section>
-    <section class="wrapper bg-white clearfix" *ngIf="statusDic=='认证中'">
+    <section class="group clearfix mar-b-sm" *ngIf="statusDic=='认证中'">
+      <div class="group-title">附件</div>
       <div class="col-md-12">
-        <label class="col-md-3">附件:</label>
+       <!-- <label class="col-md-3">附件：</label>-->
         <div class="col-md-6">
-          <table class="table" border="1">
+          <table class="table no-margin table-bordered" >
             <tbody>
               <tr *ngIf="attch1Type">
                 <td>{{attch1TypeDic}}</td>
@@ -165,16 +172,16 @@
                 <td>{{attch5TypeDic}}</td>
                 <td><a class="text-info" (click)="checkAttach($event,attch5Loadid)">查看</a></td>
               </tr>
-             
+
             </tbody>
           </table>
         </div>
       </div>
-      
+
     </section>
-    <section class="wrapper">
+    <section>
       <div class="col-md-12 text-center">
-        <button class="btn" (click)="back()">返回</button>
+        <button class="btn-def" (click)="back()">返回<i class="fa fa-arrow-circle-o-left"></i></button>
       </div>
     </section>
   </form>

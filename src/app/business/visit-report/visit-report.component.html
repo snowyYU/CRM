@@ -35,20 +35,21 @@
         <button class="btn-def" type="button" [disabled]="submitting" (click)="serach()">查询<i class="fa fa-search"></i></button>
 
       </div>
-      
+
     </form>
   </div>
   <div>
-    <p-dataTable tableStyleClass="table-style" [value]="dateList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading">
-      <p-column field="serial" header="序号"></p-column>
-      <p-column field="guestName" header="客户名称"></p-column>
-      <p-column field="visitDate" header="拜访日期"></p-column>
-      <p-column field="visitWhatDic" header="拜访目的"></p-column>
-      <p-column field="serviceMan" header="服务经理"></p-column>
-      <p-column field="remark" header="备忘录"></p-column>
-      <p-column field="color" header="操作">
-        <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
-          <div class="text-center">
+    <p-dataTable  [value]="dateList" emptyMessage="{{loading?'':'暂无数据'}}" [loading]="loading"
+                 scrollable="true" scrollHeight="400px">
+      <p-column field="serial" header="序号" styleClass="text-center" [style]="{'width':'100px'}"></p-column>
+      <p-column field="guestName" header="客户名称" [style]="{'width':'200px'}"></p-column>
+      <p-column field="visitDate" header="拜访日期" styleClass="text-center" [style]="{'width':'150px'}"></p-column>
+      <p-column field="visitWhatDic" header="拜访目的" [style]="{'width':'150px'}"></p-column>
+      <p-column field="serviceMan" header="服务经理" styleClass="text-center" [style]="{'width':'150px'}"></p-column>
+      <p-column field="remark" header="备忘录" [style]="{'width':'360px'}"></p-column>
+      <p-column field="color" header="操作" [style]="{'width':'150px'}">
+        <ng-template let-operation="rowData" pTemplate="body" >
+          <div >
             <a class="table-btn text-info" (click)="detail(operation)">查看</a>
             <a class="table-btn text-info" (click)="edit(operation)" *ngIf="authRole.roleIn(['007'])">修改</a>
           </div>
@@ -57,7 +58,7 @@
       <p-footer>
         <div class="clearfix">
           <div class="pull-left" *ngIf="authRole.roleIn(['007'])">
-            <button type="button" class="btn btn-info" (click)='add()' >新增</button>
+            <button type="button" class="btn btn-default-dk btn-sm-s pull-left" (click)='add()' ><i class="fa fa-plus"></i>新增</button>
           </div>
           <div class="pull-right">
             <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="queryData()" size="sm" [showTotal]="true"></paginator>
