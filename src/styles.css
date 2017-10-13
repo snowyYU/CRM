@@ -50,3 +50,21 @@ li{
 .border-content{
 	border: 1px solid #ababab
 }
+
+
+
+/*wqy begin*/
+.ui-datatable-tablewrapper,.ui-datatable-scrollable-table-wrapper{
+}
+.ui-datatable .ui-datatable-scrollable-body{
+  min-height: 400px;
+  background-color: #fff;
+}
+.dol .ui-datatable .ui-datatable-data > tr > td.ui-datatable-emptymessage {
+  padding: 150px 1em;
+  border-color:transparent;
+}
+.dol .ui-datatable .ui-datatable-loading-content {
+  top: 45%;
+}
+/*wqy end*/
