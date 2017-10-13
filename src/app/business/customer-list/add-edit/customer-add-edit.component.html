@@ -1,4 +1,5 @@
 <div class="page-location">
+  <a class="h4 pad-r-xs font-bold">{{ifEdit?'修改':'新增'}}客户名册</a>
   <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i><span>拓展管理</span><i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item">客户名册<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active"><span *ngIf="!ifEdit">新增</span><span *ngIf="ifEdit">修改</span></a>
@@ -6,100 +7,100 @@
 
 <div class="wrapper">
   <form #customForm="ngForm" (ngSubmit)='onSubmit()'>
-    <section class="wrapper bg-white">
-      <div class="form-group clearfix row">
-        <div class="col-md-6">
-          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-          <label class="label-control label-special-w" for="geustName">客户名称:</label>
-          <div class="col-md-8">
+    <section class="panel-body group mar-b-sm">
+      <div class="col-md-6 form-horizontal form-label-7">
+        <div class="form-group">
+          <label class="control-label pull-left required">客户名称：</label>
+          <div class="pull-left">
             <input type="text" name="geustName" class="form-control" required [(ngModel)]="guestName">
           </div>
         </div>
-        <div class="col-md-6 " *ngIf="ifEdit">
-          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-          <label class="label-control label-special-w">状态:</label>
-          <div class="col-md-8">
+        <div class="form-group">
+          <label class="control-label pull-left required">获客途径：</label>
+          <div class="pull-left">
+            <select class="form-control " name="guestFrom" required [(ngModel)]="guestFrom">
+              <option [value]="item.value" *ngFor="let item of guest_from">{{item.label}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label">服务经理：</label>
+          <span class="form-control-static"> {{serviceMan}}</span>
+        </div>
+      </div>
+      <div class="col-md-6 form-horizontal form-label-7">
+        <div class="form-group">
+          <label class="control-label pull-left required">状态：</label>
+          <div class="pull-left">
             <select class="form-control" name="status" required [(ngModel)]="status">
-            	<option [value]="item.value" *ngFor="let item of guest_status">{{item.label}}</option>
+              <option [value]="item.value" *ngFor="let item of guest_status">{{item.label}}</option>
             </select>
           </div>
         </div>
       </div>
-      <div class="form-group clearfix row">
-        <div class="col-md-6">
-          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-          <label class="label-control label-special-w" for="geustName">获客途径:</label>
-          <div class="col-md-8">
-            <select name="" id="" class="form-control " name="guestFrom" required [(ngModel)]="guestFrom">
-            <option [value]="item.value" *ngFor="let item of guest_from">{{item.label}}</option>
-          </select>
+    </section >
+    <section class="panel-body group mar-b-sm">
+      <div class="col-md-6 form-horizontal form-label-7">
+        <div class="form-group">
+          <label class="control-label pull-left required">联系人：</label>
+          <div class="pull-left">
+            <input type="text" name="linkName" class="form-control " required [(ngModel)]="linkName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label pull-left required">联系人手机：</label>
+          <div class="pull-left">
+            <input type="number" name="linkMobile" class="form-control " required [(ngModel)]="linkMobile">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label pull-left required">联系人职位：</label>
+          <div class="pull-left">
+            <input type="text" name="linkJob" class="form-control " required [(ngModel)]="linkJob">
           </div>
         </div>
       </div>
-      <!-- <div class="form-group clearfix">
-        <label class="label-control label-special-w">获客途径:</label>
-        <div class="col-md-4">
-          <select name="" id="" class="form-control " name="guestFrom" required [(ngModel)]="guestFrom">
-          	<option [value]="item.value" *ngFor="let item of guest_from">{{item.label}}</option>
-          </select>
-        </div>
-      </div> -->
-      <div class="form-group clearfix" *ngIf="guestFrom=='1'">
-        <label class="label-control label-special-w">归属渠道:</label>
-        <div class="col-md-4">
-          <select name="appId" id="" class="form-control " required [(ngModel)]="appId">
-          	<option [value]="item.resourceId" *ngFor="let item of app_list">{{item.resourceName}}</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group clearfix">
-        <label class="label-control label-special-w">服务经理:</label>
-        <div class="col-md-4 m-t-xs">{{serviceMan}}</div>
-      </div>
-    </section>
-    <section class="wrapperForTwo ">
-      <div class="p-t col-md-6 bg-white wrapperTwoLeft">
-        <div class="form-group clearfix m-t">
-          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-          <label for="" class="label-control label-special-w">公司类型:</label>
-          <div class="col-md-8">
-            <select name="companyType" id="" class="form-control  " required [(ngModel)]="companyType">
-            	<option [value]="item.value" *ngFor="let item of guest_company_type">{{item.label}}</option>
-            </select>
-          </div>
-        </div>
+      <div class="col-md-6 form-horizontal form-label-7">
         <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">成立时间:</label>
-          <div class="col-md-8">
-            <input type="text" name="foundTime" datePicker class="form-control "  [(ngModel)]="foundTime">
-          </div>
-        </div>
-        <div class="form-group clearfix l-h-2x">
-          <label for="" class="pull-left label-special-w m-r-xs">注册资金:</label>
-          <div class="col-md-8">
-            <input type="number" name="registerCapital" class="form-control "  [(ngModel)]="registerCapital">
-          </div> 万元
-        </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">营业执照号:</label>
-          <div class="col-md-8">
+          <label class="control-label pull-left">营业执照号：</label>
+          <div class="pull-left" style="min-width: 300px;max-width: 100%">
             <input type="text" name="licenceNum" class="form-control "  [(ngModel)]="licenceNum">
           </div>
         </div>
+        <div class="form-group">
+          <label class="control-label pull-left required">公司类型：</label>
+          <div class="pull-left">
+            <select name="companyType"  class="form-control  " required [(ngModel)]="companyType">
+              <option [value]="item.value" *ngFor="let item of guest_company_type">{{item.label}}</option>
+            </select>
+          </div>
+        </div>
         <div class="form-group clearfix">
-          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-          <label for="" class="label-control label-special-w">公司地址:</label>
-          <div class="col-md-8">
+          <label class="control-label pull-left required">注册资金：</label>
+          <div class="pull-left">
+            <input type="number" name="registerCapital" class="form-control "  [(ngModel)]="registerCapital">
+          </div>
+          <span class="pull-left" style="padding-top: 8px;padding-left: 10px;">  万元</span>
+        </div>
+        <div class="form-group">
+          <label class="control-label pull-left required">成立时间：</label>
+          <div class="pull-left">
+            <input type="text" name="foundTime" datePicker class="form-control "  [(ngModel)]="foundTime">
+          </div>
+        </div>
+        <div class="form-group clearfix">
+          <label class="control-label pull-left required">公司地址：</label>
+          <div class="pull-left" style="min-width: 300px;max-width: 100%;">
             <div class="row">
-              <div class="col-md-6">
-              <select name="provnice" id="" class="form-control" required [(ngModel)]="province" (ngModelChange)='getCityList("1")'>
-                <option [ngValue]='item.name' *ngFor="let item of provinceList">{{item.name}}</option>
-              </select>
+              <div class="col-md-6 no-r-padding">
+                <select name="provnice"  class="form-control" required [(ngModel)]="province" (ngModelChange)='getCityList("1")'>
+                  <option [ngValue]='item.name' *ngFor="let item of provinceList">{{item.name}}</option>
+                </select>
               </div>
               <div class="col-md-6">
-              <select name="city" id="" class="form-control" required [(ngModel)]="city" [disabled]='!province'>
-                <option [ngValue]="item.name" *ngFor="let item of cityList">{{item.name}}</option>
-              </select>
+                <select name="city"  class="form-control" required [(ngModel)]="city" [disabled]='!province'>
+                  <option [ngValue]="item.name" *ngFor="let item of cityList">{{item.name}}</option>
+                </select>
               </div>
             </div>
             <div class="row m-t-xs">
@@ -110,33 +111,10 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 bg-white wrapperTwoRight">
-        <div class="form-group clearfix m-t">
-          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-          <label for="" class="label-control label-special-w">联系人:</label>
-          <div class="col-md-8">
-            <input type="text" name="linkName" class="form-control " required [(ngModel)]="linkName">
-          </div>
-        </div>
-        <div class="form-group clearfix">
-          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-          <label for="" class="label-control label-special-w">联系手机:</label>
-          <div class="col-md-8">
-            <input type="number" name="linkMobile" class="form-control " required [(ngModel)]="linkMobile">
-          </div>
-        </div>
-        <div class="form-group clearfix">
-          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-          <label for="" class="label-control label-special-w">联系人职位:</label>
-          <div class="col-md-8">
-            <input type="text" name="linkJob" class="form-control " required [(ngModel)]="linkJob">
-          </div>
-        </div>
-      </div>
-    </section>
+    </section >
     <section class="text-center">
-    	<button type="button" class="btn btn-defualt" (click)='cancel()'>取消</button>
-    	<button type="submit" [disabled]="!customForm.form.valid" class="btn btn-info">提交</button>
+      <button type="submit" [disabled]="!customForm.form.valid" class="btn-def mar-r-sm">提交<i class="fa fa-check-circle-o"></i></button>
+    	<button type="button" class="btn-def" (click)='cancel()'>放弃<i class="fa fa-times-circle-o"></i></button>
     </section>
   </form>
 </div>

@@ -1,121 +1,112 @@
 <div class="page-location">
+  <a class="h4 pad-r-xs font-bold">申请认证</a>
   <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i>拓展管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item">客户名册<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">申请认证</a>
 </div>
 <div class="wrapper">
   <form #form="ngForm" (ngSubmit)="submit()">
-    <section class="wrapper bg-white">
-      <div class="form-group clearfix">
-        <label class="label-control label-special-w">客户名称:</label>
-        <div class="col-md-4 m-t-xs">
-            {{guestName}}
+    <section class="panel-body group mar-b-sm">
+      <div class="col-md-6 form-horizontal form-label-10">
+        <div class="form-group">
+          <label class="control-label">客户名称：</label>
+          <span class="form-control-static">{{guestName}}</span>
+        </div>
+        <div class="form-group no-b-margin">
+          <label class="control-label">归属渠道：</label>
+          <span class="form-control-static">  {{appName}}</span>
         </div>
       </div>
-      
-      
-      <div class="form-group clearfix">
-        <label class="label-control label-special-w">归属渠道:</label>
-        <div class="col-md-4 m-t-xs">
-            {{appName}}
-        </div>
-      </div>
-      <div class="form-group clearfix pos-rlt">
-        <span class="text-danger l-h-2x pos-abt" style="left: -10px">*</span>
-        <label class="label-control label-special-w">类别:</label>
-        <div class="col-md-4 m-t-xs">
-            <select name="memberType" id="" class="form-control" [(ngModel)]="memberType" required>
+      <div class="col-md-6 form-horizontal form-label-10">
+        <div class="form-group">
+          <label class="control-label pull-left required">类别：</label>
+          <div class=" pull-left" style="width:175px;">
+            <select name="memberType"  class="form-control" [(ngModel)]="memberType" required>
               <!-- <option value="0">平台会员</option>
               <option value="1">平台管理方</option> -->
-              
+
 
               <option [ngValue]="item.value" *ngFor="let item of typeList" >{{item.label}}</option>
             </select>
+          </div>
+        </div>
+        <div class="form-group no-b-margin">
+          <label class="control-label">服务经理：</label>
+          <span class="form-control-static">  {{serviceMan}}</span>
         </div>
       </div>
-      <div class="form-group clearfix">
-        <label class="label-control label-special-w">服务经理:</label>
-        <div class="col-md-4 m-t-xs">
-            {{serviceMan}}
-        </div>
-      </div>
-      
-      
-    </section>
-    <section class="wrapperForTwo ">
-      <div class="p-t col-md-6 bg-white wrapperTwoLeft">
-        <div class="form-group clearfix m-t">
-          <label for="" class="label-control label-special-w">公司类型:</label>
-          <div class="col-md-8 m-t-xs">
-            {{companyType}}
-          </div>
-        </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">成立时间:</label>
-          <div class="col-md-8 m-t-xs">
-            {{foundTime}}
-          </div>
-        </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">注册资金:</label>
-          <div class="col-md-8 m-t-xs">
-            {{registerCapital | yuanFormat}} 万元
-          </div>
-        </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">营业执照号:</label>
-          <div class="col-md-8 m-t-xs">
-            {{licenceNum}}
-          </div>
-        </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">公司地址:</label>
-          <div class="col-md-8 m-t-xs">
-            {{companyAddress}}
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 bg-white wrapperTwoRight">
-        <div class="form-group clearfix m-t">
-          <label for="" class="label-control label-special-w">联系人:</label>
-          <div class="col-md-8 m-t-xs">
+    </section >
+    <section class="mar-b-sm form-horizontal form-label-10 group clearfix">
+      <div class="col-md-6 ">
+        <div class="form-group ">
+          <label  class="control-label pull-left">联系人：</label>
+          <div class="form-control-static pull-left">
             {{linkName}}
           </div>
         </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">联系手机:</label>
-          <div class="col-md-8 m-t-xs">
+        <div class="form-group">
+          <label  class="control-label pull-left">联系手机：</label>
+          <div class="form-control-static pull-left">
             {{linkMobile}}
           </div>
         </div>
-        <div class="form-group clearfix">
-          <label for="" class="label-control label-special-w">联系人职位:</label>
-          <div class="col-md-8 m-t-xs">
+        <div class="form-group">
+          <label  class="control-label pull-left">联系人职位：</label>
+          <div class="form-control-static pull-left">
             {{linkJob}}
           </div>
         </div>
-        <div class="form-group clearfix">
-          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-
-          <label for="" class="label-control label-special-w">联系人是否法人:</label>
-          <div class="col-md-8 m-t-xs">
-            <select name="isLegal" id="" class="form-control" [(ngModel)]="isLegal" required>
+        <div class="form-group">
+          <label  class="control-label pull-left required">联系人是否法人：</label>
+          <div class=" pull-left" style="width:175px;">
+            <select name="isLegal"  class="form-control" [(ngModel)]="isLegal" required >
               <option [ngValue]="item.value" *ngFor="let item of isLegalList" >{{item.label}}</option>
             </select>
           </div>
-          
         </div>
-        <div class="form-group clearfix">
-          <span class="text-danger requiredSpan l-h-2x pos-abt" *ngIf="isLegal==0">*</span>
-
-          <label for="" class="label-control label-special-w">联系人身份证:</label>
-          <div class="col-md-8 m-t-xs">
+        <div class="form-group">
+          <label  class="control-label pull-left">联系人身份证：</label>
+          <div class=" pull-left" style="width:175px;">
             <input type="text" name="linkIdcard" class="form-control" [disabled]="isLegal!=0" [(ngModel)]="linkIdcard" required>
           </div>
         </div>
       </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label  class="control-label pull-left">营业执照号：</label>
+          <div class="form-control-static pull-left">
+            {{licenceNum}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label  class="control-label pull-left">公司类型：</label>
+          <div class="form-control-static pull-left">
+            {{companyType}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label  class="control-label pull-left">注册资金：</label>
+          <div class="form-control-static pull-left">
+            {{registerCapital | yuanFormat}} 万元
+          </div>
+        </div>
+        <div class="form-group">
+          <label  class="control-label pull-left">成立时间：</label>
+          <div class="form-control-static pull-left">
+            {{foundTime}}
+          </div>
+        </div>
+        <div class="form-group clearfix">
+          <label  class="control-label pull-left">公司地址：</label>
+          <div class="form-control-static pull-left">
+            {{companyAddress}}
+          </div>
+        </div>
+      </div>
     </section>
-    <section class="wrapper bg-white clearfix">
+
+    <section class="group clearfix">
+      <div class="group-title">附件</div>
       <!-- <div class="form-group clear-fix" *ngFor="let item of fileList"> -->
       <div class="form-group clearfix" *ngFor="let item of attachmentList;let i=index">
        <label for="" class="col-md-2 m-t-xs text-right">附件{{i+1}}</label>
@@ -126,9 +117,9 @@
            </select>
          </div>
          <div class="col-md-6" >
-           <select name="secondType{{i}}" id="" class="form-control" [disabled]="!item.firstType" [(ngModel)]="item.secondType">
+           <select name="secondType{{i}}"  class="form-control" [disabled]="!item.firstType" [(ngModel)]="item.secondType">
              <option [ngValue]="type.code" *ngFor="let type of item.secondList">{{type.msg}}</option>
-             
+
            </select>
          </div>
          <!-- <div class="col-md-2 m-t-xs " *ngIf="item.isUploaded">
@@ -137,10 +128,10 @@
          </div> -->
          <!-- <div class="col-md-2 p-l-none" *ngIf="item.isUploaded==false">
           <div class="btn btn-info">上传<input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="item.uploader" multiple="multiple"/></div>
-           
+
          </div> -->
-         
-         
+
+
          <div class="col-md-12 text-center text-info m-t-xs">
             <table class="form-group clearfix table table-striped m-b-none showL text-center">
                 <thead>
@@ -181,7 +172,7 @@
                         <div class="btn btn-info btn-sm pos-rlt" *ngIf="item.uploader.queue[0]">重新上传
                           <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="item.uploader" />
                         </div>
-                        
+
                       </div>
                       <button type="button" class="btn btn-sm btn-danger" (click)="deleteFile(item)">删除</button>
                     </td>
@@ -197,7 +188,7 @@
                 <div class="text-danger" *ngIf="!name.success">上传失败</div>
               </div>
             </div> -->
-           
+
          </div>
        </div>
       </div>
@@ -208,9 +199,8 @@
     </section>
     <section>
       <div class="text-center m-t-xs">
-        <button class="btn" type="button" (click)="cancel()">返回</button>
-        <button class="btn btn-info" type="submit" [disabled]="!form.valid">提交申请</button>
-
+        <button class="btn-def mar-r-sm" type="submit" [disabled]="!form.valid">提交申请<i class="fa fa-check-circle-o"></i></button>
+        <button class="btn-def" (click)="cancel()" type="button">返回<i class="fa fa-arrow-circle-o-left"></i></button>
       </div>
     </section>
   </form>
