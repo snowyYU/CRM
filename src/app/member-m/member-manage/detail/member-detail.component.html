@@ -20,6 +20,28 @@
         </div>
     </div>
     <div class="form-group clearfix">
+        
+        <div class="col-md-6">
+            <label class="label-control">归属渠道:</label>
+            <span class="text-content">{{prmResourceRegister.resourceName}}</span>
+        </div>
+         <div class="col-md-6">
+            <label class="label-control">类别:</label>
+            <span class="text-content">{{memberTypeDic}}</span>
+        </div>
+    </div>
+    <div class="form-group clearfix">
+        <div class="col-md-6">
+            <label class="label-control">服务经理:</label>
+            <span class="text-content">{{serviceMan}}</span>
+        </div>
+        <div class="col-md-6">
+            <label class="label-control">状态:</label>
+            <span>{{memberStatusDic}}</span>
+        </div>
+        
+    </div>
+    <div class="form-group clearfix">
         <div class="col-md-6">
             <label class="label-control">信用等级:</label>
             <span class="text-danger">{{memberRating}}</span>
@@ -30,39 +52,19 @@
         </div>
         
     </div>
-    <div class="form-group clearfix">
-        <div class="col-md-6">
+    <div class="clearfix">
+        <!-- <div class="col-md-6">
             <label class="label-control">评估日期:</label>
             <span class="text-content">--</span>
-        </div>
+        </div> -->
         <div class="col-md-6">
             <label class="label-control">尽调报告:</label>
             <span class="text-info" ><a [routerLink]="['/memberM/memberManage/detail',memberId,'memberReport']" class="text-info">查看</a></span>
         </div>
         
     </div>
-    <div class="form-group clearfix">
-        <div class="col-md-6">
-            <label class="label-control">更新时间:</label>
-            <span class="text-content">{{reportsVo.updateTime}}</span>
-        </div>
-        <div class="col-md-6">
-            <label class="label-control">归属渠道:</label>
-            <span class="text-content">{{prmResourceRegister.resourceName}}</span>
-        </div>
-        
-    </div>
-    <div class="form-group clearfix">
-        <div class="col-md-6">
-            <label class="label-control">类别:</label>
-            <span class="text-content">{{memberTypeDic}}</span>
-        </div>
-        <div class="col-md-6">
-            <label class="label-control">状态:</label>
-            <span>{{memberStatusDic}}</span>
-        </div>
-        
-    </div>
+    
+    
     <!-- <div class="form-group clearfix">
         <label class="label-control">类别:</label>
         <span class="text-content">{{memberTypeDic}}</span>
@@ -71,13 +73,7 @@
         <label class="label-control">状态:</label>
         <span>{{memberStatusDic}}</span>
     </div> -->
-    <div class="clearfix">
-        <div class="col-md-12">
-            <label class="label-control">服务经理:</label>
-            <span class="text-content">{{serviceMan}}</span>
-        </div>
-        
-    </div>
+    
   </section >
   <section class="panel-body bg-white m-t-md">
 
