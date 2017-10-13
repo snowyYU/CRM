@@ -1,51 +1,95 @@
 <div class="page-location">
+  <a class="h4 pad-r-xs font-bold">新增申请授信</a>
   <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item">会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">新增申请授信</a>
 </div>
-<div class="wrapper-md ">
-    <form #newApply="ngForm" (ngSubmit)='submit()'>
-  <section class="panel-body bg-white">
-    <div class="col-md-12 form-group">
-        <label class="col-md-3 label-control">会员名称:</label>
-        <span class="row-body">{{companyName}}  ({{memberId}})</span>
-    </div>
-    <div class="col-md-12 form-group form-inline">
-        <label class="col-md-3 label-control">申请产品:</label>
+<div class="wrapper-md pos-rlt">
+  <form #newApply="ngForm" (ngSubmit)='submit()'>
+    <section class="panel-body border-content">
+      <div class="col-md-12 form-group">
+        <label class="pull-left w-sm label-control">会员名称:</label>
+        <span class="row-body text-content">{{companyName}}  ({{memberId}})</span>
+      </div>
+      <div class="col-md-12 form-group form-inline">
+        <label class="pull-left w-sm label-control">申请产品:</label>
         <select name="productId" id="" class="form-control" [(ngModel)]="productId" (ngModelChange)="selectProduct($event)" required>
-            <option [ngValue]="item.productId" *ngFor="let item of productList">{{item.productName}}</option>
+          <option [ngValue]="item.productId" *ngFor="let item of productList">{{item.productName}}</option>
         </select>
-    </div>
-    <div class="col-md-12 form-group form-inline">
-        <label class="col-md-3 label-control">产品类别:</label>
-        <span class="row-body">{{productTypeName}}</span>
-    </div>
-    
-  </section >
-  <section class="panel-body bg-white m-t-md">
-    <div class="col-md-12 form-inline">
-        <label class="col-md-3 label-control">申请额度:</label>
+      </div>
+      <div class="col-md-12 form-group form-inline">
+        <label class="pull-left w-sm label-control">产品类别:</label>
+        <span class="row-body text-content">{{productTypeName}}</span>
+      </div>
+    </section>
+    <section class="panel-body border-content m-t-md">
+      <div class="col-md-12 form-inline form-group">
+        <label class="pull-left w-sm label-control">申请额度:</label>
         <input type="text" name="addCreditValue" class="form-control text-right" [(ngModel)]="addCreditValue" required> 元
+      </div>
+      <div class="col-md-12 form-group">
+        <label class="pull-left w-sm label-control">原授信额度:</label>
+        <span class="row-body">--</span>
+        
     </div>
-    <!-- <div class="col-md-12 form-group form-inline">
-        <label class="col-md-3 label-control">原授信额度:</label>
-        <span class="row-body">￥0.00元</span>
+    <div class="col-md-12 ">
+        <label class="pull-left w-sm label-control">原有效期:</label>
+        <span class="row-body">--  至  --</span>
+        
+    </div>
+      <!-- <div class="col-md-12 form-group form-inline">
+        <label class="pull-left w-sm label-control">原授信额度:</label>
+        <span class="row-body text-content">￥0.00元</span>
         
     </div> -->
-  </section>
-	
-	
-	<section class="panel-body bg-white m-t-md form-inline">
-		<div class="col-md-12">
-			<label class="col-md-3 label-control">申请原因:</label>
-			<textarea name="authRemark" id="" cols="30" rows="5" class="form-control" [(ngModel)]="authRemark" required></textarea>
-		</div>
-	</section>
-    <section class="m-t-md">
-        <div class="text-center"> 
-            <button type="button" class="btn" (click)="cancel()">返回</button>
-            <button class="btn btn-info" [disabled]="!newApply.form.valid">提交申请</button>
-        </div>
     </section>
-</form>
+    <section class="panel-body border-content m-t-md form-inline">
+      <div class="col-md-12">
+        <label class="pull-left w-sm label-control">申请原因:</label>
+        <textarea name="authRemark" id="" cols="30" rows="5" class="form-control" [(ngModel)]="authRemark" required></textarea>
+      </div>
+    </section>
+    <section class="m-t-md">
+      <div class="text-center">
+        <button type="button" class="btn" (click)="cancel()">返回</button>
+        <button class="btn btn-info" [disabled]="!newApply.form.valid">提交申请</button>
+      </div>
+    </section>
+  </form>
+  <section class="bg-white clearfix productInfo pos-abt" *ngIf="productId">
+      <div class="col-md-12 text-center padder-v">产品信息</div>
+      <div class="col-md-12 form-group">
+          <label for="" class="col-md-3">额度范围:</label>
+          <div class="col-md-9">{{valueLimit}}</div>
+      </div>
+      <div class="col-md-12 form-group">
+          <label for="" class="col-md-3">借款周期:</label>
+          <div class="col-md-9">{{borrowHowlong}}</div>
+      </div>
+      <div class="col-md-12 form-group">
+          <label for="" class="col-md-3">产品简介:</label>
+          <div class="col-md-9">{{productRemark}}</div>
+      </div>
+      <div class="col-md-12">
+          <table class="table showL b-t">
+              <thead>
+                  <tr>
+                      <th>借款期限</th>
+                      <th>还款方式</th>
+                      <th>计息方式</th>
+                      <th>利率</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of productDetailL">
+                      <td>{{item.rateCycle}}</td>
+                      <td>{{item.paymentWayName}}</td>
+                      <td>{{item.interestTypeName}}</td>
+                      <td>{{item.interestValue}}</td>
+                  </tr>
+                  
+              </tbody>
+          </table>
+      </div>
+  </section>
 </div>

@@ -39,6 +39,26 @@ export class NewApplyService {
 		})
 	}
 
+	getProductsParam(appId,productId):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.getProductsParam,
+			query:{
+				appId:appId,
+				productId:productId
+			}
+		}).toPromise().then(res=>{
+			let data=res
+
+			if (data.status==200) {
+
+				return Promise.resolve(data)
+			}else{
+				return Promise.reject(data)
+			}
+		})
+	}
+
+
 	checkApplyExist(operateType,memberId,productId):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.checkApplyExist,

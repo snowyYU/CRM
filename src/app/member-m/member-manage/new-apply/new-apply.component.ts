@@ -14,6 +14,8 @@ export class NewApplyComponent implements OnInit {
 	companyName:string
 	memberId:number
 
+	productDetailL:any[]
+
 	newData:object={}
 	productList:Array<any>
 	productTypeName:string
@@ -26,6 +28,11 @@ export class NewApplyComponent implements OnInit {
 	expiryDateBegin		//有效期(开始)：格式：yyyy-MM-dd
 	expiryDateEnd		//有效期(结束)：格式：yyyy-MM-dd
 	authRemark			//申请理由
+
+	//产品信息
+	valueLimit          //额度范围
+	borrowHowlong		//借款周期
+	productRemark		//产品简介
 
 	constructor(
 		private route:ActivatedRoute,
@@ -69,7 +76,10 @@ export class NewApplyComponent implements OnInit {
 	selectProduct(id){
 		this.productTypeName=this.newData[id].productTypeName
 		console.log(this.productTypeName)
-
+		console.log(this.newData)
+		this.valueLimit=this.newData[id].valueLimit          //额度范围
+		this.borrowHowlong=this.newData[id].borrowHowlong		//借款周期
+		this.productRemark=this.newData[id].productRemark		//产品简介
 		this.newApply.checkApplyExist(0,this.memberId,id)
 			.then(res=>{
 				console.log(res)
@@ -81,6 +91,18 @@ export class NewApplyComponent implements OnInit {
 				})
 				this.productTypeName=""
 				this.productId=""
+			})
+
+		this.newApply.getProductsParam(this.appId,id).then(res=>{
+			console.log(res)
+			this.productDetailL=res.body.records
+
+		}).catch(res=>{
+				this.pop.error({
+					title:'错误提示',
+					text:res.message
+				})
+				this.productDetailL=[]
 			})
 
 	}
