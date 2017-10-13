@@ -1,113 +1,106 @@
 <div class="page-location">
+  <a class="h4 pad-r-xs font-bold">{{isEdit?'修改':'新增'}}拜访报告</a>
   <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i>拓展管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item">拜访报告<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active"><span *ngIf="!isEdit">新增</span><span *ngIf="isEdit">修改</span></a>
 </div>
 <div class="wrapper-md">
     <form #visitReportForm="ngForm" (ngSubmit)='submit()'>
-    <section class="wrapperForTwo ">
-      <div class="p-t col-md-6 bg-white wrapperTwoLeft wrapper">
-        <div class="clearfix form-group">
-          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
+      <section class="panel-body group mar-b-sm">
+        <div class="col-md-6 form-horizontal form-label-7">
+          <div class="form-group">
+            <label class="control-label pull-left required">客户名称：</label>
+            <div class="pull-left">
+              <input type="text" name="guestName" class="form-control" [(ngModel)]="guestName" [disabled]="isEdit" required (focus)="focusFun()">
+            </div>
+            <button type="button" class="btn btn-info mar-l-xs" [disabled]="isEdit" (click)="choose()"><i class="fa fa-user"></i>选择</button>
+          </div>
+          <div class="form-group">
+            <label class="control-label pull-left required">拜访日期：</label>
+            <div class="pull-left">
+              <input type="text" name="visitDate" class="form-control" datePicker  required [(ngModel)]="visitDate" [disabled]="isEdit">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 form-horizontal form-label-7">
+          <div class="form-group">
+            <label class="control-label pull-left">服务经理：</label>
+            <div class="pull-left form-control-static">
+              {{serviceMan}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label pull-left">拜访目的：</label>
+            <div class="pull-left">
+              <select name="visitWhat" required class="form-control" [(ngModel)]="visitWhat" [disabled]="isEdit">
+                <option [ngValue]="item.value" *ngFor="let item of visitWhatList">{{item.label}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section >
+      <section class="panel-body group mar-b-sm">
+        <div class="col-md-6 form-horizontal form-label-7">
+          <div class="form-group">
+            <label class="control-label pull-left required">联系人：</label>
+            <div class="pull-left">
+              <input type="text" name="linkName" class="form-control" [(ngModel)]="linkName" [disabled]="isEdit||customerDisabled" required>
+            </div>
+            <button class="btn btn-default pull-left mar-l-xs" *ngIf="customerDisabled" (click)="enable()"><i class="fa fa-pencil"></i>修改</button>
+          </div>
+          <div class="form-group">
+            <label class="control-label pull-left required">联系手机：</label>
+            <div class="pull-left">
+              <input type="text" name="linkMobile" class="form-control" [(ngModel)]="linkMobile" [disabled]="isEdit||customerDisabled" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label pull-left required">城市：</label>
+            <div class="pull-left row" style="min-width: 300px;max-width: 100%">
+              <div class="col-md-6 no-r-padding">
+                <select name="province" class="form-control" [(ngModel)]="province" (ngModelChange)='getCityList($event)' [disabled]="isEdit||customerDisabled" required>
+                  <option [ngValue]='item.name' *ngFor="let item of provinceList" >{{item.name}}</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <select name="city" class="form-control col-md-6" [(ngModel)]="city" [disabled]='!province||isEdit||customerDisabled' required>
+                  <option [ngValue]='item.name' *ngFor="let item of cityList">{{item.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label pull-left required">地址：</label>
+            <div class="pull-left" style="min-width: 300px;max-width: 100%">
+              <input type="text" name="companyAddress" class="form-control" [(ngModel)]="companyAddress" [disabled]="isEdit||customerDisabled" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label pull-left">交通：</label>
+            <div class="pull-left" style="min-width: 300px;max-width: 100%">
+              <select name="visitVehicle" class="form-control" [(ngModel)]="visitVehicle" [disabled]="isEdit" >
+                <option [ngValue]="item.value" *ngFor="let item of visitVehicleList">{{item.label}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 form-horizontal form-label-7">
+          <div class="form-group">
+            <label class="control-label pull-left">备忘录：</label>
+            <div class="pull-left form-control-static  col-md-10 no-padding" >
+              <textarea name="remark"  cols="40" rows="5" class="form-control mar-b-xs"
+                        [(ngModel)]="remark" placeholder="不能小于20" minlength="20" required style="min-height: 175px;"></textarea>
+              <div class="text-danger" *ngIf="visitReportForm.form.controls.remark&&visitReportForm.form.controls.remark.dirty&&visitReportForm.form.controls.remark.invalid">
+                字数不能小于20
+              </div>
 
-          <label class="label-control label-special-w">客户名称:</label>
-          <div class="col-md-8">
-            <input type="text" name="guestName" class="form-control" [(ngModel)]="guestName" [disabled]="isEdit" required (focus)="focusFun()">
-          </div>
-          <button type="button" class="btn btn-info" [disabled]="isEdit" (click)="choose()">选择</button>
-        </div>
-        <div class="clearfix form-group">
-          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-
-          <label class="label-control label-special-w">拜访日期:</label>
-          <div class="col-md-8">
-            <input type="text" name="visitDate" class="form-control" datePicker  required [(ngModel)]="visitDate" [disabled]="isEdit">
+            </div>
           </div>
         </div>
-        <div class="clearfix form-group">
-          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-          
-          <label class="label-control label-special-w">拜访目的:</label>
-          <div class="col-md-8">
-            <select name="visitWhat" required class="form-control" [(ngModel)]="visitWhat" [disabled]="isEdit">
-              <option [ngValue]="item.value" *ngFor="let item of visitWhatList">{{item.label}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="clearfix">
-          <label class="label-control label-special-w">服务经理:</label>
-          <div class="col-md-8">
-            <div class="m-t-xs">{{serviceMan}}</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 bg-white wrapperTwoRight wrapper">
-        <div class="clearfix form-group">
-          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-            <label class="label-control label-special-w">联系人:</label>
-        <div class="col-md-8">
-          <input type="text" name="linkName" class="form-control" [(ngModel)]="linkName" [disabled]="isEdit||customerDisabled" required>
-        </div>
-          <button class="btn btn-info pull-left" *ngIf="customerDisabled" (click)="enable()">修改</button>
-
-    </div>
-    <div class="clearfix form-group">
-      <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-      <label class="label-control label-special-w">联系手机:</label>
-      <div class="col-md-8">
-        <input type="text" name="linkMobile" class="form-control" [(ngModel)]="linkMobile" [disabled]="isEdit||customerDisabled" required>
-      </div>
-    </div>
-    <div class="clearfix form-group">
-      <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-      <label class="label-control label-special-w">城市:</label>
-      <div class="col-md-8 p-l-none p-r-none">
-        <div class="col-md-6">
-          <select name="province" class="form-control" [(ngModel)]="province" (ngModelChange)='getCityList($event)' [disabled]="isEdit||customerDisabled" required>
-            <option [ngValue]='item.name' *ngFor="let item of provinceList" >{{item.name}}</option>
-          </select>
-        </div>
-        <div class="col-md-6">
-          <select name="city" class="form-control col-md-6" [(ngModel)]="city" [disabled]='!province||isEdit||customerDisabled' required>
-            <option [ngValue]='item.name' *ngFor="let item of cityList">{{item.name}}</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="clearfix form-group">
-      <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-      <label class="label-control label-special-w">地址:</label>
-      <div class="col-md-8">
-        <input type="text" name="companyAddress" class="form-control" [(ngModel)]="companyAddress" [disabled]="isEdit||customerDisabled" required>
-      </div>
-    </div>
-    <div class="clearfix">
-      <label class="label-control label-special-w">交通:</label>
-      <div class="col-md-8">
-        <select name="visitVehicle" class="form-control" [(ngModel)]="visitVehicle" [disabled]="isEdit" >
-          <option [ngValue]="item.value" *ngFor="let item of visitVehicleList">{{item.label}}</option>
-        </select>
-      </div>
-    </div>
-      </div>
-    </section>
-  
- 
-  <section class="bg-white m-t-md clearfix">
-    <div class="m-t form-group col-md-11">
-      <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-      <label class="label-control label-special-w">备忘录</label>
-      <div class="col-md-5">
-        <textarea name="remark" id="" cols="40" rows="5" class="form-control" [(ngModel)]="remark" placeholder="不能小于20" minlength="20" required></textarea>
-      </div>
-      <div class="col-md-1 text-danger" *ngIf="visitReportForm.form.controls.remark&&visitReportForm.form.controls.remark.dirty&&visitReportForm.form.controls.remark.invalid">
-        字数不能小于20
-      </div>
-    </div>
-  </section>
-  <section class="text-center m-t-md">
-    <button type="button" class="btn" (click)="cancel()">取消</button>
-    <button type="submit" class="btn btn-info" [disabled]="visitReportForm.form.invalid">提交</button>
+      </section >
+  <section class="text-center">
+    <button type="submit" class="btn-def mar-r-sm" [disabled]="visitReportForm.form.invalid">提交<i class="fa fa-check-circle-o"></i></button>
+    <button type="button" class="btn-def" (click)="cancel()">取消<i class="fa fa-times-circle-o"></i></button>
     <a  *ngIf="showCustomerSave" href="javascript:void(0)" class="text-info" (click)="saveCustomerInfo()">保存客户信息</a>
   </section>
   </form>
@@ -136,19 +129,19 @@
           </div>
         </div>
       </div>
-    <div class="wrapper clearfix">
-      
+    <div class="clearfix">
+
       <p-dataTable tableStyleClass="table-style" [value]="dataList" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]"  emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading" selectionMode="single" [(selection)]="selectedCustomer">
-        
+
         <p-column field="guestName" header="客户名称"></p-column>
         <!-- <p-column field="guestFromDic" header="获取途径"></p-column>
         <p-column field="companyTypeDic" header="公司类型"></p-column>
         <p-column field="statusDic" header="状态"></p-column> -->
-        
+
       </p-dataTable>
     </div>
   </modal-body>
-  <modal-footer>
+  <modal-footer styleClass="no-t-padding">
     <button class="btn btn-default" (click)="closeModal()">关闭</button>
     <button class="btn btn-primary" (click)="yesModal()">确定</button>
 

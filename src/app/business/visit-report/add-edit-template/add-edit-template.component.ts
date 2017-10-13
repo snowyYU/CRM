@@ -13,17 +13,17 @@ import { PopService } from 'dolphinng';
 	providers:[AddEditTemplateService,AuthRoleService]
 })
 export class AddEditComponent implements OnInit{
-	guestName:string;//客户名称	
-	visitDate:string;//拜访日期	
+	guestName:string;//客户名称
+	visitDate:string;//拜访日期
 	visitWhat:any//拜访目的值
-	visitWhatDic:string;//拜访目的字典	
-	serviceMan:string;//服务经理	
-	linkName:string;//联系人		
-	linkMobile:string;//联系手机	
-	visitCity:string;//城市		
+	visitWhatDic:string;//拜访目的字典
+	serviceMan:string;//服务经理
+	linkName:string;//联系人
+	linkMobile:string;//联系手机
+	visitCity:string;//城市
 	visitVehicle:any//交通值
-	visitVehicleDic:string;//交通字典值		
-	companyAddress:string;//地址		
+	visitVehicleDic:string;//交通字典值
+	companyAddress:string;//地址
 	remark:string;//备忘录
 
 	isEdit:boolean=false;
@@ -36,7 +36,7 @@ export class AddEditComponent implements OnInit{
 
 	//模态框相关
 	customerListShow:boolean;
-	modalSize:string='sm'
+	modalSize:string='md'
 	dataList:any
 	selectedCustomer
 
@@ -88,15 +88,15 @@ export class AddEditComponent implements OnInit{
 	//详情的渲染函数
 	renderData(res){
 		console.log(res);
-		this.guestName=res.body.guestName;//客户名称	
-		this.visitDate=res.body.visitDate;//拜访日期	
-		this.visitWhat=res.body.visitWhat;//拜访目的	
-		this.serviceMan=res.body.serviceMan;//服务经理	
-		this.linkName=res.body.linkName;//联系人		
-		this.linkMobile=res.body.linkMobile;//联系手机	
-		this.visitCity=res.body.visitCity;//城市		
-		this.visitVehicle=res.body.visitVehicle;//交通		
-		this.companyAddress=res.body.companyAddress;//地址		
+		this.guestName=res.body.guestName;//客户名称
+		this.visitDate=res.body.visitDate;//拜访日期
+		this.visitWhat=res.body.visitWhat;//拜访目的
+		this.serviceMan=res.body.serviceMan;//服务经理
+		this.linkName=res.body.linkName;//联系人
+		this.linkMobile=res.body.linkMobile;//联系手机
+		this.visitCity=res.body.visitCity;//城市
+		this.visitVehicle=res.body.visitVehicle;//交通
+		this.companyAddress=res.body.companyAddress;//地址
 		this.remark=res.body.remark;//备忘录
 		if (res.body.visitCity) {
 
@@ -113,9 +113,9 @@ export class AddEditComponent implements OnInit{
 						this.getCityList(this.province);
 						console.log(this.province,this.city)
 						break;
-					
+
 					default:
-						
+
 						break;
 				}
 			}
@@ -160,7 +160,7 @@ export class AddEditComponent implements OnInit{
 		console.log(this.isMember)
 		this.getCustomerList('2')
 
-					
+
 	}
 
 	getCustomerList(type){
@@ -178,11 +178,11 @@ export class AddEditComponent implements OnInit{
 		console.log(this.selectedCustomer)
 		this.guestName=this.selectedCustomer.guestName;
 		this.customerListShow=false;
-		this.linkName=this.selectedCustomer.linkName;//联系人		
+		this.linkName=this.selectedCustomer.linkName;//联系人
 		this.linkMobile=this.selectedCustomer.linkMobile;//联系手机
 		if (this.selectedCustomer.guestName) {
 			this.showCustomerSave=false
-			
+
 		}
 		if (this.selectedCustomer.companyAddress) {
 
@@ -207,9 +207,9 @@ export class AddEditComponent implements OnInit{
 						this.companyAddress=array[2];
 
 						break;
-					
+
 					default:
-						
+
 						break;
 				}
 			}
@@ -234,7 +234,7 @@ export class AddEditComponent implements OnInit{
 		this.customerDisabled=false
 
 	}
-	
+
 	//以下三个方法都是提交相同的参数，分别为新增，修改，保存客户信息
 	//保存新增报告
 	saveNewReport(){
