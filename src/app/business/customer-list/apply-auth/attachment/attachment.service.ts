@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../../../services/myHttp/myhttpClient.service'
 
 
 @Injectable()
 export class AttachmentService {
 	
 	constructor(
-		private myHttp:MyHttp
+		private myHttp:MyHttpClient
 		) {}
 
 	getBigClassify():Promise<any>{
@@ -14,7 +15,7 @@ export class AttachmentService {
 			api:this.myHttp.api.getBigClassifyList,
 			
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -30,7 +31,7 @@ export class AttachmentService {
 			}
 			
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

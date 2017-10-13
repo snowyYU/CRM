@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core'
 import { MyHttp } from '../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
+
 
 //获取list发送的参数格式
 export interface SendData{
@@ -14,7 +16,7 @@ export interface SendData{
 @Injectable()
 export class MemberManageService{
 	constructor(
-		private myHttp:MyHttp
+		private myHttp:MyHttpClient
 		){}
 	//获取列表查询条件的两个下拉
 	//appId
@@ -23,7 +25,7 @@ export class MemberManageService{
 			api:this.myHttp.api.getAllApp,
 
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				data.body.records.unshift({resourceName:'全部',resourceId:''})
 				return Promise.resolve(data)
@@ -41,7 +43,7 @@ export class MemberManageService{
 				type:'auth_member_type'
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				data.body.records.unshift({label:'全部',value:''})
 
@@ -58,7 +60,7 @@ export class MemberManageService{
 			api:this.myHttp.api.vipManageList,
 			query:sendData
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 				
@@ -76,7 +78,7 @@ export class MemberManageService{
 				memberId:id
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				let totalCreditValue:number=0
 				let totalCreditBanlance:number=0
@@ -116,7 +118,7 @@ export class MemberManageService{
 				productId:productId
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 				
@@ -132,7 +134,7 @@ export class MemberManageService{
 		})
 		.toPromise()
 		.then(res=>{
-			let data=res.json();
+			let data=res;
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -151,7 +153,7 @@ export class MemberManageService{
 		})
 		.toPromise()
 		.then(res=>{
-			let data=res.json();
+			let data=res;
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

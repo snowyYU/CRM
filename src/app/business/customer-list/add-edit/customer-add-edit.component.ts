@@ -53,7 +53,7 @@ export class CustomerAddEditComponent implements OnInit{
 		//状态下拉
 		this.inputSelect("guest_status")
 			.then(res=>{
-				this.guest_status=res.json().body.records
+				this.guest_status=res.body.records
 				let index
 				this.guest_status.forEach((e,i)=>{
 					if (e.value=="1") {
@@ -63,23 +63,47 @@ export class CustomerAddEditComponent implements OnInit{
 				this.guest_status.splice(index,1)
 
 			})
+			.catch(res=>{
+				this.popService.error({
+					title:'错误信息',
+					text:res.message
+				})
+			})
 		//获客途径下拉
 		this.inputSelect("guest_from")
 			.then(res=>{
-				this.guest_from=res.json().body.records
+				this.guest_from=res.body.records
+			})
+			.catch(res=>{
+				this.popService.error({
+					title:'错误信息',
+					text:res.message
+				})
 			})
 		//归属渠道下拉
 		this.addEditService
 			.getBelongAppData()
 			.then(res=>{
-				console.log(res.json());
-				this.app_list=res.json().body.records
+				console.log(res);
+				this.app_list=res.body.records
 
+			})
+			.catch(res=>{
+				this.popService.error({
+					title:'错误信息',
+					text:res.message
+				})
 			})
 		//公司类型下拉
 		this.inputSelect("guest_company_type")
 			.then(res=>{
-				this.guest_company_type=res.json().body.records
+				this.guest_company_type=res.body.records
+			})
+			.catch(res=>{
+				this.popService.error({
+					title:'错误信息',
+					text:res.message
+				})
 			})
 
 		//选择省的列表
@@ -95,8 +119,14 @@ export class CustomerAddEditComponent implements OnInit{
 			this.addEditService
 				.getEditData(this.route.params['value']['id'])
 				.then(res=>{
-					this.editRender(res.json());
+					this.editRender(res);
 				})
+				.catch(res=>{
+				this.popService.error({
+					title:'错误信息',
+					text:res.message
+				})
+			})
 
 		}else{
 			this.ifEdit=false;
@@ -119,6 +149,12 @@ export class CustomerAddEditComponent implements OnInit{
 		}).then(res=>{
 			this.provinceList=res.body.records
 		})
+		.catch(res=>{
+				this.popService.error({
+					title:'错误信息',
+					text:res.message
+				})
+			})
 	}
 	
 	getCityList(v){
@@ -141,7 +177,13 @@ export class CustomerAddEditComponent implements OnInit{
 				}
 				
 				this.cityList=res.body.records
+			}).catch(res=>{
+				this.popService.error({
+					title:'错误信息',
+					text:res.message
+				})
 			})
+			
 		})
 	}
 

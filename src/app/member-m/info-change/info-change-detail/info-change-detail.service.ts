@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../../services/myHttp/myhttpClient.service'
 
 export interface SendData{
 	updateApplyId:number
@@ -11,7 +12,7 @@ export interface SendData{
 export class InfoChangeDetailService {
 	
 	constructor(
-		private myHttp:MyHttp
+		private myHttp:MyHttpClient
 		) {}
 
 	//获取详情的数据
@@ -22,7 +23,7 @@ export class InfoChangeDetailService {
 				updateApplyId:id
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -38,7 +39,7 @@ export class InfoChangeDetailService {
 			api:this.myHttp.api.infoChangeCheckSubmit,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

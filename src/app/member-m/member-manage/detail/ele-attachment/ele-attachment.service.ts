@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../../../services/myHttp/myhttpClient.service'
+
 
 @Injectable()
 export class EleAttachmentService {
 	
 	constructor(
-		private myHttp:MyHttp
+		private myHttp:MyHttpClient
 		) {}
 
 	getDetailData(memId):Promise<any>{
@@ -15,7 +17,7 @@ export class EleAttachmentService {
 				memberId:memId
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

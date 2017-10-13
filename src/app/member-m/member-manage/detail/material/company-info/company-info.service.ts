@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../../../../services/myHttp/myhttpClient.service'
+
 
 interface AreaAddress{
 	parentCode:number;
@@ -49,7 +51,7 @@ export interface Part4Data{
 export class CompanyInfoService {
 	
 	constructor(
-		private myHttp:MyHttp
+		private myHttp:MyHttpClient
 		) {}
 
 	getDetailData(id):Promise<any>{
@@ -59,7 +61,7 @@ export class CompanyInfoService {
 				memberId:id
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -81,7 +83,7 @@ export class CompanyInfoService {
 		return this.myHttp.sDelete(id)
 				.toPromise()
 				.then(res=>{
-					let data=res.json()
+					let data=res
 					if (data.status==200) {
 						return Promise.resolve(data)
 					}else{
@@ -98,7 +100,7 @@ export class CompanyInfoService {
 				type:'marryType'
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -114,7 +116,7 @@ export class CompanyInfoService {
 				type:'guest_company_type'
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -133,7 +135,7 @@ export class CompanyInfoService {
 				name:param.name
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -149,7 +151,7 @@ export class CompanyInfoService {
 			api:this.myHttp.api.saveCompanyBorrower,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -163,7 +165,7 @@ export class CompanyInfoService {
 			api:this.myHttp.api.saveCompanyInfo,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -177,7 +179,7 @@ export class CompanyInfoService {
 			api:this.myHttp.api.saveCompanyLegal,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -191,7 +193,7 @@ export class CompanyInfoService {
 			api:this.myHttp.api.saveCompanyBankCard,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

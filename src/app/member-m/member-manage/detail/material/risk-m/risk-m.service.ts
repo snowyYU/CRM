@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../../../../services/myHttp/myhttpClient.service'
+
 
 export interface Part1Data{
 			memberId	//会员ID：
@@ -37,7 +39,7 @@ export interface Part3Data{
 @Injectable()
 export class RiskMService {
 	constructor(
-		private myHttp:MyHttp
+		private myHttp:MyHttpClient
 		) {}
 
 	getDetailData(memId):Promise<any>{
@@ -47,7 +49,7 @@ export class RiskMService {
 				memberId:memId
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -63,7 +65,7 @@ export class RiskMService {
 				type:type
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -86,7 +88,7 @@ export class RiskMService {
 		return this.myHttp.sDelete(id)
 				.toPromise()
 				.then(res=>{
-					let data=res.json()
+					let data=res
 					if (data.status==200) {
 						return Promise.resolve(data)
 					}else{
@@ -101,7 +103,7 @@ export class RiskMService {
 			api:this.myHttp.api.saveCompanyAsset,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -115,7 +117,7 @@ export class RiskMService {
 			api:this.myHttp.api.saveCompanyDebt,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -129,7 +131,7 @@ export class RiskMService {
 			api:this.myHttp.api.saveCompanyCredit,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

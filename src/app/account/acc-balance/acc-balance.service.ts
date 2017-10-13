@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
 
 export interface SendData{
 	rows:number
@@ -12,7 +13,7 @@ export interface SendData{
 export class AccBalanceService {
 	
 	constructor(
-			private myHttp:MyHttp
+			private myHttp:MyHttpClient
 		) {}
 
 	//appId
@@ -21,7 +22,7 @@ export class AccBalanceService {
 			api:this.myHttp.api.getAllApp,
 
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				data.body.records.unshift({resourceName:'全部',resourceId:''})
 				return Promise.resolve(data)
@@ -37,7 +38,7 @@ export class AccBalanceService {
 			api:this.myHttp.api.getMemberAccountInfo,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -50,7 +51,7 @@ export class AccBalanceService {
 		return this.myHttp.get({
 			api:this.myHttp.api.countMemberAccount
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -63,7 +64,7 @@ export class AccBalanceService {
 		return this.myHttp.get({
 			api:this.myHttp.api.getNotAccountMember
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

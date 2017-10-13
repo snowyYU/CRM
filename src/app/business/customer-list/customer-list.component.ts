@@ -125,7 +125,6 @@ export class CustomerListComponent implements OnInit{
 			this.customerListService
 				.deleteData(data.guestId)
 				.then(res=>{
-					console.log(res.json());
 					this.queryData()
 				})
 				.catch(res=>{

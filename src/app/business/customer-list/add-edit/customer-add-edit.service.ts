@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core'
 
 import { MyHttp } from '../../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../../services/myHttp/myhttpClient.service'
+
 import { PopService } from 'dolphinng';
 import { SendData } from './sendData'
 
@@ -13,7 +15,7 @@ interface AreaAddress{
 @Injectable()
 export class CustomerAddEditService{
 	constructor(
-			private myHttp:MyHttp,
+			private myHttp:MyHttpClient,
 			private popService:PopService
 		){}
 
@@ -24,7 +26,14 @@ export class CustomerAddEditService{
 				query:{
 					guestId:id
 				}
-			}).toPromise()
+			}).toPromise().then(res=>{
+				if (res.status==200) {
+					return Promise.resolve(res)
+				}else{
+					return Promise.reject(res)
+				}
+				
+			})
 	}
 
 	//获取几个下拉列表数据
@@ -35,7 +44,14 @@ export class CustomerAddEditService{
 			query:{
 				type:type
 			}
-		}).toPromise()
+		}).toPromise().then(res=>{
+				if (res.status==200) {
+					return Promise.resolve(res)
+				}else{
+					return Promise.reject(res)
+				}
+				
+			})
 	}
 
 	//获取归属渠道下拉列表数据
@@ -44,7 +60,14 @@ export class CustomerAddEditService{
 		return this.myHttp.get({
 			api:this.myHttp.api.getAllApp,
 
-		}).toPromise()
+		}).toPromise().then(res=>{
+				if (res.status==200) {
+					return Promise.resolve(res)
+				}else{
+					return Promise.reject(res)
+				}
+				
+			})
 
 	}
 
@@ -59,17 +82,12 @@ export class CustomerAddEditService{
 				name:param.name
 			}
 		}).toPromise().then(res=>{
-			if (res.json().status==200) {
-				return Promise.resolve(res.json())
+			if (res.status==200) {
+				return Promise.resolve(res)
 			}else{
-				this.popService.error({
-					title:'错误提示',
-					text:res.json().message
-				})
+				return Promise.reject(res)
 			}
 			
-		}).catch(res=>{
-			return Promise.reject(res.json())
 		})
 	}
 
@@ -80,7 +98,7 @@ export class CustomerAddEditService{
 					api:this.myHttp.api.saveOrUpdateGuest,
 					query:data
 				}).toPromise().then(res=>{
-					let response=res.json();
+					let response=res;
 					if (response.status==200) {
 						return Promise.resolve(response)
 					}else{

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { MyHttp } from '../../../services/myHttp/myhttp.service';
+import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
+
 import { API } from '../../../services/config/app.config';
 import { SendData } from './sendData';
 import { AddSerialService } from '../../../services/addSerial/addSerial.service';
@@ -10,7 +12,7 @@ import { AuthRoleService } from '../../../services/authRole/authRole.service'
 @Injectable()
 export class CustomerListService{
 	constructor(
-			private myHttp:MyHttp,
+			private myHttp:MyHttpClient,
 			private addSerialService:AddSerialService,
 			private user:AuthRoleService
 		){}
@@ -20,7 +22,7 @@ export class CustomerListService{
 			api:this.myHttp.api.customerList,
 			query:param
 		}).toPromise().then(res=>{
-			let data=res.json();
+			let data=res;
 			if (data.status==200) {
 				this.addSerialService.addSerial(data.body.records)
 				return Promise.resolve(data)
@@ -49,7 +51,7 @@ export class CustomerListService{
 		})
 		.toPromise()
 		.then(res=>{
-			let data=res.json();
+			let data=res;
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -67,7 +69,7 @@ export class CustomerListService{
 		})
 		.toPromise()
 		.then(res=>{
-			let data=res.json();
+			let data=res;
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -86,7 +88,7 @@ export class CustomerListService{
 		})
 		.toPromise()
 		.then(res=>{
-			let data=res.json();
+			let data=res;
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

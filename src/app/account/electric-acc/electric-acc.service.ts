@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
+
 
 export interface SendData{
 	appId			//渠道id 					
@@ -15,7 +17,7 @@ export interface SendData{
 export class ElectricAccService {
 	
 	constructor(
-		private myHttp:MyHttp
+		private myHttp:MyHttpClient
 		){}
 
 	//accountType
@@ -26,7 +28,7 @@ export class ElectricAccService {
 				type:'member_type'
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -42,7 +44,7 @@ export class ElectricAccService {
 				searchKey:key
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -58,7 +60,7 @@ export class ElectricAccService {
 			query:data
 		}).toPromise().then(res=>{
 			console.log(res)
-			let data=res.json()
+			let data=res
 			console.log(data)
 			if (data.status==200) {
 				return Promise.resolve(data)
@@ -78,7 +80,7 @@ export class ElectricAccService {
 				memberId:memberId
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

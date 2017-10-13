@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core'
 import { MyHttp } from '../../../../services/myHttp/myhttp.service';
+import { MyHttpClient } from '../../../../services/myHttp/myhttpClient.service'
+
 import { AuthRoleService } from '../../../../services/authRole/authRole.service';
 import { PopService } from 'dolphinng';
 
@@ -28,7 +30,7 @@ export interface SendData{
 export class AddEditTemplateService{
 
 	constructor(
-		private myHttp:MyHttp,
+		private myHttp:MyHttpClient,
 		private authRole:AuthRoleService,
 		private pop:PopService
 		){}
@@ -41,11 +43,11 @@ export class AddEditTemplateService{
 			}
 		}).toPromise()
 			.then(res=>{
-				let data=res.json();
+				let data=res;
 				if (data.status==200) {
 					return Promise.resolve(data)
 				}else{
-					return Promise.reject(res.json())
+					return Promise.reject(res)
 				}
 			})
 			
@@ -62,10 +64,10 @@ export class AddEditTemplateService{
 				name:param.name
 			}
 		}).toPromise().then(res=>{
-			if (res.json().status==200) {
-				return Promise.resolve(res.json())
+			if (res.status==200) {
+				return Promise.resolve(res)
 			}else{
-				return Promise.reject(res.json())
+				return Promise.reject(res)
 			}
 			
 		})
@@ -80,16 +82,16 @@ export class AddEditTemplateService{
 				type:type
 			}
 		}).toPromise().then(res=>{
-			if (res.json().status==200) {
-				return Promise.resolve(res.json())
+			if (res.status==200) {
+				return Promise.resolve(res)
 			}else{
 				this.pop.error({
 					title:'错误提示',
-					text:res.json().message
+					text:res.message
 				})
 			}
 		}).catch(res=>{
-			return Promise.reject(res.json())
+			return Promise.reject(res)
 		})
 
 
@@ -103,10 +105,10 @@ export class AddEditTemplateService{
 				isMember:isMember
 			}
 		}).toPromise().then(res=>{
-			if (res.json().status==200) {
-				return Promise.resolve(res.json())
+			if (res.status==200) {
+				return Promise.resolve(res)
 			}else{
-				return Promise.reject(res.json())
+				return Promise.reject(res)
 			}
 		})
 
@@ -118,7 +120,7 @@ export class AddEditTemplateService{
 			api:this.myHttp.api.visitReportAdd,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -132,7 +134,7 @@ export class AddEditTemplateService{
 			api:this.myHttp.api.visitReportEdit,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json();
+			let data=res;
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -146,7 +148,7 @@ export class AddEditTemplateService{
 			api:this.myHttp.api.visitReportSaveCustomer,
 			query:data
 		}).toPromise().then(res=>{
-			let response=res.json();
+			let response=res;
 			console.log(response)
 			if (response.status==200) {
 				return Promise.resolve(response)

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
+
 
 export interface SendData{
 	rows:number
@@ -13,7 +15,7 @@ export interface SendData{
 export class GetApplyService {
 	
 	constructor(
-		private myHttp:MyHttp,
+		private myHttp:MyHttpClient,
 		) {}
 
 	getDataList(sendData:SendData):Promise<any>{
@@ -21,7 +23,7 @@ export class GetApplyService {
 			api:this.myHttp.api.getApplyList,
 			query:sendData
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

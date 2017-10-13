@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core'
 import { MyHttp } from '../../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../../services/myHttp/myhttpClient.service'
+
 
 export class SendData{
 	page:number;
@@ -11,14 +13,14 @@ export class SendData{
 @Injectable()
 export class AuthListService{
 	constructor(
-		private myHttp:MyHttp,
+		private myHttp:MyHttpClient,
 		){}
 	getListData(sData:SendData):Promise<any>{
 		return this.myHttp.get({
 			api:this.myHttp.api.authMemberList,
 			query:sData
 		}).toPromise().then(res=>{
-			let data=res.json();
+			let data=res;
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

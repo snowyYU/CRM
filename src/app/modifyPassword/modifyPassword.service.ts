@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
 import { MyHttp} from 'services/myHttp/myhttp.service';
 import { API} from 'services/config/app.config';
+import { MyHttpClient } from 'services/myHttp/myhttpClient.service'
+
 @Injectable()
 export class ModifyPasswordService{
-  constructor(private myHttp:MyHttp){
+  constructor(private myHttp:MyHttpClient){
 
   }
 
@@ -22,7 +24,7 @@ export class ModifyPasswordService{
           message:''
         };
         if(res.ok){
-          let response=res.json();
+          let response=res;
           data.ok=(response.status==200);
           data.message=response.message;
         }

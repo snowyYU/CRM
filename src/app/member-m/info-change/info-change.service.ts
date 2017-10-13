@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { MyHttp } from '../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
+
 import { SendData } from './sendData'
 
 
@@ -8,7 +10,7 @@ import { SendData } from './sendData'
 export class InfoChangeService{
 	status:number;
 	constructor(
-		private myHttp:MyHttp
+		private myHttp:MyHttpClient
 	){}
 
 	getListData(param:SendData):Promise<any>{
@@ -20,7 +22,7 @@ export class InfoChangeService{
 				page:param.page
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

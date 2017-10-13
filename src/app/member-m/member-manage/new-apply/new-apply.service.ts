@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../../services/myHttp/myhttpClient.service'
 
 export interface SendData{
 	memberId:number			//会员ID
@@ -17,7 +18,7 @@ export interface SendData{
 export class NewApplyService {
 	
 	constructor(
-		private myHttp:MyHttp
+		private myHttp:MyHttpClient
 		) {}
 
 	getProductsList(id:number):Promise<any>{
@@ -27,7 +28,7 @@ export class NewApplyService {
 				appId:id
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 
 			if (data.status==200) {
 
@@ -47,7 +48,7 @@ export class NewApplyService {
 				productId:productId
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 
 			if (data.status==200) {
 
@@ -63,7 +64,7 @@ export class NewApplyService {
 			api:this.myHttp.api.creditAuthApply,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

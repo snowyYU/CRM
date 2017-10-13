@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { DetailService } from './detail.service'
+import { PopService } from 'dolphinng'
 
 @Component({
 	selector:'detail',
@@ -19,14 +20,21 @@ export class DetailComponent implements OnInit{
 	visitVehicleDic:string;
 	remark:string;
 	constructor(
-		private detailService:DetailService
+		private detailService:DetailService,
+		private pop:PopService
 	){}
 
 	ngOnInit(){
-		this.detailService.getData().then(res=>{
-			let data=JSON.parse(res._body);
-			this.handleFun(data);
+		this.detailService.getData()
+		.then(res=>{
+			this.handleFun(res);
 		})
+		.catch(res=>{
+				this.pop.error({
+					title:'错误信息',
+					text:res.message
+				})
+			})
 	}
 
 	handleFun(data){

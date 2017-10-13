@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
 
 export interface SendData{
 	rows:number
@@ -14,7 +15,7 @@ export interface SendData{
 export class AccFlowService {
 	
 	constructor(
-			private myHttp:MyHttp
+			private myHttp:MyHttpClient
 		) {}
 
 	//tradeType
@@ -25,7 +26,7 @@ export class AccFlowService {
 				type:'account_trade_type'
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				data.body.records.unshift({label:'全部',value:''})
 
@@ -41,7 +42,7 @@ export class AccFlowService {
 			api:this.myHttp.api.getMemberAcctFlows,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

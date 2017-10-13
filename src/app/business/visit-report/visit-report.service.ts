@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../services/myHttp/myhttp.service';
+import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
+
 import { DateService } from '../../../services/date/date.service';
 import { SendData } from './sendDate';
 
@@ -15,7 +17,7 @@ class Item{
 
 @Injectable()
 export class VistReportService{
-constructor(private myHttp:MyHttp){}
+constructor(private myHttp:MyHttpClient){}
 	getList(sendDate:SendData):Promise<{
 		timetableId
 		visitWhatDic
@@ -31,7 +33,7 @@ constructor(private myHttp:MyHttp){}
 			query:sendDate
 		}).toPromise()
 		  .then(res=>{
-		  	let response=res.json();
+		  	let response=res;
 		  	let data={
 		  		records:[],
 		  		count:0
@@ -65,7 +67,7 @@ constructor(private myHttp:MyHttp){}
 		})
 		.toPromise()
 		.then(res=>{
-			let data=res.json();
+			let data=res;
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
