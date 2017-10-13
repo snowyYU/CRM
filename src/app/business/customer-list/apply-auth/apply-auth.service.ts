@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../../services/myHttp/myhttp.service'
+import { MyHttpClient } from '../../../../services/myHttp/myhttpClient.service'
 
 @Injectable()
 export class ApplyAuthService{
 	constructor(
-			private myHttp:MyHttp
+			private myHttp:MyHttpClient
+			
 		){}
 
 	getData(id:number):Promise<any>{
@@ -15,7 +17,7 @@ export class ApplyAuthService{
 			}
 
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -32,7 +34,7 @@ export class ApplyAuthService{
 				type:'auth_member_type'
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -47,7 +49,7 @@ export class ApplyAuthService{
 				type:'auth_is_legal'
 			}
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -63,7 +65,7 @@ export class ApplyAuthService{
 			api:this.myHttp.api.getBigClassifyList,
 			
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -79,7 +81,7 @@ export class ApplyAuthService{
 			}
 			
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
@@ -92,7 +94,7 @@ export class ApplyAuthService{
 		return this.myHttp.sDelete(id)
 				.toPromise()
 				.then(res=>{
-					let data=res.json()
+					let data=res
 					console.log(data)
 					if (data.status==200) {
 						// code...
@@ -117,7 +119,7 @@ export class ApplyAuthService{
 			api:this.myHttp.api.authMemberApply,
 			query:data
 		}).toPromise().then(res=>{
-			let data=res.json()
+			let data=res
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{

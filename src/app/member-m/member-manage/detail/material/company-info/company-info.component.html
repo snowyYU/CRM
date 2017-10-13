@@ -847,34 +847,41 @@
       <div class="col-md-12 border-content m-t padder-v">
         <div class="clearfix">
           <label for="" class="control-label col-md-3">相关证照:</label>
-          <div class="col-md-6">
+          <div class="col-md-9 row">
             <div class="form-group clearfix">
-              <div class="col-md-6">公司章程</div>
-              <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0102']" (click)="show('0102',$event)">查看</a></div>
+              <div class="col-md-6">
+                <div class="col-md-6">公司章程</div>
+                <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0102']" (click)="show('0102',$event)">查看</a></div>
+              </div>
+              <div class="col-md-6">
+                <div class="col-md-6">验资报告</div>
+                <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0103']" (click)="show('0103',$event)">查看</a></div>
+              </div>
             </div>
             <div class="form-group clearfix">
-              <div class="col-md-6">验资报告</div>
-              <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0103']" (click)="show('0103',$event)">查看</a></div>
+              <div class="col-md-6">
+                <div class="col-md-6">公司门面照</div>
+                <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0113']" (click)="show('0113',$event)">查看</a></div>
+              </div>
+              <div class="col-md-6">
+                <div class="col-md-6">职业资格证书（财务）</div>
+                <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0201']" (click)="show('0201',$event)">查看</a></div>
+              </div>
             </div>
             <div class="form-group clearfix">
-              <div class="col-md-6">公司门面照</div>
-              <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0113']" (click)="show('0113',$event)">查看</a></div>
-            </div>
-            <div class="form-group clearfix">
-              <div class="col-md-6">职业资格证书（财务）</div>
-              <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0201']" (click)="show('0201',$event)">查看</a></div>
-            </div>
-            <div class="clearfix">
-              <div class="col-md-6">四证合一</div>
-              <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0101']" (click)="show('0101',$event)">查看</a></div>
+              <div class="col-md-6">
+                <div class="col-md-6">四证合一</div>
+                <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0101']" (click)="show('0101',$event)">查看</a></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       </div>
       <!-- 公司信息编辑模板 -->
-      <div class="padder-v clearfix col-md-12 row" *ngIf="part2&&part2S">
-        <div class="form-group clearfix l-h-2x">
+      <div class="padder-v clearfix col-md-12" *ngIf="part2&&part2S">
+        <div class="col-md-12 border-content ">
+        <div class="form-group clearfix l-h-2x m-t-md">
           <div class="col-md-6">
             <label for="" class="control-label">公司名称:</label>
             <div class="col-md-6">
@@ -948,12 +955,38 @@
             </div>
           </div>
         </div>
-        <div class="form-group clearfix">
+      </div>
+      <div class="col-md-12 border-content m-t padder-v">
+        <div class="clearfix">
           <label for="" class="control-label col-md-3">相关证照:</label>
-          <div class="col-md-12 p-r-none">
+          <div class="col-md-9 p-r-none">
             <div class="form-group clearfix">
               <div class="col-md-6 p-r-none">
-                <table class="form-group clearfix table table-striped m-b-none showL text-center">
+
+                <div class="col-md-7">
+                    <div *ngIf="attachment['0102']">
+                      <a class="text-info" (click)="show('0102',$event)">公司章程</a>
+                    </div>
+                    <div *ngIf="!attachment['0102']">公司章程</div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="text-info pos-rlt" *ngIf="!attachment['0102']&&(!uploader2_1.queue[0])">上传
+                      <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2_1" />
+                    </div>
+                    <div *ngIf="attachment['0102']">
+                      <i class="glyphicon glyphicon-ok text-success"></i>
+                      <a class="text-danger" (click)="deleteFile('0102','uploader2_1')">删除</a>
+                    </div>
+                    <!-- 进度条模块 -->
+                    <div *ngIf="uploader2_1.queue[0]&&(uploader2_1.queue[0].success==false)">
+                      <div class="active m-b-none m-t-xs progress progress-sm progress-striped">
+                        <div class="progress-bar bg-success" [style.width.%]="uploader2_1.queue[0].progress">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <!-- <table class="form-group clearfix table table-striped m-b-none showL text-center">
                   <thead>
                     <tr>
                       <th>公司章程</th>
@@ -997,10 +1030,33 @@
                       </td>
                     </tr>
                   </tbody>
-                </table>
+                </table> -->
               </div>
               <div class="col-md-6">
-                <table class="form-group clearfix table table-striped m-b-none showL text-center">
+                <div class="col-md-7">
+                    <div *ngIf="attachment['0103']">
+                      <a class="text-info" (click)="show('0103',$event)">验资报告</a>
+                    </div>
+                    <div *ngIf="!attachment['0103']">验资报告</div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="text-info pos-rlt" *ngIf="!attachment['0103']&&(!uploader2_2.queue[0])">上传
+                      <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2_2" />
+                    </div>
+                    <div *ngIf="attachment['0103']">
+                      <i class="glyphicon glyphicon-ok text-success"></i>
+                      <a class="text-danger" (click)="deleteFile('0103','uploader2_2')">删除</a>
+                    </div>
+                    <!-- 进度条模块 -->
+                    <div *ngIf="uploader2_2.queue[0]&&(uploader2_2.queue[0].success==false)">
+                      <div class="active m-b-none m-t-xs progress progress-sm progress-striped">
+                        <div class="progress-bar bg-success" [style.width.%]="uploader2_2.queue[0].progress">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <!-- <table class="form-group clearfix table table-striped m-b-none showL text-center">
                   <thead>
                     <tr>
                       <th>验资报告</th>
@@ -1044,12 +1100,36 @@
                       </td>
                     </tr>
                   </tbody>
-                </table>
+                </table> -->
               </div>
             </div>
             <div class="form-group clearfix">
               <div class="col-md-6 p-r-none">
-                <table class="form-group clearfix table table-striped m-b-none showL text-center">
+
+                <div class="col-md-7">
+                    <div *ngIf="attachment['0113']">
+                      <a class="text-info" (click)="show('0113',$event)">公司门面照</a>
+                    </div>
+                    <div *ngIf="!attachment['0113']">公司门面照</div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="text-info pos-rlt" *ngIf="!attachment['0113']&&(!uploader2_3.queue[0])">上传
+                      <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2_3" />
+                    </div>
+                    <div *ngIf="attachment['0113']">
+                      <i class="glyphicon glyphicon-ok text-success"></i>
+                      <a class="text-danger" (click)="deleteFile('0113','uploader2_3')">删除</a>
+                    </div>
+                    <!-- 进度条模块 -->
+                    <div *ngIf="uploader2_3.queue[0]&&(uploader2_3.queue[0].success==false)">
+                      <div class="active m-b-none m-t-xs progress progress-sm progress-striped">
+                        <div class="progress-bar bg-success" [style.width.%]="uploader2_3.queue[0].progress">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <!-- <table class="form-group clearfix table table-striped m-b-none showL text-center">
                   <thead>
                     <tr>
                       <th>公司门面照</th>
@@ -1093,10 +1173,35 @@
                       </td>
                     </tr>
                   </tbody>
-                </table>
+                </table> -->
               </div>
+
               <div class="col-md-6">
-                <table class="form-group clearfix table table-striped m-b-none showL text-center">
+
+                <div class="col-md-7">
+                    <div *ngIf="attachment['0201']">
+                      <a class="text-info" (click)="show('0201',$event)">职业资格证书（财务）</a>
+                    </div>
+                    <div *ngIf="!attachment['0201']">职业资格证书（财务）</div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="text-info pos-rlt" *ngIf="!attachment['0201']&&(!uploader2_4.queue[0])">上传
+                      <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2_4" />
+                    </div>
+                    <div *ngIf="attachment['0201']">
+                      <i class="glyphicon glyphicon-ok text-success"></i>
+                      <a class="text-danger" (click)="deleteFile('0201','uploader2_4')">删除</a>
+                    </div>
+                    <!-- 进度条模块 -->
+                    <div *ngIf="uploader2_4.queue[0]&&(uploader2_4.queue[0].success==false)">
+                      <div class="active m-b-none m-t-xs progress progress-sm progress-striped">
+                        <div class="progress-bar bg-success" [style.width.%]="uploader2_4.queue[0].progress">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <!-- <table class="form-group clearfix table table-striped m-b-none showL text-center">
                   <thead>
                     <tr>
                       <th>职业资格证书（财务）</th>
@@ -1140,12 +1245,36 @@
                       </td>
                     </tr>
                   </tbody>
-                </table>
+                </table> -->
               </div>
             </div>
             <div class="form-group clearfix">
               <div class="col-md-6 p-r-none">
-                <table class="form-group clearfix table table-striped m-b-none showL text-center">
+
+                <div class="col-md-7">
+                    <div *ngIf="attachment['0101']">
+                      <a class="text-info" (click)="show('0101',$event)">四证合一</a>
+                    </div>
+                    <div *ngIf="!attachment['0101']">四证合一</div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="text-info pos-rlt" *ngIf="!attachment['0101']&&(!uploader2_5.queue[0])">上传
+                      <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2_5" />
+                    </div>
+                    <div *ngIf="attachment['0101']">
+                      <i class="glyphicon glyphicon-ok text-success"></i>
+                      <a class="text-danger" (click)="deleteFile('0101','uploader2_5')">删除</a>
+                    </div>
+                    <!-- 进度条模块 -->
+                    <div *ngIf="uploader2_5.queue[0]&&(uploader2_5.queue[0].success==false)">
+                      <div class="active m-b-none m-t-xs progress progress-sm progress-striped">
+                        <div class="progress-bar bg-success" [style.width.%]="uploader2_5.queue[0].progress">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <!-- <table class="form-group clearfix table table-striped m-b-none showL text-center">
                   <thead>
                     <tr>
                       <th>四证合一</th>
@@ -1189,13 +1318,14 @@
                       </td>
                     </tr>
                   </tbody>
-                </table>
+                </table> -->
               </div>
               <div class="col-md-6">
               </div>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </form>
   </section>
@@ -1246,8 +1376,9 @@
       </div>
     </form>
     <!-- 编辑模板 -->
-    <div class="padder-v clearfix col-md-12 row" *ngIf="part3&&part3S">
-      <div class="form-group clearfix">
+    <div class="padder-v clearfix col-md-12" *ngIf="part3&&part3S">
+      <div class="col-md-12 border-content ">
+      <div class="form-group clearfix l-h-2x m-t-md">
         <div class="col-md-6">
           <label for="" class="control-label">法人姓名:</label>
           <div class="col-md-6">
@@ -1297,6 +1428,7 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
   <section class="m-t clearfix">
     <form #part4F="ngForm" (ngSubmit)='save4()'>
@@ -1313,7 +1445,9 @@
       <button type="submit" class="btn btn-info pull-right" *ngIf="part4"  [disabled]="!part4F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part4" (click)="cancel('part4')">取消</button>
     </div> -->
-      <div class="padder-v clearfix col-md-12">
+
+      <div class="clearfix col-md-12">
+
         <div class="col-md-12 border-content" *ngFor="let item of companyBankCardVos">
           <div class="form-group clearfix m-t-md">
             <div class="col-md-6">
@@ -1346,32 +1480,66 @@
             </div>
           </div>
       </div>
-      <div class="col-md-12 border-content m-t padder-v" *ngIf="!part4&&part4S">
+      <div class="form-group col-md-12 border-content m-t padder-v" *ngIf="!part4&&part4S">
         <div class="clearfix">
         <label for="" class="control-label col-md-3">相关证照:</label>
-        <div class="col-md-6">
+        <div class="col-md-9 row">
           <div class="form-group clearfix">
-            <div class="col-md-6">开户证明</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0501']" (click)="show('0501',$event)">查看</a></div>
-          </div>
-          <div class="form-group clearfix">
-            <div class="col-md-6">银行卡</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0502']" (click)="show('0502',$event)">查看</a></div>
+            <div class="col-md-6">
+              <div class="col-md-6">开户证明</div>
+              <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0501']" (click)="show('0501',$event)">查看</a></div>
+            </div>
+            <div class="col-md-6">
+              <div class="col-md-6">银行卡</div>
+              <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0502']" (click)="show('0502',$event)">查看</a></div>
+            </div>
           </div>
           <div class="clearfix">
-            <div class="col-md-6">网银流水</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0504']" (click)="show('0504',$event)">查看</a></div>
+            <div class="col-md-6">
+              <div class="col-md-6">网银流水</div>
+              <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0504']" (click)="show('0504',$event)">查看</a></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-      <div class="form-group clearfix col-md-12" *ngIf="part4">
-        <label for="" class="control-label col-md-3">相关证照:</label>
-        <div class="col-md-12 p-r-none">
+
+
+      <div class="col-md-12 padder-v" *ngIf="part4">
+        <div class="clearfix border-content">
+          <div class="clearfix">
+        <label for="" class="control-label col-md-3 m-t">相关证照:</label>
+
+
+        <div class="col-md-9 p-r-none m-t">
           <div class="form-group clearfix">
             <div class="col-md-6 p-r-none">
-              <table class="form-group clearfix table table-striped m-b-none showL text-center">
+
+              <div class="col-md-7">
+                    <div *ngIf="attachment['0501']">
+                      <a class="text-info" (click)="show('0501',$event)">开户证明</a>
+                    </div>
+                    <div *ngIf="!attachment['0501']">开户证明</div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="text-info pos-rlt" *ngIf="!attachment['0501']&&(!uploader3_1.queue[0])">上传
+                      <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader3_1" />
+                    </div>
+                    <div *ngIf="attachment['0501']">
+                      <i class="glyphicon glyphicon-ok text-success"></i>
+                      <a class="text-danger" (click)="deleteFile('0501','uploader3_1')">删除</a>
+                    </div>
+                    <!-- 进度条模块 -->
+                    <div *ngIf="uploader3_1.queue[0]&&(uploader3_1.queue[0].success==false)">
+                      <div class="active m-b-none m-t-xs progress progress-sm progress-striped">
+                        <div class="progress-bar bg-success" [style.width.%]="uploader3_1.queue[0].progress">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              <!-- <table class="form-group clearfix table table-striped m-b-none showL text-center">
                 <thead>
                   <tr>
                     <th>开户证明</th>
@@ -1415,10 +1583,34 @@
                     </td>
                   </tr>
                 </tbody>
-              </table>
+              </table> -->
             </div>
             <div class="col-md-6">
-              <table class="form-group clearfix table table-striped m-b-none showL text-center">
+
+              <div class="col-md-7">
+                    <div *ngIf="attachment['0502']">
+                      <a class="text-info" (click)="show('0502',$event)">银行卡</a>
+                    </div>
+                    <div *ngIf="!attachment['0502']">银行卡</div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="text-info pos-rlt" *ngIf="!attachment['0502']&&(!uploader3_2.queue[0])">上传
+                      <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader3_2" />
+                    </div>
+                    <div *ngIf="attachment['0502']">
+                      <i class="glyphicon glyphicon-ok text-success"></i>
+                      <a class="text-danger" (click)="deleteFile('0502','uploader3_2')">删除</a>
+                    </div>
+                    <!-- 进度条模块 -->
+                    <div *ngIf="uploader3_2.queue[0]&&(uploader3_2.queue[0].success==false)">
+                      <div class="active m-b-none m-t-xs progress progress-sm progress-striped">
+                        <div class="progress-bar bg-success" [style.width.%]="uploader3_2.queue[0].progress">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              <!-- <table class="form-group clearfix table table-striped m-b-none showL text-center">
                 <thead>
                   <tr>
                     <th>银行卡</th>
@@ -1462,12 +1654,36 @@
                     </td>
                   </tr>
                 </tbody>
-              </table>
+              </table> -->
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6 p-r-none">
-              <table class="form-group clearfix table table-striped m-b-none showL text-center">
+
+              <div class="col-md-7">
+                    <div *ngIf="attachment['0504']">
+                      <a class="text-info" (click)="show('0504',$event)">网银流水</a>
+                    </div>
+                    <div *ngIf="!attachment['0504']">网银流水</div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="text-info pos-rlt" *ngIf="!attachment['0504']&&(!uploader3_3.queue[0])">上传
+                      <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader3_3" />
+                    </div>
+                    <div *ngIf="attachment['0504']">
+                      <i class="glyphicon glyphicon-ok text-success"></i>
+                      <a class="text-danger" (click)="deleteFile('0504','uploader3_3')">删除</a>
+                    </div>
+                    <!-- 进度条模块 -->
+                    <div *ngIf="uploader3_3.queue[0]&&(uploader3_3.queue[0].success==false)">
+                      <div class="active m-b-none m-t-xs progress progress-sm progress-striped">
+                        <div class="progress-bar bg-success" [style.width.%]="uploader3_3.queue[0].progress">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              <!-- <table class="form-group clearfix table table-striped m-b-none showL text-center">
                 <thead>
                   <tr>
                     <th>网银流水</th>
@@ -1511,12 +1727,12 @@
                     </td>
                   </tr>
                 </tbody>
-              </table>
-            </div>
-            <div class="col-md-6">
+              </table> -->
             </div>
           </div>
         </div>
+      </div>
+      </div>
       </div>
     </form>
   </section>

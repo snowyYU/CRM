@@ -11,6 +11,8 @@ export const HOST = {
   prod: 'http://192.168.10.10:9090/crm/'
   //测试路径
 };
+export const host = environment.production?HOST.prod:HOST.dev
+
 export const API = {
   login: {
     url: 'oauth/login',
@@ -312,6 +314,7 @@ export const API = {
 
   /*-----------------------------------文件服务器的接口---------------------------------------*/
   fileServer:'http://121.46.18.25:9090',
+  
   
   /*-----------------------------------登录接口，刷新token接口---------------------------------------*/
   loginHost:environment.production?'http://192.168.10.10:9090/ims/':'http://192.168.10.10:8090/ims/',

@@ -32,7 +32,11 @@ import { OauthGuard } from '../services/guard/oauth.guard'
 import {Toaster} from 'dolphinng';
 
 import { ModifyPasswordComponent } from './modifyPassword/modifyPassword.component';
+import { MyHttpClientInterceptor } from '../services/myHttp/myhttpClient.interceptor'
+import { MyHttpClient } from '../services/myHttp/myhttpClient.service'
 
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -58,10 +62,23 @@ import { ModifyPasswordComponent } from './modifyPassword/modifyPassword.compone
     HttpModule,
     SharedModule,
     BrowserAnimationsModule,
-
+    HttpClientModule
     
   ],
-  providers: [MyHttp,SignInService,AuthRoleService,PopService,CookieService,LoginGuard,OauthGuard,Toaster],
+  providers: [MyHttp,
+              SignInService,
+              AuthRoleService,
+              PopService,
+              CookieService,
+              LoginGuard,
+              OauthGuard,
+              Toaster,
+              {
+                provide: HTTP_INTERCEPTORS,
+                useClass: MyHttpClientInterceptor,
+                multi: true,
+              },
+              MyHttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
