@@ -873,8 +873,9 @@
       </div>
       </div>
       <!-- 公司信息编辑模板 -->
-      <div class="padder-v clearfix col-md-12 row" *ngIf="part2&&part2S">
-        <div class="form-group clearfix l-h-2x">
+      <div class="padder-v clearfix col-md-12" *ngIf="part2&&part2S">
+        <div class="col-md-12 border-content ">
+        <div class="form-group clearfix l-h-2x m-t-md">
           <div class="col-md-6">
             <label for="" class="control-label">公司名称:</label>
             <div class="col-md-6">
@@ -948,7 +949,9 @@
             </div>
           </div>
         </div>
-        <div class="form-group clearfix">
+      </div>
+      <div class="col-md-12 border-content m-t padder-v">
+        <div class="clearfix">
           <label for="" class="control-label col-md-3">相关证照:</label>
           <div class="col-md-12 p-r-none">
             <div class="form-group clearfix">
@@ -1197,6 +1200,7 @@
           </div>
         </div>
       </div>
+      </div>
     </form>
   </section>
   <section class="m-t clearfix">
@@ -1246,8 +1250,9 @@
       </div>
     </form>
     <!-- 编辑模板 -->
-    <div class="padder-v clearfix col-md-12 row" *ngIf="part3&&part3S">
-      <div class="form-group clearfix">
+    <div class="padder-v clearfix col-md-12" *ngIf="part3&&part3S">
+      <div class="col-md-12 border-content ">
+      <div class="form-group clearfix l-h-2x m-t-md">
         <div class="col-md-6">
           <label for="" class="control-label">法人姓名:</label>
           <div class="col-md-6">
@@ -1297,6 +1302,7 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
   <section class="m-t clearfix">
     <form #part4F="ngForm" (ngSubmit)='save4()'>
@@ -1313,7 +1319,7 @@
       <button type="submit" class="btn btn-info pull-right" *ngIf="part4"  [disabled]="!part4F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part4" (click)="cancel('part4')">取消</button>
     </div> -->
-      <div class="padder-v clearfix col-md-12">
+      <div class="clearfix col-md-12">
         <div class="col-md-12 border-content" *ngFor="let item of companyBankCardVos">
           <div class="form-group clearfix m-t-md">
             <div class="col-md-6">
@@ -1366,8 +1372,9 @@
       </div>
     </div>
   </div>
-      <div class="form-group clearfix col-md-12" *ngIf="part4">
-        <label for="" class="control-label col-md-3">相关证照:</label>
+      <div class="col-md-12 padder-v" *ngIf="part4">
+        <div class="clearfix border-content">
+        <label for="" class="control-label col-md-3 m-t">相关证照:</label>
         <div class="col-md-12 p-r-none">
           <div class="form-group clearfix">
             <div class="col-md-6 p-r-none">
@@ -1517,6 +1524,7 @@
             </div>
           </div>
         </div>
+      </div>
       </div>
     </form>
   </section>
