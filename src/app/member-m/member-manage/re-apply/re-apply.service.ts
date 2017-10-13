@@ -21,7 +21,41 @@ export class ReApplyService {
 	constructor(
 		private myHttp:MyHttpClient
 		) {}
+	getProductsList(id:number):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.getProductsList,
+			query:{
+				appId:id
+			}
+		}).toPromise().then(res=>{
+			let data=res
 
+			if (data.status==200) {
+
+				return Promise.resolve(data)
+			}else{
+				return Promise.reject(data)
+			}
+		})
+	}
+	getProductsParam(appId,productId):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.getProductsParam,
+			query:{
+				appId:appId,
+				productId:productId
+			}
+		}).toPromise().then(res=>{
+			let data=res
+
+			if (data.status==200) {
+
+				return Promise.resolve(data)
+			}else{
+				return Promise.reject(data)
+			}
+		})
+	}
 
 	submitData(data:SendData):Promise<any>{
 		return this.myHttp.post({

@@ -16,6 +16,9 @@ export class ReApplyComponent implements OnInit {
 	memberId:number
 
 	newData:object={}
+
+	// productData:object={}
+
 	productList:Array<any>
 	productTypeName:string
 	productName:string
@@ -29,6 +32,14 @@ export class ReApplyComponent implements OnInit {
 	expiryDateEnd		//有效期(结束)：格式：yyyy-MM-dd
 	authRemark			//申请理由
 
+	//产品信息
+	valueLimit          //额度范围
+	borrowHowlong		//借款周期
+	productRemark		//产品简介
+
+	productDetailL:any[]
+
+
 	constructor(
 		private route:ActivatedRoute,
 		private router:Router,
@@ -39,6 +50,22 @@ export class ReApplyComponent implements OnInit {
 
 	ngOnInit() {
 		this.renderPage()
+		this.reApply.getProductsList(this.appId)
+			.then(res=>{
+				res.body.records.forEach(e=>{
+					this.newData[e.productId]=e
+				})
+				this.productList=res.body.records
+				//产品信息
+				console.log(this.newData)
+				this.valueLimit=this.newData[this.productId].valueLimit          //额度范围
+				this.borrowHowlong=this.newData[this.productId].borrowHowlong		//借款周期
+				this.productRemark=this.newData[this.productId].productRemark		//产品简介
+			})
+
+		this.getProductsParam()
+
+
 	}
 
 	renderPage(){
@@ -55,7 +82,18 @@ export class ReApplyComponent implements OnInit {
 		this.expiryDateEnd=data.expiryDateEnd
 	}
 
-	
+	getProductsParam(){
+		this.reApply.getProductsParam(this.appId,this.productId)
+			.then(res=>{
+				this.productDetailL=res.body.records
+
+			}).catch(res=>{
+				this.pop.error({
+					title:'错误提示',
+					text:res.message
+				})
+			})
+	}
 
 	submit(){
 		let data:SendData={
