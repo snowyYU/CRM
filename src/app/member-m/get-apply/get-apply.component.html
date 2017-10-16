@@ -22,7 +22,7 @@
           <input class="form-control" datePicker [(ngModel)]="endDate" name="dateEnd" placeholder="选择日期" />
         </div>
     </div>
-    <button class="btn btn-info" (click)="getDataList(qryStatus)">查询</button>
+    <button class="btn-def" (click)="getDataList(qryStatus)">查询<i class="fa fa-search"></i></button>
   </div>
   <div>
     <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading"
