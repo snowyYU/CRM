@@ -195,6 +195,20 @@ export const API = {
     url:'ms/commondb/companyBankCard/update',
     method:'post'
   },
+  getBanks:{//获取银行列表
+    url:'base/baseBankController/getBanks',
+    method:'post'
+  },
+  getSubbankList:{// 获取指定银行支行列表
+    url:'base/baseBankController/getSubbankList',
+    method:'post'
+  },
+  updateApply:{//修改银行信息
+    url:'ms/commondb/companyBankCard/updateApply',
+    method:'post'
+  },
+
+
 
   getOperationSituation:{//会员详情>尽调资料>运营状况
     url:'member/getOperationSituation',
