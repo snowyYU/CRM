@@ -13,12 +13,6 @@
           <span class="form-control-static">{{guestName}}</span>
         </div>
         <div class="form-group no-b-margin">
-          <label class="control-label">归属渠道：</label>
-          <span class="form-control-static">  {{appName}}</span>
-        </div>
-      </div>
-      <div class="col-md-6 form-horizontal form-label-10">
-        <div class="form-group">
           <label class="control-label pull-left required">类别：</label>
           <div class=" pull-left" style="width:175px;">
             <select name="memberType"  class="form-control" [(ngModel)]="memberType" required>
@@ -29,6 +23,12 @@
               <option [ngValue]="item.value" *ngFor="let item of typeList" >{{item.label}}</option>
             </select>
           </div>
+        </div>
+      </div>
+      <div class="col-md-6 form-horizontal form-label-10">
+        <div class="form-group">
+          <label class="control-label">归属渠道：</label>
+          <span class="form-control-static">  {{appName}}</span>
         </div>
         <div class="form-group no-b-margin">
           <label class="control-label">服务经理：</label>
@@ -146,8 +146,8 @@
               </div>
             </div>
           </div>
-          
-          
+
+
 
         </div>
 
@@ -205,7 +205,7 @@
                   </tr>
                 </tbody>
               </table>
-            
+
          </div> -->
        </div>
       </div>
