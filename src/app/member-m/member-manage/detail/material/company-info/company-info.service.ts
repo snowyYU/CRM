@@ -203,6 +203,22 @@ export class CompanyInfoService {
 		})
 	}
 
+	getBanks(keyword):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.getBanks,
+			query:{
+				keyword:keyword
+			}
+		}).toPromise().then(res=>{
+			if (res.status==200) {
+				return Promise.resolve(res)
+			}else{
+				return Promise.reject(res)
+			}
+		})
+	}
+
+
 
 
 }
