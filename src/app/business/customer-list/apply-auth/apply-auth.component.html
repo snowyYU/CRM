@@ -13,9 +13,15 @@
           <span class="form-control-static">{{guestName}}</span>
         </div>
         <div class="form-group no-b-margin">
+          <label class="control-label">归属渠道：</label>
+          <span class="form-control-static">  {{appName}}</span>
+        </div>
+      </div>
+      <div class="col-md-6 form-horizontal form-label-10">
+        <div class="form-group">
           <label class="control-label pull-left required">类别：</label>
-          <div class=" pull-left" >
-            <select name="memberType"  class="form-control min-width" [(ngModel)]="memberType" required>
+          <div class=" pull-left" style="width:175px;">
+            <select name="memberType"  class="form-control" [(ngModel)]="memberType" required>
               <!-- <option value="0">平台会员</option>
               <option value="1">平台管理方</option> -->
 
@@ -23,13 +29,6 @@
               <option [ngValue]="item.value" *ngFor="let item of typeList" >{{item.label}}</option>
             </select>
           </div>
-        </div>
-
-      </div>
-      <div class="col-md-6 form-horizontal form-label-10">
-        <div class="form-group">
-          <label class="control-label">归属渠道：</label>
-          <span class="form-control-static">  {{appName}}</span>
         </div>
         <div class="form-group no-b-margin">
           <label class="control-label">服务经理：</label>
@@ -59,8 +58,8 @@
         </div>
         <div class="form-group">
           <label  class="control-label pull-left required">联系人是否法人：</label>
-          <div class=" pull-left" >
-            <select name="isLegal"  class="form-control min-width" [(ngModel)]="isLegal" required >
+          <div class=" pull-left" style="width:175px;">
+            <select name="isLegal"  class="form-control" [(ngModel)]="isLegal" required >
               <option [ngValue]="item.value" *ngFor="let item of isLegalList" >{{item.label}}</option>
             </select>
           </div>
@@ -111,29 +110,56 @@
       <!-- <div class="form-group clear-fix" *ngFor="let item of fileList"> -->
       <div class="form-group clearfix" *ngFor="let item of attachmentList;let i=index">
        <label for="" class="col-md-2 m-t-xs text-right">附件{{i+1}}</label>
-       <div class="col-md-8">
-         <div class="col-md-6">
+       <div class="col-md-10 l-h-2x">
+         <div class="col-md-3">
            <select name="firstType{{i}}" id="" class="form-control" [(ngModel)]="item.firstType" (change)="item.selectFirstL()">
              <option [ngValue]="type.code" *ngFor="let type of item.firstList">{{type.msg}}</option>
            </select>
          </div>
-         <div class="col-md-6" >
+         <div class="col-md-3" >
            <select name="secondType{{i}}"  class="form-control" [disabled]="!item.firstType" [(ngModel)]="item.secondType">
              <option [ngValue]="type.code" *ngFor="let type of item.secondList">{{type.msg}}</option>
 
            </select>
          </div>
+
+
+        <div class="col-md-4">
+          <div *ngIf="item.uploader.queue[0]?item.uploader.queue[0].success==true:false">
+            <a class="text-info" (click)="show($event,item)">{{item.uploader.queue[0].fileName}}</a>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="pull-left">
+            <a class="text-info pos-rlt o-h inline-block" [class.disabled]="!item.secondType" *ngIf="!item.uploader.queue[0]" >上传
+            <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="item.uploader" [disabled]="!item.secondType"/>
+          </a>
+          </div>
+          <div class="pull-left">
+            <a *ngIf="!item.uploader.queue[0]||(item.uploader.queue[0].success)" class="text-danger m-l-sm inline-block" (click)="deleteFile(item)">删除</a>
+          </div>
+
+          <!-- 滚动条 -->
+          <div *ngIf="item.uploader.queue[0]&&(!item.uploader.queue[0].success)">
+            <div class="active m-b-none m-t-xs progress progress-sm progress-striped">
+              <div class="progress-bar bg-success" [style.width.%]="item.uploader.queue[0].progress">
+              </div>
+            </div>
+          </div>
+          
+          
+
+        </div>
+
          <!-- <div class="col-md-2 m-t-xs " *ngIf="item.isUploaded">
            <a (click)="delete()" class="text-danger">删除</a>
-
          </div> -->
          <!-- <div class="col-md-2 p-l-none" *ngIf="item.isUploaded==false">
           <div class="btn btn-info">上传<input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="item.uploader" multiple="multiple"/></div>
-
          </div> -->
 
 
-         <div class="col-md-12 text-center text-info m-t-xs">
+         <!-- <div class="col-md-12 text-center text-info m-t-xs">
             <table class="form-group clearfix table table-striped m-b-none showL text-center">
                 <thead>
                   <tr>
@@ -173,28 +199,18 @@
                         <div class="btn btn-info btn-sm pos-rlt" *ngIf="item.uploader.queue[0]">重新上传
                           <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="item.uploader" />
                         </div>
-
                       </div>
                       <button type="button" class="btn btn-sm btn-danger" (click)="deleteFile(item)">删除</button>
                     </td>
                   </tr>
                 </tbody>
               </table>
-            <!-- <div class="col-md-11" *ngFor="let name of item.uploader.queue">
-              <div class="col-md-6">
-                <a  class="text-info" (click)="item.openAttach(name)">{{name.fileName}}</a>
-              </div>
-              <div class="col-md-6">
-                <div class="text-info" *ngIf="name.success">上传成功</div>
-                <div class="text-danger" *ngIf="!name.success">上传失败</div>
-              </div>
-            </div> -->
-
-         </div>
+            
+         </div> -->
        </div>
       </div>
       <div class="col-md-12 text-center text-info">
-        <a (click)='addAttachment()'>新增</a>
+        <a class="text-info" (click)='addAttachment()'>新增</a>
       </div>
 
     </section>
