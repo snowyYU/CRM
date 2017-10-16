@@ -52,7 +52,7 @@
     </section>
     <section class="wrapperForTwo">
       <div class="group col-md-6  wrapperTwoLeft pad-def" style="min-height: 267px;">
-        <div class="group-title">原有资料</div>
+        <div class="group-title">变更前</div>
         <!-- 变更手机号 -->
         <div *ngIf="changeType==1">
           <div class="form-group clearfix">
@@ -65,7 +65,7 @@
         <!-- 变更银行卡 -->
         <div *ngIf="changeType==2">
           <div class="form-group clearfix">
-            <label  class="label-control label-special-w">原有银行卡号:</label>
+            <label  class="label-control label-special-w">银行卡号:</label>
             <div class="col-md-8 m-t-xs text-content">
             {{companyBankCard.cardNo}}
             </div>
@@ -102,7 +102,7 @@
         <!-- 删除银行卡 -->
         <div *ngIf="changeType==4">
           <div class="form-group clearfix">
-            <label  class="label-control label-special-w">原有银行卡号:</label>
+            <label  class="label-control label-special-w">银行卡号:</label>
             <div class="col-md-8 m-t-xs text-content">
             {{companyBankCard.cardNo}}
             </div>
@@ -134,11 +134,11 @@
         </div>
       </div>
       <div class="group col-md-6 wrapperTwoRight pad-def">
-        <div class="group-title">新资料</div>
+        <div class="group-title">变更后</div>
         <!-- 变更手机号 -->
         <div *ngIf="changeType==1">
           <div class="form-group clearfix">
-            <label  class="label-control label-special-w">新手机号:</label>
+            <label  class="label-control label-special-w">手机号:</label>
             <div class="col-md-8 m-t-xs text-content">
             {{newPhone}}
             </div>
@@ -147,7 +147,7 @@
         <!-- 变更银行卡 -->
         <div *ngIf="changeType==2">
           <div class="form-group clearfix">
-            <label  class="label-control label-special-w">新银行卡号:</label>
+            <label  class="label-control label-special-w">银行卡号:</label>
             <div class="col-md-8 m-t-xs text-content">
             {{newCardNo}}
             </div>
@@ -180,7 +180,7 @@
         <!-- 新增银行卡 -->
         <div *ngIf="changeType==3">
           <div class="form-group clearfix">
-            <label  class="label-control label-special-w">新银行卡号:</label>
+            <label  class="label-control label-special-w">银行卡号:</label>
             <div class="col-md-8 m-t-xs text-content">
             {{newCardNo}}
             </div>
