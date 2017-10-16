@@ -1,36 +1,49 @@
 
 <div class="page-location">
+  <a class="h4 pad-r-xs font-bold">资料变更审核</a>
   <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">资料变更审核</a>
 </div>
 <div class="wrapper">
-  <div class="wrapper bg-white">
-    <button class="btn" [class.btn-info]="status===0" (click)="btnClick(0)">新申请</button>
-    <button class="btn" [class.btn-info]="status===2" (click)="btnClick(2)">已处理</button>
-  </div>
-  <div>
-    <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading">
-      <p-column field="updateApplyId" header="变更申请ID"></p-column>
-      <p-column field="memberName" header="会员名称"></p-column>
-      <p-column field="appName" header="归属渠道"></p-column>
-      <p-column field="updateApplyWhatDic" header="变更对象"></p-column>
-      <p-column field="statusDic" header="状态"></p-column>
-      <p-column field="createTime" header="创建时间"></p-column>
-      <p-column field="color" header="操作">
-        <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
-          <div class="text-center">
-            <a class="table-btn text-info" *ngIf="status===0&&auth.roleIn(['007'])" (click)="check(operation)">审核</a>
-            <a class="table-btn text-info" *ngIf="status===2||auth.roleIn(['008','003'])" (click)="detail(operation)">详情</a>
-          </div>
-        </ng-template>
-      </p-column>
-      <p-footer>
-        <div class="clearfix">
-          <div class="pull-right">
-            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="queryData()" size="sm" [showTotal]="true"></paginator>
-          </div>
-        </div>
-      </p-footer>
-    </p-dataTable>
+  <div class="tab-container">
+    <ul class="nav nav-tabs nav-tab-info">
+      <li [ngClass]="{'active':status===0}" (click)="btnClick(0)">
+        <a>新申请</a>
+      </li>
+      <li [ngClass]="{'active':status===2}" (click)="btnClick(2)">
+        <a>已处理</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active">
+        <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'':'暂无数据'}}"
+                     [loading]="loading">
+          <p-column field="updateApplyId" header="变更申请ID"></p-column>
+          <p-column field="memberName" header="会员名称"></p-column>
+          <p-column field="appName" header="归属渠道"></p-column>
+          <p-column field="updateApplyWhatDic" header="变更对象"></p-column>
+          <p-column field="statusDic" header="状态" styleClass="text-center"></p-column>
+          <p-column field="createTime" header="创建时间" styleClass="text-center"></p-column>
+          <p-column field="color" header="操作">
+            <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
+              <div class="text-center">
+                <a class="table-btn text-info" *ngIf="status===0&&auth.roleIn(['007'])"
+                   (click)="check(operation)">审核</a>
+                <a class="table-btn text-info" *ngIf="status===2||auth.roleIn(['008','003'])"
+                   (click)="detail(operation)">详情</a>
+              </div>
+            </ng-template>
+          </p-column>
+          <p-footer>
+            <div class="clearfix">
+              <div class="pull-right">
+                <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows"
+                           (onChangePage)="queryData()" size="sm" [showTotal]="true"></paginator>
+              </div>
+            </div>
+          </p-footer>
+        </p-dataTable>
+      </div>
+    </div>
   </div>
 </div>

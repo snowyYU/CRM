@@ -32,7 +32,7 @@
           <div class="form-group">
             <label class="control-label pull-left">拜访目的：</label>
             <div class="pull-left">
-              <select name="visitWhat" required class="form-control" [(ngModel)]="visitWhat" [disabled]="isEdit">
+              <select name="visitWhat" required class="form-control min-width" [(ngModel)]="visitWhat" [disabled]="isEdit">
                 <option [ngValue]="item.value" *ngFor="let item of visitWhatList">{{item.label}}</option>
               </select>
             </div>
@@ -52,6 +52,14 @@
             <label class="control-label pull-left required">联系手机：</label>
             <div class="pull-left">
               <input type="text" name="linkMobile" class="form-control" [(ngModel)]="linkMobile" [disabled]="isEdit||customerDisabled" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label pull-left">交通：</label>
+            <div class="pull-left" >
+              <select name="visitVehicle" class="form-control min-width" [(ngModel)]="visitVehicle" [disabled]="isEdit" >
+                <option [ngValue]="item.value" *ngFor="let item of visitVehicleList">{{item.label}}</option>
+              </select>
             </div>
           </div>
           <div class="form-group">
@@ -75,18 +83,10 @@
               <input type="text" name="companyAddress" class="form-control" [(ngModel)]="companyAddress" [disabled]="isEdit||customerDisabled" required>
             </div>
           </div>
-          <div class="form-group">
-            <label class="control-label pull-left">交通：</label>
-            <div class="pull-left" style="min-width: 300px;max-width: 100%">
-              <select name="visitVehicle" class="form-control" [(ngModel)]="visitVehicle" [disabled]="isEdit" >
-                <option [ngValue]="item.value" *ngFor="let item of visitVehicleList">{{item.label}}</option>
-              </select>
-            </div>
-          </div>
         </div>
         <div class="col-md-6 form-horizontal form-label-7">
           <div class="form-group">
-            <label class="control-label pull-left">备忘录：</label>
+            <label class="control-label pull-left required">备忘录：</label>
             <div class="pull-left form-control-static  col-md-10 no-padding" >
               <textarea name="remark"  cols="40" rows="5" class="form-control mar-b-xs"
                         [(ngModel)]="remark" placeholder="不能小于20" minlength="20" required style="min-height: 175px;"></textarea>
@@ -131,7 +131,7 @@
       </div>
     <div class="clearfix">
 
-      <p-dataTable tableStyleClass="table-style" [value]="dataList" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]"  emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading" selectionMode="single" [(selection)]="selectedCustomer">
+      <p-dataTable tableStyleClass="table-style" [value]="dataList" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]"  emptyMessage="{{loading?'':'暂无数据'}}" [loading]="loading" selectionMode="single" [(selection)]="selectedCustomer">
 
         <p-column field="guestName" header="客户名称"></p-column>
         <!-- <p-column field="guestFromDic" header="获取途径"></p-column>

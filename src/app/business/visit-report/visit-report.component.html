@@ -45,14 +45,8 @@
       <p-column field="guestName" header="客户名称" [style]="{'width':'200px'}"></p-column>
       <p-column field="visitDate" header="拜访日期" styleClass="text-center" [style]="{'width':'150px'}"></p-column>
       <p-column field="visitWhatDic" header="拜访目的" [style]="{'width':'150px'}"></p-column>
-      <p-column field="serviceMan" header="服务经理" styleClass="text-center" [style]="{'width':'150px'}"></p-column>
-      <p-column field="remark" header="备忘录" [style]="{'width':'360px'}">
-        <ng-template let-operation="rowData" pTemplate="body" >
-          <div>
-            {{operation.remark | digestContent:20}}
-          </div>
-        </ng-template>
-      </p-column>
+      <p-column field="serviceMan" header="服务经理"  [style]="{'width':'150px'}"></p-column>
+      <p-column field="remark" header="备忘录" [style]="{'width':'360px'}"></p-column>
       <p-column field="color" header="操作" [style]="{'width':'150px'}">
         <ng-template let-operation="rowData" pTemplate="body" >
           <div >
