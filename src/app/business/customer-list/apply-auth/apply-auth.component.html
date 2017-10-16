@@ -13,15 +13,9 @@
           <span class="form-control-static">{{guestName}}</span>
         </div>
         <div class="form-group no-b-margin">
-          <label class="control-label">归属渠道：</label>
-          <span class="form-control-static">  {{appName}}</span>
-        </div>
-      </div>
-      <div class="col-md-6 form-horizontal form-label-10">
-        <div class="form-group">
           <label class="control-label pull-left required">类别：</label>
-          <div class=" pull-left" style="width:175px;">
-            <select name="memberType"  class="form-control" [(ngModel)]="memberType" required>
+          <div class=" pull-left" >
+            <select name="memberType"  class="form-control min-width" [(ngModel)]="memberType" required>
               <!-- <option value="0">平台会员</option>
               <option value="1">平台管理方</option> -->
 
@@ -29,6 +23,13 @@
               <option [ngValue]="item.value" *ngFor="let item of typeList" >{{item.label}}</option>
             </select>
           </div>
+        </div>
+
+      </div>
+      <div class="col-md-6 form-horizontal form-label-10">
+        <div class="form-group">
+          <label class="control-label">归属渠道：</label>
+          <span class="form-control-static">  {{appName}}</span>
         </div>
         <div class="form-group no-b-margin">
           <label class="control-label">服务经理：</label>
@@ -58,8 +59,8 @@
         </div>
         <div class="form-group">
           <label  class="control-label pull-left required">联系人是否法人：</label>
-          <div class=" pull-left" style="width:175px;">
-            <select name="isLegal"  class="form-control" [(ngModel)]="isLegal" required >
+          <div class=" pull-left" >
+            <select name="isLegal"  class="form-control min-width" [(ngModel)]="isLegal" required >
               <option [ngValue]="item.value" *ngFor="let item of isLegalList" >{{item.label}}</option>
             </select>
           </div>

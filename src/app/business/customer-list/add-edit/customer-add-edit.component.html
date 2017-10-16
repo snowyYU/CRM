@@ -18,7 +18,7 @@
         <div class="form-group">
           <label class="control-label pull-left required">获客途径：</label>
           <div class="pull-left">
-            <select class="form-control " name="guestFrom" required [(ngModel)]="guestFrom">
+            <select class="form-control min-width" name="guestFrom" required [(ngModel)]="guestFrom">
               <option [value]="item.value" *ngFor="let item of guest_from">{{item.label}}</option>
             </select>
           </div>
@@ -31,8 +31,8 @@
       <div class="col-md-6 form-horizontal form-label-7">
         <div class="form-group">
           <label class="control-label pull-left required">状态：</label>
-          <div class="pull-left">
-            <select class="form-control" name="status" required [(ngModel)]="status">
+          <div class="pull-left ">
+            <select class="form-control min-width" name="status" required [(ngModel)]="status">
               <option [value]="item.value" *ngFor="let item of guest_status">{{item.label}}</option>
             </select>
           </div>
@@ -70,7 +70,7 @@
         <div class="form-group">
           <label class="control-label pull-left required">公司类型：</label>
           <div class="pull-left">
-            <select name="companyType"  class="form-control  " required [(ngModel)]="companyType">
+            <select name="companyType"  class="form-control min-width" required [(ngModel)]="companyType">
               <option [value]="item.value" *ngFor="let item of guest_company_type">{{item.label}}</option>
             </select>
           </div>

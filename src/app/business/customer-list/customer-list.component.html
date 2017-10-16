@@ -5,7 +5,7 @@
 </div> -->
 <div class="page-location">
   <a class="h4 pad-r-xs font-bold">客户名册</a>
-  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i><span *ngIf="authRole.roleIn(['007'])">业务拓展</span><span *ngIf="authRole.roleIn(['008'])">拓展管理</span><i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i><span >拓展管理</span><i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">客户名册</a>
 </div>
 <div class="wrapper">
@@ -39,10 +39,10 @@
       		</div>
       	</ng-template>
       </p-column>
-      <p-column field="linkName" header="联系人" styleClass="text-center " [style]="{'width':'150px'}"></p-column>
+      <p-column field="linkName" header="联系人"  [style]="{'width':'150px'}"></p-column>
       <p-column field="linkMobile" header="联系手机" styleClass="text-center " [style]="{'width':'150px'}"></p-column>
       <p-column field="guestFromDic" header="获客途径" styleClass="text-center " [style]="{'width':'150px'}"></p-column>
-      <p-column field="serviceMan" header="服务经理" styleClass="text-center " [style]="{'width':'150px'}"></p-column>
+      <p-column field="serviceMan" header="服务经理"  [style]="{'width':'150px'}"></p-column>
       <p-column field="statusDic" header="状态" styleClass="text-center " [style]="{'width':'150px'}">
         <ng-template let-row="rowData" pTemplate="body">
           <a *ngIf="row.status==1" [routerLink]="['/business/authDetail',row.guestId]">
