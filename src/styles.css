@@ -104,3 +104,6 @@ label.required:before{
 .table > tbody > tr > td, .table > tfoot > tr > td, .table > thead > tr > th{
   padding: 8px 8px
 }
+.o-h{
+	overflow: hidden;
+}

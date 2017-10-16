@@ -16,6 +16,7 @@ import { UploaderModule } from '../../utils/uploader/uploader.module'
 
 import { YuanFormatPipe } from '../../pipe/yuan-format/yuan-format.pipe'
 import { EffDateFormatPipe } from '../../pipe/eff-date-format/eff-date-format.pipe'
+import { DigestContentPipe } from '../../pipe/digest-content/digest-content.pipe'
 
 import { GalleryComponent } from 'dolphinng'
 //导入模态框
@@ -38,6 +39,7 @@ import { ModalComponent,ModalHeaderComponent,ModalBodyComponent,ModalFooterCompo
     ModalFooterComponent,
     YuanFormatPipe,
     EffDateFormatPipe,
+    DigestContentPipe,
     GalleryComponent,
     HTML5ValidateDirective
   ],
@@ -59,6 +61,7 @@ import { ModalComponent,ModalHeaderComponent,ModalBodyComponent,ModalFooterCompo
     ModalFooterComponent,
     YuanFormatPipe,
     EffDateFormatPipe,
+    DigestContentPipe,
     GalleryComponent,
     HTML5ValidateDirective
   ]

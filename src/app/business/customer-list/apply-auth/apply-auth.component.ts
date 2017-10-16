@@ -62,7 +62,10 @@ class Attachment {
 	    		let data=JSON.parse(uploader.queue[0].response)
 	    		this.uploader.customData.data=data
 	      		if (data.status==200) {
-			      	this.uploader.queue[0].setSuccess()
+	      			setTimeout(()=>{
+	      				this.uploader.queue[0].setSuccess()
+	      			},1000)
+			      	
 			      	
 			      	
 			     }
@@ -250,6 +253,15 @@ export class ApplyAuthComponent implements OnInit {
 
 	addAttachment(){
 		console.log(this.firstList)
+		console.log(this.attachmentList.length)
+		if (this.attachmentList.length>5) {
+			this.pop.info({
+				title:"提示信息",
+				text:"附件上传不超过6个"
+			})
+			return;
+		}
+
 		let ele=new Attachment(this.firstList,this.applyAuth,this.createUniqueId())
 		this.attachmentList.push(ele)
 	}
