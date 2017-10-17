@@ -48,8 +48,8 @@
       <p-column field="serviceMan" header="服务经理"  [style]="{'width':'120px'}"></p-column>
       <p-column field="remark" header="备忘录" [style]="{'width':'320px'}">
          <ng-template let-operation="rowData" pTemplate="body" >
-           <div>
-             {{operation.remark | digestContent:20}}
+           <div textMaxLength="300px">
+             {{operation.remark}}
            </div>
          </ng-template>
        </p-column>
