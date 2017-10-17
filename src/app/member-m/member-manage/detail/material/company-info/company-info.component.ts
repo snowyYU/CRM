@@ -35,7 +35,8 @@ export class CompanyInfoComponent implements OnInit {
 	part4:boolean=false;
 	part4S:boolean=true;
 
-
+	part5:boolean=false;
+	part5S:boolean=true;
 
 	//
 	uploader1_1:Uploader=new Uploader()

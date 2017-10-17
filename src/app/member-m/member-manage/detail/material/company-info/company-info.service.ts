@@ -188,6 +188,8 @@ export class CompanyInfoService {
 			
 		})
 	}
+
+	//银行卡编辑部分的接口
 	saveCompanyBankCard(data:Part4Data):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveCompanyBankCard,
@@ -218,7 +220,37 @@ export class CompanyInfoService {
 		})
 	}
 
+	getSubbankList(bankName,subbank):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.getBanks,
+			query:{
+				name:bankName,
+				subbank:subbank
+			}
+		}).toPromise().then(res=>{
+			if (res.status==200) {
+				return Promise.resolve(res)
+			}else{
+				return Promise.reject(res)
+			}
+		})
+	}
 
+	updateApply(memberId,companyBankCard:any[]):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.getBanks,
+			query:{
+				memberId:memberId,
+				companyBankCardVos:companyBankCard
+			}
+		}).toPromise().then(res=>{
+			if (res.status==200) {
+				return Promise.resolve(res)
+			}else{
+				return Promise.reject(res)
+			}
+		})
+	}
 
 
 }

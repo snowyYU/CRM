@@ -144,7 +144,10 @@ export class CustomerAddEditComponent implements OnInit{
 
 		}else{
 			this.ifEdit=false;
+			this.status="0"
 		}
+
+
 	}
 
 	//下拉
