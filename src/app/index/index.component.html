@@ -52,10 +52,10 @@
         </a>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        
+
         <li class="dropdown" toggleClass="open" [opt-revokable]="true">
           <a  class="dropdown-toggle clear"  aria-haspopup="true" aria-expanded="false">
-              
+
             <span class="hidden-sm hidden-md">{{userName}}</span> <b class="caret"></b>
           </a>
           <ul class="dropdown-menu animated fadeInRight w">
@@ -83,7 +83,7 @@
           <sub-nav-item text="会员管理" link="/memberM/memberManage" *ngIf="authRoleService.fnIn(['11'])"></sub-nav-item>
           <sub-nav-item text="资料变更" link="/memberM/infoChange" *ngIf="authRoleService.fnIn(['12'])"></sub-nav-item>
           <sub-nav-item text="授信申请" link="/memberM/getApply" *ngIf="authRoleService.fnIn(['13'])"></sub-nav-item>
-          <sub-nav-item text="关联企业" link="/memberM/relativeCompany" *ngIf="authRoleService.fnIn(['14'])"></sub-nav-item>
+       <!--   <sub-nav-item text="关联企业" link="/memberM/relativeCompany" *ngIf="authRoleService.fnIn(['14'])"></sub-nav-item>-->
       </nav-item>
 
 
@@ -91,7 +91,7 @@
           <sub-nav-item *ngIf="authRoleService.fnIn(['22','23'])" text="电子账户" >
               <thirth-nav-item text="开户" link="/account/electricAcc/openAcc" *ngIf="authRoleService.fnIn(['22'])"></thirth-nav-item >
               <thirth-nav-item text="电子签章" link="/account/electricAcc/signature" *ngIf="authRoleService.fnIn(['23'])"></thirth-nav-item>
-              
+
           </sub-nav-item>
           <sub-nav-item text="会员账户余额" link="/account/memberAccBalance" *ngIf="authRoleService.fnIn(['24'])"></sub-nav-item>
           <sub-nav-item text="会员账户流水" link="/account/memberAccFlow" *ngIf="authRoleService.fnIn(['25'])"></sub-nav-item>
@@ -109,14 +109,14 @@
       <nav-item text="融资管理" icon="glyphicon glyphicon-usd">
           <sub-nav-item text="在贷跟踪" link="/financingM/loanTrack"></sub-nav-item>
           <sub-nav-item text="催收任务" link="/financingM/getMission"></sub-nav-item>
-          
+
           <sub-nav-item text="贷款历史" link="/financingM/loanHistory"></sub-nav-item>
           <sub-nav-item text="数据中心">
               <thirth-nav-item text="业务数据" link="/financingM/dataCenter/businessData"></thirth-nav-item>
               <thirth-nav-item text="融资合同" link="/financingM/dataCenter/financingDeal"></thirth-nav-item>
           </sub-nav-item>
       </nav-item>
-      
+
       <nav-item icon="glyphicon glyphicon-list-alt" text="统计报告" *ngIf="role==='manage'">
           <sub-nav-item text="融资排行榜" link="/statisticsReport/financingRanking" ></sub-nav-item>
           <sub-nav-item text="业绩统计" link="/statisticsReport/performanceS" ></sub-nav-item>
@@ -124,10 +124,10 @@
           <sub-nav-item text="展期统计" link="/statisticsReport/" ></sub-nav-item>
       </nav-item>
 
-      
 
 
-      
+
+
     </nav-wrap>
   </aside-left>
   <div class="app-content" (click)="cancelOffScreen()">

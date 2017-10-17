@@ -24,7 +24,7 @@
 		</div>
 	</div>
 	<div>
-		<p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading" expandableRows="true" scrollable="true" scrollHeight="400px">
+		<p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'没有查询到符合条件的记录'}}" [loading]="loading" expandableRows="true" scrollable="true" scrollHeight="400px">
 			<p-column expander="true" styleClass="col-icon" [style]="{'width':'50px'}"></p-column>
 			<p-column field="appName" header="归属渠道" [style]="{'width':'100px'}"></p-column>
 			<p-column field="name" header="会员名称" [style]="{'width':'100px'}"></p-column>
@@ -117,9 +117,9 @@
 		        </div>
 		    </ng-template>
 	      <!-- <p-column field="slaveAccount.lockBalance" header="锁定金额(元)"></p-column>
-	      
+
 	      <p-column field="slaveAccount.lastTranTime" header="最后更新"></p-column> -->
-	      
+
 	      <p-footer>
 	        <div class="clearfix">
 	          <div class="pull-right">
@@ -151,7 +151,7 @@
   </modal-body>
   <modal-footer>
     <button class="btn btn-default" (click)="closeModal()">关闭</button>
-    
+
 
   </modal-footer>
 </modal>
