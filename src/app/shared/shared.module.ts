@@ -13,6 +13,7 @@ import {HTML5ValidateDirective}   from '../../directives/HTML5Validate/HTML5Vali
 
 
 import { UploaderModule } from '../../utils/uploader/uploader.module'
+import { SelectBarModule } from '../../utils/select-bar/select-bar.module'
 
 import { YuanFormatPipe } from '../../pipe/yuan-format/yuan-format.pipe'
 import { EffDateFormatPipe } from '../../pipe/eff-date-format/eff-date-format.pipe'
@@ -23,7 +24,7 @@ import { GalleryComponent } from 'dolphinng'
 import { ModalComponent,ModalHeaderComponent,ModalBodyComponent,ModalFooterComponent } from 'dolphinng'
 
 @NgModule({
-  imports:[CommonModule,FormsModule,UploaderModule],
+  imports:[CommonModule,FormsModule,UploaderModule,SelectBarModule],
   declarations: [
     CodeTextareaDirective,
     ToggleClassDirective,
@@ -47,6 +48,7 @@ import { ModalComponent,ModalHeaderComponent,ModalBodyComponent,ModalFooterCompo
     FormsModule,
     CommonModule,
     UploaderModule,
+    SelectBarModule,
     CodeTextareaDirective,
     ToggleClassDirective,
     CodeHighLightComponent,
