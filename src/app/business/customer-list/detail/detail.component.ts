@@ -25,6 +25,7 @@ export class DetailComponent implements OnInit{
 	linkName
 	linkMobile
 	linkJob
+	remark
 	constructor(
 			private detailService:DetailService,
 			private route:ActivatedRoute,
@@ -61,6 +62,8 @@ export class DetailComponent implements OnInit{
 		this.linkName=res.body.linkName;
 		this.linkMobile=res.body.linkMobile;
 		this.linkJob=res.body.linkJob;
+		this.remark=res.body.remark
+
 	}
 
 	cancel(){

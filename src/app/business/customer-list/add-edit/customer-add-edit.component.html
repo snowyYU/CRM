@@ -32,7 +32,7 @@
         <div class="form-group">
           <label class="control-label pull-left required">状态：</label>
           <div class="pull-left ">
-            <select class="form-control min-width" name="status" required [(ngModel)]="status">
+            <select class="form-control min-width" name="status" required [(ngModel)]="status" [disabled]="!ifEdit">
               <option [value]="item.value" *ngFor="let item of guest_status">{{item.label}}</option>
             </select>
           </div>
@@ -108,6 +108,17 @@
                 <input type="text" name="detailAddress" class="form-control " [(ngModel)]="detailAddress">
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section >
+    <section class="panel-body group mar-b-sm">
+      <div class="col-md-6 form-horizontal form-label-7">
+        <div class="form-group">
+          <label class="control-label pull-left">备注：</label>
+          <div class="pull-left ">
+            
+            <textarea name="remark" class="form-control" cols="50" rows="3" [(ngModel)]="remark"></textarea>   
           </div>
         </div>
       </div>

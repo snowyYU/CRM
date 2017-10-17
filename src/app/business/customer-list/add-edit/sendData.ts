@@ -13,7 +13,7 @@ export interface SendData{
 	linkJob:string;
 	companyAddress:string;
 	guestId?:number
-	
+	remark?:string
 	
 	
 }
