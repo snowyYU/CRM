@@ -9,6 +9,7 @@ import {CheckboxComponent} from 'dolphinng';
 import {RadioComponent} from 'dolphinng';
 import {ToggleComponent} from 'dolphinng';
 import {PaginatorComponent} from 'dolphinng';
+import {TextMaxLengthDirective} from 'dolphinng';
 import {HTML5ValidateDirective}   from '../../directives/HTML5Validate/HTML5Validate.directive';
 
 
@@ -41,7 +42,8 @@ import { ModalComponent,ModalHeaderComponent,ModalBodyComponent,ModalFooterCompo
     EffDateFormatPipe,
     DigestContentPipe,
     GalleryComponent,
-    HTML5ValidateDirective
+    HTML5ValidateDirective,
+    TextMaxLengthDirective
   ],
   exports:      [
     FormsModule,
@@ -63,7 +65,8 @@ import { ModalComponent,ModalHeaderComponent,ModalBodyComponent,ModalFooterCompo
     EffDateFormatPipe,
     DigestContentPipe,
     GalleryComponent,
-    HTML5ValidateDirective
+    HTML5ValidateDirective,
+    TextMaxLengthDirective
   ]
 })
 export class SharedModule { }
