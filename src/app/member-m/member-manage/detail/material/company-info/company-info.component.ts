@@ -35,8 +35,8 @@ export class CompanyInfoComponent implements OnInit {
 	part4:boolean=false;
 	part4S:boolean=true;
 
-	part5:boolean=false;
-	part5S:boolean=true;
+	part4_1:boolean=false
+	part4_2:boolean=false
 
 	//
 	uploader1_1:Uploader=new Uploader()
@@ -64,6 +64,10 @@ export class CompanyInfoComponent implements OnInit {
 	marryList
 	//公司类型列表
 	companyTypeList:any[]
+
+	//账户类型列表
+	accTypeList=[]
+
 	attachment={}
 	memberId:number
 
@@ -249,6 +253,8 @@ export class CompanyInfoComponent implements OnInit {
 		//选择省的列表
 		this.provinceSelect()
 
+		//获取账户类型列表
+		this.getAccTypeList()
 		
 
 	    this.uploaderFun('0104','uploader1_1')//申请人身份证（正面）0104
@@ -396,6 +402,20 @@ export class CompanyInfoComponent implements OnInit {
 				})
 			})
 		})
+	}
+
+	getAccTypeList(){
+		this.companyInfo.getAccTypeList()
+			.then(res=>{
+
+				this.accTypeList=res.body.records	
+			})
+			.catch(res=>{
+				this.pop.error({
+					title:'错误提示',
+					text:res.message
+				})
+			})
 	}
 
 	getDetailData(){
@@ -642,6 +662,25 @@ export class CompanyInfoComponent implements OnInit {
 	back(){
 		this.router.navigate(["memberM/memberManage/detail",this.memberId])
 	}
+
+
+
+	addBankCardInfo(){
+		// 	账户类型 companyBankCardVos[].typeDic		银行账号	companyBankCardVos[].cardNo
+	// 	银行名称 companyBankCardVos[].bankName		支行名称	companyBankCardVos[].subbankName
+	// 	认证状态 companyBankCardVos[].authStatusDic		默认		companyBankCardVos[].isDefaultDic
+		let o={
+			type:"",
+			cardNo:"",
+			bankName:"",
+			subbankName:"",
+			authStatus:"",
+		}
+
+		this.companyBankCardVos.push(o)
+
+	}
+
 
 
 

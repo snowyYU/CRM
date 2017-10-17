@@ -145,6 +145,23 @@ export class CompanyInfoService {
 		})
 	}
 
+	//获取账户类型
+	getAccTypeList():Promise<any>{
+		return this.myHttp.get({
+			api:this.myHttp.api.getDictList,
+			query:{
+				type:'bank_card_type'
+			}
+		}).toPromise().then(res=>{
+			let data=res
+			if (data.status==200) {
+				return Promise.resolve(data)
+			}else{
+				return Promise.reject(data)
+			}
+		})
+	}
+
 	//四个保存编辑
 	saveCompanyBorrower(data:Part1Data):Promise<any>{
 		return this.myHttp.post({
