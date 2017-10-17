@@ -12,6 +12,8 @@ import { ElectricAccService,SendData } from './electric-acc.service'
 })
 export class ElectricAccComponent implements OnInit {
 
+	secondShow:boolean=false
+
 	agree:boolean=false
 	result:boolean=false
 
@@ -76,6 +78,7 @@ export class ElectricAccComponent implements OnInit {
 
 	getDetailData(){
 		this.agree=false
+		this.secondShow=true
 		this.getAccTypeList()
 		this.inGoldTypeList=[]
 

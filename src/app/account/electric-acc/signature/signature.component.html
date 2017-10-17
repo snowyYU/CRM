@@ -1,9 +1,20 @@
 <div class="page-location">
-  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-th-list"></i>账户管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="h4 pad-r-xs font-bold"><!-- <i class="page-location-icon glyphicon glyphicon-th-list"></i> -->电子签章<!-- <i class="pad-l-min fa fa-angle-right"></i> --></a>
+  <a class="page-location-item"><!-- <i class="page-location-icon glyphicon glyphicon-th-list"></i> -->账户管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item">电子账户<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">电子签章</a>
 </div>
 <div class="wrapper-md">
+  <div class="text-center m-t-xxl" *ngIf="!secondShow">
+    <section>
+        <label class="h3 font-bold"><i class="fa fa-search"></i> 会员电子签章信息查询</label>
+        <div class="wrapper clearfix form-inline">
+          <input type="text " name="memberNameQ" class="form-control m-l-md i-width" [(ngModel)]="memberNameQ" placeholder="会员名|会员id">
+          <button type="button" class="btn-def" (click)="getDetailData()" [disabled]="!memberNameQ">查询<i class="fa fa-search"></i></button>
+        </div>
+      </section>
+  </div>
+<div *ngIf="secondShow">
 <form #form="ngForm" ngSubmit="openAcc()">
     <section class="wrapper clearfix form-inline">
         <input type="text " name="memberNameQ" class="form-control m-l-md" [(ngModel)]="memberNameQ" placeholder="会员名|会员id">
@@ -126,9 +137,10 @@
     </section>
     <section class="clearfix text-center" *ngIf="companyName">
         <!-- <button type="button" class="btn">返回</button> -->
-        <button type="submit" class="btn btn-info"  *ngIf="signatureUserStatusDit=='未开通'" (click)="openSig()">开通</button>
+        <button type="submit" class="btn-def"  *ngIf="signatureUserStatusDit=='未开通'" (click)="openSig()">开通</button>
     </section>
 </form>
+</div>
 </div>
 
 

@@ -1,182 +1,181 @@
 <div class="page-location">
-  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-th-list"></i>账户管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="h4 pad-r-xs font-bold"><!-- <i class="page-location-icon glyphicon glyphicon-th-list"></i> -->开户<!-- <i class="pad-l-min fa fa-angle-right"></i> --></a>
+  <a class="page-location-item"><!-- <i class="page-location-icon glyphicon glyphicon-th-list"></i> -->账户管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item">电子账户<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">开户</a>
 </div>
 <div class="wrapper-md">
-<!-- <form #form="ngForm" (ngSubmit)="openInGold()"> -->
-<form #form="ngForm" (ngSubmit)="openAcc()">
-    <section class="wrapper clearfix form-inline">
+  <div class="text-center m-t-xxl" *ngIf="!secondShow">
+    <section>
+        <label class="h3 font-bold"><i class="fa fa-search"></i> 会员开户信息查询</label>
+        <div class="wrapper clearfix form-inline">
+          <input type="text " name="memberNameQ" class="form-control m-l-md i-width" [(ngModel)]="memberNameQ" placeholder="会员名|会员id">
+          <button type="button" class="btn-def" (click)="getDetailData()" [disabled]="!memberNameQ">查询<i class="fa fa-search"></i></button>
+        </div>
+      </section>
+  </div>
+  <div *ngIf="secondShow">
+    <!-- <form #form="ngForm" (ngSubmit)="openInGold()"> -->
+    <form #form="ngForm" (ngSubmit)="openAcc()">
+      <section class="wrapper clearfix form-inline">
         <input type="text " name="memberNameQ" class="form-control m-l-md" [(ngModel)]="memberNameQ" placeholder="会员名|会员id">
         <button type="button" class="btn-def" (click)="getDetailData()" [disabled]="!memberNameQ">查询<i class="fa fa-search"></i></button>
         <!-- <button type="button" class="btn pull-right m-l-md" (click)="eleSignature()">电子签章</button>
         <button type="button" class="btn btn-info pull-right">开户</button> -->
-        
-    </section>
-    <section class="wrapper border-content" *ngIf="memberName">
+      </section>
+      <section class="wrapper border-content" *ngIf="memberName">
         <div class="row form-group">
-            <div class="col-md-6">
-                <label class="control-label m-l-md">会员名称:</label>
-                <span *ngIf="memberName">{{memberName}}  ({{memberId}})</span>
-            </div>
-            <div class="col-md-6">
-                <label class="control-label m-l-md">状态:</label>
-                <span [class.text-danger]="isOpenAcctDic=='未开户'">{{isOpenAcctDic}}</span>
-            </div>
-            
+          <div class="col-md-6">
+            <label class="control-label m-l-md">会员名称:</label>
+            <span *ngIf="memberName">{{memberName}}  ({{memberId}})</span>
+          </div>
+          <div class="col-md-6">
+            <label class="control-label m-l-md">状态:</label>
+            <span [class.text-danger]="isOpenAcctDic=='未开户'">{{isOpenAcctDic}}</span>
+          </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
-                <label class="control-label m-l-md">归属渠道:</label>
-                <span>{{appName}}</span>
-            </div>
-            
+          <div class="col-md-12">
+            <label class="control-label m-l-md">归属渠道:</label>
+            <span>{{appName}}</span>
+          </div>
         </div>
-    </section >
-    <!-- 未开户的状态 -->
-    <section class="wrapper border-content m-t-md " *ngIf="isOpenAcctDic=='未开户'">
+      </section>
+      <!-- 未开户的状态 -->
+      <section class="wrapper border-content m-t-md " *ngIf="isOpenAcctDic=='未开户'">
         <div class="form-group clearfix">
-            <label class="control-label m-l-md">开户行:</label>
-            <span>{{bankName}}</span>
+          <label class="control-label m-l-md">开户行:</label>
+          <span>{{bankName}}</span>
         </div>
         <div class="form-group form-inline pos-rlt">
-            <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-
-            <label class="control-label m-l-md m-t-xs">账户类型:</label>
-            <select name="memberType" class="form-control" [(ngModel)]="memberType" required>
-                <option [value]="item.value" *ngFor="let item of accountTypeList">{{item.label}}</option>
-            </select>
+          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
+          <label class="control-label m-l-md m-t-xs">账户类型:</label>
+          <select name="memberType" class="form-control" [(ngModel)]="memberType" required>
+            <option [value]="item.value" *ngFor="let item of accountTypeList">{{item.label}}</option>
+          </select>
         </div>
         <div class="form-group form-inline pos-rlt">
-            <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-
-            <label class="control-label m-l-md m-t-xs">账户名称:</label>
-            <input type="text" name="accountName" class="form-control" [(ngModel)]="accountName" required>
+          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
+          <label class="control-label m-l-md m-t-xs">账户名称:</label>
+          <input type="text" name="accountName" class="form-control" [(ngModel)]="accountName" required>
         </div>
-    </section>
-    <!-- 已开户的状态 -->
-	<section class="wrapper border-content m-t-md clearfix" *ngIf="isOpenAcctDic=='已开户'">
-        <div class="form-group">
+      </section>
+      <!-- 已开户的状态 -->
+      <section class="wrapper border-content m-t-md clearfix" *ngIf="isOpenAcctDic=='已开户'">
+        <div class="row form-group">
+          <div class="col-md-6 m-t-xs">
             <label class="control-label m-l-md">二级账户:</label>
             <span>{{bankAccount}}</span>
-        </div>
-        <div class="form-group">
+          </div>
+          <div class="col-md-6">
             <label class="control-label m-l-md">账户名称:</label>
             <span>{{accountName}}</span>
+          </div>
         </div>
-        <div class="row form-group">
-            <div class="col-md-6 m-t-xs">
-                <label class="control-label m-l-md">开户行:</label>
-                <span>{{bankName}}</span>
-            </div>
-            <div class="col-md-6">
-                <button type="button" class="btn" (click)="destroy()" [disabled]="destroySubmitting"><span *ngIf="!destroySubmitting">注销账户</span><span *ngIf="destroySubmitting">注销中...</span></button>
-            </div>
-            
-        </div>
-        <div class="form-group">
+        <div class="row">
+          <div class="col-md-6 m-t-xs">
+            <label class="control-label m-l-md">开户行:</label>
+            <span>{{bankName}}</span>
+          </div>
+          <div class="col-md-6">
             <label class="control-label m-l-md">账户类型:</label>
             <span>{{accountTypeDic}}</span>
+          </div>
         </div>
-        
-    </section>
-	<!-- 未开户的状态 -->
-	<section class="wrapper border-content clearfix m-t-md" *ngIf="isOpenAcctDic=='未开户'">
-		<div class="form-group clearfix">
-			<label class="control-label m-l-md m-t-xs">配置账户:</label>
-			<div class="col-md-7 p-l-none">
-                <div class="col-md-11 p-l-none">
-                    <div class="pull-left m-l-sm m-t-sm w-sm">
-                      <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['4']" disabled>电子钱包</checkbox>
-                      <!-- <label class="i-checks">
+      </section>
+      <!-- 未开户的状态 -->
+      <section class="wrapper border-content clearfix m-t-md" *ngIf="isOpenAcctDic=='未开户'">
+        <div class="form-group clearfix pos-rlt">
+          <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
+          <label class="control-label m-l-md m-t-xs">入金(属性):</label>
+          <div class="col-md-3">
+            <select name="inGoldType" class="form-control " [(ngModel)]="inGoldType" required>
+              <option [value]="item.value" *ngFor="let item of inGoldTypeList" required>{{item.label}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group clearfix">
+          <label class="control-label m-l-md m-t-xs">配置账户:</label>
+          <div class="col-md-7 p-l-none">
+            <div class="col-md-11 p-l-none">
+              <div class="pull-left m-l-sm m-t-sm w-sm">
+                <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['4']" disabled>电子钱包</checkbox>
+                <!-- <label class="i-checks">
                         <input type="checkbox" [checked]="checkList['4']" disabled>
                         <i></i>
                         电子钱包
                       </label> -->
-                    </div>
-                    <div class="pull-left m-l-sm m-t-sm w-sm">
-                      <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['1']" disabled>还款户</checkbox>
-
-                      <!-- <label class="i-checks">
+              </div>
+              <div class="pull-left m-l-sm m-t-sm w-sm">
+                <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['1']" disabled>还款户</checkbox>
+                <!-- <label class="i-checks">
                         <input type="checkbox" [checked]="checkList['1']" disabled>
                         <i></i>
                         还款户
                       </label> -->
-                    </div>
-                    <div class="pull-left m-l-sm m-t-sm w-sm">
-                      <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['2']" disabled>借款户</checkbox>
-
-                      <!-- <label class="i-checks">
+              </div>
+              <div class="pull-left m-l-sm m-t-sm w-sm">
+                <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['2']" disabled>借款户</checkbox>
+                <!-- <label class="i-checks">
                         <input type="checkbox" [checked]="checkList['2']" disabled>
                         <i></i>
                         借款户
                       </label> -->
-                    </div>
-                    
-                </div>
-                <div class="col-md-11 checkbox-inline">
-                    <div class="pull-left m-l-sm m-t-sm w-sm">
-                      <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['3']" disabled>定向户</checkbox>
-
-                      <!-- <label class="i-checks">
+              </div>
+            </div>
+            <div class="col-md-11 checkbox-inline">
+              <div class="pull-left m-l-sm m-t-sm w-sm">
+                <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['3']" disabled>定向户</checkbox>
+                <!-- <label class="i-checks">
                         <input type="checkbox" [checked]="checkList['3']" disabled>
                         <i></i>
                         定向户
                       </label> -->
-                    </div>
-                    <div class=" pull-left m-l-sm m-t-sm w-sm">
-                      <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['5']" disabled>监管户</checkbox>
-
-                      <!-- <label class="i-checks">
+              </div>
+              <div class=" pull-left m-l-sm m-t-sm w-sm">
+                <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['5']" disabled>监管户</checkbox>
+                <!-- <label class="i-checks">
                         <input type="checkbox" [checked]="checkList['5']" disabled>
                         <i></i>
                         监管户
                       </label> -->
-                    </div>
-                    <div class="pull-left m-l-sm m-t-sm w-sm">
-                      <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['6']" disabled>内部户</checkbox>
-
-                      <!-- <label class="i-checks">
+              </div>
+              <div class="pull-left m-l-sm m-t-sm w-sm">
+                <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['6']" disabled>内部户</checkbox>
+                <!-- <label class="i-checks">
                         <input type="checkbox" [checked]="checkList['6']" disabled>
                         <i></i>
                         内部户
                       </label> -->
-                    </div>
-                    
-                </div>        
+              </div>
             </div>
-		</div>
-    <div class="form-group clearfix pos-rlt">
-      <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
-
-      <label class="control-label m-l-md m-t-xs">入金(属性):</label>
-      <div class="col-md-3">
-        <select name="inGoldType" class="form-control " [(ngModel)]="inGoldType" required>
-            <option [value]="item.value" *ngFor="let item of inGoldTypeList" required>{{item.label}}</option>
-        </select>
-      </div>
-    </div>
-	</section>
-    <!-- 已开户的状态 -->
-    <section class="wrapper border-content m-t-md clearfix" *ngIf="isOpenAcctDic=='已开户'">
-        <div class="">
-            <label class="control-label m-l-md m-t-xs">三级账户:</label>
-            <div class="col-md-7">
-                <table class="table text-center" border="1">
-                    <tbody>
-                        <tr *ngFor="let item of slaveAccounts">
-                            <td>{{item.accountTypeDic}}</td>
-                            <td>{{item.accountId}}</td>
-                            <!-- <td><button class="btn btn-xs" (click)="destroySlave(item.accountId)">注销</button></td> -->
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+          </div>
         </div>
-    </section>
-    <section class="wrapper text-center" *ngIf="isOpenAcctDic=='未开户'">  
-                      <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="agree">已经核实会员的真实材料，同意开户</checkbox>
-
+      </section>
+      <!-- 已开户的状态 -->
+      <section class="wrapper border-content m-t-md clearfix form-group" *ngIf="isOpenAcctDic=='已开户'">
+        <div class="">
+          <label class="control-label m-l-md m-t-xs">三级账户:</label>
+          <div class="col-md-7">
+            <table class="table text-center" border="1">
+              <tbody>
+                <tr *ngFor="let item of slaveAccounts">
+                  <td>{{item.accountTypeDic}}</td>
+                  <td>{{item.accountId}}</td>
+                  <!-- <td><button class="btn btn-xs" (click)="destroySlave(item.accountId)">注销</button></td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section *ngIf="isOpenAcctDic=='已开户'">
+        <div class="text-center">
+          <button type="button" class="btn-def" (click)="destroy()" [disabled]="destroySubmitting"><span *ngIf="!destroySubmitting">注销账户</span><span *ngIf="destroySubmitting">注销中...</span></button>
+        </div>
+      </section>
+      <section class="wrapper text-center" *ngIf="isOpenAcctDic=='未开户'">
+        <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="agree">已经核实会员的真实材料，同意开户</checkbox>
         <!-- <div class="radio">
           <label class="i-checks">
             <input type="checkbox" name="agree" [checked]="agree" [(ngModel)]="agree">
@@ -184,13 +183,13 @@
             已经核实会员的真实材料，同意开户
           </label>
         </div> -->
-        
-    </section>
-    <section class="clearfix text-center" *ngIf="memberName">
+      </section>
+      <section class="clearfix text-center" *ngIf="memberName">
         <!-- <button type="button" class="btn">返回</button> -->
-        <button type="submit" class="btn btn-info" [disabled]="!agree||!form.valid||!memberName||openAccSubmitting" *ngIf="isOpenAcctDic=='未开户'"><span *ngIf="!openAccSubmitting">开户</span><span *ngIf="openAccSubmitting">开户中...</span></button>
-    </section>
-</form>
+        <button type="submit" class="btn-def" [disabled]="!agree||!form.valid||!memberName||openAccSubmitting" *ngIf="isOpenAcctDic=='未开户'"><span *ngIf="!openAccSubmitting">开户</span><span *ngIf="openAccSubmitting">开户中...</span></button>
+      </section>
+    </form>
+  </div>
 </div>
 <!-- 模态框部分 -->
 <modal [(visible)]="inGoldTypeV" size="md">
@@ -200,25 +199,20 @@
   <modal-body>
     <form #inGoldForm="ngForm" (ngSubmit)="openAcc()">
       <div class="clearfix">
-          <div class="col-md-12 text-center">
-                <div class="col-md-6">
-                    <select name="inGoldType" class="form-control " [(ngModel)]="inGoldType" required>
-                        <option [value]="item.value" *ngFor="let item of inGoldTypeList">{{item.label}}</option>
-                    </select>
-                </div>
-              
-               
+        <div class="col-md-12 text-center">
+          <div class="col-md-6">
+            <select name="inGoldType" class="form-control " [(ngModel)]="inGoldType" required>
+              <option [value]="item.value" *ngFor="let item of inGoldTypeList">{{item.label}}</option>
+            </select>
           </div>
+        </div>
       </div>
     </form>
   </modal-body>
   <modal-footer>
     <button type="button" class="btn btn-info" [disabled]="!inGoldForm.valid" (click)="openAcc()"><span *ngIf="!inGoldTypeSubmitting">提交</span><span *ngIf="inGoldTypeSubmitting">提交中...</span></button>
-   
-
   </modal-footer>
 </modal>
-
 <!-- 模态框部分 -->
 <modal [(visible)]="result" size="md">
   <modal-header>
@@ -227,49 +221,46 @@
   <modal-body>
     <div>
       <div class="clearfix">
-          <div class="col-md-12 form-group">
-              <div class="col-md-6">
-                  <label>二级账号:</label>
-                  <span>{{bankAccountM}}</span>
-              </div>
-              <div class="col-md-6">
-                  <label>开户行:</label>
-                  <span>{{bankName}}</span>
-              </div>
+        <div class="col-md-12 form-group">
+          <div class="col-md-6">
+            <label>二级账号:</label>
+            <span>{{bankAccountM}}</span>
           </div>
-          <div class="col-md-12 form-group">
-              <div class="col-md-6">
-                  <label>开户名:</label>
-                  <span>{{accountNameM}}</span>
-              </div>
-              <div class="col-md-6">
-                  <label>账户类别:</label>
-                  <span>{{accountTypeDicM}}</span>
-              </div>
+          <div class="col-md-6">
+            <label>开户行:</label>
+            <span>{{bankName}}</span>
           </div>
-          <div class="col-md-12">
-            <table class="table text-center" border="1">
-              <thead>
-                  <tr>
-                      <th>三级账户</th>
-                      <th>三级账户ID</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let item of slaveAccountsM">
-                      <th>{{item.accountTypeDic}}</th>
-                      <th>{{item.accountId}}</th>
-                  </tr>
-              </tbody>
-            </table>
+        </div>
+        <div class="col-md-12 form-group">
+          <div class="col-md-6">
+            <label>开户名:</label>
+            <span>{{accountNameM}}</span>
           </div>
-          
+          <div class="col-md-6">
+            <label>账户类别:</label>
+            <span>{{accountTypeDicM}}</span>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <table class="table text-center" border="1">
+            <thead>
+              <tr>
+                <th>三级账户</th>
+                <th>三级账户ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of slaveAccountsM">
+                <th>{{item.accountTypeDic}}</th>
+                <th>{{item.accountId}}</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </modal-body>
   <modal-footer>
     <button class="btn btn-default" (click)="closeModal()">关闭</button>
-    
-
   </modal-footer>
 </modal>
