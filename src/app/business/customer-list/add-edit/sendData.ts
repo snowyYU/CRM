@@ -11,9 +11,9 @@ export interface SendData{
 	linkName:string;
 	linkMobile:number;
 	linkJob:string;
-	companyAddress:string;
+	companyAddress:string
 	guestId?:number
 	remark?:string
-	
-	
+
+
 }
