@@ -18,16 +18,16 @@
 	          <span class="input-group-addon">至</span>
 	          <input class="form-control" datePicker [(ngModel)]="endTime" name="endTime" placeholder="选择日期" />
 	        </div>
-			
+
 		</div>
 		<div class="col-md-4 form-inline">
 			<button class="btn-def pull-right m-l-md" (click)="page=0;getDataList()" >查询<i class="fa fa-search"></i></button>
 			<input type="text " name="memberName" class="form-control pull-right" [(ngModel)]="memberName" placeholder="会员名">
-			
+
 		</div>
 	</div>
 	<div>
-		<p-dataTable  [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading"
+		<p-dataTable  [value]="dataList" emptyMessage="{{loading?'正在加载...':'没有查询到符合条件的记录'}}" [loading]="loading"
 					 scrollable="true" scrollHeight="400px">
 	      <p-column field="flowId" header="流水号" styleClass="text-center" [style]="{'width':'280px'}"></p-column>
 	      <p-column field="createTime" header="交易时间" styleClass="text-center" [style]="{'width':'180px'}"></p-column>
@@ -38,7 +38,7 @@
           		<div class="text-right">
             <!-- {{addCreditValue.addCreditValue | currency:'CNY' :true}} -->
             		{{row.amount | yuanFormat}}
-       
+
           		</div>
         	</ng-template>
 	      </p-column>

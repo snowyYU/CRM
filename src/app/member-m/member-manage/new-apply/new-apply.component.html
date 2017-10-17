@@ -30,44 +30,45 @@
       <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">原授信额度:</label>
         <span class="row-body">--</span>
-        
+
     </div>
     <div class="col-md-12 ">
         <label class="pull-left w-sm label-control">原有效期:</label>
         <span class="row-body">--  至  --</span>
-        
+
     </div>
       <!-- <div class="col-md-12 form-group form-inline">
         <label class="pull-left w-sm label-control">原授信额度:</label>
         <span class="row-body text-content">￥0.00元</span>
-        
+
     </div> -->
     </section>
     <section class="panel-body border-content m-t-md form-inline">
       <div class="col-md-12">
         <label class="pull-left w-sm label-control">申请原因:</label>
-        <textarea name="authRemark" id="" cols="30" rows="5" class="form-control" [(ngModel)]="authRemark" required></textarea>
+        <textarea name="authRemark"  cols="50" rows="5" class="form-control" [(ngModel)]="authRemark" required></textarea>
       </div>
     </section>
     <section class="m-t-md">
       <div class="text-center">
-        <button type="button" class="btn" (click)="cancel()">返回</button>
-        <button class="btn btn-info" [disabled]="!newApply.form.valid">提交申请</button>
+
+        <button class="btn-def mar-r-sm" [disabled]="!newApply.form.valid" type="submit">提交申请<i class="fa fa-check-circle-o"></i></button>
+        <button type="button" class="btn-def" (click)="cancel()">返回<i class="fa fa-arrow-circle-o-left"></i></button>
       </div>
     </section>
   </form>
   <section class="bg-white clearfix productInfo pos-abt" *ngIf="productId">
       <div class="col-md-12 text-center padder-v">产品信息</div>
       <div class="col-md-12 form-group">
-          <label for="" class="col-md-3">额度范围:</label>
+          <label for="" class="col-md-3 label-control">额度范围:</label>
           <div class="col-md-9">{{valueLimit}}</div>
       </div>
       <div class="col-md-12 form-group">
-          <label for="" class="col-md-3">借款周期:</label>
+          <label for="" class="col-md-3 label-control">借款周期:</label>
           <div class="col-md-9">{{borrowHowlong}}</div>
       </div>
       <div class="col-md-12 form-group">
-          <label for="" class="col-md-3">产品简介:</label>
+          <label for="" class="col-md-3 label-control">产品简介:</label>
           <div class="col-md-9">{{productRemark}}</div>
       </div>
       <div class="col-md-12">
@@ -87,7 +88,7 @@
                       <td>{{item.interestTypeName}}</td>
                       <td>{{item.interestValue}}</td>
                   </tr>
-                  
+
               </tbody>
           </table>
       </div>

@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div>
-    <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading">
+    <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'没有查询到符合条件的记录'}}" [loading]="loading">
       <p-column field="companyName" header="企业名称"></p-column>
       <p-column field="memberName" header="企业性质"></p-column>
       <p-column field="yeartotalValue" header="年度总产值(万元)">

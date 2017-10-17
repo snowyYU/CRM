@@ -50,13 +50,13 @@
         </div>
       </div>
     </section>
-    <section class="wrapperForTwo">
+    <section class="wrapperForTwo clearfix">
       <div class="group col-md-6  wrapperTwoLeft pad-def" style="min-height: 267px;">
         <div class="group-title">变更前</div>
         <!-- 变更手机号 -->
         <div *ngIf="changeType==1">
           <div class="form-group clearfix">
-            <label  class="label-control label-special-w">原手机号:</label>
+            <label  class="label-control label-special-w">手机号:</label>
             <div class="col-md-8 m-t-xs text-content">
             {{oldPhome}}
             </div>
@@ -133,7 +133,7 @@
           </div>
         </div>
       </div>
-      <div class="group col-md-6 wrapperTwoRight pad-def">
+      <div class="group col-md-6 wrapperTwoRight pad-def" style="min-height: 267px;">
         <div class="group-title">变更后</div>
         <!-- 变更手机号 -->
         <div *ngIf="changeType==1">
@@ -243,9 +243,9 @@
     </section>
     <section class="wrapper">
       <div class="text-center">
-        <a (click)="back()" class="btn-def" >返回<i class="fa fa-arrow-circle-o-left"></i></a>
-        <button class="btn" *ngIf="isCheck" (click)="submit(-1)">拒绝</button>
-        <button class="btn btn-info" *ngIf="isCheck" (click)="submit(2)">通过</button>
+        <a (click)="back()" class="btn-def mar-r-xs" >返回<i class="fa fa-arrow-circle-o-left"></i></a>
+        <button class="btn-def btn-def-danger mar-r-xs" *ngIf="isCheck" (click)="submit(-1)">拒绝<i class="fa fa-ban"></i></button>
+        <button class="btn-def btn-def-success" *ngIf="isCheck" (click)="submit(2)">通过<i class="fa fa-check-circle-o"></i></button>
       </div>
     </section>
   </form>
