@@ -54,6 +54,11 @@ li{
 
 
 /*wqy begin*/
+@media (min-width: 768px){
+  .date-input-group {
+    width: 260px;
+  }
+}
 label.required{
   position: relative;
 }
@@ -96,11 +101,11 @@ label.required:before{
 	overflow: hidden;
 }
 
-input[type=number] {  
-    -moz-appearance:textfield;  
-}  
-input[type=number]::-webkit-inner-spin-button,  
-input[type=number]::-webkit-outer-spin-button {  
-    -webkit-appearance: none;  
-    margin: 0;  
-}  
+input[type=number] {
+    -moz-appearance:textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
