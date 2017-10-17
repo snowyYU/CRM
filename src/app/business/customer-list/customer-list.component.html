@@ -5,13 +5,13 @@
 </div> -->
 <div class="page-location">
   <a class="h4 pad-r-xs font-bold">客户名册</a>
-  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i><span *ngIf="authRole.roleIn(['007'])">业务拓展</span><span *ngIf="authRole.roleIn(['008'])">拓展管理</span><i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i><span >拓展管理</span><i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">客户名册</a>
 </div>
-<div class="wrapper">
-  <div class="mar-b-sm clearfix">
+<div class="wrapper" [style.pad-t-sm]="!authRole.roleIn(['008'])">
+  <div class="mar-b-sm clearfix" >
     <!-- <button class="btn btn-default pull-right" [routerLink]="['/business/authList',0]">认证记录</button> -->
-    <div class="col-md-4 form-inline" *ngIf="authRole.roleIn(['008'])">
+    <div class="pull-left form-inline" *ngIf="authRole.roleIn(['008'])">
       <label  class="m-t-xs m-r-xs">服务经理:</label>
       <select name="serviceMan" class="form-control" [(ngModel)]="serviceMan" (change)="queryData()">
         <option [value]="item.employeeName" *ngFor="let item of serviceManL">
@@ -20,7 +20,7 @@
         </option>
       </select>
     </div>
-    <div class="col-md-2 pad-t-xs pull-right text-right" >
+    <div class="col-md-2 pad-t-xs pull-right text-right" [class.pad-t-xs]="authRole.roleIn(['008'])" >
       <a class="text-info text-lg text-underline" (click)="goToList()">认证申请回复</a>
       <!-- <a class="text-danger text-lg" (click)='goToList()' *ngIf="authApplyReplyNum">{{authApplyReplyNum}}</a>
       <span class="text-danger text-lg" *ngIf="!authApplyReplyNum">{{authApplyReplyNum}}</span> -->
@@ -29,9 +29,9 @@
 
   </div>
   <div>
-    <p-dataTable  [value]="dataList" emptyMessage="{{loading?'':'暂无数据'}}" [loading]="loading"
-                 scrollable="true" scrollHeight="400px">
-      <p-column field="index" header="序号" styleClass="text-center " [style]="{'width':'100px'}"></p-column>
+    <p-dataTable  [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading"
+                 scrollable="true" scrollHeight="360px">
+<!--      <p-column field="index" header="序号" styleClass="text-center " [style]="{'width':'100px'}"></p-column>-->
       <p-column field="guestName" header="客户名称" [style]="{'width':'200px'}">
       	<ng-template let-guestName="rowData" pTemplate="body">
       		<div>
@@ -39,11 +39,11 @@
       		</div>
       	</ng-template>
       </p-column>
-      <p-column field="linkName" header="联系人" styleClass="text-center " [style]="{'width':'150px'}"></p-column>
+      <p-column field="linkName" header="联系人"  [style]="{'width':'120px'}"></p-column>
       <p-column field="linkMobile" header="联系手机" styleClass="text-center " [style]="{'width':'150px'}"></p-column>
       <p-column field="guestFromDic" header="获客途径" styleClass="text-center " [style]="{'width':'150px'}"></p-column>
-      <p-column field="serviceMan" header="服务经理" styleClass="text-center " [style]="{'width':'150px'}"></p-column>
-      <p-column field="statusDic" header="状态" styleClass="text-center " [style]="{'width':'150px'}">
+      <p-column field="serviceMan" header="服务经理"  [style]="{'width':'120px'}"></p-column>
+      <p-column field="statusDic" header="状态" styleClass="text-center " [style]="{'width':'120px'}">
         <ng-template let-row="rowData" pTemplate="body">
           <a *ngIf="row.status==1" [routerLink]="['/business/authDetail',row.guestId]">
             {{row.statusDic}}
@@ -55,11 +55,11 @@
       </p-column>
       <p-column field="ooo" header="操作" [style]="{'width':'200px'}">
         <ng-template let-operation="rowData" pTemplate="body" >
-          <div  >
-            <a class="table-btn text-info" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:applyAuth(operation)" *ngIf="authRole.roleIn(['007'])">申请认证</a>
-            <a class="table-btn text-info" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:edit(operation)" *ngIf="authRole.roleIn(['007'])">修改</a>
-            <a class="table-btn text-danger" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:delete(operation)" *ngIf="authRole.roleIn(['007'])">删除</a>
-            <a class="table-btn text-info" (click)="changeManage(operation)" *ngIf="authRole.roleIn(['008'])">变更经理</a>
+          <div class="table-btn-group">
+            <button class="table-btn " [disabled]="operation.status===1" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:applyAuth(operation)" *ngIf="authRole.roleIn(['007'])">申请认证</button>
+            <button class="table-btn " [disabled]="operation.status===1" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:edit(operation)" *ngIf="authRole.roleIn(['007'])">修改</button>
+            <button class="table-btn " [disabled]="operation.status===1" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:delete(operation)" *ngIf="authRole.roleIn(['007'])">删除</button>
+            <button class="table-btn " (click)="changeManage(operation)" *ngIf="authRole.roleIn(['008'])">变更经理</button>
           </div>
 
         </ng-template>

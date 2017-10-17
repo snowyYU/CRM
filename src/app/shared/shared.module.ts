@@ -9,10 +9,12 @@ import {CheckboxComponent} from 'dolphinng';
 import {RadioComponent} from 'dolphinng';
 import {ToggleComponent} from 'dolphinng';
 import {PaginatorComponent} from 'dolphinng';
+import {TextMaxLengthDirective} from 'dolphinng';
 import {HTML5ValidateDirective}   from '../../directives/HTML5Validate/HTML5Validate.directive';
 
 
 import { UploaderModule } from '../../utils/uploader/uploader.module'
+import { SelectBarModule } from '../../utils/select-bar/select-bar.module'
 
 import { YuanFormatPipe } from '../../pipe/yuan-format/yuan-format.pipe'
 import { EffDateFormatPipe } from '../../pipe/eff-date-format/eff-date-format.pipe'
@@ -23,7 +25,7 @@ import { GalleryComponent } from 'dolphinng'
 import { ModalComponent,ModalHeaderComponent,ModalBodyComponent,ModalFooterComponent } from 'dolphinng'
 
 @NgModule({
-  imports:[CommonModule,FormsModule,UploaderModule],
+  imports:[CommonModule,FormsModule,UploaderModule,SelectBarModule],
   declarations: [
     CodeTextareaDirective,
     ToggleClassDirective,
@@ -41,12 +43,14 @@ import { ModalComponent,ModalHeaderComponent,ModalBodyComponent,ModalFooterCompo
     EffDateFormatPipe,
     DigestContentPipe,
     GalleryComponent,
-    HTML5ValidateDirective
+    HTML5ValidateDirective,
+    TextMaxLengthDirective
   ],
   exports:      [
     FormsModule,
     CommonModule,
     UploaderModule,
+    SelectBarModule,
     CodeTextareaDirective,
     ToggleClassDirective,
     CodeHighLightComponent,
@@ -63,7 +67,8 @@ import { ModalComponent,ModalHeaderComponent,ModalBodyComponent,ModalFooterCompo
     EffDateFormatPipe,
     DigestContentPipe,
     GalleryComponent,
-    HTML5ValidateDirective
+    HTML5ValidateDirective,
+    TextMaxLengthDirective
   ]
 })
 export class SharedModule { }

@@ -4,18 +4,20 @@
     <!-- <i class="page-location-icon glyphicon glyphicon-user"></i> -->
     会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">授信申请列表</a>
-  
+
 </div>
 <div class="wrapper">
-  <div class="wrapper form-inline">
-    <select name="qryStatus" class="form-control" [(ngModel)]="qryStatus" (change)="qryStatusChange()">
-      <option [value]="0">申请中</option>
-      <option [value]="1">已受理</option>
-    </select>
+  <div class="mar-b-sm form-inline">
+    <div class="form-group">
+      <select name="qryStatus" class="form-control" [(ngModel)]="qryStatus" (change)="qryStatusChange()">
+        <option [value]="0">申请中</option>
+        <option [value]="1">已受理</option>
+      </select>
+    </div>
     <!-- <button class="btn" [class.btn-info]="qryStatus===0" (click)="getDataList(0)">申请中</button>
     <button class="btn" [class.btn-info]="qryStatus===1" (click)="getDataList(1)">已受理</button> -->
     <div class="form-group" *ngIf="qryStatus=='1'">
-    	<label for="">申请日期:</label>
+    	<label >申请日期:</label>
     	<div class="input-group date-input-group">
           <input class="form-control" datePicker [(ngModel)]="startDate" name="dateStart" placeholder="选择日期" />
           <span class="input-group-addon">至</span>
@@ -25,8 +27,8 @@
     <button class="btn-def" (click)="getDataList(qryStatus)">查询<i class="fa fa-search"></i></button>
   </div>
   <div>
-    <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading"
-              scrollable="true" scrollHeight="400px">
+    <p-dataTable  [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading"
+              scrollable="true" scrollHeight="360px">
       <p-column field="creditAuthId" header="申请ID" styleClass="text-center" [style]="{'width':'150px'}"></p-column>
       <p-column field="memberName" header="会员名称" [style]="{'width':'200px'}"></p-column>
       <p-column field="productName" header="产品" [style]="{'width':'110px'}"></p-column>
@@ -35,27 +37,31 @@
           <div class="text-right">
             <!-- {{addCreditValue.addCreditValue | currency:'CNY' :true}} -->
             {{addCreditValue.addCreditValue | yuanFormat}}
-       
+
           </div>
         </ng-template>
       </p-column>
-      <p-column field="oldCreditValue" header="原授信额度(元)" styleClass="text-right" [style]="{'width':'120px'}">
+      <p-column field="oldCreditValue" header="原授信额度(元)" styleClass="text-right" [style]="{'width':'140px'}">
         <ng-template let-row="rowData" pTemplate="body">
           <div class="text-right">
             <!-- {{addCreditValue.addCreditValue | currency:'CNY' :true}} -->
             {{row.oldCreditValue | yuanFormat}}
-       
+
           </div>
         </ng-template>
       </p-column>
-      <p-column field="statusDic" header="状态" [style]="{'width':'80px'}"></p-column>
+      <p-column field="statusDic" header="状态" [style]="{'width':'80px'}" styleClass="text-center"></p-column>
       <p-column field="serviceMan" header="服务经理" [style]="{'width':'100px'}"></p-column>
-      <p-column field="createTime" header="申请日期" [style]="{'width':'160px'}"></p-column>
+      <p-column field="createTime" header="申请日期" [style]="{'width':'120px'}" styleClass="text-center">
+        <ng-template let-row="rowData" pTemplate="body">
+          {{row.createTime|date:'yyyy-MM-dd'}}
+        </ng-template>
+      </p-column>
       <p-column field="color" header="操作" [style]="{'width':'60px'}">
         <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
           <div class="text-center">
             <a class="table-btn text-info" (click)="detail(operation)">查看</a>
-       
+
           </div>
         </ng-template>
       </p-column>

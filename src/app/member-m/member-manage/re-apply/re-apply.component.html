@@ -1,13 +1,13 @@
 <div class="page-location">
   <a class="h4 pad-r-xs font-bold">重新申请授信</a>
-  
+
   <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item">会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">重新申请授信</a>
 </div>
 <div class="wrapper-md pos-rlt">
     <form #newApply="ngForm" (ngSubmit)='submit()'>
-  <section class="panel-body border-content">
+  <section class="panel-body border-content ">
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">会员名称:</label>
         <span class="row-body text-content">{{companyName}}  ({{memberId}})</span>
@@ -15,13 +15,13 @@
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">申请产品:</label>
         <span class="row-body text-content">{{productName}}</span>
-        
+
     </div>
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">产品类别:</label>
         <span class="row-body text-content">{{productTypeName}}</span>
     </div>
-    
+
   </section >
   <section class="panel-body border-content m-t-md form-inline ">
     <div class="col-md-12 form-group">
@@ -31,41 +31,42 @@
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">原授信额度:</label>
         <span class="row-body text-content">{{oldCreditValue | yuanFormat}} 元</span>
-        
+
     </div>
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">原有效期:</label>
         <span class="row-body text-content">{{expiryDateBegin | effDateFormat}}  至  {{expiryDateEnd | effDateFormat}}</span>
-        
+
     </div>
   </section>
-	
-	
+
+
 	<section class="panel-body border-content m-t-md form-inline">
 		<div class="col-md-12">
 			<label class="pull-left w-sm label-control">申请原因:</label>
-			<textarea name="authRemark" id="" cols="30" rows="5" class="form-control" [(ngModel)]="authRemark" required></textarea>
+			<textarea name="authRemark" id="" cols="50" rows="5" class="form-control" [(ngModel)]="authRemark" required></textarea>
 		</div>
 	</section>
     <section class="m-t-md">
-        <div class="text-center"> 
-            <button type="btn-def" class="btn" (click)="cancel()">返回<i class="fa fa-arrow-circle-o-left"></i></button>
-            <button class="btn-def" [disabled]="!newApply.form.valid">提交申请<i class="fa fa-arrow-circle-o-left"></i></button>
+        <div class="text-center">
+
+            <button class="btn-def mar-r-sm" [disabled]="!newApply.form.valid">提交申请<i class="fa fa-check-circle-o"></i></button>
+          <button type="button" class="btn-def" (click)="cancel()">返回<i class="fa fa-arrow-circle-o-left"></i></button>
         </div>
     </section>
 </form>
 <section class="bg-white clearfix productInfo pos-abt" *ngIf="productId">
       <div class="col-md-12 text-center padder-v">产品信息</div>
       <div class="col-md-12 form-group">
-          <label for="" class="col-md-3">额度范围:</label>
+          <label for="" class="col-md-3 label-control">额度范围:</label>
           <div class="col-md-9">{{valueLimit}}</div>
       </div>
       <div class="col-md-12 form-group">
-          <label for="" class="col-md-3">借款周期:</label>
+          <label for="" class="col-md-3 label-control">借款周期:</label>
           <div class="col-md-9">{{borrowHowlong}}</div>
       </div>
       <div class="col-md-12 form-group clearfix">
-          <label for="" class="col-md-3">产品简介:</label>
+          <label for="" class="col-md-3 label-control">产品简介:</label>
           <div class="col-md-9">{{productRemark}}</div>
       </div>
       <div class="col-md-12">
@@ -85,7 +86,7 @@
                       <td>{{item.interestTypeName}}</td>
                       <td>{{item.interestValue}}</td>
                   </tr>
-                  
+
               </tbody>
           </table>
       </div>

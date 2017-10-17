@@ -1,6 +1,5 @@
 <div class="page-location">
   <a class="h4 pad-r-xs font-bold">会员详情</a>
-
   <a class="page-location-item">
     <i class="page-location-icon glyphicon glyphicon-user"></i>
     会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
@@ -8,7 +7,7 @@
   <a class="page-location-item active">会员详情</a>
 </div>
 <div class="wrapper-md">
-  <section class="panel-body bg-white">
+  <section class="panel-body group">
     <div class="form-group clearfix">
         <div class="col-md-6">
             <label class="label-control">客户名称:</label>
@@ -20,7 +19,7 @@
         </div>
     </div>
     <div class="form-group clearfix">
-        
+
         <div class="col-md-6">
             <label class="label-control">归属渠道:</label>
             <span class="text-content">{{prmResourceRegister.resourceName}}</span>
@@ -39,7 +38,7 @@
             <label class="label-control">状态:</label>
             <span>{{memberStatusDic}}</span>
         </div>
-        
+
     </div>
     <div class="form-group clearfix">
         <div class="col-md-6">
@@ -50,7 +49,7 @@
             <label class="label-control">信用评分:</label>
             <span class="text-danger">{{memberRatingGrate}}</span>
         </div>
-        
+
     </div>
     <div class="clearfix">
         <!-- <div class="col-md-6">
@@ -59,12 +58,13 @@
         </div> -->
         <div class="col-md-6">
             <label class="label-control">尽调报告:</label>
-            <span class="text-info" ><a [routerLink]="['/memberM/memberManage/detail',memberId,'memberReport']" class="text-info">查看</a></span>
+           <!-- <span class="text-info" ><a [routerLink]="['/memberM/memberManage/detail',memberId,'memberReport']" class="text-info">查看</a></span>-->
+          <span class="text-info" ><a >-</a></span>
         </div>
-        
+
     </div>
-    
-    
+
+
     <!-- <div class="form-group clearfix">
         <label class="label-control">类别:</label>
         <span class="text-content">{{memberTypeDic}}</span>
@@ -73,9 +73,9 @@
         <label class="label-control">状态:</label>
         <span>{{memberStatusDic}}</span>
     </div> -->
-    
+
   </section >
-  <section class="panel-body bg-white m-t-md">
+  <section class="panel-body group m-t-md">
 
     <div class="clearfix">
         <div class="col-md-9 m-t-xs">
@@ -87,12 +87,12 @@
             <span class="m-l-md"><a class="text-info" (click)="riskM('debtInfo')">负债信息</a></span>
             <span class="m-l-md"><a class="text-info" (click)="riskM('agreementInfo')">履约信息</a></span>
             <span class="m-l-md"><a class="text-info" (click)="runSituation()">运营信息</a></span>
-        </div> 
-        <div class="col-md-3">
-            
-            <div class="col-md-3"><button class="btn btn-info" (click)='eleAttachment()'>电子附件</button></div>
         </div>
-        
+        <div class="col-md-3">
+
+            <div class="col-md-3"><button class="btn-def-sm btn-def" (click)='eleAttachment()'>电子附件</button></div>
+        </div>
+
     </div>
 
     <!-- <div class="form-group clearfix">
@@ -106,21 +106,21 @@
     		<span><a class="text-info" (click)="riskM('assetInfo')">资产信息</a></span>
         	<span><a class="text-info" (click)="riskM('debtInfo')">负债信息</a></span>
         	<span><a class="text-info" (click)="riskM('agreementInfo')">履约信息</a></span>
-    	</div> 
+    	</div>
     	<div class="col-md-6">
     		<label for="" class="label-control m-t-xs">电子附件</label>
     		<div class="col-md-3"><button class="btn btn-info" (click)='eleAttachment()'>查看</button></div>
     	</div>
-        
+
     </div>
     <div class="clearfix">
         <span><a class="text-info" (click)="runSituation()">运营信息</a></span>
-       
+
     </div> -->
-    
+
   </section>
-	
-	
+
+
 	<!-- <section class="panel-body bg-white m-t-md">
 		<div class="form-group clearfix">
         	<label class="label-control">尽调报告:</label>
@@ -137,12 +137,12 @@
     	<div class="form-group clearfix">
         	<label class="label-control">信用评分:</label>
         	<span class="col-md-7 row text-content">{{memberRatingGrate}}</span>
-        	
+
     	</div>
 	</section> -->
 	<section class="m-t">
 		<div class="text-center">
-			<button class="btn-def" (click)="back()">返回</button>
+			<button class="btn-def" (click)="back()">返回<i class="fa fa-arrow-circle-o-left"></i></button>
 		</div>
 	</section>
 

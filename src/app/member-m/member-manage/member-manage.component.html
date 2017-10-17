@@ -1,23 +1,24 @@
 <div class="page-location">
-  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
-  <a class="page-location-item active">会员管理</a>
+  <a class="h4 pad-r-xs font-bold">会员管理</a>
+<!--  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">会员管理</a>-->
 </div>
 <div class="wrapper ">
-  <div class="wrapper bg-white clearfix form-inline">
+  <div class="mar-b-sm clearfix form-inline">
     <div class="form-group">
-      <label for="appId">归属渠道:</label>
+      <label >归属渠道：</label>
       <select class="form-control" name="appId" [(ngModel)]="appId">
       	<option  [ngValue]="item.resourceId" *ngFor="let item of appIdList">{{item.resourceName}}</option>
       </select>
     </div>
     <div class="form-group">
-      <label for="memberType">类别:</label>
+      <label >类别：</label>
       <select class="form-control" name="memberType" [(ngModel)]="memberType">
       	<option [ngValue]="item.value" *ngFor="let item of memberTypeList">{{item.label}}</option>
       </select>
     </div>
     <div class="form-group">
-    	<label >会员名称:</label>
+    	<label >会员名称：</label>
     	<input type="text" name="memberName" [(ngModel)]="memberName" class="form-control">
     </div>
     <div class="form-group">
@@ -25,21 +26,26 @@
     </div>
   </div>
   <div>
-    <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading">
-      <p-column field='companyName' header='会员名称'></p-column>
-      <p-column field='prmResourceRegister.resourceName' header='归属渠道'></p-column>
-      <p-column field='memberTypeDic' header='类别'></p-column>
-      <p-column field='memberRating' header='评定等级' styleClass="text-center"></p-column>
-      <p-column field='eaccountDic' header='电子账户'></p-column>
-      <p-column field='serviceMan' header='服务经理'></p-column>
-      <p-column field='createTime' header='创建日期' styleClass="text-center"></p-column>
-      <p-column field='' header='操作' >
-      	<ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
-          <div class="text-center">
+    <p-dataTable  [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading"
+                 scrollable="true" scrollHeight="360px">
+      <p-column field='companyName' header='会员名称' [style]="{'width':'200px'}"></p-column>
+      <p-column field='prmResourceRegister.resourceName' header='归属渠道' [style]="{'width':'150px'}"></p-column>
+      <p-column field='memberTypeDic' header='类别' styleClass="text-center" [style]="{'width':'120px'}"></p-column>
+      <p-column field='memberRating' header='评定等级' styleClass="text-center" [style]="{'width':'100px'}"></p-column>
+      <p-column field='eaccountDic' header='电子账户' [style]="{'width':'150px'}"></p-column>
+      <p-column field='serviceMan' header='服务经理'styleClass="text-center" [style]="{'width':'120px'}"></p-column>
+      <p-column  header='创建日期' styleClass="text-center" [style]="{'width':'110px'}">
+        <ng-template let-operation="rowData" pTemplate="body">
+          <div>{{operation.createTime|date:'yyyy-MM-dd'}}
+          </div>
+        </ng-template>
+      </p-column>
+      <p-column field='' header='操作'[style]="{'width':'180px'}" >
+      	<ng-template let-operation="rowData" pTemplate="body">
+          <div>
             <a class="table-btn text-info" (click)="detail(operation)">详情</a>
             <a class="table-btn text-info" (click)="getModalList(operation)">授信额度</a>
             <a *ngIf="authRole.roleIn(['008'])" class="table-btn text-info" (click)="changeManage(operation)">变更</a>
-    
           </div>
         </ng-template>
       </p-column>
@@ -61,8 +67,9 @@
   </modal-header>
   <modal-body>
     <div>
-      <p-dataTable tableStyleClass="table-style" [value]="modalDataList"   emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="modalListLoading" >
-        
+      <p-dataTable tableStyleClass="table-style" [value]="modalDataList"   emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="modalListLoading"
+                   >
+
         <p-column field="" header="产品">
           <ng-template let-productName="rowData" pTemplate="body" >
             <div [class.lineThrough]='productName.lineThrough'>
@@ -114,27 +121,27 @@
         </p-column> -->
         <p-column field="" header="操作" *ngIf="authRole.roleIn(['007'])">
         	<ng-template let-operation="rowData" pTemplate="body">
-        		<div class="text-center">
-              <button class="btn btn-info" *ngIf="!operation.lineThrough" (click)='checkApplyExist(1,operation)'>重新授信</button>
-              <button class="btn btn-info" *ngIf="operation.lineThrough" (click)='checkApplyExist(1,operation)'>添加</button>   
+        		<div class="table-btn-group">
+              <button class="table-btn" *ngIf="!operation.lineThrough" (click)='checkApplyExist(1,operation)'>重新授信</button>
+              <button class="table-btn" *ngIf="operation.lineThrough" (click)='checkApplyExist(1,operation)'>添加</button>
             </div>
         	</ng-template>
         </p-column>
         <p-footer>
         <div class="clearfix">
-        	<div class="pull-left">
+        	<div class="pull-left form-control-static no-b-padding">
         		<span>授信总额(元):{{totalCreditValue | yuanFormat}}</span>
         		<span class="m-l-md">可用总额(元):{{totalCreditBanlance | yuanFormat}}</span>
         	</div>
           <div class="pull-right">
-           	<a class="text-info" (click)="goToNew()" *ngIf="authRole.roleIn(['007'])" >添加</a>
+           	<a class="btn btn-default-dk btn-sm" (click)="goToNew()" *ngIf="authRole.roleIn(['007'])" ><i class="fa fa-plus"></i>添加</a>
           </div>
         </div>
       </p-footer>
       </p-dataTable>
     </div>
   </modal-body>
-  <modal-footer>
+  <modal-footer styleClass="no-t-padding">
     <button class="btn btn-default" (click)="closeModal()">关闭</button>
   </modal-footer>
 </modal>
@@ -147,19 +154,21 @@
     <h4 class="modal-title">变更服务经理</h4>
   </modal-header>
   <modal-body>
-    <div class="">
-      <div class="col-md-12">
-        <label for="" class="col-md-2">会员名称:</label>
-        <div class="col-md-8">
+    <div class="form-horizontal form-label-7">
+      <div class="form-group no-l-margin no-r-margin">
+        <label  class="control-label">会员名称：</label>
+        <span class="form-control-static">
           {{modalMemberName}} ({{modalMemberId}})
-        </div>
+        </span>
       </div>
-      <div class="col-md-12">
-        <label for="" class="col-md-2">来源渠道:</label>
-        <div class="col-md-8">
+      <div class="form-group no-l-margin no-r-margin">
+        <label  class="control-label">来源渠道：</label>
+        <span class="form-control-static">
           {{modalAppName}}
-        </div>
+        </span>
       </div>
+      </div>
+    <div>
       <div class="col-md-12 b text-2x wrapper-lg">
         <div class="col-md-4 text-center">
           {{modalServiceManO}}
@@ -175,7 +184,7 @@
       </div>
     </div>
   </modal-body>
-  <modal-footer>
+  <modal-footer styleClass="no-t-padding">
     <button class="btn btn-info" [disabled]="!form.valid" type="submit" >确定</button>
 
     <button class="btn btn-default" type="button" (click)="closeModal()">关闭</button>

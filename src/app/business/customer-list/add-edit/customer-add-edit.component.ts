@@ -37,6 +37,7 @@ export class CustomerAddEditComponent implements OnInit{
 	licenceNum;	//	营业执照号
 	status;	//		状态（0：正常；1：认证申请；-1：不需要跟踪）
 	statusDic;	//	状态，中文
+	remark
 
 	province:string;
 	provinceList;
@@ -54,13 +55,26 @@ export class CustomerAddEditComponent implements OnInit{
 		this.inputSelect("guest_status")
 			.then(res=>{
 				this.guest_status=res.body.records
-				let index
-				this.guest_status.forEach((e,i)=>{
-					if (e.value=="1") {
-						index=i
+				let index1
+				let index2
+				this.guest_status=this.guest_status.filter(item=>{
+					if ((item.value!=="1")&&(item.value!=="2")) {
+						return true
 					}
 				})
-				this.guest_status.splice(index,1)
+				console.log(this.guest_status)
+				// this.guest_status.forEach((e,i)=>{
+				// 	if (e.value=="1") {
+				// 		index1=i
+				// 	}
+				// 	if (e.value=="2") {
+				// 		index2=i
+				// 	}
+				// })
+				// this.guest_status.splice(index1,1)
+				// this.guest_status.splice(index2,1)
+				// console.log(this.guest_status)
+				// console.log(index1+index2)
 
 			})
 			.catch(res=>{
@@ -130,7 +144,10 @@ export class CustomerAddEditComponent implements OnInit{
 
 		}else{
 			this.ifEdit=false;
+			this.status="0"
 		}
+
+
 	}
 
 	//下拉
@@ -205,7 +222,7 @@ export class CustomerAddEditComponent implements OnInit{
 			this.linkName=res.body.linkName;	//	联系人
 			this.linkMobile=res.body.linkMobile;	//	联系人-手机
 			this.linkJob=res.body.linkJob;	//		联系人职位
-
+			this.remark=res.body.remark
 			//处理公司地址
 
 			if (res.body.companyAddress) {
@@ -252,7 +269,8 @@ export class CustomerAddEditComponent implements OnInit{
 			linkMobile:this.linkMobile,	//	联系人-手机
 			linkJob:this.linkJob,	//		联系人职位
 			companyAddress:companyAddress,
-			guestId:this.route.params['value']['id']
+			guestId:this.route.params['value']['id'],
+			remark:this.remark
 		}
 
 		this.addEditService

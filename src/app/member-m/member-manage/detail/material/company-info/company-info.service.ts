@@ -145,6 +145,23 @@ export class CompanyInfoService {
 		})
 	}
 
+	//获取账户类型
+	getAccTypeList():Promise<any>{
+		return this.myHttp.get({
+			api:this.myHttp.api.getDictList,
+			query:{
+				type:'bank_card_type'
+			}
+		}).toPromise().then(res=>{
+			let data=res
+			if (data.status==200) {
+				return Promise.resolve(data)
+			}else{
+				return Promise.reject(data)
+			}
+		})
+	}
+
 	//四个保存编辑
 	saveCompanyBorrower(data:Part1Data):Promise<any>{
 		return this.myHttp.post({
@@ -188,6 +205,8 @@ export class CompanyInfoService {
 			
 		})
 	}
+
+	//银行卡编辑部分的接口
 	saveCompanyBankCard(data:Part4Data):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveCompanyBankCard,
@@ -203,6 +222,52 @@ export class CompanyInfoService {
 		})
 	}
 
+	getBanks(keyword):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.getBanks,
+			query:{
+				keyword:keyword
+			}
+		}).toPromise().then(res=>{
+			if (res.status==200) {
+				return Promise.resolve(res)
+			}else{
+				return Promise.reject(res)
+			}
+		})
+	}
+
+	getSubbankList(bankName,subbank):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.getBanks,
+			query:{
+				name:bankName,
+				subbank:subbank
+			}
+		}).toPromise().then(res=>{
+			if (res.status==200) {
+				return Promise.resolve(res)
+			}else{
+				return Promise.reject(res)
+			}
+		})
+	}
+
+	updateApply(memberId,companyBankCard:any[]):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.getBanks,
+			query:{
+				memberId:memberId,
+				companyBankCardVos:companyBankCard
+			}
+		}).toPromise().then(res=>{
+			if (res.status==200) {
+				return Promise.resolve(res)
+			}else{
+				return Promise.reject(res)
+			}
+		})
+	}
 
 
 }

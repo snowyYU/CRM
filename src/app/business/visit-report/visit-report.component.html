@@ -39,20 +39,20 @@
     </form>
   </div>
   <div>
-    <p-dataTable  [value]="dateList" emptyMessage="{{loading?'':'暂无数据'}}" [loading]="loading"
-                 scrollable="true" scrollHeight="400px">
-      <p-column field="serial" header="序号" styleClass="text-center" [style]="{'width':'100px'}"></p-column>
+    <p-dataTable  [value]="dateList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading"
+                 scrollable="true" scrollHeight="360px">
+      <!--<p-column field="serial" header="序号" styleClass="text-center" [style]="{'width':'100px'}"></p-column>-->
       <p-column field="guestName" header="客户名称" [style]="{'width':'200px'}"></p-column>
       <p-column field="visitDate" header="拜访日期" styleClass="text-center" [style]="{'width':'150px'}"></p-column>
       <p-column field="visitWhatDic" header="拜访目的" [style]="{'width':'150px'}"></p-column>
-      <p-column field="serviceMan" header="服务经理" styleClass="text-center" [style]="{'width':'150px'}"></p-column>
-      <p-column field="remark" header="备忘录" [style]="{'width':'360px'}">
-        <ng-template let-operation="rowData" pTemplate="body" >
-          <div>
-            {{operation.remark | digestContent:20}}
-          </div>
-        </ng-template>
-      </p-column>
+      <p-column field="serviceMan" header="服务经理"  [style]="{'width':'120px'}"></p-column>
+      <p-column field="remark" header="备忘录" [style]="{'width':'320px'}">
+         <ng-template let-operation="rowData" pTemplate="body" >
+           <div textMaxLength="300px">
+             {{operation.remark}}
+           </div>
+         </ng-template>
+       </p-column>
       <p-column field="color" header="操作" [style]="{'width':'150px'}">
         <ng-template let-operation="rowData" pTemplate="body" >
           <div >

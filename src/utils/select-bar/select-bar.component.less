@@ -1,0 +1,32 @@
+.select-bar{
+  position: relative;
+  overflow-y: visible;
+}
+.drop-down-list{
+  width: 100%;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  z-index: 2;
+  min-width:200px;
+}
+.drop-down-list /deep/ ul{
+  border:1px solid #ddd;
+  background-color: #fff;
+  max-height: 240px;
+  overflow-y: auto;
+}
+.drop-down-list /deep/ ul li{
+  padding:6px 10px;
+  cursor: pointer;
+}
+.drop-down-list /deep/ ul li:hover{
+  background-color: #fafafa;
+}
+.transparent{
+  position:absolute;
+  opacity: 0;
+  left: 0;
+  top:0;
+  z-index:-1;
+}

@@ -16,15 +16,16 @@
     </ul>
     <div class="tab-content">
       <div class="tab-pane active">
-        <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'暂无数据'}}" [loading]="loading">
+        <p-dataTable  [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading"
+                     scrollable="true" scrollHeight="360px">
 
-          <p-column field="authId" header="申请ID"></p-column>
-          <p-column field="companyName" header="客户名称"></p-column>
-          <p-column field="companyTypeDic" header="类别"></p-column>
-          <p-column field="serviceMan" header="服务经理"></p-column>
-          <p-column field="statusDic" header="状态"></p-column>
-          <p-column field="createTime" header="申请时间"></p-column>
-          <p-column field="ooo" header="操作">
+          <p-column field="authId" header="申请ID" [style]="{'width':'150px'}"></p-column>
+          <p-column field="companyName" header="客户名称" [style]="{'width':'200px'}"></p-column>
+          <p-column field="companyTypeDic" header="类别" [style]="{'width':'100px'}"></p-column>
+          <p-column field="serviceMan" header="服务经理" [style]="{'width':'120px'}"></p-column>
+          <p-column field="statusDic" header="状态" [style]="{'width':'150px'}" styleClass="text-center"></p-column>
+          <p-column field="createTime" header="申请时间" styleClass="text-center" [style]="{'width':'200px'}"></p-column>
+          <p-column field="ooo" header="操作" [style]="{'width':'100px'}">
             <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
               <div class="text-center">
                 <a class="table-btn text-info" (click)='detail(operation)'>查看</a>

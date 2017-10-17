@@ -1,0 +1,11 @@
+<div (click)="stopProp($event)" class="select-bar{{styleClass!==undefined?' '+styleClass:''}}" >
+  <div  [class.transparent]="!showValue" #valueWrap>
+    <ng-content select="input[data-type=value]"></ng-content>
+  </div>
+  <div [class.transparent]="!showKeyword" #kwWrap>
+    <ng-content select="input[data-type=keyword]"></ng-content>
+  </div>
+  <div *ngIf="showList" class="drop-down-list" #listWrap>
+    <ng-content select="ul"></ng-content>
+  </div>
+</div>

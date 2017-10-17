@@ -1,64 +1,63 @@
 <div class="page-location">
+  <a class="h4 pad-r-xs font-bold">资料变更详情</a>
   <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">资料变更审核<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">详情</a>
 </div>
 <div class="wrapper">
   <form #form>
-    <section >
+    <section class="mar-b-sm">
       <div class="clearfix ">
         <div class="col-md-6">
-          <label class="label-control label-special-w" for="geustName">变更申请ID:</label>
-          <div class="col-md-8 m-t-xs">
+          <label class="label-control label-special-w" >变更申请ID:</label>
+          <div class="col-md-8 m-t-xs text-content">
             {{updateApplyId}}
           </div>
         </div>
         <div class="col-md-6 ">
           <label class="label-control label-special-w">申请时间:</label>
-          <div class="col-md-8 m-t-xs">
+          <div class="col-md-8 m-t-xs text-content">
             {{createTime}}
           </div>
         </div>
       </div>
     </section>
-    <section class="wrapper bg-white">
+    <section class="wrapper group mar-b-sm">
       <div class="form-group clearfix row">
         <div class="col-md-6">
-          <label class="label-control label-special-w" for="geustName">客户名称:</label>
-          <div class="col-md-8 m-t-xs">
+          <label class="label-control label-special-w" >客户名称:</label>
+          <div class="col-md-8 m-t-xs text-content">
             {{memberName}}
           </div>
         </div>
         <div class="col-md-6 ">
           <label class="label-control label-special-w">状态:</label>
-          <div class="col-md-8 m-t-xs">
+          <div class="col-md-8 m-t-xs text-content">
             {{statusDic}}
           </div>
         </div>
       </div>
       <div class="form-group clearfix">
         <label class="label-control label-special-w">归属渠道:</label>
-        <div class="col-md-4 m-t-xs">
+        <div class="col-md-4 m-t-xs text-content">
           {{appName}}
         </div>
       </div>
       <div class=" clearfix">
-        <label class="label-control label-special-w" for="geustName">服务经理:</label>
-        <div class="col-md-4 m-t-xs">
+        <label class="label-control label-special-w" >服务经理:</label>
+        <div class="col-md-4 m-t-xs text-content">
           {{serviceMan}}
         </div>
       </div>
     </section>
-    <section class="wrapperForTwo ">
-      <div class="p-t col-md-6 bg-white wrapperTwoLeft">
-        <div class="sec-header clearfix m-t wrapper-sm">
-          <div>原有资料</div>
-        </div>
+    <section class="wrapperForTwo clearfix">
+      <div class="group col-md-6  wrapperTwoLeft pad-def" style="min-height: 267px;">
+        <div class="group-title">变更前</div>
         <!-- 变更手机号 -->
         <div *ngIf="changeType==1">
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">原手机号:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">手机号:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{oldPhome}}
             </div>
           </div>
@@ -66,84 +65,81 @@
         <!-- 变更银行卡 -->
         <div *ngIf="changeType==2">
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">原有银行卡号:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">银行卡号:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{companyBankCard.cardNo}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">开户名:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">开户名:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{companyBankCard.cardNo}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">开户行:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">开户行:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{companyBankCard.bankName}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">支行名称:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">支行名称:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{companyBankCard.subbankName}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">银行卡类型:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">银行卡类型:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{companyBankCard.typeDic}}
             </div>
           </div>
         </div>
         <!-- 新增银行卡 -->
-        <div *ngIf="changeType==3">
+        <div *ngIf="changeType==3" class="text-center text-disabled" style="line-height: 220px">
           无
         </div>
         <!-- 删除银行卡 -->
         <div *ngIf="changeType==4">
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">原有银行卡号:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">银行卡号:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{companyBankCard.cardNo}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">开户名:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">开户名:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{companyBankCard.cardNo}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">开户行:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">开户行:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{companyBankCard.bankName}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">支行名称:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">支行名称:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{companyBankCard.subbankName}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">银行卡类型:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">银行卡类型:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{companyBankCard.typeDic}}
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-6 bg-white wrapperTwoRight">
-        <div class="sec-header clearfix m-t wrapper-sm">
-          <div>新资料</div>
-          
-        </div>
+      <div class="group col-md-6 wrapperTwoRight pad-def" style="min-height: 267px;">
+        <div class="group-title">变更后</div>
         <!-- 变更手机号 -->
         <div *ngIf="changeType==1">
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">新手机号:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">手机号:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{newPhone}}
             </div>
           </div>
@@ -151,32 +147,32 @@
         <!-- 变更银行卡 -->
         <div *ngIf="changeType==2">
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">新银行卡号:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">银行卡号:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{newCardNo}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">开户名:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">开户名:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{newCardName}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">开户行:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">开户行:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{newBankName}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">支行名称:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">支行名称:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{newSubbankName}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">银行卡类型:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">银行卡类型:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{newTypeDic}}
             </div>
           </div>
@@ -184,32 +180,32 @@
         <!-- 新增银行卡 -->
         <div *ngIf="changeType==3">
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">新银行卡号:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">银行卡号:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{newCardNo}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">开户名:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">开户名:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{newCardName}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">开户行:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">开户行:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{newBankName}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">支行名称:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">支行名称:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{newSubbankName}}
             </div>
           </div>
           <div class="form-group clearfix">
-            <label for="" class="label-control label-special-w">银行卡类型:</label>
-            <div class="col-md-8 m-t-xs">
+            <label  class="label-control label-special-w">银行卡类型:</label>
+            <div class="col-md-8 m-t-xs text-content">
             {{newTypeDic}}
             </div>
           </div>
@@ -220,10 +216,10 @@
         </div>
       </div>
     </section>
-    <section class="wrapper bg-white">
+    <section class="wrapper group">
       <!-- <div class="form-group clearfix row">
         <div class="col-md-6">
-          <label class="label-control label-special-w" for="geustName">审核人:</label>
+          <label class="label-control label-special-w" >审核人:</label>
           <div class="col-md-8 m-t-xs">
             {{auditBy}}
           </div>
@@ -240,16 +236,16 @@
         <div class="col-md-8 m-t-xs">
           <div *ngIf="!isCheck">{{applyMessage}}</div>
           <textarea name="applyMessage" class="form-control" cols="30" rows="4" *ngIf="isCheck" [(ngModel)]="applyMessage"></textarea>
-          
+
         </div>
       </div>
-      
+
     </section>
     <section class="wrapper">
-      <div class="col-md-12 text-center">
-        <a (click)="back()">返回</a>
-        <button class="btn" *ngIf="isCheck" (click)="submit(-1)">拒绝</button>
-        <button class="btn btn-info" *ngIf="isCheck" (click)="submit(2)">通过</button>
+      <div class="text-center">
+        <a (click)="back()" class="btn-def mar-r-xs" >返回<i class="fa fa-arrow-circle-o-left"></i></a>
+        <button class="btn-def btn-def-danger mar-r-xs" *ngIf="isCheck" (click)="submit(-1)">拒绝<i class="fa fa-ban"></i></button>
+        <button class="btn-def btn-def-success" *ngIf="isCheck" (click)="submit(2)">通过<i class="fa fa-check-circle-o"></i></button>
       </div>
     </section>
   </form>
