@@ -15,6 +15,7 @@ export class SignatureComponent implements OnInit {
 	memberNameQ
 	type:string
 	openVisiable:boolean=false
+	secondShow:boolean=false
 
 	memberId							//会员id 
 	companyName							//会员名称
@@ -150,6 +151,7 @@ export class SignatureComponent implements OnInit {
 	getDetailData(){
 		this.eleA=false
 		this.person=false
+		this.secondShow=true
 		this.sig.getDetailData(this.memberNameQ)
 			.then(res=>{
 				this.handleData(res)

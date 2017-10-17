@@ -13,15 +13,17 @@
 
             <div class="signin-baneners">
                 <a>
-                    <img src="assets/img/banner/banner.png"/>
+                    <img src="assets/img/banner/banner_crm.png"/>
                 </a>
                 <div class="signin-banener-nav">
-                    <a class="signin-banener-nav-item"></a>
-                    <a class="signin-banener-nav-item"></a>
-                    <a class="signin-banener-nav-item"></a>
-                    <a class="signin-banener-nav-item active" title="客户关系管理系统"></a>
-                    <a class="signin-banener-nav-item"></a>
-                    <a class="signin-banener-nav-item"></a>
+                  <a class="signin-banener-nav-item"
+                     *ngFor="let banner of banners"
+                     [href]="banner.link"
+                     [title]="banner.title"
+                     [ngClass]="{'active':banner.active}"
+                  ></a>
+                  <a class="signin-banener-nav-item"></a>
+                  <a class="signin-banener-nav-item"></a>
                 </div>
             </div>
             <div class="signin-form">
