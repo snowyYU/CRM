@@ -6,14 +6,14 @@
 <div class="wrapper-md">
 <!-- <form #form="ngForm" (ngSubmit)="openInGold()"> -->
 <form #form="ngForm" (ngSubmit)="openAcc()">
-    <section class="wrapper bg-white clearfix form-inline">
+    <section class="wrapper clearfix form-inline">
         <input type="text " name="memberNameQ" class="form-control m-l-md" [(ngModel)]="memberNameQ" placeholder="会员名|会员id">
-        <button type="button" class="btn btn-info" (click)="getDetailData()" [disabled]="!memberNameQ">查询</button>
+        <button type="button" class="btn-def" (click)="getDetailData()" [disabled]="!memberNameQ">查询<i class="fa fa-search"></i></button>
         <!-- <button type="button" class="btn pull-right m-l-md" (click)="eleSignature()">电子签章</button>
         <button type="button" class="btn btn-info pull-right">开户</button> -->
         
     </section>
-    <section class="wrapper bg-white" *ngIf="memberName">
+    <section class="wrapper border-content" *ngIf="memberName">
         <div class="row form-group">
             <div class="col-md-6">
                 <label class="control-label m-l-md">会员名称:</label>
@@ -34,7 +34,7 @@
         </div>
     </section >
     <!-- 未开户的状态 -->
-    <section class="wrapper bg-white m-t-md " *ngIf="isOpenAcctDic=='未开户'">
+    <section class="wrapper border-content m-t-md " *ngIf="isOpenAcctDic=='未开户'">
         <div class="form-group clearfix">
             <label class="control-label m-l-md">开户行:</label>
             <span>{{bankName}}</span>
@@ -55,7 +55,7 @@
         </div>
     </section>
     <!-- 已开户的状态 -->
-	<section class="wrapper bg-white m-t-md clearfix" *ngIf="isOpenAcctDic=='已开户'">
+	<section class="wrapper border-content m-t-md clearfix" *ngIf="isOpenAcctDic=='已开户'">
         <div class="form-group">
             <label class="control-label m-l-md">二级账户:</label>
             <span>{{bankAccount}}</span>
@@ -81,7 +81,7 @@
         
     </section>
 	<!-- 未开户的状态 -->
-	<section class="wrapper bg-white clearfix m-t-md" *ngIf="isOpenAcctDic=='未开户'">
+	<section class="wrapper border-content clearfix m-t-md" *ngIf="isOpenAcctDic=='未开户'">
 		<div class="form-group clearfix">
 			<label class="control-label m-l-md m-t-xs">配置账户:</label>
 			<div class="col-md-7 p-l-none">
@@ -158,7 +158,7 @@
     </div>
 	</section>
     <!-- 已开户的状态 -->
-    <section class="wrapper bg-white m-t-md clearfix" *ngIf="isOpenAcctDic=='已开户'">
+    <section class="wrapper border-content m-t-md clearfix" *ngIf="isOpenAcctDic=='已开户'">
         <div class="">
             <label class="control-label m-l-md m-t-xs">三级账户:</label>
             <div class="col-md-7">

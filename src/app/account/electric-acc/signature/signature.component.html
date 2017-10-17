@@ -5,14 +5,14 @@
 </div>
 <div class="wrapper-md">
 <form #form="ngForm" ngSubmit="openAcc()">
-    <section class="wrapper bg-white clearfix form-inline">
+    <section class="wrapper clearfix form-inline">
         <input type="text " name="memberNameQ" class="form-control m-l-md" [(ngModel)]="memberNameQ" placeholder="会员名|会员id">
-        <button type="button" class="btn btn-info" (click)="getDetailData()" [disabled]="!memberNameQ">查询</button>
+        <button type="button" class="btn-def" (click)="getDetailData()" [disabled]="!memberNameQ">查询<i class="fa fa-search"></i></button>
        <!--  <button type="button" class="btn btn-info pull-right m-l-md" >电子签章</button>
         <button type="button" class="btn  pull-right" (click)="eleAcc()">开户</button> -->
         
     </section>
-    <section class="wrapper bg-white" *ngIf="companyName">
+    <section class="wrapper border-content" *ngIf="companyName">
         <div class="row form-group">
             <div class="col-md-6">
                 <label class="control-label m-l-md">会员名称:</label>
@@ -33,7 +33,7 @@
         </div>
     </section >
     <!-- 已开通未开通的状态 -->
-    <section class="wrapper bg-white m-t-md " *ngIf="companyName">
+    <section class="wrapper border-content m-t-md " *ngIf="companyName">
         <div class="row form-group">
             <div class="col-md-6 m-t-xs">
                 <label class="control-label m-l-md">公司类型:</label>
@@ -71,7 +71,7 @@
     </section>
    
 	<!-- 已开通的状态 -->
-	<section class="wrapper bg-white clearfix m-t-md" *ngIf="signatureUserStatusDit=='已开通'">
+	<section class="wrapper border-content clearfix m-t-md" *ngIf="signatureUserStatusDit=='已开通'">
     <div class="row">
         <div class="col-md-6 m-t-xs">
             <label class="control-label m-l-md">公司签章:</label>
@@ -88,7 +88,7 @@
     </div>
 	</section>
     <!-- 未开通的状态 -->
-    <section class="wrapper bg-white m-t-md clearfix" *ngIf="signatureUserStatusDit=='未开通'">
+    <section class="wrapper border-content m-t-md clearfix" *ngIf="signatureUserStatusDit=='未开通'">
         <div class="row">
         <div class="col-md-6 m-t-xs">
             <label class="control-label m-l-md">电子合同章:</label>
