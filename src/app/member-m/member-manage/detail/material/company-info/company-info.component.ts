@@ -681,7 +681,50 @@ export class CompanyInfoComponent implements OnInit {
 
 	}
 
+	deleteBankCard(index){
+		this.companyBankCardVos.splice(index,1)
+		console.log(this.companyBankCardVos)
+	}
+
+	
 
 
+}
+
+
+class BankCardInfo{
+	
+	constructor(argument) {
+		
+	}
+
+	bankName
+	subBankName
+	bankKey
+	subBankKey
+	bankList
+	subBankList
+
+
+	clearBanks(){
+		this.bankList=[]
+		
+	}
+
+	clearSubBanks(){
+		this.subBankList=[]
+	}
+
+	queryBanks(key){
+		this.bankList
+	}
+
+	querySubBanks(key){
+
+	}
+
+	setBankKeyword(){
+
+	}
 
 }
