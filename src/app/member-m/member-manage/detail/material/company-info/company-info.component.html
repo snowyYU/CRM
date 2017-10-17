@@ -1,8 +1,10 @@
 <div class="wrapper">
   <section class="text-center">
-    <button class="btn btn-info">企业基本信息</button>
-    <button class="btn" (click)="runSituation()">运营状况</button>
-    <button class="btn" (click)="riskM()">风控补充</button>
+    <div class="btn-group">
+      <button class="btn btn-info">企业基本信息</button>
+      <button class="btn btn-default" (click)="runSituation()">运营状况</button>
+      <button class="btn btn-default" (click)="riskM()">风控补充</button>
+    </div>
   </section>
   <section class="clearfix">
     <form #part1F="ngForm" (ngSubmit)='save1()'>
@@ -12,15 +14,15 @@
         <i class="fa fa-caret-down text-lg" *ngIf="part1S" (click)="part1S=!part1S"></i>
         <span class="m-l-sm">(注:申请人需为法定代表或直接控制人，占股不得少于20%)</span>
         <a class="text-info pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</a>
-        <button type="submit" class="btn btn-info pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
-        <button type="button" class="btn pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
+        <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
       </div>
       <!-- <div class="col-md-12 padder-v b-b l-h-2x">借款人信息 <span>(注:申请人需为法定代表或直接控制人，占股不得少于20%)</span>
       <button type="button" class="btn pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
     </div> -->
-      <div class="padder-v clearfix col-md-12" *ngIf="!part1&&part1S">
+      <div class="padder-v  col-md-12" *ngIf="!part1&&part1S">
         <div class="col-md-12 border-content ">
           <div class="form-group clearfix m-t-md">
             <div class="col-md-6">
@@ -355,7 +357,7 @@
               </div>
               <div class="form-group clearfix">
                 <div class="col-md-6 p-r-none">
-                  
+
                   <div class="col-md-7">
                     <div *ngIf="attachment['0110']">
                       <a class="text-info" (click)="show('0110',$event)">户口本</a>
@@ -793,8 +795,8 @@
         <i class="fa fa-caret-right text-lg" *ngIf="!part2S" (click)="part2S=!part2S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part2S" (click)="part2S=!part2S"></i>
         <a class="text-info pull-right" *ngIf="!part2" (click)="edit('part2')">编辑</a>
-        <button type="submit" class="btn btn-info pull-right" *ngIf="part2&&part2S" [disabled]="!part2F.form.valid">保存</button>
-        <button type="button" class="btn pull-right m-r-xs" *ngIf="part2&&part2S" (click)="cancel('part2')">取消</button>
+        <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part2&&part2S" [disabled]="!part2F.form.valid">保存</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part2&&part2S" (click)="cancel('part2')">取消</button>
       </div>
       <!-- <div class="col-md-12 padder-v b-b l-h-2x">公司信息
       <button type="button" class="btn pull-right" *ngIf="!part2" (click)="edit('part2')">编辑</button>
@@ -1336,8 +1338,8 @@
         <i class="fa fa-caret-right text-lg" *ngIf="!part3S" (click)="part3S=!part3S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part3S" (click)="part3S=!part3S"></i>
         <a class="text-info pull-right" *ngIf="!part3" (click)="edit('part3')">编辑</a>
-        <button type="submit" class="btn btn-info pull-right" *ngIf="part3&&part3S" [disabled]="!part3F.form.valid">保存</button>
-        <button type="button" class="btn pull-right m-r-xs" *ngIf="part3&&part3S" (click)="cancel('part3')">取消</button>
+        <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part3&&part3S" [disabled]="!part3F.form.valid">保存</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part3&&part3S" (click)="cancel('part3')">取消</button>
       </div>
       <!-- <div class="col-md-12 padder-v b-b l-h-2x">法人基本情况
       <button type="button" class="btn pull-right" *ngIf="!part3" (click)="edit('part3')">编辑</button>
@@ -1437,8 +1439,8 @@
         <i class="fa fa-caret-right text-lg" *ngIf="!part4S" (click)="part4S=!part4S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part4S" (click)="part4S=!part4S"></i>
         <a class="text-info pull-right" *ngIf="!part4" (click)="edit('part4')">编辑</a>
-        <button type="submit" class="btn btn-info pull-right" *ngIf="part4&&part4S" [disabled]="!part4F.form.valid">保存</button>
-        <button type="button" class="btn pull-right m-r-xs" *ngIf="part4&&part4S" (click)="cancel('part4')">取消</button>
+        <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part4&&part4S" [disabled]="!part4F.form.valid">保存</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part4&&part4S" (click)="cancel('part4')">取消</button>
       </div>
       <!-- <div class="col-md-12 padder-v b-b l-h-2x">银行信息
       <button type="button" class="btn pull-right" *ngIf="!part4" (click)="edit('part4')">编辑</button>
@@ -1508,7 +1510,7 @@
 
       <div class="col-md-12 padder-v" *ngIf="part4">
         <div class="clearfix border-content">
-          
+
         <label for="" class="control-label col-md-3 m-t">相关证照:</label>
 
 
@@ -1735,9 +1737,9 @@
       </div>
     </form>
   </section>
-  <section class="m-t text-center">
+  <section class="text-center">
     <div class="col-md-12">
-      <button class="btn-def m-b-md" (click)="back()">返回</button>
+      <button class="btn-def m-b-md" (click)="back()">返回<i class="fa fa-arrow-circle-o-left"></i></button>
     </div>
   </section>
 </div>

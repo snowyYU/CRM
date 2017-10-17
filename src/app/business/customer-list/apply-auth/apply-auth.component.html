@@ -13,12 +13,6 @@
           <span class="form-control-static">{{guestName}}</span>
         </div>
         <div class="form-group no-b-margin">
-          <label class="control-label">归属渠道：</label>
-          <span class="form-control-static">  {{appName}}</span>
-        </div>
-      </div>
-      <div class="col-md-6 form-horizontal form-label-10">
-        <div class="form-group">
           <label class="control-label pull-left required">类别：</label>
           <div class=" pull-left" style="width:175px;">
             <select name="memberType"  class="form-control" [(ngModel)]="memberType" required>
@@ -29,6 +23,12 @@
               <option [ngValue]="item.value" *ngFor="let item of typeList" >{{item.label}}</option>
             </select>
           </div>
+        </div>
+      </div>
+      <div class="col-md-6 form-horizontal form-label-10">
+        <div class="form-group">
+          <label class="control-label">归属渠道：</label>
+          <span class="form-control-static">  {{appName}}</span>
         </div>
         <div class="form-group no-b-margin">
           <label class="control-label">服务经理：</label>
@@ -146,18 +146,16 @@
               </div>
             </div>
           </div>
-          
-          
+
+
 
         </div>
 
          <!-- <div class="col-md-2 m-t-xs " *ngIf="item.isUploaded">
            <a (click)="delete()" class="text-danger">删除</a>
-
          </div> -->
          <!-- <div class="col-md-2 p-l-none" *ngIf="item.isUploaded==false">
           <div class="btn btn-info">上传<input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="item.uploader" multiple="multiple"/></div>
-
          </div> -->
 
 
@@ -201,14 +199,12 @@
                         <div class="btn btn-info btn-sm pos-rlt" *ngIf="item.uploader.queue[0]">重新上传
                           <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="item.uploader" />
                         </div>
-
                       </div>
                       <button type="button" class="btn btn-sm btn-danger" (click)="deleteFile(item)">删除</button>
                     </td>
                   </tr>
                 </tbody>
               </table>
-            
 
          </div> -->
        </div>
