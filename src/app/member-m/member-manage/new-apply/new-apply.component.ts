@@ -34,6 +34,8 @@ export class NewApplyComponent implements OnInit {
 	borrowHowlong		//借款周期
 	productRemark		//产品简介
 
+	checkApplyExist:boolean=false
+
 	constructor(
 		private route:ActivatedRoute,
 		private router:Router,
@@ -74,6 +76,7 @@ export class NewApplyComponent implements OnInit {
 	}
 
 	selectProduct(id){
+		this.checkApplyExist=false
 		this.productTypeName=this.newData[id].productTypeName
 		console.log(this.productTypeName)
 		console.log(this.newData)
@@ -82,6 +85,7 @@ export class NewApplyComponent implements OnInit {
 		this.productRemark=this.newData[id].productRemark		//产品简介
 		this.newApply.checkApplyExist(0,this.memberId,id)
 			.then(res=>{
+				this.checkApplyExist=true
 				console.log(res)
 			})
 			.catch(res=>{
@@ -91,6 +95,7 @@ export class NewApplyComponent implements OnInit {
 				})
 				this.productTypeName=""
 				this.productId=""
+				
 			})
 
 		this.newApply.getProductsParam(this.appId,id).then(res=>{
@@ -98,10 +103,6 @@ export class NewApplyComponent implements OnInit {
 			this.productDetailL=res.body.records
 
 		}).catch(res=>{
-				this.pop.error({
-					title:'错误提示',
-					text:res.message
-				})
 				this.productDetailL=[]
 			})
 

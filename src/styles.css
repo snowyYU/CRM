@@ -109,3 +109,8 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.ui-widget {
+    font-family: inherit;
+    font-size: 1em;
+}

@@ -27,17 +27,17 @@
         <div class="row form-group">
           <div class="col-md-6">
             <label class="control-label m-l-md">会员名称:</label>
-            <span *ngIf="memberName">{{memberName}}  ({{memberId}})</span>
+            <span class="text-content" *ngIf="memberName">{{memberName}}  ({{memberId}})</span>
           </div>
           <div class="col-md-6">
             <label class="control-label m-l-md">状态:</label>
-            <span [class.text-danger]="isOpenAcctDic=='未开户'">{{isOpenAcctDic}}</span>
+            <span class="text-content" [class.text-danger]="isOpenAcctDic=='未开户'">{{isOpenAcctDic}}</span>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <label class="control-label m-l-md">归属渠道:</label>
-            <span>{{appName}}</span>
+            <span class="text-content">{{appName}}</span>
           </div>
         </div>
       </section>
@@ -45,7 +45,7 @@
       <section class="wrapper border-content m-t-md " *ngIf="isOpenAcctDic=='未开户'">
         <div class="form-group clearfix">
           <label class="control-label m-l-md">开户行:</label>
-          <span>{{bankName}}</span>
+          <span class="text-content">{{bankName}}</span>
         </div>
         <div class="form-group form-inline pos-rlt">
           <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
@@ -65,21 +65,21 @@
         <div class="row form-group">
           <div class="col-md-6 m-t-xs">
             <label class="control-label m-l-md">二级账户:</label>
-            <span>{{bankAccount}}</span>
+            <span class="text-content">{{bankAccount}}</span>
           </div>
           <div class="col-md-6">
             <label class="control-label m-l-md">账户名称:</label>
-            <span>{{accountName}}</span>
+            <span class="text-content">{{accountName}}</span>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 m-t-xs">
             <label class="control-label m-l-md">开户行:</label>
-            <span>{{bankName}}</span>
+            <span class="text-content">{{bankName}}</span>
           </div>
           <div class="col-md-6">
             <label class="control-label m-l-md">账户类型:</label>
-            <span>{{accountTypeDic}}</span>
+            <span class="text-content">{{accountTypeDic}}</span>
           </div>
         </div>
       </section>
@@ -153,9 +153,9 @@
         </div>
       </section>
       <!-- 已开户的状态 -->
-      <section class="wrapper border-content m-t-md clearfix form-group" *ngIf="isOpenAcctDic=='已开户'">
+      <section class="wrapper group m-t-md clearfix form-group" *ngIf="isOpenAcctDic=='已开户'">
         <div class="">
-          <label class="control-label m-l-md m-t-xs">三级账户:</label>
+          <label class="group-title">三级账户</label>
           <div class="col-md-7">
             <table class="table text-center" border="1">
               <tbody>

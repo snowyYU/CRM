@@ -239,7 +239,7 @@ export class CompanyInfoService {
 
 	getSubbankList(bankName,subbank):Promise<any>{
 		return this.myHttp.post({
-			api:this.myHttp.api.getBanks,
+			api:this.myHttp.api.getSubbankList,
 			query:{
 				name:bankName,
 				subbank:subbank
@@ -255,7 +255,7 @@ export class CompanyInfoService {
 
 	updateApply(memberId,companyBankCard:any[]):Promise<any>{
 		return this.myHttp.post({
-			api:this.myHttp.api.getBanks,
+			api:this.myHttp.api.updateApply,
 			query:{
 				memberId:memberId,
 				companyBankCardVos:companyBankCard
