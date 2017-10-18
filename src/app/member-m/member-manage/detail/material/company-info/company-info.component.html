@@ -1453,36 +1453,34 @@
           </div>
           <!-- 编辑 -->
           <div *ngIf="part4_1">
-            <div class="col-md-12 border-content m-t padder-v" *ngFor="let item of companyBankCardVos;let i=index">
+            <div class="col-md-12 border-content m-t padder-v" *ngFor="let bankCard of companyBankCardDatas;trackBy:customTrackBy;let i=index">
               <div class="form-group clearfix ">
                 <div class="col-md-6">
                   <label for="" class="control-label">银行卡号:</label>
                   <div class="col-md-6 text-content">
-                    <input type="text" class="form-control" [name]="'bankInfoCardNo'+i" [(ngModel)]="item.cardNo">
+                    <input type="text" class="form-control" name="bankInfoCardNo_{{i}}" [(ngModel)]="bankCard.companyBankInfo.cardNo" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <label for="" class="control-label">账户类型:</label>
+                  <label for="" class="control-label">开户名:</label>
                   <div class="col-md-6 text-content">
-                    <select [name]="'bankInfoCardType'+i" class="form-control" [(ngModel)]="item.type">
-                      <option [value]="accT.value" *ngFor="let accT of accTypeList">{{accT.label}}</option>
-                    </select>
+                    <input type="text" class="form-control" name="bankInfoCardName_{{i}}" [(ngModel)]="bankCard.companyBankInfo.cardName" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
                   </div>
                 </div>
               </div>
-              <div class="clearfix">
+              <div class="clearfix form-group">
 
                 <!-- <select-bar #selectBar
-                        (onDropdown)="clearBanks();setBankKeyword(bankCardEditor.data.bankName);bankCardEditor.queryBanks()">
-                  <input [(ngModel)]="bankCardEditor.data.bankName" required name="bankName" class="form-control"
+                        (onDropdown)="bankCard.clearBanks();bankCard.queryBanks(bankCard.bankKey)">
+                  <input [(ngModel)]="bankCard.companyBankInfo.bankName" required name="bankName_{{i}}" class="form-control"
                          placeholder="请选择银行"
-                         [HTML5Validate]="[bankCardEditor.data.bankName==='','请选择银行！']" data-type="value"/>
-                  <input class="form-control" placeholder="银行关键字" [(ngModel)]="bankCardEditor.bankKeyword"
-                         name="bankKeyword"
-                         data-type="keyword" (keydown)="bankCardEditor.queryBanks()">
-                  <ul class="list" *ngIf="bankCardEditor.banks.length>0">
-                    <li *ngFor="let bk of bankCardEditor.banks"
-                        (click)="bankCardEditor.setSubBankName('');bankCardEditor.clearSubBanks();bankCardEditor.setBankName(bk.name);selectBar.dropup()">
+                         [HTML5Validate]="[bankCard.data.bankName==='','请选择银行！']" data-type="value"/>
+                  <input class="form-control" placeholder="银行关键字" [(ngModel)]="bankCard.bankKey"
+                         name="bankKeyword_{{i}}"
+                         data-type="keyword" (keydown)="bankCard.queryBanks()">
+                  <ul class="list" *ngIf="bankCard.bankList.length>0">
+                    <li *ngFor="let bk of bankCard.bankList"
+                        (click)="bankCard.subBankName='';bankCard.clearSubBanks();bankCard.bankName=bk.name;selectBar.dropup()">
                       {{bk.name}}
                     </li>
                   </ul>
@@ -1491,14 +1489,59 @@
 
                 <div class="col-md-6">
                   <label for="" class="control-label">银行名称:</label>
-                  <div class="col-md-6 text-content">{{item.bankName}}</div>
+                  <div class="col-md-6 text-content">
+                    <select-bar #selectBar
+                        (onDropdown)="bankCard.clearBanks();bankCard.queryBanks(bankCard.bankKey)">
+                      <input [(ngModel)]="bankCard.bankName" required name="bankName_{{i}}" class="form-control"
+                             placeholder="请选择银行"
+                             [HTML5Validate]="[bankCard.bankName==='','请选择银行！']" data-type="value" 
+                             [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
+                      <input class="form-control" placeholder="银行关键字" [ngModel]="bankCard.bankKey"
+                             name="bankKeyword_{{i}}"
+                             data-type="keyword" (ngModelChange)="bankCard.queryBanks($event)">
+                      <ul class="list" *ngIf="bankCard.bankList.length>0">
+                        <li *ngFor="let bk of bankCard.bankList"
+                            (click)="bankCard.subBankName='';bankCard.clearSubBanks();bankCard.bankName=bk.name;selectBar.dropup()">
+                          {{bk.name}}
+                        </li>
+                      </ul>
+                    </select-bar>
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <label for="" class="control-label">支行名称:</label>
-                  <div class="col-md-6 text-content">{{item.subbankName}}</div>
+                  <!-- <div class="col-md-6 text-content">{{item.subbankName}}</div> -->
+                  <div class="col-md-6 text-content">
+                    <select-bar #selectBar
+                        (onDropdown)="bankCard.clearSubBanks();bankCard.querySubBanks(bankCard.subBankKey)">
+                      <input [(ngModel)]="bankCard.subBankName" required name="subBankName_{{i}}" class="form-control"
+                             placeholder="请选择支行"
+                             [HTML5Validate]="[bankCard.subbankName==='','请选择支行！']" data-type="value" 
+                             [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
+                      <input class="form-control" placeholder="支行关键字" [ngModel]="bankCard.subBankKey"
+                             name="subBankKeyword_{{i}}"
+                             data-type="keyword" (ngModelChange)="bankCard.querySubBanks($event)">
+                      <ul class="list" *ngIf="bankCard.subBankList.length>0">
+                        <li *ngFor="let bk of bankCard.subBankList"
+                            (click)="bankCard.subBankName='';bankCard.clearSubBanks();bankCard.subBankName=bk.subbank;bankCard.companyBankInfo.lineNo=bk.lineno;selectBar.dropup()">
+                          {{bk.subbank}}
+                        </li>
+                      </ul>
+                    </select-bar>
+                  </div>
                 </div>
               </div>
-              <i class="glyphicon glyphicon-remove text-danger pos-abt delete-p" (click)="deleteBankCard(i)"></i>
+              <div class="clearfix ">
+                <div class="col-md-6">
+                  <label for="" class="control-label">账户类型:</label>
+                  <div class="col-md-6 text-content">
+                    <select name="banknfoCardType_{{i}}" class="form-control" [(ngModel)]="bankCard.accType" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
+                      <option [value]="accT.value" *ngFor="let accT of accTypeList">{{accT.label}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <i *ngIf="bankCard.companyBankInfo.authStatus!=0" class="glyphicon glyphicon-remove text-danger pos-abt delete-p" (click)="deleteBankCard(i)"></i>
             </div>
 
             <div class="col-md-12">

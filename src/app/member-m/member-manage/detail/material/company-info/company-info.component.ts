@@ -210,7 +210,10 @@ export class CompanyInfoComponent implements OnInit {
 	// 	法人姓名 companyLegalVo.legalPerson	 			法人身份证：	companyLegalVo.legalIdcard
 	// 	最高学历 companyLegalVo.legalDegree					婚姻状况	companyLegalVo.legalMarry
 	// 	联系手机 companyLegalVo.legalMobile
+	//这个为原始数据
 	companyBankCardVos:any[]
+	//这个用来存放处理后的数据
+	companyBankCardDatas:BankCardInfo[]=[]
 	// 银行信息：companyBankCardVos[]
 	// 	账户类型 companyBankCardVos[].typeDic		银行账号	companyBankCardVos[].cardNo
 	// 	银行名称 companyBankCardVos[].bankName		支行名称	companyBankCardVos[].subbankName
@@ -274,6 +277,7 @@ export class CompanyInfoComponent implements OnInit {
 	    this.uploaderFun('0502','uploader3_2')//银行卡		0502
 	    this.uploaderFun('0504','uploader3_3')//网银流水	0504
 	    
+
 
 
 
@@ -489,6 +493,16 @@ export class CompanyInfoComponent implements OnInit {
 		})
 		console.log(this.attachment)
 
+		// 放在这里处理银行卡数组数据，重新封装
+	    if (this.companyBankCardVos[0]) {
+	    	this.companyBankCardDatas=[]
+	    	this.companyBankCardVos.forEach(e=>{
+	    		this.companyBankCardDatas.push(new BankCardInfo(this.companyInfo,e))
+	    	})
+	    }
+
+
+
 	}
 
 	runSituation(){
@@ -536,6 +550,7 @@ export class CompanyInfoComponent implements OnInit {
 	cancel(part){
 		this[part]=!this[part]
 		//从编辑返回详情时刷新页面
+		this.companyBankCardDatas=[]
 		this.getDetailData()
 
 	}
@@ -646,7 +661,7 @@ export class CompanyInfoComponent implements OnInit {
 					title:'提示',
 					text:'保存成功'
 				})
-				this.cancel('part4')
+				this.cancel('part4_2')
 
 			})
 			.catch(res=>{
@@ -659,6 +674,43 @@ export class CompanyInfoComponent implements OnInit {
 
 	}
 
+	save5(){
+		let data=[]
+		if (this.companyBankCardDatas.length>0) {
+			this.companyBankCardDatas.forEach(e=>{
+				e.companyBankInfo.type=e.accType
+				e.companyBankInfo.bankName=e.bankName
+				e.companyBankInfo.subbankName=e.subBankName
+				if (!e.companyBankInfo.memberId) {
+					e.companyBankInfo.memberId=this.memberId
+				}
+				// if (!e.companyBankInfo.cardName) {
+				// 	e.companyBankInfo.cardName="卧槽"
+				// }
+
+				data.push(e.companyBankInfo)
+			})
+		}else{
+			return
+		}
+		console.log(this.companyBankCardDatas)
+		this.companyInfo.updateApply(this.memberId,data)
+			.then(res=>{
+				this.pop.info({
+					title:'提示',
+					text:'提交成功'
+				})
+				this.cancel('part4_1')
+			})
+			.catch(res=>{
+				this.pop.error({
+					title:'错误提示',
+					text:res.message
+				})
+			})
+	}
+
+
 	back(){
 		this.router.navigate(["memberM/memberManage/detail",this.memberId])
 	}
@@ -669,21 +721,17 @@ export class CompanyInfoComponent implements OnInit {
 		// 	账户类型 companyBankCardVos[].typeDic		银行账号	companyBankCardVos[].cardNo
 	// 	银行名称 companyBankCardVos[].bankName		支行名称	companyBankCardVos[].subbankName
 	// 	认证状态 companyBankCardVos[].authStatusDic		默认		companyBankCardVos[].isDefaultDic
-		let o={
-			type:"",
-			cardNo:"",
-			bankName:"",
-			subbankName:"",
-			authStatus:"",
-		}
+		let o= new BankCardInfo(this.companyInfo)
 
-		this.companyBankCardVos.push(o)
+		this.companyBankCardDatas.push(o)
+
+		console.log(this.companyBankCardDatas)
 
 	}
 
 	deleteBankCard(index){
-		this.companyBankCardVos.splice(index,1)
-		console.log(this.companyBankCardVos)
+		this.companyBankCardDatas.splice(index,1)
+		console.log(this.companyBankCardDatas)
 	}
 
 	
@@ -694,16 +742,42 @@ export class CompanyInfoComponent implements OnInit {
 
 class BankCardInfo{
 	
-	constructor(argument) {
+	constructor(companyInfo:CompanyInfoService,companyBankInfo?) {
 		
+		if (companyBankInfo) {
+			this.companyBankInfo=companyBankInfo
+			this.bankName=companyBankInfo.bankName
+			this.subBankName=companyBankInfo.subbankName
+			this.accType=companyBankInfo.type+''
+			console.log(this.accType)
+		}
+		this.companyInfo=companyInfo
+
 	}
+	//账户类型
+	accType
+	//存放账户类型列表
+	// accTypeList
+
+	//从外面导进来的银行卡信息
+	companyBankInfo:{
+		memberId?
+		type?
+		bankName?
+		subbankName?
+		lineNo?
+		cardName?
+	}={}
+
+	//父级组件的服务，从这里获取银行和支行列表
+	companyInfo
 
 	bankName
 	subBankName
 	bankKey
 	subBankKey
-	bankList
-	subBankList
+	bankList=[]
+	subBankList=[]
 
 
 	clearBanks(){
@@ -716,15 +790,26 @@ class BankCardInfo{
 	}
 
 	queryBanks(key){
-		this.bankList
+		console.log(key)
+		console.log(this.bankKey)
+		this.bankKey=key
+		this.companyInfo.getBanks(key)
+			.then(res=>{
+				this.bankList=res.body.records
+			})
 	}
 
 	querySubBanks(key){
-
+		this.companyInfo.getSubbankList(this.bankName,key)
+			.then(res=>{
+				this.subBankList=res.body.records
+			})
 	}
 
-	setBankKeyword(){
-
+	customTrackBy(index: number, obj: any): any {
+	  return index;
 	}
+
+	
 
 }
