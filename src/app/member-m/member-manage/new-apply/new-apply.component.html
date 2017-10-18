@@ -12,7 +12,7 @@
         <span class="row-body text-content">{{companyName}}  ({{memberId}})</span>
       </div>
       <div class="col-md-12 form-group form-inline">
-        <label class="pull-left w-sm label-control">申请产品:</label>
+        <label class="pull-left w-sm label-control required">申请产品:</label>
         <select name="productId" id="" class="form-control" [(ngModel)]="productId" (ngModelChange)="selectProduct($event)" required>
           <option [ngValue]="item.productId" *ngFor="let item of productList">{{item.productName}}</option>
         </select>
@@ -24,7 +24,7 @@
     </section>
     <section class="panel-body border-content m-t-md">
       <div class="col-md-12 form-inline form-group">
-        <label class="pull-left w-sm label-control">申请额度:</label>
+        <label class="pull-left w-sm label-control required">申请额度:</label>
         <input type="text" name="addCreditValue" class="form-control text-right" [(ngModel)]="addCreditValue" required> 元
       </div>
       <div class="col-md-12 form-group">
@@ -34,7 +34,7 @@
     </div>
     <div class="col-md-12 ">
         <label class="pull-left w-sm label-control">原有效期:</label>
-        <span class="row-body">--  至  --</span>
+        <span class="row-body">--</span>
 
     </div>
       <!-- <div class="col-md-12 form-group form-inline">
@@ -45,7 +45,7 @@
     </section>
     <section class="panel-body border-content m-t-md form-inline">
       <div class="col-md-12">
-        <label class="pull-left w-sm label-control">申请原因:</label>
+        <label class="pull-left w-sm label-control required">申请原因:</label>
         <textarea name="authRemark"  cols="50" rows="5" class="form-control" [(ngModel)]="authRemark" required></textarea>
       </div>
     </section>
@@ -86,7 +86,7 @@
                       <td>{{item.rateCycle}}</td>
                       <td>{{item.paymentWayName}}</td>
                       <td>{{item.interestTypeName}}</td>
-                      <td>{{item.interestValue}}</td>
+                      <td>{{item.interestValue*100}}%</td>
                   </tr>
 
               </tbody>
