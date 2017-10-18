@@ -91,6 +91,7 @@ export class NewApplyComponent implements OnInit {
 				})
 				this.productTypeName=""
 				this.productId=""
+				
 			})
 
 		this.newApply.getProductsParam(this.appId,id).then(res=>{
@@ -98,10 +99,6 @@ export class NewApplyComponent implements OnInit {
 			this.productDetailL=res.body.records
 
 		}).catch(res=>{
-				this.pop.error({
-					title:'错误提示',
-					text:res.message
-				})
 				this.productDetailL=[]
 			})
 
