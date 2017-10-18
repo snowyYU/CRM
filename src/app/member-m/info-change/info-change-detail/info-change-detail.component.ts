@@ -78,24 +78,24 @@ export class InfoChangeDetailComponent implements OnInit {
 	handleData(res){
 		this.changeTypeDic=res.body.changeTypeDic //变更手机号|变更银行卡|添加银行卡|删除银行卡
 		this.changeType=res.body.changeType    //1:变更手机号|2：变更银行卡|3：添加银行卡|4：删除银行卡
-		this.updateApplyId=res.body.updateApplyId   //变更申请单ID
-		this.createTime=res.body.createTime      //申请时间
-		this.memberName=res.body.memberName      //客户名称 						
-		this.statusDic=res.body.statusDic        //状态        
-		this.appName=res.body.appName         //归属渠道		
-		this.serviceMan=res.body.serviceMan      //服务经理
+		this.updateApplyId=res.body.updateApplyId?res.body.updateApplyId:'--'   //变更申请单ID
+		this.createTime=res.body.createTime?res.body.createTime:'--'      //申请时间
+		this.memberName=res.body.memberName?res.body.memberName:'--'      //客户名称 						
+		this.statusDic=res.body.statusDic?res.body.statusDic:'--'        //状态        
+		this.appName=res.body.appName?res.body.appName:'--'         //归属渠道		
+		this.serviceMan=res.body.serviceMan?res.body.serviceMan:'--'      //服务经理
 		//新资料   												
-		this.newPhone=res.body.newPhone		//新手机号										
-		this.newCardNo=res.body.newCardNo		//新银行卡号									 	 
-		this.newCardName=res.body.newCardName		//开户名										
-		this.newBankName=res.body.newBankName		//开户行										
-		this.newSubbankName=res.body.newSubbankName		//支行名称									
-		this.newTypeDic=res.body.newTypeDic		//银行卡类型										
+		this.newPhone=res.body.newPhone?res.body.newPhone:'--'		//新手机号										
+		this.newCardNo=res.body.newCardNo?res.body.newCardNo:'--'		//新银行卡号									 	 
+		this.newCardName=res.body.newCardName?res.body.newCardName:'--'		//开户名										
+		this.newBankName=res.body.newBankName?res.body.newBankName:'--'		//开户行										
+		this.newSubbankName=res.body.newSubbankName?res.body.newSubbankName:'--'		//支行名称									
+		this.newTypeDic=res.body.newTypeDic?res.body.newTypeDic:'--'		//银行卡类型										
 		//原有资料
-		this.oldPhome=res.body.oldPhome//原手机号
-		this.companyBankCard=res.body.companyBankCard
+		this.oldPhome=res.body.oldPhome?res.body.oldPhome:'--'//原手机号
+		this.companyBankCard=res.body.companyBankCard?res.body.companyBankCard:'--'
 
-		this.applyMessage=res.body.applyMessage
+		this.applyMessage=res.body.applyMessage?res.body.applyMessage:'--'
 	}
 
 	back(){
