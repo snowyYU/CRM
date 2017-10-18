@@ -19,7 +19,7 @@
       </div>
       <div class="col-md-12 form-group form-inline">
         <label class="pull-left w-sm label-control">产品类别:</label>
-        <span class="row-body text-content">{{productTypeName}}</span>
+        <span class="row-body text-content" *ngIf="checkApplyExist">{{productTypeName}}</span>
       </div>
     </section>
     <section class="panel-body border-content m-t-md">
@@ -57,7 +57,7 @@
       </div>
     </section>
   </form>
-  <section class="bg-white clearfix productInfo pos-abt" *ngIf="productId">
+  <section class="bg-white clearfix productInfo pos-abt" *ngIf="checkApplyExist">
       <div class="col-md-12 text-center padder-v">产品信息</div>
       <div class="col-md-12 form-group">
           <label for="" class="col-md-3 label-control">额度范围:</label>
