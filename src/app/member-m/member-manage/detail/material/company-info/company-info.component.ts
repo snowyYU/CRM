@@ -721,8 +721,8 @@ export class CompanyInfoComponent implements OnInit {
 		// 	账户类型 companyBankCardVos[].typeDic		银行账号	companyBankCardVos[].cardNo
 	// 	银行名称 companyBankCardVos[].bankName		支行名称	companyBankCardVos[].subbankName
 	// 	认证状态 companyBankCardVos[].authStatusDic		默认		companyBankCardVos[].isDefaultDic
-		let o= new BankCardInfo(this.companyInfo)
-
+		let o= new BankCardInfo(this.companyInfo);
+		
 		this.companyBankCardDatas.push(o)
 
 		console.log(this.companyBankCardDatas)
@@ -730,6 +730,7 @@ export class CompanyInfoComponent implements OnInit {
 	}
 
 	deleteBankCard(index){
+		
 		this.companyBankCardDatas.splice(index,1)
 		console.log(this.companyBankCardDatas)
 	}
