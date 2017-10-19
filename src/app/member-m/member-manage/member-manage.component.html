@@ -123,7 +123,7 @@
         	<ng-template let-operation="rowData" pTemplate="body">
         		<div class="table-btn-group">
               <button class="table-btn" *ngIf="!operation.lineThrough" (click)='checkApplyExist(1,operation)'>重新授信</button>
-              <button class="table-btn" *ngIf="operation.lineThrough" (click)='checkApplyExist(1,operation)'>添加</button>
+              <button class="table-btn" *ngIf="operation.lineThrough" (click)='checkApplyExist(1,operation)'>重新授信<!-- 添加 --></button>
             </div>
         	</ng-template>
         </p-column>

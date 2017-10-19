@@ -12,7 +12,7 @@ import { GetApplyService,SendData } from './get-apply.service'
 export class GetApplyComponent implements OnInit{
 	loading:boolean
 	//发送的参数部分
-	qryStatus:number=0
+	qryStatus:string="0"
 	startDate:string
 	endDate:string
 	//获取的列表的字段
@@ -36,12 +36,12 @@ export class GetApplyComponent implements OnInit{
 		private getApply:GetApplyService
 		){}
 	ngOnInit(){
-		this.getDataList(0)
+		this.getDataList("0")
 	}
 
-	getDataList(num?:number){
+	getDataList(s?:string){
 		
-		this.qryStatus=num
+		this.qryStatus=s
 		
 		this.loading=true
 		let sendData:SendData={

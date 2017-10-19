@@ -38,7 +38,7 @@ export class VisitReportComponent implements OnInit{
 				private pop:PopService,
 				private vistReportService:VistReportService,
 				private dateService:DateService,
-				private authRole:AuthRoleService
+				public authRole:AuthRoleService
 
 		){
 		
