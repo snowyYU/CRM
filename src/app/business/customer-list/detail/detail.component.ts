@@ -16,6 +16,7 @@ export class DetailComponent implements OnInit{
 	guestFrom
 	createTime
 	appId
+	appName
 	serviceMan
 	companyType
 	foundTime
@@ -53,6 +54,7 @@ export class DetailComponent implements OnInit{
 		this.guestFrom=res.body.guestFromDic;
 		this.createTime=res.body.createTime;
 		this.appId=res.body.appId;
+		this.appName=res.body.appName;
 		this.serviceMan=res.body.serviceMan;
 		this.companyType=res.body.companyTypeDic;
 		this.foundTime=res.body.foundTime;
@@ -63,6 +65,7 @@ export class DetailComponent implements OnInit{
 		this.linkMobile=res.body.linkMobile;
 		this.linkJob=res.body.linkJob;
 		this.remark=res.body.remark
+		// this.remark=res.body.remark?res.body.remark:"暂无备注"
 
 	}
 

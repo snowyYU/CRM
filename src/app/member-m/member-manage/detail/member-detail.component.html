@@ -15,39 +15,39 @@
         </div>
         <div class="col-md-6">
             <label class="label-control">创建日期:</label>
-            <span class="text-content">{{createTime}}</span>
+            <span class="text-content">{{createTime | filterNull}}</span>
         </div>
     </div>
     <div class="form-group clearfix">
 
         <div class="col-md-6">
             <label class="label-control">归属渠道:</label>
-            <span class="text-content">{{prmResourceRegister.resourceName}}</span>
+            <span class="text-content">{{prmResourceRegister.resourceName | filterNull}}</span>
         </div>
          <div class="col-md-6">
             <label class="label-control">类别:</label>
-            <span class="text-content">{{memberTypeDic}}</span>
+            <span class="text-content">{{memberTypeDic | filterNull}}</span>
         </div>
     </div>
     <div class="form-group clearfix">
         <div class="col-md-6">
             <label class="label-control">服务经理:</label>
-            <span class="text-content">{{serviceMan}}</span>
+            <span class="text-content">{{serviceMan | filterNull}}</span>
         </div>
         <div class="col-md-6">
             <label class="label-control">状态:</label>
-            <span>{{memberStatusDic}}</span>
+            <span>{{memberStatusDic | filterNull}}</span>
         </div>
 
     </div>
     <div class="form-group clearfix">
         <div class="col-md-6">
             <label class="label-control">信用等级:</label>
-            <span class="text-danger">{{memberRating}}</span>
+            <span class="text-danger">{{memberRating | filterNull}}</span>
         </div>
         <div class="col-md-6">
             <label class="label-control">信用评分:</label>
-            <span class="text-danger">{{memberRatingGrate}}</span>
+            <span class="text-danger">{{memberRatingGrate | filterNull}}</span>
         </div>
 
     </div>
