@@ -103,7 +103,7 @@ export class ElectricAccComponent implements OnInit {
 		this.appId=res.body.appConfig.appId
 		this.bankName=res.body.appConfig.bankName   //开户行
 		if (this.isOpenAcctDic=="已开户") {
-			this.accountTypeDic=res.body.accountData.accountTypeDic
+			this.accountTypeDic=res.body.accountData.userTypeDic
 			this.accountTypeList=res.body.accountData.accountTypeList
 			this.accountName=res.body.accountData.accountName   //账户名称
 			this.accountId=res.body.accountData.accountId	//二级账户
