@@ -6,7 +6,7 @@ import  {AuthRoleService}  from '../../services/authRole/authRole.service';
   selector: 'index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.less'],
-  providers:[SettingService,AuthRoleService]
+  providers:[SettingService]
 })
 export class IndexComponent {
   setting:SettingService;
@@ -15,7 +15,7 @@ export class IndexComponent {
   constructor(
     private router:Router,
     private settingService:SettingService,
-    private authRoleService:AuthRoleService
+    public authRoleService:AuthRoleService
     ){
     this.setting=this.settingService.getSetting();
     // this.role=this.authRoleService.role;

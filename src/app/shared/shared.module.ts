@@ -19,6 +19,8 @@ import { SelectBarModule } from '../../utils/select-bar/select-bar.module'
 import { YuanFormatPipe } from '../../pipe/yuan-format/yuan-format.pipe'
 import { EffDateFormatPipe } from '../../pipe/eff-date-format/eff-date-format.pipe'
 import { DigestContentPipe } from '../../pipe/digest-content/digest-content.pipe'
+import { FilterNullPipe } from '../../pipe/filter-null/filter-null.pipe'
+import { FilterMultiplyPipe } from '../../pipe/filter-multiply/filter-multiply.pipe'
 
 import { GalleryComponent } from 'dolphinng'
 //导入模态框
@@ -42,6 +44,8 @@ import { ModalComponent,ModalHeaderComponent,ModalBodyComponent,ModalFooterCompo
     YuanFormatPipe,
     EffDateFormatPipe,
     DigestContentPipe,
+    FilterNullPipe,
+    FilterMultiplyPipe,
     GalleryComponent,
     HTML5ValidateDirective,
     TextMaxLengthDirective
@@ -66,6 +70,8 @@ import { ModalComponent,ModalHeaderComponent,ModalBodyComponent,ModalFooterCompo
     YuanFormatPipe,
     EffDateFormatPipe,
     DigestContentPipe,
+    FilterNullPipe,
+    FilterMultiplyPipe,
     GalleryComponent,
     HTML5ValidateDirective,
     TextMaxLengthDirective

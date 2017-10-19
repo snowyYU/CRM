@@ -37,7 +37,7 @@
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">最高学历:</label>
-              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerDegree}}</div>
+              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerDegree | filterNull}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">联系手机:</label>
@@ -798,7 +798,7 @@
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">注册资金:</label>
-              <div class="col-md-6 text-content">{{companyVo.registerCapital | yuanFormat}}万元</div>
+              <div class="col-md-6 text-content">{{companyVo.registerCapital | filterMultiply:0.0001 | yuanFormat}}万元</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">注册时间:</label>

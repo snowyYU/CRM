@@ -525,12 +525,12 @@ export class CompanyInfoComponent implements OnInit {
 			let url:any=this.companyInfo.getFileUrl(this.attachment[type].fileLoadId)
 			this.gallery.open(e,url);
 			
-		}else{
+		}/*else{
 			this.pop.error({
 				title:'错误提示',
 				text:'无此文件！'
 			})
-		}
+		}*/
 		
 		// window.open()
 	}

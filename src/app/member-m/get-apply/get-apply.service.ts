@@ -6,7 +6,7 @@ import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
 export interface SendData{
 	rows:number
 	page:number
-	qryStatus:number;
+	qryStatus:string;
 	startDate?:string;
 	endDate?:string
 }

@@ -37,7 +37,7 @@ export class CustomerListComponent implements OnInit{
 		private router:Router,
 		private customerListService:CustomerListService,
 		private popService:PopService,
-		private authRole:AuthRoleService
+		public authRole:AuthRoleService
 		){}
 	ngOnInit(){
 		console.log(this.authRole.roleIn(['008']))

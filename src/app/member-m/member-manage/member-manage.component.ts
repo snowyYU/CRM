@@ -58,7 +58,7 @@ export class MemberManageComponent implements OnInit{
 		private router:Router,
 		private pop:PopService,
 		private memManage:MemberManageService,
-		private authRole:AuthRoleService
+		public authRole:AuthRoleService
 		){
 		this.getAppIdList()
 		this.getMemberTypeList()
@@ -216,7 +216,11 @@ export class MemberManageComponent implements OnInit{
 			companyName:this.companyName,
 			appId:this.sAppId
 		}
-		this.router.navigate(['memberM/memberManage/newApply',JSON.stringify(toNewData)])
+		this.closeModal();
+		setTimeout(e=>{
+			this.router.navigate(['memberM/memberManage/newApply',JSON.stringify(toNewData)])
+
+		},0)
 
 	}
 	goToRe(){
@@ -233,8 +237,10 @@ export class MemberManageComponent implements OnInit{
 			expiryDateEnd:this.expiryDateEnd,//止
 
 		}
-
-		this.router.navigate(['memberM/memberManage/reApply',JSON.stringify(toReData)])
+		this.closeModal()
+		setTimeout(e=>{
+			this.router.navigate(['memberM/memberManage/reApply',JSON.stringify(toReData)])
+		},0)
 	}
 
 	changeManage(row){
