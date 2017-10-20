@@ -5,7 +5,7 @@
   	账户管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">账户余额</a>
 </div>
-<div class="wrapper ">
+<div class="pad-l-def pad-r-def pad-b-def pad-t-sm">
 	<div class="clearfix mar-b-sm">
 		<div class="col-md-7 form-inline p-l-none">
 			<label  class="">来源渠道：</label>
@@ -26,7 +26,7 @@
 	<div>
 		<p-dataTable  [value]="dataList"
                  emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}"
-                 [loading]="loading" expandableRows="true" scrollable="true" scrollHeight="360px">
+                 [loading]="loading" expandableRows="true" scrollable="true" scrollHeight="375px">
 			<p-column expander="true" styleClass="col-icon" [style]="{'width':'50px'}"></p-column>
 			<p-column field="appName" header="归属渠道" [style]="{'width':'100px'}"></p-column>
 			<p-column field="name" header="会员名称" [style]="{'width':'100px'}"></p-column>

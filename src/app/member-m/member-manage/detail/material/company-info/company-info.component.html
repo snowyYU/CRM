@@ -1421,7 +1421,7 @@
             <div class="col-md-12 border-content m-b" *ngFor="let item of companyBankCardVos">
               <div class="form-group clearfix m-t-md">
                 <div class="col-md-6">
-                  <label for="" class="control-label">账户类型:</label>
+                  <label for="" class="control-label">卡类型:</label>
                   <div class="col-md-6 text-content">{{item.typeDic | filterNull}}</div>
                 </div>
                 <div class="col-md-6">
@@ -1515,7 +1515,7 @@
               </div>
               <div class="clearfix ">
                 <div class="col-md-6">
-                  <label for="" class="control-label">账户类型:</label>
+                  <label for="" class="control-label">卡类型:</label>
                   <div class="col-md-6 text-content">
                     <select name="banknfoCardType_{{i}}" class="form-control" [(ngModel)]="bankCard.accType" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
                       <option [value]="accT.value" *ngFor="let accT of accTypeList">{{accT.label}}</option>

@@ -36,6 +36,9 @@ export class AccFlowComponent implements OnInit {
 			.then(res=>{
 				console.log(res)
 				this.tradeTypeList=res.body.records
+        if(this.tradeTypeList.length>0){
+          this.tradeType=this.tradeTypeList[0].value;
+        }
 			})
 			.catch(res=>{
 				this.pop.error({
@@ -56,7 +59,7 @@ export class AccFlowComponent implements OnInit {
 			endTime:this.endTime,
 			tradeType:this.tradeType,
 			memberName:this.memberName
-			
+
 		}
 		this.accF.getDataList(data)
 			.then(res=>{
