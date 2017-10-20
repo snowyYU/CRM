@@ -10,7 +10,7 @@
       <div class="col-md-6 form-horizontal form-label-10">
         <div class="form-group">
           <label class="control-label">客户名称：</label>
-          <span class="form-control-static">{{guestName}}</span>
+          <span class="form-control-static">{{guestName | filterNull}}</span>
         </div>
         <div class="form-group no-b-margin">
           <label class="control-label pull-left required">类别：</label>
@@ -28,11 +28,11 @@
       <div class="col-md-6 form-horizontal form-label-10">
         <div class="form-group">
           <label class="control-label">归属渠道：</label>
-          <span class="form-control-static">  {{appName}}</span>
+          <span class="form-control-static">  {{appName | filterNull}}</span>
         </div>
         <div class="form-group no-b-margin">
           <label class="control-label">服务经理：</label>
-          <span class="form-control-static">  {{serviceMan}}</span>
+          <span class="form-control-static">  {{serviceMan | filterNull}}</span>
         </div>
       </div>
     </section >
@@ -41,19 +41,19 @@
         <div class="form-group ">
           <label  class="control-label pull-left">联系人：</label>
           <div class="form-control-static pull-left">
-            {{linkName}}
+            {{linkName | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">联系手机：</label>
           <div class="form-control-static pull-left">
-            {{linkMobile}}
+            {{linkMobile | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">联系人职位：</label>
           <div class="form-control-static pull-left">
-            {{linkJob}}
+            {{linkJob | filterNull}}
           </div>
         </div>
         <div class="form-group">
@@ -65,7 +65,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label  class="control-label pull-left">联系人身份证：</label>
+          <label  class="control-label pull-left">身份证号：</label>
           <div class=" pull-left" style="width:175px;">
             <input type="text" name="linkIdcard" class="form-control" [disabled]="isLegal!=0" [(ngModel)]="linkIdcard" required>
           </div>
@@ -75,31 +75,31 @@
         <div class="form-group">
           <label  class="control-label pull-left">营业执照号：</label>
           <div class="form-control-static pull-left">
-            {{licenceNum}}
+            {{licenceNum | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">公司类型：</label>
           <div class="form-control-static pull-left">
-            {{companyType}}
+            {{companyType | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">注册资金：</label>
           <div class="form-control-static pull-left">
-            {{registerCapital | yuanFormat}} 万元
+            {{registerCapital | filterNull | filterMultiply:0.0001}}<span *ngIf="registerCapital">万元</span>
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">成立时间：</label>
           <div class="form-control-static pull-left">
-            {{foundTime}}
+            {{foundTime | filterNull}}
           </div>
         </div>
         <div class="form-group clearfix">
           <label  class="control-label pull-left">公司地址：</label>
           <div class="form-control-static pull-left">
-            {{companyAddress}}
+            {{companyAddress | filterNull}}
           </div>
         </div>
       </div>

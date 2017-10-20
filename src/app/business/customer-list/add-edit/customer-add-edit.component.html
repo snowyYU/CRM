@@ -18,8 +18,16 @@
         <div class="form-group">
           <label class="control-label pull-left required">获客途径：</label>
           <div class="pull-left">
-            <select class="form-control min-width" name="guestFrom" required [(ngModel)]="guestFrom">
+            <select class="form-control min-width" name="guestFrom" required [(ngModel)]="guestFrom" (change)="appId='C00001'">
               <option [value]="item.value" *ngFor="let item of guest_from">{{item.label}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label pull-left required">归属渠道：</label>
+          <div class="pull-left">
+            <select class="form-control min-width" name="appId" required [(ngModel)]="appId" [disabled]="guestFrom!='1'">
+              <option [value]="item.resourceId" *ngFor="let item of app_list">{{item.resourceName}}</option>
             </select>
           </div>
         </div>
@@ -62,7 +70,7 @@
       </div>
       <div class="col-md-6 form-horizontal form-label-7">
         <div class="form-group clearfix">
-          <label class="control-label pull-left">营业执照号：</label>
+          <label class="control-label pull-left required">营业执照号：</label>
           <div class="pull-left" style="min-width: 300px;max-width: 100%">
             <input type="text" name="licenceNum" class="form-control "  [(ngModel)]="licenceNum">
           </div>
@@ -118,13 +126,13 @@
           <label class="control-label pull-left">备注：</label>
           <div class="pull-left ">
             
-            <textarea name="remark" class="form-control" cols="50" rows="3" [(ngModel)]="remark"></textarea>   
+            <textarea name="remark" class="form-control" cols="50" rows="3" placeholder="不能超过200" [(ngModel)]="remark"></textarea>   
           </div>
         </div>
       </div>
     </section >
     <section class="text-center">
-      <button type="submit" [disabled]="!customForm.form.valid" class="btn-def mar-r-sm">提交<i class="fa fa-check-circle-o"></i></button>
+      <button type="submit" [disabled]="!customForm.form.valid" class="btn-def mar-r-sm">保存<i class="fa fa-check-circle-o"></i></button>
     	<button type="button" class="btn-def" (click)='cancel()'>放弃<i class="fa fa-times-circle-o"></i></button>
     </section>
   </form>
