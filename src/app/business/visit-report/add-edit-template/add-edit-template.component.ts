@@ -252,9 +252,11 @@ export class AddEditComponent implements OnInit{
 		}
 		this.addEdit.saveNewReport(sendData)
 					.then(res=>{
-						this.pop.confirm({
+						this.pop.info({
+						// this.pop.confirm({
 							title:'提示',
-							text:'提交成功！是否跳转至列表页面'
+							text:'保存成功'
+							// text:'提交成功！是否跳转至列表页面'
 						}).onConfirm(res=>{
 							this.router.navigate(['business/visitReport'])
 						})
@@ -283,9 +285,11 @@ export class AddEditComponent implements OnInit{
 		}
 		this.addEdit.saveEditReport(sendData)
 					.then(res=>{
-						this.pop.confirm({
+						this.pop.info({
+						// this.pop.confirm({
 							title:'提示',
-							text:'提交成功！是否跳转至列表页面'
+							text:'保存成功'
+							// text:'提交成功！是否跳转至列表页面'
 						}).onConfirm(res=>{
 							this.router.navigate(['business/visitReport'])
 						})
@@ -316,9 +320,11 @@ export class AddEditComponent implements OnInit{
 		this.addEdit.saveCustomerInfo(sendData)
 					.then(res=>{
 						console.log(res);
-						this.pop.confirm({
+						this.pop.info({
+						// this.pop.confirm({
 							title:'提示',
-							text:'提交成功！是否跳转至列表页面'
+							text:'保存成功'
+							// text:'提交成功！是否跳转至列表页面'
 						}).onConfirm(res=>{
 							this.router.navigate(['business/visitReport'])
 						})

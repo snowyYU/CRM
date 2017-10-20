@@ -62,51 +62,51 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label pull-left required">联系人职位：</label>
+          <label class="control-label pull-left">联系人职位：</label>
           <div class="pull-left">
-            <input type="text" name="linkJob" class="form-control " required [(ngModel)]="linkJob">
+            <input type="text" name="linkJob" class="form-control " [(ngModel)]="linkJob">
           </div>
         </div>
       </div>
       <div class="col-md-6 form-horizontal form-label-7">
         <div class="form-group clearfix">
-          <label class="control-label pull-left required">营业执照号：</label>
+          <label class="control-label pull-left">营业执照号：</label>
           <div class="pull-left" style="min-width: 300px;max-width: 100%">
             <input type="text" name="licenceNum" class="form-control "  [(ngModel)]="licenceNum">
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label pull-left required">公司类型：</label>
+          <label class="control-label pull-left">公司类型：</label>
           <div class="pull-left">
-            <select name="companyType"  class="form-control min-width" required [(ngModel)]="companyType">
+            <select name="companyType"  class="form-control min-width" [(ngModel)]="companyType">
               <option [value]="item.value" *ngFor="let item of guest_company_type">{{item.label}}</option>
             </select>
           </div>
         </div>
         <div class="form-group clearfix">
-          <label class="control-label pull-left required">注册资金：</label>
+          <label class="control-label pull-left">注册资金：</label>
           <div class="pull-left">
             <input type="number" name="registerCapital" class="form-control "  [(ngModel)]="registerCapital">
           </div>
           <span class="pull-left" style="padding-top: 8px;padding-left: 10px;">  万元</span>
         </div>
         <div class="form-group">
-          <label class="control-label pull-left required">成立时间：</label>
+          <label class="control-label pull-left">成立时间：</label>
           <div class="pull-left">
             <input type="text" name="foundTime" datePicker class="form-control "  [(ngModel)]="foundTime">
           </div>
         </div>
         <div class="form-group clearfix">
-          <label class="control-label pull-left required">公司地址：</label>
+          <label class="control-label pull-left">公司地址：</label>
           <div class="pull-left" style="min-width: 300px;max-width: 100%;">
             <div class="row">
               <div class="col-md-6 no-r-padding">
-                <select name="provnice"  class="form-control" required [(ngModel)]="province" (ngModelChange)='getCityList("1")'>
+                <select name="provnice"  class="form-control" [(ngModel)]="province" (ngModelChange)='getCityList("1")'>
                   <option [ngValue]='item.name' *ngFor="let item of provinceList">{{item.name}}</option>
                 </select>
               </div>
               <div class="col-md-6">
-                <select name="city"  class="form-control" required [(ngModel)]="city" [disabled]='!province'>
+                <select name="city"  class="form-control" [(ngModel)]="city" [disabled]='!province'>
                   <option [ngValue]="item.name" *ngFor="let item of cityList">{{item.name}}</option>
                 </select>
               </div>
@@ -126,7 +126,7 @@
           <label class="control-label pull-left">备注：</label>
           <div class="pull-left ">
             
-            <textarea name="remark" class="form-control" cols="50" rows="3" placeholder="不能超过200" [(ngModel)]="remark"></textarea>   
+            <textarea name="remark" class="form-control" cols="50" rows="3" placeholder="小于200字" maxlength="200" [(ngModel)]="remark"></textarea>   
           </div>
         </div>
       </div>

@@ -89,7 +89,7 @@
             <label class="control-label pull-left required">备忘录：</label>
             <div class="pull-left form-control-static  col-md-10 no-padding" >
               <textarea name="remark"  cols="40" rows="5" class="form-control mar-b-xs"
-                        [(ngModel)]="remark" placeholder="不能小于20" minlength="20" required style="min-height: 175px;"></textarea>
+                        [(ngModel)]="remark" placeholder="大于20字，小于200字" minlength="20" maxlength="200" required style="min-height: 175px;"></textarea>
               <div class="text-danger" *ngIf="visitReportForm.form.controls.remark&&visitReportForm.form.controls.remark.dirty&&visitReportForm.form.controls.remark.invalid">
                 字数不能小于20
               </div>
@@ -99,7 +99,7 @@
         </div>
       </section >
   <section class="text-center">
-    <button type="submit" class="btn-def mar-r-sm " [disabled]="visitReportForm.form.invalid">提交<i class="fa fa-check-circle-o"></i></button>
+    <button type="submit" class="btn-def mar-r-sm " [disabled]="visitReportForm.form.invalid">保存<i class="fa fa-check-circle-o"></i></button>
     <button type="button" class="btn-def" (click)="cancel()">取消<i class="fa fa-times-circle-o"></i></button>
     <a  *ngIf="showCustomerSave" href="javascript:void(0)" class="text-info" (click)="saveCustomerInfo()">保存客户信息</a>
   </section>
@@ -142,8 +142,8 @@
     </div>
   </modal-body>
   <modal-footer styleClass="no-t-padding">
-    <button class="btn btn-default" (click)="closeModal()">关闭</button>
     <button class="btn btn-primary" (click)="yesModal()">确定</button>
+    <button class="btn btn-default" (click)="closeModal()">关闭</button>
 
   </modal-footer>
 </modal>
