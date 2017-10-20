@@ -120,7 +120,7 @@ export class CustomerListComponent implements OnInit{
 	delete(data){
 		this.popService.confirm({
 			titile:'操作确认',
-			text:'确定要删除吗？'
+			text:'确定删除该客户所有记录吗？'
 		}).onConfirm(()=>{
 			this.customerListService
 				.deleteData(data.guestId)
