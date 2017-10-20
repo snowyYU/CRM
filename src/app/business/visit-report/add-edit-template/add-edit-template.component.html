@@ -18,7 +18,7 @@
           <div class="form-group">
             <label class="control-label pull-left required">拜访日期：</label>
             <div class="pull-left">
-              <input type="text" name="visitDate" class="form-control" datePicker  required [(ngModel)]="visitDate" [disabled]="isEdit">
+              <input type="text" name="visitDate" class="form-control" datePicker required [(ngModel)]="visitDate" [disabled]="isEdit">
             </div>
           </div>
         </div>
@@ -44,14 +44,16 @@
           <div class="form-group">
             <label class="control-label pull-left required">联系人：</label>
             <div class="pull-left">
+              <input type="text" name="linkName" class="form-control" [(ngModel)]="linkName" [disabled]="isEdit" required>
               <input type="text" name="linkName" class="form-control" [(ngModel)]="linkName" [disabled]="isEdit||customerDisabled" required>
             </div>
-            <button class="btn btn-default pull-left mar-l-xs" *ngIf="customerDisabled" (click)="enable()"><i class="fa fa-pencil"></i>修改</button>
+            <!-- <button class="btn btn-default pull-left mar-l-xs" *ngIf="customerDisabled" (click)="enable()"><i class="fa fa-pencil"></i>修改</button> -->
           </div>
           <div class="form-group">
             <label class="control-label pull-left required">联系手机：</label>
             <div class="pull-left">
-              <input type="text" name="linkMobile" class="form-control" [(ngModel)]="linkMobile" [disabled]="isEdit||customerDisabled" required>
+              <input type="text" name="linkMobile" class="form-control" [(ngModel)]="linkMobile" [disabled]="isEdit" required>
+              <!-- <input type="text" name="linkMobile" class="form-control" [(ngModel)]="linkMobile" [disabled]="isEdit||customerDisabled" required> -->
             </div>
           </div>
           <div class="form-group">
@@ -66,12 +68,14 @@
             <label class="control-label pull-left required">城市：</label>
             <div class="pull-left row" style="min-width: 300px;max-width: 100%">
               <div class="col-md-6 no-r-padding">
-                <select name="province" class="form-control" [(ngModel)]="province" (ngModelChange)='getCityList($event)' [disabled]="isEdit||customerDisabled" required>
+                <select name="province" class="form-control" [(ngModel)]="province" (ngModelChange)='getCityList($event)' [disabled]="isEdit" required>
+                  <!-- <select name="province" class="form-control" [(ngModel)]="province" (ngModelChange)='getCityList($event)' [disabled]="isEdit||customerDisabled" required> -->
                   <option [ngValue]='item.name' *ngFor="let item of provinceList" >{{item.name}}</option>
                 </select>
               </div>
               <div class="col-md-6">
-                <select name="city" class="form-control col-md-6" [(ngModel)]="city" [disabled]='!province||isEdit||customerDisabled' required>
+                <select name="city" class="form-control col-md-6" [(ngModel)]="city" [disabled]='!province||isEdit' required>
+                  <!-- <select name="city" class="form-control col-md-6" [(ngModel)]="city" [disabled]='!province||isEdit||customerDisabled' required> -->
                   <option [ngValue]='item.name' *ngFor="let item of cityList">{{item.name}}</option>
                 </select>
               </div>
@@ -80,7 +84,8 @@
           <div class="form-group">
             <label class="control-label pull-left required">地址：</label>
             <div class="pull-left" style="min-width: 300px;max-width: 100%">
-              <input type="text" name="companyAddress" class="form-control" [(ngModel)]="companyAddress" [disabled]="isEdit||customerDisabled" required>
+              <input type="text" name="companyAddress" class="form-control" [(ngModel)]="companyAddress" [disabled]="isEdit" required>
+              <!-- <input type="text" name="companyAddress" class="form-control" [(ngModel)]="companyAddress" [disabled]="isEdit||customerDisabled" required> -->
             </div>
           </div>
         </div>
