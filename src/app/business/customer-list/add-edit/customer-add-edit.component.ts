@@ -254,7 +254,13 @@ export class CustomerAddEditComponent implements OnInit{
 
 	//提交数据
 	onSubmit(){
-		let companyAddress=this.province+'-'+this.city+'-'+this.detailAddress;
+		let companyAddress:string;
+		if(this.province&&this.city&&this.detailAddress){
+			companyAddress=this.province+'-'+this.city+'-'+this.detailAddress;
+		}else{
+			companyAddress='';
+		}
+		// let companyAddress=this.province+'-'+this.city+'-'+this.detailAddress;
 		let sendData:SendData={
 			guestName:this.guestName,	//客户名称
 			status:this.ifEdit?this.status:0,	//状态
