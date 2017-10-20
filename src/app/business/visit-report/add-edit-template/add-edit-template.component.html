@@ -18,7 +18,7 @@
           <div class="form-group">
             <label class="control-label pull-left required">拜访日期：</label>
             <div class="pull-left">
-              <input type="text" name="visitDate" class="form-control" datePicker  required [(ngModel)]="visitDate" [disabled]="isEdit">
+              <input type="text" name="visitDate" class="form-control" datePicker  required [(ngModel)]="visitDate" [opt-max]="maxDate" [disabled]="isEdit">
             </div>
           </div>
         </div>

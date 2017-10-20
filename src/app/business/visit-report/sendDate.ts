@@ -4,4 +4,5 @@ export interface SendData{
 	page:number;
 	rows:number;
 	serviceMan?:string
+	keyword?:string
 }
