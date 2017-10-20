@@ -18,8 +18,7 @@
             <select name="memberType"  class="form-control" [(ngModel)]="memberType" required>
               <!-- <option value="0">平台会员</option>
               <option value="1">平台管理方</option> -->
-
-
+              
               <option [ngValue]="item.value" *ngFor="let item of typeList" >{{item.label}}</option>
             </select>
           </div>
