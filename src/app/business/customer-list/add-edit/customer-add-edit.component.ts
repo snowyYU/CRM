@@ -23,6 +23,7 @@ export class CustomerAddEditComponent implements OnInit{
 	serviceMan;	//服务经理名字
 	guestName;	//客户名称
 	appId;	//	渠道ID
+	appName;  //归属渠道, 中文
 	appMemberId;	//渠道用户编号
 	guestFrom;	//获取途径（0：自有关系；1：渠道推荐；2：服务转交）
 	guestFromDic;	//获取途径，中文
@@ -147,7 +148,6 @@ export class CustomerAddEditComponent implements OnInit{
 			this.status="0"
 		}
 
-
 	}
 
 	//下拉
@@ -259,7 +259,7 @@ export class CustomerAddEditComponent implements OnInit{
 			guestName:this.guestName,	//客户名称
 			status:this.ifEdit?this.status:0,	//状态
 			guestFrom:this.guestFrom,	//获取途径
-			appId:this.guestFrom=='1'?this.appId:'',	//	归属渠道
+			appId:this.guestFrom=='1'?this.appId:'C00001',	//	归属渠道
 			serviceMan:this.serviceMan, //服务经理
 			companyType:this.companyType,	//公司类型
 			foundTime:this.foundTime,	//成立时间

@@ -15,43 +15,43 @@ export class AuthRoleService {
 	// cookie:CookieService=new CookieService;
 	
 	set role(type:string){
-		this.cookie.set('role',type,this.eTime,'/')
+		this.cookie.set('crm_role',type,this.eTime,'/')
 	}
 
 	get role(){
-		return this.cookie.get('role')
+		return this.cookie.get('crm_role')
 	}
 
 	set subsysFuncs(type:string){
-		this.cookie.set('subsysFuncs',type,this.eTime,'/')
+		this.cookie.set('crm_subsysFuncs',type,this.eTime,'/')
 	}
 
 	get subsysFuncs(){
-		return this.cookie.get('subsysFuncs')
+		return this.cookie.get('crm_subsysFuncs')
 	}
 
 	set userName(name:string){
-		this.cookie.set('userName',name,this.eTime,'/')
+		this.cookie.set('crm_userName',name,this.eTime,'/')
 	}
 
 	get userName(){
-		return this.cookie.get('userName')
+		return this.cookie.get('crm_userName')
 	}
 
 	set employeeId(name:string){
-		this.cookie.set('employeeId',name,this.eTime,'/')
+		this.cookie.set('crm_employeeId',name,this.eTime,'/')
 	}
 
 	get employeeId(){
-		return this.cookie.get('employeeId')
+		return this.cookie.get('crm_employeeId')
 	}
 	
 	set token(token:string){
-		this.cookie.set("token",token,this.eTime,'/');
+		this.cookie.set("crm_token",token,this.eTime,'/');
 	}
 
 	get token():string{
-		return this.cookie.get("token");
+		return this.cookie.get("crm_token");
 	}
 
 	fnIn(param:string[]):boolean{
