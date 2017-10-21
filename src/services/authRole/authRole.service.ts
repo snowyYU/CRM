@@ -8,6 +8,8 @@ export class AuthRoleService {
 	// role:string;
 	eTime:number
 
+	sysName="crm_"
+
 	constructor(
 		private cookie:CookieService,
 		private myhttp:MyHttp
@@ -15,43 +17,43 @@ export class AuthRoleService {
 	// cookie:CookieService=new CookieService;
 	
 	set role(type:string){
-		this.cookie.set('role',type,this.eTime,'/')
+		this.cookie.set(this.sysName+'role',type,this.eTime,'/')
 	}
 
 	get role(){
-		return this.cookie.get('role')
+		return this.cookie.get(this.sysName+'role')
 	}
 
 	set subsysFuncs(type:string){
-		this.cookie.set('subsysFuncs',type,this.eTime,'/')
+		this.cookie.set(this.sysName+'subsysFuncs',type,this.eTime,'/')
 	}
 
 	get subsysFuncs(){
-		return this.cookie.get('subsysFuncs')
+		return this.cookie.get(this.sysName+'subsysFuncs')
 	}
 
 	set userName(name:string){
-		this.cookie.set('userName',name,this.eTime,'/')
+		this.cookie.set(this.sysName+'userName',name,this.eTime,'/')
 	}
 
 	get userName(){
-		return this.cookie.get('userName')
+		return this.cookie.get(this.sysName+'userName')
 	}
 
 	set employeeId(name:string){
-		this.cookie.set('employeeId',name,this.eTime,'/')
+		this.cookie.set(this.sysName+'employeeId',name,this.eTime,'/')
 	}
 
 	get employeeId(){
-		return this.cookie.get('employeeId')
+		return this.cookie.get(this.sysName+'employeeId')
 	}
 	
 	set token(token:string){
-		this.cookie.set("token",token,this.eTime,'/');
+		this.cookie.set(this.sysName+"token",token,this.eTime,'/');
 	}
 
 	get token():string{
-		return this.cookie.get("token");
+		return this.cookie.get(this.sysName+"token");
 	}
 
 	fnIn(param:string[]):boolean{
@@ -121,11 +123,11 @@ export class AuthRoleService {
 	}
 
 	deleteAllCookies(){
-		this.cookie.set('role','',1,'/')
-		this.cookie.set('userName','',1,'/')
-		this.cookie.set('token','',1,'/')
-		this.cookie.set('subsysFuncs','',1,'/')
-		this.cookie.set('employeeId','',1,'/')
+		this.cookie.set(this.sysName+'role','',1,'/')
+		this.cookie.set(this.sysName+'userName','',1,'/')
+		this.cookie.set(this.sysName+'token','',1,'/')
+		this.cookie.set(this.sysName+'subsysFuncs','',1,'/')
+		this.cookie.set(this.sysName+'employeeId','',1,'/')
 		
 
 		// this.cookie.deleteAll('','/')

@@ -25,7 +25,11 @@
     <section class="panel-body border-content m-t-md">
       <div class="col-md-12 form-inline form-group">
         <label class="pull-left w-sm label-control required">申请额度:</label>
-        <input type="text" name="addCreditValue" class="form-control text-right" [(ngModel)]="addCreditValue" required> 元
+        <div class="input-group">
+          <input type="text" name="addCreditValue" class="form-control text-right" [(ngModel)]="addCreditValue" required>
+
+          <span class="input-group-addon">元</span>
+        </div>
       </div>
       <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">原授信额度:</label>
@@ -57,19 +61,19 @@
       </div>
     </section>
   </form>
-  <section class="bg-white clearfix productInfo pos-abt" *ngIf="checkApplyExist">
-      <div class="col-md-12 text-center padder-v">产品信息</div>
-      <div class="col-md-12 form-group">
+  <section class="bg-white clearfix productInfo pos-abt m-t-xl" *ngIf="checkApplyExist">
+      <!-- <div class="col-md-12 text-center padder-v">产品信息</div> -->
+      <div class="col-md-12 form-group m-t-md">
           <label for="" class="col-md-3 label-control">额度范围:</label>
-          <div class="col-md-9">{{valueLimit}}</div>
+          <div class="col-md-9 m-t-xs">{{valueLimit}}</div>
       </div>
       <div class="col-md-12 form-group">
           <label for="" class="col-md-3 label-control">借款周期:</label>
-          <div class="col-md-9">{{borrowHowlong}}</div>
+          <div class="col-md-9 m-t-xs">{{borrowHowlong}}</div>
       </div>
       <div class="col-md-12 form-group">
           <label for="" class="col-md-3 label-control">产品简介:</label>
-          <div class="col-md-9">{{productRemark}}</div>
+          <div class="col-md-9 m-t-xs">{{productRemark}}</div>
       </div>
       <div class="col-md-12">
           <table class="table showL b-t">
@@ -88,7 +92,9 @@
                       <td>{{item.interestTypeName}}</td>
                       <td>{{item.interestValue*100}}%</td>
                   </tr>
-
+                  <tr *ngIf="!productDetailL||productDetailL.length===0">
+                    <td colspan="4" class="text-disabled text-center"> 无</td>
+                  </tr>
               </tbody>
           </table>
       </div>

@@ -21,6 +21,7 @@ export class VisitReportComponent implements OnInit{
 
 	serviceMan:string=''
 	serviceManL:any[]
+	customerName
 	//是否正在加载
 	loading:boolean;
 	submitAfterClick:boolean=false;
@@ -96,7 +97,8 @@ export class VisitReportComponent implements OnInit{
 			endDate:this.dateEnd,
 			page :this.page+1,
 			rows:this.rows,
-			serviceMan:this.serviceMan
+			serviceMan:this.serviceMan,
+			keyword:this.customerName
 		}
 		console.log(data)
 		this.vistReportService.getList(data).then(res=>{

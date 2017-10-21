@@ -26,7 +26,10 @@
   <section class="panel-body border-content m-t-md form-inline ">
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">申请额度:</label>
-        <input type="text" name="addCreditValue" class="form-control" [(ngModel)]="addCreditValue" required> 元
+        <div class="input-group">
+          <input type="text" name="addCreditValue" class="form-control" [(ngModel)]="addCreditValue" required>
+          <span class="input-group-addon">元</span>
+        </div>
     </div>
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">原授信额度:</label>
@@ -55,7 +58,7 @@
         </div>
     </section>
 </form>
-<section class="bg-white clearfix productInfo pos-abt" *ngIf="productId">
+<section class="bg-white clearfix productInfo pos-abt" *ngIf="productId" style="min-height: 420px;">
       <div class="col-md-12 text-center padder-v">产品信息</div>
       <div class="col-md-12 form-group">
           <label for="" class="col-md-3 label-control">额度范围:</label>
@@ -85,6 +88,9 @@
                       <td>{{item.paymentWayName}}</td>
                       <td>{{item.interestTypeName}}</td>
                       <td>{{item.interestValue}}</td>
+                  </tr>
+                  <tr *ngIf="!productDetailL||productDetailL.length===0">
+                    <td colspan="4" class="text-disabled text-center"> 无</td>
                   </tr>
 
               </tbody>

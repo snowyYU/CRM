@@ -17,6 +17,7 @@ import { SendData } from './sendData'
 export class CustomerListComponent implements OnInit{
 	serviceMan:string=''
 	serviceManL:any[]
+	customerName
 	page:number=0;
 	rows:number=10;
 	count:number;
@@ -87,7 +88,8 @@ export class CustomerListComponent implements OnInit{
 		let data:SendData={
 			page:this.page+1,
 			rows:this.rows,
-			serviceMan:this.serviceMan?this.serviceMan:''
+			serviceMan:this.serviceMan?this.serviceMan:'',
+			keyword:this.customerName
 		}
 		this.customerListService
 			.getListData(data)
@@ -120,7 +122,7 @@ export class CustomerListComponent implements OnInit{
 	delete(data){
 		this.popService.confirm({
 			titile:'操作确认',
-			text:'确定要删除吗？'
+			text:'确定删除该客户所有记录吗？'
 		}).onConfirm(()=>{
 			this.customerListService
 				.deleteData(data.guestId)

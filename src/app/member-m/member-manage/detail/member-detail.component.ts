@@ -78,16 +78,16 @@ export class MemberDetailComponent implements OnInit {
 	}
 	renderData(data){
 		console.log(data)
-		this.companyName=data.body.companyName?data.body.companyName:'--'    	//客户名称	
+		this.companyName=data.body.companyName    	//客户名称	
 		// this.memberId=data.body.memberId
-		this.createTime=data.body.createTime?data.body.createTime:'--'	//创建日期 
-		this.prmResourceRegister=data.body.prmResourceRegister?data.body.prmResourceRegister:'--'//prmResourceRegister.resourceName归属渠道
-		this.memberTypeDic=data.body.memberTypeDic?data.body.memberTypeDic:'--'//类别
-		this.memberStatusDic=data.body.memberStatusDic?data.body.memberStatusDic:'--'//状态
-		this.serviceMan=data.body.serviceMan?data.body.serviceMan:'--'//服务经理
-		this.reportsVo=data.body.reportsVo?data.body.reportsVo:'--' //reportsVo.updateTime更新时间 
-		this.memberRating=data.body.memberRating?data.body.memberRating:'--' //信用等级
-		this.memberRatingGrate=data.body.memberRatingGrate?data.body.memberRatingGrate:'--' //信用评分法				评估日期(暂无)
+		this.createTime=data.body.createTime	//创建日期 
+		this.prmResourceRegister=data.body.prmResourceRegister//prmResourceRegister.resourceName归属渠道
+		this.memberTypeDic=data.body.memberTypeDic//类别
+		this.memberStatusDic=data.body.memberStatusDic//状态
+		this.serviceMan=data.body.serviceMan//服务经理
+		this.reportsVo=data.body.reportsVo //reportsVo.updateTime更新时间 
+		this.memberRating=data.body.memberRating //信用等级
+		this.memberRatingGrate=data.body.memberRatingGrate //信用评分法				评估日期(暂无)
 
 	}
 

@@ -1,8 +1,11 @@
 .wrapperForTwo {
-  padding: 16px 8px;
-  overflow: hidden;
-}
 
+}
+.wrapperForTwo:after{
+  content: '';
+  display: block;
+  clear: both;
+}
 .wrapperTwoLeft {
   margin-left: -8px;
   margin-right: 8px;
@@ -28,6 +31,18 @@
   padding: 8px 8px
 }
 
-.table{
-  border: 1px solid #eee
+.group .table{
+  margin-bottom: 0;
+}
+
+@media (min-width: 992px){
+  .col-right{
+    margin-right: -15px;
+  }
+}
+.table.no-border > tbody > tr > td{
+  border-color: transparent;
+}
+.table tr td:first-child{
+
 }

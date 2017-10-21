@@ -9,92 +9,97 @@
     <section class="panel-body group mar-b-sm">
       <div class="col-md-6 form-horizontal form-label-10">
         <div class="form-group">
-          <label class="control-label">客户名称：</label>
-          <span class="form-control-static">{{guestName}}</span>
+          <label class="control-label control-label-special">客户名称：</label>
+          <span class="form-control-static">{{guestName | filterNull}}</span>
         </div>
         <div class="form-group">
-          <label class="control-label">获客途径：</label>
-          <span class="form-control-static"> {{guestFrom}}</span>
+          <label class="control-label control-label-special">获客途径：</label>
+          <span class="form-control-static"> {{guestFrom | filterNull}}</span>
         </div>
         <div class="form-group">
-          <label class="control-label">服务经理：</label>
-          <span class="form-control-static"> {{serviceMan}}</span>
+          <label class="control-label control-label-special">归属渠道：</label>
+          <span class="form-control-static"> {{appName | filterNull}}</span>
+        </div>
+        <div class="form-group">
+          <label class="control-label control-label-special">服务经理：</label>
+          <span class="form-control-static"> {{serviceMan | filterNull}}</span>
         </div>
       </div>
       <div class="col-md-6 form-horizontal form-label-10">
         <div class="form-group">
-          <label class="control-label">创建时间：</label>
-          <span class="form-control-static"> {{createTime}}</span>
+          <label class="control-label control-label-special">创建时间：</label>
+          <span class="form-control-static"> {{createTime | filterNull}}</span>
         </div>
         <div class="form-group">
-          <label class="control-label">状态：</label>
-          <span class="form-control-static">{{status}}</span>
+          <label class="control-label control-label-special">状态：</label>
+          <span class="form-control-static">{{status | filterNull}}</span>
         </div>
       </div>
     </section >
     <section class="mar-b-sm form-horizontal form-label-10 group clearfix">
       <div class="col-md-6 ">
         <div class="form-group ">
-          <label  class="control-label pull-left">联系人：</label>
+          <label  class="control-label control-label-special pull-left">联系人：</label>
           <div class="form-control-static pull-left">
-            {{linkName}}
+            {{linkName | filterNull}}
           </div>
         </div>
         <div class="form-group">
-          <label  class="control-label pull-left">联系手机：</label>
+          <label  class="control-label control-label-special pull-left">联系手机：</label>
           <div class="form-control-static pull-left">
-            {{linkMobile}}
+            {{linkMobile | filterNull}}
           </div>
         </div>
         <div class="form-group">
-          <label  class="control-label pull-left">联系人职位：</label>
+          <label  class="control-label control-label-special pull-left">联系人职位：</label>
           <div class="form-control-static pull-left">
-            {{linkJob}}
+            {{linkJob | filterNull}}
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label  class="control-label pull-left">营业执照号：</label>
+          <label  class="control-label control-label-special pull-left">营业执照号：</label>
           <div class="form-control-static pull-left">
-            {{licenceNum}}
+            {{licenceNum | filterNull}}
           </div>
         </div>
         <div class="form-group">
-          <label  class="control-label pull-left">公司类型：</label>
+          <label  class="control-label control-label-special pull-left">公司类型：</label>
           <div class="form-control-static pull-left">
-            {{companyType}}
+            {{companyType | filterNull}}
           </div>
         </div>
         <div class="form-group">
-          <label  class="control-label pull-left">注册资金：</label>
+          <label  class="control-label control-label-special pull-left">注册资金：</label>
           <div class="form-control-static pull-left">
-            {{registerCapital | yuanFormat}} 万元
+            {{registerCapital | filterNull | filterMultiply:0.0001 | yuanFormat:2:true}}<span *ngIf="registerCapital">万元</span>
           </div>
         </div>
         <div class="form-group">
-          <label  class="control-label pull-left">成立时间：</label>
+          <label  class="control-label control-label-special pull-left">成立时间：</label>
           <div class="form-control-static pull-left">
-            {{foundTime}}
+            {{foundTime | filterNull}}
           </div>
         </div>
         <div class="form-group clearfix">
-          <label  class="control-label pull-left">公司地址：</label>
-          <div class="form-control-static pull-left">
-            {{companyAddress}}
+          <label  class="control-label control-label-special pull-left">公司地址：</label>
+          <div class="form-control-static pull-left enter">
+            {{companyAddress | filterNull}}
           </div>
         </div>
       </div>
     </section>
     <section class="panel-body group mar-b-sm">
-      <div class="col-md-8 form-horizontal form-label-10">
+      <div class="col-md-12 form-horizontal form-label-10">
         <div class="form-group">
-          <label class="control-label">备注：</label>
-          <span class="form-control-static">{{remark}}</span>
+          <label class="control-label control-label-special col-md-2">备注：</label>
+          <span class="form-control-static col-md-10 p-l-none">{{remark | filterNull}}</span>
+          <!-- <span class="form-control-static">{{remark}}</span> -->
         </div>
-        
+
       </div>
-      
+
     </section >
     <section class="">
       <div class="text-center">

@@ -6,7 +6,7 @@
   <a class="page-location-item active">授信申请列表</a>
 
 </div>
-<div class="wrapper">
+<div class="pad-l-def pad-r-def pad-b-def pad-t-sm">
   <div class="mar-b-sm form-inline">
     <div class="form-group">
       <select name="qryStatus" class="form-control" [(ngModel)]="qryStatus" (change)="qryStatusChange()">
@@ -28,11 +28,17 @@
   </div>
   <div>
     <p-dataTable  [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading"
-              scrollable="true" scrollHeight="360px">
+              scrollable="true" scrollHeight="375px">
       <p-column field="creditAuthId" header="申请ID" styleClass="text-center" [style]="{'width':'150px'}"></p-column>
-      <p-column field="memberName" header="会员名称" [style]="{'width':'200px'}"></p-column>
+      <p-column  header="会员名称" [style]="{'width':'200px'}">
+        <ng-template let-data="rowData" pTemplate="body">
+          <div textMaxLength="200px">
+            {{data.memberName}}
+            </div>
+          </ng-template>
+      </p-column>
       <p-column field="productName" header="产品" [style]="{'width':'110px'}"></p-column>
-      <p-column field="addCreditValue" header="申请额度(元)" styleClass="text-right" [style]="{'width':'120px'}">
+      <p-column field="addCreditValue" header="申请额度(元)" styleClass="text-right" [style]="{'width':'140px'}">
         <ng-template let-addCreditValue="rowData" pTemplate="body">
           <div class="text-right">
             <!-- {{addCreditValue.addCreditValue | currency:'CNY' :true}} -->

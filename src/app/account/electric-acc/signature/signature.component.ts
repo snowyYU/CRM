@@ -13,6 +13,8 @@ import { SignatureService } from './signature.service'
 export class SignatureComponent implements OnInit {
 
 	memberNameQ
+	memberNameQKey:string=""
+
 	type:string
 	openVisiable:boolean=false
 	secondShow:boolean=false
@@ -21,6 +23,9 @@ export class SignatureComponent implements OnInit {
 	companyName							//会员名称
 	signatureUserStatus					//状态，0：已开通；1：未开通
 	signatureUserStatusDit				//状态，中文 
+
+	//搜索框下拉列表
+	memberList:any[]=[]
 
 	//两个复选框
 	eleA:boolean=false
@@ -252,7 +257,8 @@ export class SignatureComponent implements OnInit {
 					text:'注销成功!'
 				})
 
-				this.getDetailData()
+				this.secondShow=false
+				
 
 			})
 			.catch(res=>{
@@ -269,5 +275,28 @@ export class SignatureComponent implements OnInit {
 		this.openVisiable=false
 
 	}
+
+	// 搜索框的模糊下拉查询相关方法
+	clearMemberList(){
+		this.memberList=[]
+	}
+	queryMemberList(key){
+		console.log(key)
+		this.sig.getByMemberName(key)
+			.then(res=>{
+				this.memberList=res.body.records	
+			})
+			.catch(res=>{
+				if (res.status==107) {
+					this.memberList=[]
+				}else{
+					this.pop.error({
+						title:'错误信息',
+						text:res.message
+					})
+				}
+			})
+	}
+	
 
 }

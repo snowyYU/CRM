@@ -20,8 +20,17 @@
         </option>
       </select>
     </div>
+    <div class="pull-left form-inline">
+      <div class="form-group">
+        <label >客户名称：</label>
+        <input type="text" name="customerName" placeholder="请输入关键字" [(ngModel)]="customerName" class="form-control">
+      </div>
+      <div class="form-group">
+        <button class="btn-def" (click)='queryData()'>查询<i class="fa fa-search"></i></button>
+      </div>
+    </div>
     <div class="col-md-2 pad-t-xs pull-right text-right" [class.pad-t-xs]="authRole.roleIn(['008'])" >
-      <a class="text-info text-lg text-underline" (click)="goToList()">认证申请回复</a>
+      <a class="text-info text-lg text-underline" (click)="goToList()">认证申请记录</a>
       <!-- <a class="text-danger text-lg" (click)='goToList()' *ngIf="authApplyReplyNum">{{authApplyReplyNum}}</a>
       <span class="text-danger text-lg" *ngIf="!authApplyReplyNum">{{authApplyReplyNum}}</span> -->
     </div>
@@ -57,7 +66,7 @@
         <ng-template let-operation="rowData" pTemplate="body" >
           <div class="table-btn-group">
             <button class="table-btn " [disabled]="operation.status===1" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:applyAuth(operation)" *ngIf="authRole.roleIn(['007'])">申请认证</button>
-            <button class="table-btn " [disabled]="operation.status===1" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:edit(operation)" *ngIf="authRole.roleIn(['007'])">修改</button>
+            <button class="table-btn " [disabled]="operation.status===1" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:edit(operation)" *ngIf="authRole.roleIn(['007'])">编辑</button>
             <button class="table-btn " [disabled]="operation.status===1" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:delete(operation)" *ngIf="authRole.roleIn(['007'])">删除</button>
             <button class="table-btn " (click)="changeManage(operation)" *ngIf="authRole.roleIn(['008'])">变更经理</button>
           </div>
@@ -86,7 +95,7 @@
     <div class="">
       <div class="mar-b-xs clearfix">
         <label  class="pull-left ">客户名称：</label>
-        <div class="pull-left">
+        <div class="pull-left text-info">
           {{modalCompanyName}}
         </div>
       </div>
@@ -99,6 +108,8 @@
         </div>
         <div class="col-md-4 text-center m-t-xs">
           <select name="changeServiceM" class="form-control" [(ngModel)]="modalServiceMan" required>
+            <option [ngValue]="undefined" hidden>请选择</option>
+
             <option [value]="item.employeeName" *ngFor="let item of modalServiceManL">{{item.employeeName}}</option>
           </select>
         </div>

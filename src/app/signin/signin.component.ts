@@ -65,6 +65,8 @@ export class SigninComponent {
   }
 
   signIn():void{
+
+    
   	//进行校验
 
     //清空cookie
@@ -93,7 +95,18 @@ export class SigninComponent {
       })
 
   }
-
+    o={
+      '02':"/business/customerList",
+      '03':"/business/visitReport",
+      '11':"/memberM/memberManage",
+      '12':"/memberM/memberManage",
+      '13':"/memberM/getApply",
+      '14':"/memberM/relativeCompany",
+      '22':"/account/electricAcc/openAcc",
+      '23':"/account/electricAcc/signature",
+      '24':"/account/memberAccBalance",
+      '25':"/account/memberAccFlow",
+    }
 
   	extractData(res: any){
         this.authRoleService.eTime=res.body.expiresIn*500
@@ -113,14 +126,22 @@ export class SigninComponent {
         })
         this.authRoleService.subsysFuncs=JSON.stringify(subsysFuncs)
         console.log(this.authRoleService.subsysFuncs)
-        if (this.authRoleService.roleIn(['007','008'])) {
-          this.router.navigate(['/business/customerList'])
 
-        }else if (this.authRoleService.roleIn(['002'])) {
-          this.router.navigate(['/memberM/memberManage'])
-          // code...
-        }
+        this.router.navigate([this.o[subsysFuncs[0]]])
+        subsysFuncs[0]
+
+        // if (this.authRoleService.roleIn(['007','008'])) {
+        //   this.router.navigate(['/business/customerList'])
+
+        // }else if (this.authRoleService.roleIn(['002'])) {
+        //   this.router.navigate(['/memberM/memberManage'])
+          
+        // }else{
+        //   this.router.navigate(['/memberM/memberManage'])
+        // }
   	}
+
+
 
   	handleError(error: Response|any):void{
   		console.log(error);

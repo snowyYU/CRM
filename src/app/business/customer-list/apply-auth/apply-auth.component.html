@@ -10,7 +10,7 @@
       <div class="col-md-6 form-horizontal form-label-10">
         <div class="form-group">
           <label class="control-label">客户名称：</label>
-          <span class="form-control-static">{{guestName}}</span>
+          <span class="form-control-static">{{guestName | filterNull}}</span>
         </div>
         <div class="form-group no-b-margin">
           <label class="control-label pull-left required">类别：</label>
@@ -18,7 +18,8 @@
             <select name="memberType"  class="form-control" [(ngModel)]="memberType" required>
               <!-- <option value="0">平台会员</option>
               <option value="1">平台管理方</option> -->
-
+              <!-- <option value="-1" selected disabled hidden>请选择</option> -->
+              <option [ngValue]="undefined" hidden>请选择</option>
 
               <option [ngValue]="item.value" *ngFor="let item of typeList" >{{item.label}}</option>
             </select>
@@ -28,11 +29,11 @@
       <div class="col-md-6 form-horizontal form-label-10">
         <div class="form-group">
           <label class="control-label">归属渠道：</label>
-          <span class="form-control-static">  {{appName}}</span>
+          <span class="form-control-static">  {{appName | filterNull}}</span>
         </div>
         <div class="form-group no-b-margin">
           <label class="control-label">服务经理：</label>
-          <span class="form-control-static">  {{serviceMan}}</span>
+          <span class="form-control-static">  {{serviceMan | filterNull}}</span>
         </div>
       </div>
     </section >
@@ -41,33 +42,35 @@
         <div class="form-group ">
           <label  class="control-label pull-left">联系人：</label>
           <div class="form-control-static pull-left">
-            {{linkName}}
+            {{linkName | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">联系手机：</label>
           <div class="form-control-static pull-left">
-            {{linkMobile}}
+            {{linkMobile | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">联系人职位：</label>
           <div class="form-control-static pull-left">
-            {{linkJob}}
+            {{linkJob | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left required">联系人是否法人：</label>
           <div class=" pull-left" style="width:175px;">
             <select name="isLegal"  class="form-control" [(ngModel)]="isLegal" required >
+              <option [ngValue]="undefined" hidden>请选择</option>
+
               <option [ngValue]="item.value" *ngFor="let item of isLegalList" >{{item.label}}</option>
             </select>
           </div>
         </div>
         <div class="form-group">
-          <label  class="control-label pull-left">联系人身份证：</label>
+          <label  class="control-label pull-left" [class.required]="isLegal=='0'">身份证号：</label>
           <div class=" pull-left" style="width:175px;">
-            <input type="text" name="linkIdcard" class="form-control" [disabled]="isLegal!=0" [(ngModel)]="linkIdcard" required>
+            <input type="text" name="linkIdcard" class="form-control" required [disabled]="isLegal!=0" [(ngModel)]="linkIdcard">
           </div>
         </div>
       </div>
@@ -75,31 +78,31 @@
         <div class="form-group">
           <label  class="control-label pull-left">营业执照号：</label>
           <div class="form-control-static pull-left">
-            {{licenceNum}}
+            {{licenceNum | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">公司类型：</label>
           <div class="form-control-static pull-left">
-            {{companyType}}
+            {{companyType | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">注册资金：</label>
           <div class="form-control-static pull-left">
-            {{registerCapital | yuanFormat}} 万元
+            {{registerCapital | filterNull | filterMultiply:0.0001}}<span *ngIf="registerCapital">万元</span>
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">成立时间：</label>
           <div class="form-control-static pull-left">
-            {{foundTime}}
+            {{foundTime | filterNull}}
           </div>
         </div>
         <div class="form-group clearfix">
           <label  class="control-label pull-left">公司地址：</label>
-          <div class="form-control-static pull-left">
-            {{companyAddress}}
+          <div class="form-control-static pull-left enter">
+            {{companyAddress | filterNull}}
           </div>
         </div>
       </div>
@@ -113,11 +116,15 @@
        <div class="col-md-10 l-h-2x">
          <div class="col-md-3">
            <select name="firstType{{i}}" id="" class="form-control" [(ngModel)]="item.firstType" (change)="item.selectFirstL()">
+              <option [ngValue]="undefined" hidden>请选择</option>
+
              <option [ngValue]="type.code" *ngFor="let type of item.firstList">{{type.msg}}</option>
            </select>
          </div>
          <div class="col-md-3" >
            <select name="secondType{{i}}"  class="form-control" [disabled]="!item.firstType" [(ngModel)]="item.secondType">
+              <option [ngValue]="undefined" hidden>请选择</option>
+            
              <option [ngValue]="type.code" *ngFor="let type of item.secondList">{{type.msg}}</option>
 
            </select>
@@ -126,7 +133,7 @@
 
         <div class="col-md-4">
           <div *ngIf="item.uploader.queue[0]?item.uploader.queue[0].success==true:false">
-            <a class="text-info" (click)="show($event,item)">{{item.uploader.queue[0].fileName}}</a>
+            <a class="text-info inline-block" (click)="show($event,item)" textMaxLength="260px">{{item.uploader.queue[0].fileName}}</a>
           </div>
         </div>
         <div class="col-md-2">
@@ -209,17 +216,23 @@
          </div> -->
        </div>
       </div>
-      <div class="col-md-12 text-center text-info">
+      <div class="col-md-2 text-info text-right padder-r">
         <a class="text-info" (click)='addAttachment()'>新增</a>
       </div>
 
     </section>
-    <section>
-      <div class="text-center m-t-xs">
-        <button class="btn-def mar-r-sm" type="submit" [disabled]="!form.valid">提交申请<i class="fa fa-check-circle-o"></i></button>
+    
+    <div class="col-md-12">
+      <div class="text-disabled text-left pos-abt padder-l" *ngIf="!form.valid||!licenceNum||!companyType||!registerCapital||!foundTime||!companyAddress">
+        提醒：请完善客户所有信息后再进行认证申请
+      </div>
+      <div class="text-center m-t-xl">
+        <button class="btn-def mar-r-sm" type="submit" [disabled]="!form.valid||!licenceNum||!companyType||!registerCapital||!foundTime||!companyAddress">提交申请<i class="fa fa-check-circle-o"></i></button>
         <button class="btn-def" (click)="cancel()" type="button">返回<i class="fa fa-arrow-circle-o-left"></i></button>
       </div>
-    </section>
+    </div>
   </form>
 </div>
 <gallery #gallery></gallery>
+
+<!-- &&licenceNum&&companyType&&registerCapital&&foundTime&&companyAddress -->

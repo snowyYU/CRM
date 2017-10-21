@@ -15,39 +15,39 @@
         </div>
         <div class="col-md-6">
             <label class="label-control">创建日期:</label>
-            <span class="text-content">{{createTime}}</span>
+            <span class="text-content">{{createTime | filterNull}}</span>
         </div>
     </div>
     <div class="form-group clearfix">
 
         <div class="col-md-6">
             <label class="label-control">归属渠道:</label>
-            <span class="text-content">{{prmResourceRegister.resourceName}}</span>
+            <span class="text-content">{{prmResourceRegister.resourceName | filterNull}}</span>
         </div>
          <div class="col-md-6">
             <label class="label-control">类别:</label>
-            <span class="text-content">{{memberTypeDic}}</span>
+            <span class="text-content">{{memberTypeDic | filterNull}}</span>
         </div>
     </div>
     <div class="form-group clearfix">
         <div class="col-md-6">
             <label class="label-control">服务经理:</label>
-            <span class="text-content">{{serviceMan}}</span>
+            <span class="text-content">{{serviceMan | filterNull}}</span>
         </div>
         <div class="col-md-6">
             <label class="label-control">状态:</label>
-            <span>{{memberStatusDic}}</span>
+            <span class="text-content">{{memberStatusDic | filterNull}}</span>
         </div>
 
     </div>
     <div class="form-group clearfix">
         <div class="col-md-6">
             <label class="label-control">信用等级:</label>
-            <span class="text-danger">{{memberRating}}</span>
+            <span class="text-content">{{memberRating | filterNull}}</span>
         </div>
         <div class="col-md-6">
             <label class="label-control">信用评分:</label>
-            <span class="text-danger">{{memberRatingGrate}}</span>
+            <span class="text-content">{{memberRatingGrate | filterNull}}</span>
         </div>
 
     </div>
@@ -59,7 +59,7 @@
         <div class="col-md-6">
             <label class="label-control">尽调报告:</label>
            <!-- <span class="text-info" ><a [routerLink]="['/memberM/memberManage/detail',memberId,'memberReport']" class="text-info">查看</a></span>-->
-          <span class="text-info text-content" ><a >--</a></span>
+          <span class="text-content">--</span>
         </div>
 
     </div>
@@ -83,14 +83,14 @@
             <span class="m-l-md"><a class="text-info" (click)="companyInfo('legalPerson')">法人信息</a></span>
             <span class="m-l-md"><a class="text-info" (click)="companyInfo('borrower')">借款人信息</a></span>
             <span class="m-l-md"><a class="text-info" (click)="companyInfo('bankInfo')">银行信息</a></span>
+          <span class="m-l-md"><a class="text-info" (click)="runSituation()">运营信息</a></span>
             <span class="m-l-md"><a class="text-info" (click)="riskM('assetInfo')">资产信息</a></span>
             <span class="m-l-md"><a class="text-info" (click)="riskM('debtInfo')">负债信息</a></span>
             <span class="m-l-md"><a class="text-info" (click)="riskM('agreementInfo')">履约信息</a></span>
-            <span class="m-l-md"><a class="text-info" (click)="runSituation()">运营信息</a></span>
         </div>
         <div class="col-md-3">
 
-            <div class="col-md-3"><button class="btn-def-sm btn-def" (click)='eleAttachment()'>电子附件</button></div>
+            <div class="col-md-3"><button class=" btn-def" (click)='eleAttachment()'>所有电子附件</button></div>
         </div>
 
     </div>
@@ -145,5 +145,4 @@
 			<button class="btn-def" (click)="back()">返回<i class="fa fa-arrow-circle-o-left"></i></button>
 		</div>
 	</section>
-
 </div>

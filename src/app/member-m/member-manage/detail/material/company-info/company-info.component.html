@@ -27,11 +27,11 @@
           <div class="form-group clearfix m-t-md">
             <div class="col-md-6">
               <label for="" class="control-label">姓名:</label>
-              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerPerson}}</div>
+              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerPerson | filterNull}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">身份证号码:</label>
-              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerIdcard}}</div>
+              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerIdcard | filterNull}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
@@ -41,13 +41,13 @@
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">联系手机:</label>
-              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMobile}}</div>
+              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMobile | filterNull}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">婚姻状况:</label>
-              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMarryDic}}</div>
+              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMarryDic | filterNull}}</div>
             </div>
           </div>
         </div>
@@ -788,41 +788,41 @@
           <div class="form-group clearfix m-t">
             <div class="col-md-6">
               <label for="" class="control-label">公司名称:</label>
-              <div class="col-md-6 text-content">{{memberVo.companyName}}</div>
+              <div class="col-md-6 text-content">{{memberVo.companyName | filterNull}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">公司类型:</label>
-              <div class="col-md-6 text-content">{{companyVo.companyTypeName}}</div>
+              <div class="col-md-6 text-content">{{companyVo.companyTypeName | filterNull}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">注册资金:</label>
-              <div class="col-md-6 text-content">{{companyVo.registerCapital | filterMultiply:0.0001 | yuanFormat}}万元</div>
+              <div class="col-md-6 text-content">{{companyVo.registerCapital | filterNull | filterMultiply:0.0001 | yuanFormat}}<span *ngIf="companyVo.registerCapital">万元</span></div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">注册时间:</label>
-              <div class="col-md-6 text-content">{{companyVo.foundTime}}</div>
+              <div class="col-md-6 text-content">{{companyVo.foundTime | filterNull | effDateFormat}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">联系人:</label>
-              <div class="col-md-6 text-content">{{companyVo.linkName}}</div>
+              <div class="col-md-6 text-content">{{companyVo.linkName | filterNull}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">联系手机:</label>
-              <div class="col-md-6 text-content">{{companyVo.linkMobile}}</div>
+              <div class="col-md-6 text-content">{{companyVo.linkMobile | filterNull}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">营业执照号:</label>
-              <div class="col-md-6 text-content">{{companyVo.licenceNum}}</div>
+              <div class="col-md-6 text-content">{{companyVo.licenceNum | filterNull}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">企业地址:</label>
-              <div class="col-md-7 text-content">{{companyVo.companyAddress}}</div>
+              <div class="col-md-7 text-content">{{companyVo.companyAddress | filterNull}}</div>
             </div>
           </div>
         </div>
@@ -1321,27 +1321,27 @@
           <div class="form-group clearfix m-t-md">
             <div class="col-md-6">
               <label for="" class="control-label">法人姓名:</label>
-              <div class="col-md-6 text-content">{{companyLegalVo.legalPerson}}</div>
+              <div class="col-md-6 text-content">{{companyLegalVo.legalPerson | filterNull}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">法人身份证:</label>
-              <div class="col-md-6 text-content">{{companyLegalVo.legalIdcard}}</div>
+              <div class="col-md-6 text-content">{{companyLegalVo.legalIdcard | filterNull}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">最高学历:</label>
-              <div class="col-md-6 text-content">{{companyLegalVo.legalDegree}}</div>
+              <div class="col-md-6 text-content">{{companyLegalVo.legalDegree | filterNull}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">婚姻状况:</label>
-              <div class="col-md-6 text-content">{{companyLegalVo.legalMarryDic}}</div>
+              <div class="col-md-6 text-content">{{companyLegalVo.legalMarryDic | filterNull}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">联系手机:</label>
-              <div class="col-md-6 text-content">{{companyLegalVo.legalMobile}}</div>
+              <div class="col-md-6 text-content">{{companyLegalVo.legalMobile | filterNull}}</div>
             </div>
           </div>
         </div>
@@ -1421,39 +1421,39 @@
             <div class="col-md-12 border-content m-b" *ngFor="let item of companyBankCardVos">
               <div class="form-group clearfix m-t-md">
                 <div class="col-md-6">
-                  <label for="" class="control-label">账户类型:</label>
-                  <div class="col-md-6 text-content">{{item.typeDic}}</div>
+                  <label for="" class="control-label">卡类型:</label>
+                  <div class="col-md-6 text-content">{{item.typeDic | filterNull}}</div>
                 </div>
                 <div class="col-md-6">
                   <label for="" class="control-label">银行账号:</label>
-                  <div class="col-md-6 text-content">{{item.cardNo}}</div>
+                  <div class="col-md-6 text-content">{{item.cardNo | filterNull}}</div>
                 </div>
               </div>
               <div class="form-group clearfix">
                 <div class="col-md-6">
                   <label for="" class="control-label">银行名称:</label>
-                  <div class="col-md-6 text-content">{{item.bankName}}</div>
+                  <div class="col-md-6 text-content">{{item.bankName | filterNull}}</div>
                 </div>
                 <div class="col-md-6">
                   <label for="" class="control-label">支行名称:</label>
-                  <div class="col-md-6 text-content">{{item.subbankName}}</div>
+                  <div class="col-md-6 text-content">{{item.subbankName | filterNull}}</div>
                 </div>
               </div>
               <div class="form-group clearfix">
                 <div class="col-md-6">
                   <label for="" class="control-label">认证状态:</label>
-                  <div class="col-md-6 text-content">{{item.authStatusDic}}</div>
+                  <div class="col-md-6 text-content">{{item.authStatusDic | filterNull}}</div>
                 </div>
                 <div class="col-md-6">
                   <label for="" class="control-label">默认:</label>
-                  <div class="col-md-6 text-content">{{item.isDefaultDic}}</div>
+                  <div class="col-md-6 text-content">{{item.isDefaultDic | filterNull}}</div>
                 </div>
               </div>
             </div>
           </div>
           <!-- 编辑 -->
           <div *ngIf="part4_1">
-            <div class="col-md-12 border-content m-t padder-v" *ngFor="let bankCard of companyBankCardDatas;trackBy:customTrackBy;let i=index">
+            <div class="col-md-12 border-content m-t padder-v" *ngFor="let bankCard of companyBankCardDatas;let i=index">
               <div class="form-group clearfix ">
                 <div class="col-md-6">
                   <label for="" class="control-label">银行卡号:</label>
@@ -1476,7 +1476,7 @@
                         (onDropdown)="bankCard.clearBanks();bankCard.queryBanks(bankCard.bankKey)">
                       <input [(ngModel)]="bankCard.bankName" required name="bankName_{{i}}" class="form-control"
                              placeholder="请选择银行"
-                             [HTML5Validate]="[bankCard.bankName==='','请选择银行！']" data-type="value" 
+                             data-type="value"
                              [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
                       <input class="form-control" placeholder="银行关键字" [ngModel]="bankCard.bankKey"
                              name="bankKeyword_{{i}}"
@@ -1494,18 +1494,18 @@
                   <label for="" class="control-label">支行名称:</label>
                   <!-- <div class="col-md-6 text-content">{{item.subbankName}}</div> -->
                   <div class="col-md-6 text-content">
-                    <select-bar #selectBar
+                    <select-bar #selectBar1
                         (onDropdown)="bankCard.clearSubBanks();bankCard.querySubBanks(bankCard.subBankKey)">
                       <input [(ngModel)]="bankCard.subBankName" required name="subBankName_{{i}}" class="form-control"
                              placeholder="请选择支行"
-                             [HTML5Validate]="[bankCard.subbankName==='','请选择支行！']" data-type="value" 
+                             data-type="value"
                              [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
                       <input class="form-control" placeholder="支行关键字" [ngModel]="bankCard.subBankKey"
                              name="subBankKeyword_{{i}}"
                              data-type="keyword" (ngModelChange)="bankCard.querySubBanks($event)">
                       <ul class="list" *ngIf="bankCard.subBankList.length>0">
                         <li *ngFor="let bk of bankCard.subBankList"
-                            (click)="bankCard.subBankName='';bankCard.clearSubBanks();bankCard.subBankName=bk.subbank;bankCard.companyBankInfo.lineNo=bk.lineno;selectBar.dropup()">
+                            (click)="bankCard.subBankName='';bankCard.clearSubBanks();bankCard.subBankName=bk.subbank;bankCard.companyBankInfo.lineNo=bk.lineno;selectBar1.dropup()">
                           {{bk.subbank}}
                         </li>
                       </ul>
@@ -1515,7 +1515,7 @@
               </div>
               <div class="clearfix ">
                 <div class="col-md-6">
-                  <label for="" class="control-label">账户类型:</label>
+                  <label for="" class="control-label">卡类型:</label>
                   <div class="col-md-6 text-content">
                     <select name="banknfoCardType_{{i}}" class="form-control" [(ngModel)]="bankCard.accType" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
                       <option [value]="accT.value" *ngFor="let accT of accTypeList">{{accT.label}}</option>

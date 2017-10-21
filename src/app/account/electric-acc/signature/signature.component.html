@@ -7,9 +7,26 @@
 <div class="wrapper-md">
   <div class="text-center m-t-xxl" *ngIf="!secondShow">
     <section>
-        <label class="h3 font-bold"><i class="fa fa-search"></i> 会员电子签章信息查询</label>
+        <label class="h3 font-bold m-b-md"><i class="fa fa-search"></i> 会员电子签章信息查询</label>
         <div class="wrapper clearfix form-inline">
-          <input type="text " name="memberNameQ" class="form-control m-l-md i-width" [(ngModel)]="memberNameQ" placeholder="会员名|会员id">
+          <div class="form-group">
+            <select-bar #selectBar1
+              (onDropdown)="clearMemberList();queryMemberList(memberNameQKey)">
+              <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control search"
+                     placeholder="请选择会员"
+                     data-type="value"
+                      />
+              <input class="form-control search" placeholder="会员关键字" autocomplete="off" [ngModel]="memberNameQKey"
+                     name="memberNameQKeyword"
+                     data-type="keyword" (ngModelChange)="queryMemberList($event)">
+              <ul class="list" *ngIf="memberList.length>0">
+                <li class="text-left" *ngFor="let member of memberList"
+                    (click)="memberNameQ='';clearMemberList();memberNameQ=member.companyName;selectBar1.dropup()">
+                  {{member.companyName}}
+                </li>
+              </ul>
+            </select-bar>
+          </div>
           <button type="button" class="btn-def" (click)="getDetailData()" [disabled]="!memberNameQ">查询<i class="fa fa-search"></i></button>
         </div>
       </section>
@@ -17,7 +34,24 @@
 <div *ngIf="secondShow">
 <form #form="ngForm" ngSubmit="openAcc()">
     <section class="wrapper clearfix form-inline">
-        <input type="text " name="memberNameQ" class="form-control m-l-md" [(ngModel)]="memberNameQ" placeholder="会员名|会员id">
+        <div class="form-group">
+          <select-bar #selectBar1
+            (onDropdown)="clearMemberList();queryMemberList(memberNameQKey)">
+            <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control i-width"
+                   placeholder="请选择会员"
+                   data-type="value"
+                    />
+            <input class="form-control i-width" placeholder="会员关键字" autocomplete="off" [ngModel]="memberNameQKey"
+                   name="memberNameQKeyword"
+                   data-type="keyword" (ngModelChange)="queryMemberList($event)">
+            <ul class="list" *ngIf="memberList.length>0">
+              <li class="text-left" *ngFor="let member of memberList"
+                  (click)="memberNameQ='';clearMemberList();memberNameQ=member.companyName;selectBar1.dropup()">
+                {{member.companyName}}
+              </li>
+            </ul>
+          </select-bar>
+        </div>
         <button type="button" class="btn-def" (click)="getDetailData()" [disabled]="!memberNameQ">查询<i class="fa fa-search"></i></button>
        <!--  <button type="button" class="btn btn-info pull-right m-l-md" >电子签章</button>
         <button type="button" class="btn  pull-right" (click)="eleAcc()">开户</button> -->
@@ -27,18 +61,18 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label class="control-label m-l-md">会员名称:</label>
-                <span *ngIf="companyName">{{companyName}}  ({{memberId}})</span>
+                <span class="text-content" *ngIf="companyName">{{companyName}}  ({{memberId}})</span>
             </div>
             <div class="col-md-6">
                 <label class="control-label m-l-md">状态:</label>
-                <span>{{signatureUserStatusDit}}</span>
+                <span class="text-content">{{signatureUserStatusDit | filterNull}}</span>
             </div>
             
         </div>
         <div class="row">
             <div class="col-md-12">
                 <label class="control-label m-l-md">归属渠道:</label>
-                <span>{{prmResourceRegister.resourceName}}</span>
+                <span class="text-content">{{prmResourceRegister.resourceName | filterNull}}</span>
             </div>
             
         </div>
@@ -48,33 +82,33 @@
         <div class="row form-group">
             <div class="col-md-6 m-t-xs">
                 <label class="control-label m-l-md">公司类型:</label>
-                <span>{{company.companyTypeName}}</span>
+                <span class="text-content">{{company.companyTypeName | filterNull}}</span>
             </div>
             <div class="col-md-6">
                 <label class="control-label m-l-md">借款人:</label>
-                <span>{{companyborrower.borrwerPerson}}</span>
+                <span class="text-content">{{companyborrower.borrwerPerson | filterNull}}</span>
             </div>
             
         </div>
         <div class="row form-group">
             <div class="col-md-6 m-t-xs">
                 <label class="control-label m-l-md">法人:</label>
-                <span>{{companyLegal.legalPerson}}</span>
+                <span class="text-content">{{companyLegal.legalPerson | filterNull}}</span>
             </div>
             <div class="col-md-6">
                 <label class="control-label m-l-md">借款人身份证:</label>
-                <span>{{companyborrower.borrwerIdcard}}</span>
+                <span class="text-content">{{companyborrower.borrwerIdcard | filterNull}}</span>
             </div>
             
         </div>
         <div class="row">
             <div class="col-md-6 m-t-xs">
                 <label class="control-label m-l-md">营业执照号:</label>
-                <span>{{company.licenceNum}}</span>
+                <span class="text-content">{{company.licenceNum | filterNull}}</span>
             </div>
             <div class="col-md-6">
                 <label class="control-label m-l-md">借款人手机:</label>
-                <span>{{companyborrower.borrwerMobile}}</span>
+                <span class="text-content">{{companyborrower.borrwerMobile | filterNull}}</span>
             </div>
             
         </div>
@@ -103,12 +137,12 @@
         <div class="row">
         <div class="col-md-6 m-t-xs">
             <label class="control-label m-l-md">电子合同章:</label>
-            <span>{{companyName}}</span>
+            <span class="text-content">{{companyName | filterNull}}</span>
             <!-- <span>{{eaccount.signatureid1}}</span> -->
         </div>
         <div class="col-md-6 m-t-xs">
             <label class="control-label m-l-md">个人签章:</label>
-            <span>{{companyborrower.borrwerPerson}}</span>
+            <span class="text-content">{{companyborrower.borrwerPerson | filterNull}}</span>
             <!-- <span>{{eaccount.signatureid2}}</span> -->
         </div>
     </div>

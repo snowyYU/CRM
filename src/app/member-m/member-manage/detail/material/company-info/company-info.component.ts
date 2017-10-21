@@ -56,7 +56,7 @@ export class CompanyInfoComponent implements OnInit {
 	uploader3_2:Uploader=new Uploader()
 	uploader3_3:Uploader=new Uploader()
 	uploader3_4:Uploader=new Uploader()
-	
+
 
 
 	//这个为婚姻状况的值
@@ -79,7 +79,7 @@ export class CompanyInfoComponent implements OnInit {
 	detailAddress
 
 	companyborrowerVo:{
-		
+
 		attachList?
 		borrwerDegree?
 		borrwerIdcard?
@@ -103,7 +103,7 @@ export class CompanyInfoComponent implements OnInit {
 		//最高学历: 	companyborrowerVo.borrwerDegree   			联系手机	companyborrowerVo.borrwerMobile
 		// 婚姻状况：	companyborrowerVo.borrwerMarry
 
-	companyAttachVos:any[]		
+	companyAttachVos:any[]
 		// 相关证照：	companyAttachVos[].attachId
 		// 			companyAttachVos[].fileLoadId
 		// 			查看接口(文件服务器接口-待定)
@@ -116,7 +116,7 @@ export class CompanyInfoComponent implements OnInit {
 		// 			配偶身份证（正面）	0106
 		// 			配偶身份证（反面）	0107
 	companyVo:{
-		
+
 		attachList?
 		companyAddress?
 		companyName?
@@ -173,8 +173,8 @@ export class CompanyInfoComponent implements OnInit {
 		token?
 		updateBy?
 		updateTime?
-	}={}			
-	// 公司信息：companyVo				
+	}={}
+	// 公司信息：companyVo
 	// 	公司名称：	memberVo.companyName				公司类型 companyVo.companyTypeName
 	// 	注册资金	companyVo.registerCapital			注册时间 companyVo.foundTime
  	// 	联系人		companyVo.linkName					联系手机 companyVo.linkMobile
@@ -187,7 +187,7 @@ export class CompanyInfoComponent implements OnInit {
 	// 				职业资格证书(财务)0201
 	// 				四证合一0101
 	companyLegalVo:{
-		
+
 		attachList?
 		createBy?
 		createTime?
@@ -218,9 +218,9 @@ export class CompanyInfoComponent implements OnInit {
 	// 	账户类型 companyBankCardVos[].typeDic		银行账号	companyBankCardVos[].cardNo
 	// 	银行名称 companyBankCardVos[].bankName		支行名称	companyBankCardVos[].subbankName
 	// 	认证状态 companyBankCardVos[].authStatusDic		默认		companyBankCardVos[].isDefaultDic
-	
-	
-	// 	相关证件照：	
+
+
+	// 	相关证件照：
 	// 		companyAttachVos[].attachId
 	// 		companyAttachVos[].fileLoadId
 	// 		查看接口(文件服务器接口-待定)
@@ -258,7 +258,7 @@ export class CompanyInfoComponent implements OnInit {
 
 		//获取账户类型列表
 		this.getAccTypeList()
-		
+
 
 	    this.uploaderFun('0104','uploader1_1')//申请人身份证（正面）0104
 	    this.uploaderFun('0105','uploader1_2')//申请人身份证（反面）0105
@@ -276,7 +276,7 @@ export class CompanyInfoComponent implements OnInit {
 	    this.uploaderFun('0501','uploader3_1')//开户证明	0501
 	    this.uploaderFun('0502','uploader3_2')//银行卡		0502
 	    this.uploaderFun('0504','uploader3_3')//网银流水	0504
-	    
+
 
 
 
@@ -327,21 +327,21 @@ export class CompanyInfoComponent implements OnInit {
 			      		console.log(this.attachment)
 
 	      			},1000)
-			      	
-			      	
-			      	
+
+
+
 			     }
 	    	}
-	    	
+
 	    });
 	}
 
 	getMarryData(){
-		this.companyInfo.getMarrySelect()	
+		this.companyInfo.getMarrySelect()
 			.then(res=>{
 
-				this.marryList=res.body.records	
-				console.log(this.marryList)			
+				this.marryList=res.body.records
+				console.log(this.marryList)
 			})
 			.catch(res=>{
 				this.pop.error({
@@ -355,7 +355,7 @@ export class CompanyInfoComponent implements OnInit {
 		this.companyInfo.getCompanyType()
 			.then(res=>{
 
-				this.companyTypeList=res.body.records	
+				this.companyTypeList=res.body.records
 			})
 			.catch(res=>{
 				this.pop.error({
@@ -382,7 +382,7 @@ export class CompanyInfoComponent implements OnInit {
 			})
 		})
 	}
-	
+
 	getCityList(v){
 		console.log(v);
 		//获取省code
@@ -412,7 +412,7 @@ export class CompanyInfoComponent implements OnInit {
 		this.companyInfo.getAccTypeList()
 			.then(res=>{
 
-				this.accTypeList=res.body.records	
+				this.accTypeList=res.body.records
 			})
 			.catch(res=>{
 				this.pop.error({
@@ -444,7 +444,7 @@ export class CompanyInfoComponent implements OnInit {
 		this.companyLegalVo=data.body.companyLegalVo
 		this.companyBankCardVos=data.body.companyBankCardVos
 
-		this.borrwerMarry=data.body.companyborrowerVo.borrwerMarry+''
+		this.borrwerMarry=data.body.companyborrowerVo.borrwerMarry?data.body.companyborrowerVo.borrwerMarry:''
 		console.log('borrwerMarry',this.borrwerMarry)
 		this.companyLegalVo.legalMarry=data.body.companyLegalVo.legalMarry+''
 
@@ -468,7 +468,7 @@ export class CompanyInfoComponent implements OnInit {
 						this.getCityList(this.province);
 						break;
 					default:
-						
+
 						break;
 				}
 			}
@@ -524,14 +524,14 @@ export class CompanyInfoComponent implements OnInit {
 		if (!!this.attachment[type]) {
 			let url:any=this.companyInfo.getFileUrl(this.attachment[type].fileLoadId)
 			this.gallery.open(e,url);
-			
+
 		}/*else{
 			this.pop.error({
 				title:'错误提示',
 				text:'无此文件！'
 			})
 		}*/
-		
+
 		// window.open()
 	}
 
@@ -570,10 +570,10 @@ export class CompanyInfoComponent implements OnInit {
 
 		let data:Part1Data={
 			memberId:this.memberId,//会员ID：
-			borrwerPerson:this.companyborrowerVo.borrwerPerson,//姓名：						
-			borrwerIdcard:this.companyborrowerVo.borrwerIdcard,//身份证号码 	
-			borrwerDegree:this.companyborrowerVo.borrwerDegree,//最高学历: 	   			
-			borrwerMobile:this.companyborrowerVo.borrwerMobile,//联系手机	
+			borrwerPerson:this.companyborrowerVo.borrwerPerson,//姓名：
+			borrwerIdcard:this.companyborrowerVo.borrwerIdcard,//身份证号码
+			borrwerDegree:this.companyborrowerVo.borrwerDegree,//最高学历:
+			borrwerMobile:this.companyborrowerVo.borrwerMobile,//联系手机
 			borrwerMarry:this.borrwerMarry,//婚姻状况(字典：marryType)：
 			attachList:listJson
 		}
@@ -597,16 +597,16 @@ export class CompanyInfoComponent implements OnInit {
 	}
 	save2(){
 		let data:Part2Data={
-			memberId:this.memberId,//会员ID：	
-			companyName:this.memberVo.companyName,//公司名称：						
-			companyType:this.companyVo.companyType,//公司类型（字典:guest_company_type） 
-			registerCapital:this.companyVo.registerCapital,//注册资金					
-			foundTime:this.companyVo.foundTime,//注册时间 							
-		 	linkName:this.companyVo.linkName,//联系人							
-		 	linkMobile:this.companyVo.linkMobile,//联系手机 							
-			licenceNum:this.companyVo.licenceNum,//营业执照号						
-			companyAddress:this.province+'-'+this.city+'-'+this.detailAddress,//企业地址 	
-			attachList:this.handleAttachData()	
+			memberId:this.memberId,//会员ID：
+			companyName:this.memberVo.companyName,//公司名称：
+			companyType:this.companyVo.companyType,//公司类型（字典:guest_company_type）
+			registerCapital:this.companyVo.registerCapital,//注册资金
+			foundTime:this.companyVo.foundTime,//注册时间
+		 	linkName:this.companyVo.linkName,//联系人
+		 	linkMobile:this.companyVo.linkMobile,//联系手机
+			licenceNum:this.companyVo.licenceNum,//营业执照号
+			companyAddress:this.province+'-'+this.city+'-'+this.detailAddress,//企业地址
+			attachList:this.handleAttachData()
 		}
 		this.companyInfo.saveCompanyInfo(data)
 			.then(res=>{
@@ -626,12 +626,12 @@ export class CompanyInfoComponent implements OnInit {
 	}
 	save3(){
 		let data:Part3Data={
-			memberId:this.memberId,//会员ID： 			
-			legalPerson:this.companyLegalVo.legalPerson,//法人姓名 				 			
-			legalIdcard:this.companyLegalVo.legalIdcard,//法人身份证：				
-			legalDegree:this.companyLegalVo.legalDegree,//最高学历		 					
-			legalMarry:this.companyLegalVo.legalMarry,//婚姻状况（字典：marryType）	
-			legalMobile:this.companyLegalVo.legalMobile//联系手机 	
+			memberId:this.memberId,//会员ID：
+			legalPerson:this.companyLegalVo.legalPerson,//法人姓名
+			legalIdcard:this.companyLegalVo.legalIdcard,//法人身份证：
+			legalDegree:this.companyLegalVo.legalDegree,//最高学历
+			legalMarry:this.companyLegalVo.legalMarry,//婚姻状况（字典：marryType）
+			legalMobile:this.companyLegalVo.legalMobile//联系手机
 		}
 		this.companyInfo.saveCompanyLegal(data)
 			.then(res=>{
@@ -722,7 +722,7 @@ export class CompanyInfoComponent implements OnInit {
 	// 	银行名称 companyBankCardVos[].bankName		支行名称	companyBankCardVos[].subbankName
 	// 	认证状态 companyBankCardVos[].authStatusDic		默认		companyBankCardVos[].isDefaultDic
 		let o= new BankCardInfo(this.companyInfo);
-		
+
 		this.companyBankCardDatas.push(o)
 
 		console.log(this.companyBankCardDatas)
@@ -730,21 +730,21 @@ export class CompanyInfoComponent implements OnInit {
 	}
 
 	deleteBankCard(index){
-		
+
 		this.companyBankCardDatas.splice(index,1)
 		console.log(this.companyBankCardDatas)
 	}
 
-	
+
 
 
 }
 
 
 class BankCardInfo{
-	
+
 	constructor(companyInfo:CompanyInfoService,companyBankInfo?) {
-		
+
 		if (companyBankInfo) {
 			this.companyBankInfo=companyBankInfo
 			this.bankName=companyBankInfo.bankName
@@ -783,7 +783,7 @@ class BankCardInfo{
 
 	clearBanks(){
 		this.bankList=[]
-		
+
 	}
 
 	clearSubBanks(){
@@ -811,6 +811,6 @@ class BankCardInfo{
 	  return index;
 	}
 
-	
+
 
 }

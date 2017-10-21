@@ -114,3 +114,15 @@ input[type=number]::-webkit-outer-spin-button {
     font-family: inherit;
     font-size: 1em;
 }
+.dol .page-location-item,.dol a{
+  cursor: default;
+}
+
+/**
+select.ng-invalid{
+  color:#aaa;
+}
+select option{
+  color:#333;
+}
+**/
