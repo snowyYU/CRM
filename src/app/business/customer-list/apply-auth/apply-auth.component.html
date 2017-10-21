@@ -101,7 +101,7 @@
         </div>
         <div class="form-group clearfix">
           <label  class="control-label pull-left">公司地址：</label>
-          <div class="form-control-static pull-left">
+          <div class="form-control-static pull-left enter">
             {{companyAddress | filterNull}}
           </div>
         </div>
@@ -216,17 +216,17 @@
          </div> -->
        </div>
       </div>
-      <div class="col-md-2 text-info text-right padder-l">
+      <div class="col-md-2 text-info text-right padder-r">
         <a class="text-info" (click)='addAttachment()'>新增</a>
       </div>
 
     </section>
     
     <div class="col-md-12">
-      <div class="text-disabled text-left pos-abt" *ngIf="!form.valid||!licenceNum||!companyType||!registerCapital||!foundTime||!companyAddress">
+      <div class="text-disabled text-left pos-abt padder-l" *ngIf="!form.valid||!licenceNum||!companyType||!registerCapital||!foundTime||!companyAddress">
         提醒：请完善客户所有信息后再进行认证申请
       </div>
-      <div class="text-center m-t">
+      <div class="text-center m-t-xl">
         <button class="btn-def mar-r-sm" type="submit" [disabled]="!form.valid||!licenceNum||!companyType||!registerCapital||!foundTime||!companyAddress">提交申请<i class="fa fa-check-circle-o"></i></button>
         <button class="btn-def" (click)="cancel()" type="button">返回<i class="fa fa-arrow-circle-o-left"></i></button>
       </div>
