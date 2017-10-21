@@ -15,7 +15,7 @@ export class AccBalanceComponent implements OnInit {
 	dataList:any[]
 	rows:number=10
 	page:number=0
-	count
+	count:number=0
 	appId=''
 	appIdList:any[]
 	memberName
@@ -90,7 +90,7 @@ export class AccBalanceComponent implements OnInit {
 			.then(res=>{
 				console.log(res)
 				this.isOpenAccount=res.body.isOpenAccount
-				this.isOpenAccountRate=res.body.isOpenAccountRate
+				this.isOpenAccountRate=res.body.isOpenAccountRate*100
 				this.memberTotal=res.body.memberTotal
 				this.notOpenAccount=res.body.notOpenAccount
 			})
