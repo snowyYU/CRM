@@ -19,7 +19,8 @@
               <!-- <option value="0">平台会员</option>
               <option value="1">平台管理方</option> -->
 
-
+              <!-- <option value="-1" selected disabled hidden>请选择</option> -->
+              <option [ngValue]="undefined" hidden>请选择</option>
               <option [ngValue]="item.value" *ngFor="let item of typeList" >{{item.label}}</option>
             </select>
           </div>
@@ -60,14 +61,16 @@
           <label  class="control-label pull-left required">联系人是否法人：</label>
           <div class=" pull-left" style="width:175px;">
             <select name="isLegal"  class="form-control" [(ngModel)]="isLegal" required >
+              <option [ngValue]="undefined" hidden>请选择</option>
+
               <option [ngValue]="item.value" *ngFor="let item of isLegalList" >{{item.label}}</option>
             </select>
           </div>
         </div>
         <div class="form-group">
-          <label  class="control-label pull-left">身份证号：</label>
+          <label  class="control-label pull-left" [class.required]="isLegal=='0'">身份证号：</label>
           <div class=" pull-left" style="width:175px;">
-            <input type="text" name="linkIdcard" class="form-control" [disabled]="isLegal!=0" [(ngModel)]="linkIdcard" required>
+            <input type="text" name="linkIdcard" class="form-control" required [disabled]="isLegal!=0" [(ngModel)]="linkIdcard">
           </div>
         </div>
       </div>
@@ -113,11 +116,15 @@
        <div class="col-md-10 l-h-2x">
          <div class="col-md-3">
            <select name="firstType{{i}}" id="" class="form-control" [(ngModel)]="item.firstType" (change)="item.selectFirstL()">
+              <option [ngValue]="undefined" hidden>请选择</option>
+
              <option [ngValue]="type.code" *ngFor="let type of item.firstList">{{type.msg}}</option>
            </select>
          </div>
          <div class="col-md-3" >
            <select name="secondType{{i}}"  class="form-control" [disabled]="!item.firstType" [(ngModel)]="item.secondType">
+              <option [ngValue]="undefined" hidden>请选择</option>
+            
              <option [ngValue]="type.code" *ngFor="let type of item.secondList">{{type.msg}}</option>
 
            </select>
@@ -126,7 +133,7 @@
 
         <div class="col-md-4">
           <div *ngIf="item.uploader.queue[0]?item.uploader.queue[0].success==true:false">
-            <a class="text-info" (click)="show($event,item)">{{item.uploader.queue[0].fileName}}</a>
+            <a class="text-info inline-block" (click)="show($event,item)" textMaxLength="260px">{{item.uploader.queue[0].fileName}}</a>
           </div>
         </div>
         <div class="col-md-2">
@@ -209,17 +216,23 @@
          </div> -->
        </div>
       </div>
-      <div class="col-md-12 text-center text-info">
+      <div class="col-md-2 text-info text-right padder-l">
         <a class="text-info" (click)='addAttachment()'>新增</a>
       </div>
 
     </section>
-    <section>
-      <div class="text-center m-t-xs">
-        <button class="btn-def mar-r-sm" type="submit" [disabled]="!form.valid">提交申请<i class="fa fa-check-circle-o"></i></button>
+    
+    <div class="col-md-12">
+      <div class="text-disabled text-left pos-abt" *ngIf="!form.valid||!licenceNum||!companyType||!registerCapital||!foundTime||!companyAddress">
+        提醒：请完善客户所有信息后再进行认证申请
+      </div>
+      <div class="text-center m-t">
+        <button class="btn-def mar-r-sm" type="submit" [disabled]="!form.valid||!licenceNum||!companyType||!registerCapital||!foundTime||!companyAddress">提交申请<i class="fa fa-check-circle-o"></i></button>
         <button class="btn-def" (click)="cancel()" type="button">返回<i class="fa fa-arrow-circle-o-left"></i></button>
       </div>
-    </section>
+    </div>
   </form>
 </div>
 <gallery #gallery></gallery>
+
+<!-- &&licenceNum&&companyType&&registerCapital&&foundTime&&companyAddress -->

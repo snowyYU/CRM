@@ -11,7 +11,7 @@
         <div class="form-group">
           <label class="control-label pull-left" >申请ID：</label>
           <div class="form-control-static pull-left text-content">
-            {{authId}}
+            {{authId | filterNull}}
           </div>
         </div>
       </div>
@@ -19,7 +19,7 @@
         <div class="form-group">
           <label class="control-label pull-left">申请时间：</label>
           <div class="form-control-static pull-left">
-            {{createTime}}
+            {{createTime | filterNull}}
           </div>
         </div>
       </div>
@@ -29,61 +29,67 @@
         <div class="form-group">
           <label class="control-label pull-left" >客户名称：</label>
           <div class="form-control-static pull-left">
-            {{companyName}}
+            {{companyName | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label class="control-label pull-left" >类别：</label>
           <div class="form-control-static pull-left">
-            {{memberTypeDic}}
+            {{memberTypeDic | filterNull}}
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label pull-left">状态：</label>
+          <label class="control-label pull-left" >归属渠道：</label>
           <div class="form-control-static pull-left">
-            {{statusDic}}
+            {{appName | filterNull}}
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label class="control-label pull-left" >归属渠道：</label>
+          <label class="control-label pull-left">状态：</label>
           <div class="form-control-static pull-left">
-            {{appName}}
+            {{statusDic | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label class="control-label pull-left" >服务经理：</label>
           <div class="form-control-static pull-left">
-            {{serviceMan}}
+            {{serviceMan | filterNull}}
           </div>
         </div>
       </div>
     </section>
     <section class="mar-b-sm form-horizontal form-label-10 group clearfix">
       <div class="col-md-6 ">
-        <div class="form-group ">
+        <div class="form-group">
           <label  class="control-label pull-left">联系人：</label>
           <div class="form-control-static pull-left">
-            {{linkName}}
+            {{linkName | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">联系手机：</label>
           <div class="form-control-static pull-left">
-            {{linkMobile}}
+            {{linkMobile | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">联系人职位：</label>
           <div class="form-control-static pull-left">
-            {{linkJob}}
+            {{linkJob | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">是否法人：</label>
           <div class="form-control-static pull-left">
-            {{isLegalDic}}
+            {{isLegalDic | filterNull}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label  class="control-label pull-left">身份证号：</label>
+          <div class="form-control-static pull-left">
+            {{linkIdcard | filterNull}}
           </div>
         </div>
       </div>
@@ -91,31 +97,31 @@
         <div class="form-group">
           <label  class="control-label pull-left">营业执照号：</label>
           <div class="form-control-static pull-left">
-            {{licenceNum}}
+            {{licenceNum | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">公司类型：</label>
           <div class="form-control-static pull-left">
-            {{companyTypeDic}}
+            {{companyTypeDic | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">注册资金：</label>
           <div class="form-control-static pull-left">
-            {{registerCapital | yuanFormat}} 万元
+            {{registerCapital | filterNull | filterMultiply:0.0001}}<span *ngIf="registerCapital">万元</span>
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">成立时间：</label>
           <div class="form-control-static pull-left">
-            {{foundTime}}
+            {{foundTime | filterNull}}
           </div>
         </div>
         <div class="form-group clearfix">
           <label  class="control-label pull-left">公司地址：</label>
           <div class="form-control-static pull-left">
-            {{companyAddress}}
+            {{companyAddress | filterNull}}
           </div>
         </div>
       </div>
@@ -125,13 +131,14 @@
         <div class="form-group">
           <label class="control-label pull-left" >审核人：</label>
           <div class="form-control-static pull-left">
-            {{auditBy}}
+            {{auditBy | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label class="control-label pull-left" >审核意见：</label>
           <div class="form-control-static pull-left">
-            {{auditRemark}}
+            {{auditRemark | filterNull}}
+            <!-- {{auditRemark}} -->
           </div>
         </div>
       </div>
@@ -139,7 +146,7 @@
         <div class="form-group">
           <label class="control-label pull-left">审核时间：</label>
           <div class="form-control-static pull-left">
-            {{auditDate}}
+            {{auditDate | filterNull}}
           </div>
         </div>
       </div>

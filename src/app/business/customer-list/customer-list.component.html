@@ -20,6 +20,15 @@
         </option>
       </select>
     </div>
+    <div class="pull-left form-inline">
+      <div class="form-group">
+        <label >客户名称：</label>
+        <input type="text" name="customerName" placeholder="请输入关键字" [(ngModel)]="customerName" class="form-control">
+      </div>
+      <div class="form-group">
+        <button class="btn-def" (click)='queryData()'>查询<i class="fa fa-search"></i></button>
+      </div>
+    </div>
     <div class="col-md-2 pad-t-xs pull-right text-right" [class.pad-t-xs]="authRole.roleIn(['008'])" >
       <a class="text-info text-lg text-underline" (click)="goToList()">认证申请记录</a>
       <!-- <a class="text-danger text-lg" (click)='goToList()' *ngIf="authApplyReplyNum">{{authApplyReplyNum}}</a>
@@ -99,6 +108,8 @@
         </div>
         <div class="col-md-4 text-center m-t-xs">
           <select name="changeServiceM" class="form-control" [(ngModel)]="modalServiceMan" required>
+            <option [ngValue]="undefined" hidden>请选择</option>
+
             <option [value]="item.employeeName" *ngFor="let item of modalServiceManL">{{item.employeeName}}</option>
           </select>
         </div>
