@@ -5,12 +5,13 @@ import { AuthRoleService } from '../../../../services/authRole/authRole.service'
 
 import { PopService } from 'dolphinng';
 
+import { DateService } from '../../../../services/date/date.service'
 
 @Component({
 	selector:'add-edit-template',
 	templateUrl:'./add-edit-template.component.html',
 	styleUrls:['./add-edit-template.component.less'],
-	providers:[AddEditTemplateService,AuthRoleService]
+	providers:[AddEditTemplateService,AuthRoleService,DateService]
 })
 export class AddEditComponent implements OnInit{
 	guestName:string;//客户名称
@@ -48,12 +49,16 @@ export class AddEditComponent implements OnInit{
 
 	customerDisabled:boolean=false
 
+	//拜访日期在当日之前
+	maxDate
+
 	constructor(
 		private route:ActivatedRoute,
 		private router:Router,
 		private addEdit:AddEditTemplateService,
 		private authRole:AuthRoleService,
-		private pop:PopService
+		private pop:PopService,
+		private dateService:DateService
 		){}
 	ngOnInit(){
 		this.provinceSelect();
@@ -70,6 +75,11 @@ export class AddEditComponent implements OnInit{
 
 
 		this.getEditData()
+
+		this.maxDate=this.dateService.format({
+			date:this.dateService.todayDate(),
+			formatType:'yyyy-MM-dd'
+		});
 
 
 	}
