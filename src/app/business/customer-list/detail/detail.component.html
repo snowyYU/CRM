@@ -84,17 +84,17 @@
         </div>
         <div class="form-group clearfix">
           <label  class="control-label pull-left">公司地址：</label>
-          <div class="form-control-static pull-left">
+          <div class="form-control-static pull-left enter">
             {{companyAddress | filterNull}}
           </div>
         </div>
       </div>
     </section>
     <section class="panel-body group mar-b-sm">
-      <div class="col-md-8 form-horizontal form-label-10">
+      <div class="col-md-12 form-horizontal form-label-10">
         <div class="form-group">
-          <label class="control-label">备注：</label>
-          <span class="form-control-static">{{remark | filterNull}}</span>
+          <label class="control-label col-md-2">备注：</label>
+          <span class="form-control-static col-md-10 p-l-none">{{remark | filterNull}}</span>
           <!-- <span class="form-control-static">{{remark}}</span> -->
         </div>
 

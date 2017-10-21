@@ -32,7 +32,7 @@
       <p-column field='prmResourceRegister.resourceName' header='归属渠道' [style]="{'width':'150px'}"></p-column>
       <p-column field='memberTypeDic' header='类别' styleClass="text-center" [style]="{'width':'120px'}"></p-column>
       <!-- <p-column field='memberRating' header='评定等级' styleClass="text-center" [style]="{'width':'100px'}"></p-column> -->
-      <p-column  header='电子账户' [style]="{'width':'110px'}">
+      <p-column  header='电子账户' [style]="{'width':'150px'}">
         <ng-template let-operation="rowData" pTemplate="body">
           <div textMaxLength="110px" title="{{operation.eaccountDic}}">
             {{operation.eaccountDic}}
@@ -40,7 +40,7 @@
           </ng-template>
       </p-column>
       <p-column field='serviceMan' header='服务经理' [style]="{'width':'120px'}"></p-column>
-      <p-column  header='创建日期' styleClass="text-center" [style]="{'width':'150px'}">
+      <p-column  header='创建日期' styleClass="text-center" [style]="{'width':'110px'}">
         <ng-template let-operation="rowData" pTemplate="body">
           <div>{{operation.createTime|date:'yyyy-MM-dd'}}
           </div>
