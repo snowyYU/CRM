@@ -257,7 +257,8 @@ export class SignatureComponent implements OnInit {
 					text:'注销成功!'
 				})
 
-				this.getDetailData()
+				this.secondShow=false
+				
 
 			})
 			.catch(res=>{
