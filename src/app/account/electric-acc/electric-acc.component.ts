@@ -37,6 +37,7 @@ export class ElectricAccComponent implements OnInit {
 
 	checkList:object={}
 	slaveAccounts	//三级账户[]
+	inAccountType
 
 	
 	
@@ -128,6 +129,7 @@ export class ElectricAccComponent implements OnInit {
 			this.accountId=res.body.accountData.accountId	//二级账户
 			this.bankAccount=res.body.accountData.bankAccount
 			this.slaveAccounts=res.body.accountData.slaveAccounts	//三级账户[]
+			this.inAccountType=res.body.accountData.inAccountType
 		}else{
 			this.accountName=this.memberName
 
@@ -238,9 +240,9 @@ export class ElectricAccComponent implements OnInit {
 							this.destroySubmitting=false
 							this.pop.info({
 								title:'提示信息',
-								text:'操作成功！'
+								text:'该会员账户已注销'
 							})
-							this.getDetailData()
+							this.secondShow=false
 						})
 						.catch(res=>{
 							this.destroySubmitting=false

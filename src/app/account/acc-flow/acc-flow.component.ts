@@ -12,7 +12,7 @@ export class AccFlowComponent implements OnInit {
 	dataList:any[]
 	rows:number=10
 	page:number=0
-	count
+	count:number=0
 	tradeType
 	tradeTypeList:any[]
 	memberName

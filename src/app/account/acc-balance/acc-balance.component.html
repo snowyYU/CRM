@@ -145,7 +145,7 @@
       		<tr *ngFor="let item of notAccountMemberList">
       			<td>{{item.companyName}}</td>
       			<td>{{item.appName}}</td>
-      			<td *ngIf="authRole.roleIn(['008'])"><a class="text-info" (click)="goToOpen(item.memberId)" >去开户</a></td>
+      			<td *ngIf="authRole.roleIn(['002'])"><a class="text-info" (click)="goToOpen(item.memberId)" >去开户</a></td>
       		</tr>
       	</tbody>
       </table>

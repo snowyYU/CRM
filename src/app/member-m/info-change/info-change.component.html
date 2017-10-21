@@ -27,10 +27,22 @@
           <p-column field="color" header="操作" [style]="{'width':'120px'}">
             <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
               <div class="text-center">
-                <a class="table-btn text-info" *ngIf="status===0&&auth.roleIn(['007'])"
+                <div *ngIf="auth.roleIn(['008'])">
+                  <a class="table-btn text-info" *ngIf="status===0&&operation.source=='1'"
                    (click)="check(operation)">审核</a>
-                <a class="table-btn text-info" *ngIf="status===2||auth.roleIn(['008','003'])"
+                  <a class="table-btn text-info" *ngIf="status===2||operation.source!='1'"
                    (click)="detail(operation)">详情</a>
+                </div>
+                <div *ngIf="auth.roleIn(['007'])">
+                  <a class="table-btn text-info" *ngIf="status===0&&operation.source!='1'"
+                   (click)="check(operation)">审核</a>
+                  <a class="table-btn text-info" *ngIf="status===2||operation.source=='1'"
+                   (click)="detail(operation)">详情</a>
+                </div>
+                <div *ngIf="auth.roleIn(['002'])">
+                  <a class="table-btn text-info"
+                   (click)="detail(operation)">详情</a>
+                </div>
               </div>
             </ng-template>
           </p-column>
