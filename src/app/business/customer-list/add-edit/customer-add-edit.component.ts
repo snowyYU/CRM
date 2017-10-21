@@ -282,12 +282,17 @@ export class CustomerAddEditComponent implements OnInit{
 		this.addEditService
 			.submitData(sendData)
 			.then(res=>{
-				this.popService.confirm({
-					titile:'系统提示',
-					text:'操作成功！是否跳转至列表页面？'
-				}).onConfirm(()=>{
-					this.router.navigate(['/business/customerList'])
+				this.popService.info({
+					title:"提示信息",
+					text:"保存成功!"
 				})
+				this.router.navigate(['/business/customerList'])
+				// this.popService.confirm({
+				// 	titile:'系统提示',
+				// 	text:'操作成功！是否跳转至列表页面？'
+				// }).onConfirm(()=>{
+				// 	this.router.navigate(['/business/customerList'])
+				// })
 			})
 			.catch(res=>{
 				this.popService.error({

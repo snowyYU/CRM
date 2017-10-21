@@ -303,7 +303,7 @@ export class RiskMComponent implements OnInit {
 		console.log(!this.attachment[type])
 		if (!!this.attachment[type]) {
 			let url:any=this.riskM.getFileUrl(this.attachment[type].fileLoadId)
-			window.open(e,url)
+			this.gallery.open(e,url)
 			
 		}else{
 			this.pop.error({
