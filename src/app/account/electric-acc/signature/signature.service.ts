@@ -65,8 +65,21 @@ export class SignatureService {
 				return Promise.reject(data)
 			}
 		})
+	}
 
-
+	getByMemberName(memberName):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.getByMemberName,
+			query:{
+				memberName:memberName
+			}
+		}).toPromise().then(res=>{
+			if (res.status==200) {
+				return Promise.resolve(res)
+			}else{
+				return Promise.reject(res)
+			}
+		})
 	}
 
 

@@ -9,7 +9,24 @@
     <section>
         <label class="h3 font-bold"><i class="fa fa-search"></i> 会员电子签章信息查询</label>
         <div class="wrapper clearfix form-inline">
-          <input type="text " name="memberNameQ" class="form-control m-l-md i-width" [(ngModel)]="memberNameQ" placeholder="会员名|会员id">
+          <div class="form-group">
+            <select-bar #selectBar1
+              (onDropdown)="clearMemberList();queryMemberList(memberNameQKey)">
+              <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control"
+                     placeholder="请选择会员"
+                     data-type="value"
+                      />
+              <input class="form-control" placeholder="会员关键字" [ngModel]="memberNameQKey"
+                     name="memberNameQKeyword"
+                     data-type="keyword" (ngModelChange)="queryMemberList($event)">
+              <ul class="list" *ngIf="memberList.length>0">
+                <li *ngFor="let member of memberList"
+                    (click)="memberNameQ='';clearMemberList();memberNameQ=member.companyName;selectBar1.dropup()">
+                  {{member.companyName}}
+                </li>
+              </ul>
+            </select-bar>
+          </div>
           <button type="button" class="btn-def" (click)="getDetailData()" [disabled]="!memberNameQ">查询<i class="fa fa-search"></i></button>
         </div>
       </section>
@@ -17,7 +34,24 @@
 <div *ngIf="secondShow">
 <form #form="ngForm" ngSubmit="openAcc()">
     <section class="wrapper clearfix form-inline">
-        <input type="text " name="memberNameQ" class="form-control m-l-md" [(ngModel)]="memberNameQ" placeholder="会员名|会员id">
+        <div class="form-group">
+          <select-bar #selectBar1
+            (onDropdown)="clearMemberList();queryMemberList(memberNameQKey)">
+            <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control"
+                   placeholder="请选择会员"
+                   data-type="value"
+                    />
+            <input class="form-control" placeholder="会员关键字" [ngModel]="memberNameQKey"
+                   name="memberNameQKeyword"
+                   data-type="keyword" (ngModelChange)="queryMemberList($event)">
+            <ul class="list" *ngIf="memberList.length>0">
+              <li *ngFor="let member of memberList"
+                  (click)="memberNameQ='';clearMemberList();memberNameQ=member.companyName;selectBar1.dropup()">
+                {{member.companyName}}
+              </li>
+            </ul>
+          </select-bar>
+        </div>
         <button type="button" class="btn-def" (click)="getDetailData()" [disabled]="!memberNameQ">查询<i class="fa fa-search"></i></button>
        <!--  <button type="button" class="btn btn-info pull-right m-l-md" >电子签章</button>
         <button type="button" class="btn  pull-right" (click)="eleAcc()">开户</button> -->

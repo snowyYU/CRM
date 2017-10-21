@@ -18,6 +18,7 @@ export class ElectricAccComponent implements OnInit {
 	result:boolean=false
 
 	memberNameQ
+	memberNameQKey:string=""
 	memberName   //会员名称	 
 	memberId   //id				
 	isOpenAcctDic:string   //开户状态
@@ -59,6 +60,10 @@ export class ElectricAccComponent implements OnInit {
 	destroySubmitting:boolean=false
 	openAccSubmitting:boolean=false
 
+	//搜索框下拉列表
+	memberList:any[]=[]
+
+
 	constructor(	
 		private router:Router,
 		private route:ActivatedRoute,
@@ -78,19 +83,33 @@ export class ElectricAccComponent implements OnInit {
 
 	getDetailData(){
 		this.agree=false
-		this.secondShow=true
 		this.getAccTypeList()
 		this.inGoldTypeList=[]
 
 		this.eleAcc.getDetailData(this.memberNameQ)
 			.then(res=>{
+				this.secondShow=true
+
 				this.handleData(res)
 			})
 			.catch(res=>{
-				this.pop.error({
-					title:'错误信息',
-					text:res.message
-				})
+				if (res.status==202) {
+					this.pop.error({
+						title:'错误信息',
+						text:res.message
+					})
+				this.secondShow=false
+
+
+				}else{
+					this.pop.error({
+						title:'错误信息',
+						text:res.message
+					})
+					this.secondShow=true
+						
+				}
+				
 			})
 	}
 
@@ -99,9 +118,9 @@ export class ElectricAccComponent implements OnInit {
 		this.isOpenAcctDic=res.body.isOpenAcctDic
 		this.memberName=res.body.memberName   //会员名称	 
 		this.memberId=res.body.memberId   //id	
-		this.appName=res.body.appConfig.appName   //归属渠道
-		this.appId=res.body.appConfig.appId
-		this.bankName=res.body.appConfig.bankName   //开户行
+		this.appName=res.body.appConfig?res.body.appConfig.appName:""   //归属渠道
+		this.appId=res.body.appConfig?res.body.appConfig.appId:""
+		this.bankName=res.body.appConfig?res.body.appConfig.bankName:""   //开户行
 		if (this.isOpenAcctDic=="已开户") {
 			this.accountTypeDic=res.body.accountData.userTypeDic
 			this.accountTypeList=res.body.accountData.accountTypeList
@@ -113,7 +132,7 @@ export class ElectricAccComponent implements OnInit {
 			this.accountName=this.memberName
 
 
-			if (res.body.appConfig.ordinaryAcctTypeDicList) {
+			if (res.body.appConfig&&res.body.appConfig.ordinaryAcctTypeDicList) {
 				res.body.appConfig.ordinaryAcctTypeDicList.forEach(e=>{
 					let o:{label?:string,value?:string}={}
 					for(let i in e){
@@ -233,6 +252,29 @@ export class ElectricAccComponent implements OnInit {
 						})
 				})
 		
+	}
+
+
+	// 搜索框的模糊下拉查询相关方法
+	clearMemberList(){
+		this.memberList=[]
+	}
+	queryMemberList(key){
+		console.log(key)
+		this.eleAcc.getByMemberName(key)
+			.then(res=>{
+				this.memberList=res.body.records	
+			})
+			.catch(res=>{
+				if (res.status==107) {
+					this.memberList=[]
+				}else{
+					this.pop.error({
+						title:'错误信息',
+						text:res.message
+					})
+				}
+			})
 	}
 
 

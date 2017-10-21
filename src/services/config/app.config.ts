@@ -305,6 +305,12 @@ export const API = {
     url:'account/accountManage/getMemberAcctFlows',
     method:'get'
   },
+
+  getByMemberName:{
+    url:'member/getByMemberName',
+    method:'post'
+  },
+
   getSingleMemberAccountInfo:{//开户页面会员信息显示
     url:'account/accountManage/getSingleMemberAccountInfo',
     method:'get'
