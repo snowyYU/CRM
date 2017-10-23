@@ -12,13 +12,14 @@
         <div class="form-group">
           <label class="control-label pull-left required">客户名称：</label>
           <div class="pull-left">
-            <input placeholder="请输入关键字" type="text" name="geustName" class="form-control" required [(ngModel)]="guestName">
+            <input placeholder="请输入关键字" type="text" name="guestName" class="form-control" required [(ngModel)]="guestName">
           </div>
         </div>
         <div class="form-group">
           <label class="control-label pull-left required">获客途径：</label>
           <div class="pull-left">
-            <select class="form-control min-width" name="guestFrom" required [(ngModel)]="guestFrom" (change)="appId='C00001'">
+            <!-- <select class="form-control min-width" name="guestFrom" required [(ngModel)]="guestFrom" (change)="appId='C00001'"> -->
+              <select class="form-control min-width" name="guestFrom" required [(ngModel)]="guestFrom" (change)="change()">
               <option [value]="undefined" hidden>请选择</option>
               
               <option [value]="item.value" *ngFor="let item of guest_from">{{item.label}}</option>
@@ -29,9 +30,9 @@
           <label class="control-label pull-left required">归属渠道：</label>
           <div class="pull-left">
             <select class="form-control min-width" name="appId" required [(ngModel)]="appId" [disabled]="guestFrom!='1'">
-              <option [ngValue]="undefined" hidden>请选择</option>
+              <option [value]="undefined" hidden>请选择</option>
+                <option [value]="item.resourceId" *ngFor="let item of app_list">{{item.resourceName}}</option>
               
-              <option [value]="item.resourceId" *ngFor="let item of app_list">{{item.resourceName}}</option>
             </select>
           </div>
         </div>

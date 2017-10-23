@@ -41,18 +41,18 @@
     <p-dataTable  [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading"
                  scrollable="true" scrollHeight="360px">
 <!--      <p-column field="index" header="序号" styleClass="text-center " [style]="{'width':'100px'}"></p-column>-->
-      <p-column field="guestName" header="客户名称" [style]="{'width':'200px'}">
+      <p-column field="guestName" header="客户名称" [style]="{'width':'250px'}">
       	<ng-template let-guestName="rowData" pTemplate="body">
       		<div>
       			<a (click)="detail(guestName)" class="text-info">{{guestName.guestName}}</a>
       		</div>
       	</ng-template>
       </p-column>
-      <p-column field="linkName" header="联系人"  [style]="{'width':'120px'}"></p-column>
+      <p-column field="linkName" header="联系人"  [style]="{'width':'110px'}"></p-column>
       <p-column field="linkMobile" header="联系手机" styleClass="text-center " [style]="{'width':'150px'}"></p-column>
-      <p-column field="guestFromDic" header="获客途径" styleClass="text-center " [style]="{'width':'150px'}"></p-column>
+      <p-column field="guestFromDic" header="获客途径" styleClass="text-center " [style]="{'width':'120px'}"></p-column>
       <p-column field="serviceMan" header="服务经理"  [style]="{'width':'120px'}"></p-column>
-      <p-column field="statusDic" header="状态" styleClass="text-center " [style]="{'width':'120px'}">
+      <p-column field="statusDic" header="状态" styleClass="text-center " [style]="{'width':'100px'}">
         <ng-template let-row="rowData" pTemplate="body">
           <a *ngIf="row.status==1" [routerLink]="['/business/authDetail',row.guestId]">
             {{row.statusDic}}
