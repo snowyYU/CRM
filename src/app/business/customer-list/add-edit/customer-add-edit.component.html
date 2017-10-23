@@ -19,7 +19,7 @@
           <label class="control-label pull-left required">获客途径：</label>
           <div class="pull-left">
             <select class="form-control min-width" name="guestFrom" required [(ngModel)]="guestFrom" (change)="appId='C00001'">
-              <option [ngValue]="undefined" hidden>请选择</option>
+              <option [value]="undefined" hidden>请选择</option>
               
               <option [value]="item.value" *ngFor="let item of guest_from">{{item.label}}</option>
             </select>

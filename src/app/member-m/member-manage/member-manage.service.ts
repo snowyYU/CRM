@@ -84,10 +84,11 @@ export class MemberManageService{
 				let totalCreditBanlance:number=0
 				if (data.body.records[0].creditFacility) {
 					let array=data.body.records.map(e=>{
-						totalCreditValue+=e.creditFacility.creditValue
-						totalCreditBanlance+=e.creditFacility.creditBanlance
 						let serverTime=new Date(e.serverTime)
 						let expiryDateEnd=new Date(e.creditFacility.expiryDateEnd)
+						totalCreditValue+=serverTime>expiryDateEnd?0:e.creditFacility.creditValue
+						totalCreditBanlance+=serverTime>expiryDateEnd?0:e.creditFacility.creditBanlance
+						
 						
 						e.lineThrough=(serverTime>expiryDateEnd)
 						return e
