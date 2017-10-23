@@ -12,11 +12,13 @@ import { AuthRoleService } from '../../../../services/authRole/authRole.service'
 	styleUrls:['./customer-add-edit.component.less'],
 	providers:[CustomerAddEditService,PopService,AuthRoleService]
 })
+
 export class CustomerAddEditComponent implements OnInit{
 	role
 	guest_status:Array<any>;
 	guest_from:Array<any>;
 	app_list:Array<any>;
+	app_list_temp:Array<any>;
 	guest_company_type:Array<any>;
 	ifEdit:boolean;
 	guestId;	//	客户临时分配的ID
@@ -101,7 +103,7 @@ export class CustomerAddEditComponent implements OnInit{
 			.then(res=>{
 				console.log(res);
 				this.app_list=res.body.records
-
+				this.app_list_temp=res.body.records
 			})
 			.catch(res=>{
 				this.popService.error({
@@ -147,7 +149,6 @@ export class CustomerAddEditComponent implements OnInit{
 			this.ifEdit=false;
 			this.status="0"
 		}
-
 	}
 
 	//下拉
@@ -252,6 +253,34 @@ export class CustomerAddEditComponent implements OnInit{
 		}
 	}
 
+	change(){
+		if(this.guestFrom!=1){
+			this.app_list=this.app_list_temp
+			this.appId='C00001'
+		}else{
+			this.appId='undefined'
+			this.app_list=this.arrayCopy(this.app_list)
+		}
+	}
+
+	arrayCopy(str:Array<any>):Array<any>{
+		let app_array:Array<Resource>=new Array(str.length-1)
+		let add:boolean=false
+		let resource:Resource
+		 for(let i=0;i<app_array.length;i++){
+		 	if(str[i].resourceId=='C00001'){
+				add=true
+			}
+		 	if(add){
+		 		resource=new Resource(str[i+1].resourceId,str[i+1].resourceName)
+		 	}else{
+		 		resource=new Resource(str[i].resourceId,str[i].resourceName)
+		 	}
+		 	app_array[i]=resource
+		}
+		return app_array
+	}
+
 	//提交数据
 	onSubmit(){
 		let companyAddress:string;
@@ -309,4 +338,14 @@ export class CustomerAddEditComponent implements OnInit{
 
 
 
+}
+
+
+class Resource {
+	resourceId:number
+	resourceName:string
+	constructor(resourceId:number,resourceName:string) {
+		this.resourceId=resourceId
+		this.resourceName=resourceName
+	}
 }

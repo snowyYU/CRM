@@ -88,10 +88,7 @@ export class ReApplyComponent implements OnInit {
 				this.productDetailL=res.body.records
 
 			}).catch(res=>{
-				this.pop.error({
-					title:'错误提示',
-					text:res.message
-				})
+				this.productDetailL=[]
 			})
 	}
 

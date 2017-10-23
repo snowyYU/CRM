@@ -254,10 +254,10 @@ export class ApplyAuthComponent implements OnInit {
 	addAttachment(){
 		console.log(this.firstList)
 		console.log(this.attachmentList.length)
-		if (this.attachmentList.length>5) {
+		if (this.attachmentList.length>=5) {
 			this.pop.info({
 				title:"提示信息",
-				text:"附件上传不超过6个"
+				text:"附件上传不超过5个"
 			})
 			return;
 		}

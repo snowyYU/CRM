@@ -448,6 +448,7 @@ export class CompanyInfoComponent implements OnInit {
 		console.log('borrwerMarry',this.borrwerMarry)
 		this.companyLegalVo.legalMarry=data.body.companyLegalVo.legalMarry+''
 
+		this.companyVo.registerCapital=data.body.companyVo.registerCapital/10000
 		//处理公司地址
 
 			if (this.companyVo.companyAddress) {
@@ -600,7 +601,7 @@ export class CompanyInfoComponent implements OnInit {
 			memberId:this.memberId,//会员ID：
 			companyName:this.memberVo.companyName,//公司名称：
 			companyType:this.companyVo.companyType,//公司类型（字典:guest_company_type）
-			registerCapital:this.companyVo.registerCapital,//注册资金
+			registerCapital:this.companyVo.registerCapital*10000,//注册资金
 			foundTime:this.companyVo.foundTime,//注册时间
 		 	linkName:this.companyVo.linkName,//联系人
 		 	linkMobile:this.companyVo.linkMobile,//联系手机

@@ -183,6 +183,16 @@ export class RiskMComponent implements OnInit {
 		this.companyCredit=res.body.companyCredit
 		this.member=res.body.member
 
+		this.companyAsset.carValue=res.body.companyAsset.carValue/10000
+		this.companyAsset.houseValue=res.body.companyAsset.houseValue/10000
+		this.companyAsset.debtReceivableValue=res.body.companyAsset.debtReceivableValue/10000
+		this.companyAsset.debtReceivableLimit=res.body.companyAsset.debtReceivableLimit/10000
+		this.companyDebt.creditDebtSituation=res.body.companyDebt.creditDebtSituation/10000
+		this.companyDebt.houseMortgageLoanamt=res.body.companyDebt.houseMortgageLoanamt/10000
+		this.companyDebt.repayLoanamtPermonth=res.body.companyDebt.repayLoanamtPermonth/10000
+		this.companyDebt.accountspayable=res.body.companyDebt.accountspayable/10000
+		this.companyCredit.maxamtofoverdueCreditcard=res.body.companyCredit.maxamtofoverdueCreditcard/10000
+		this.companyCredit.maxamtofoverdueLoan=res.body.companyCredit.maxamtofoverdueLoan/10000
 		//资产信息（P_ms_company_asset）
 		//companyAsset.buyCarYear	//	家用轿车购买年份			
 		//companyAsset.carValue  //轿车价值
@@ -305,12 +315,12 @@ export class RiskMComponent implements OnInit {
 			let url:any=this.riskM.getFileUrl(this.attachment[type].fileLoadId)
 			this.gallery.open(e,url)
 			
-		}else{
+		}/*else{
 			this.pop.error({
 				title:'错误提示',
 				text:'无此文件！'
 			})
-		}
+		}*/
 	}
 
 	edit(part){
@@ -345,13 +355,13 @@ export class RiskMComponent implements OnInit {
 		let data:Part1Data={
 			memberId:this.memberId,	//会员ID：
 			buyCarYear:this.companyAsset.buyCarYear,    //家用轿车购买年份					
-			carValue:this.companyAsset.carValue,    //轿车价值
+			carValue:this.companyAsset.carValue*10000,    //轿车价值
 			carNum:this.companyAsset.carNum,    //自有运营车辆数量						
 			nativeRenting:this.companyAsset.nativeRenting,    //本地租房状况(字典)	
 			houseNum:this.companyAsset.houseNum,    //自有房产套数					
-			houseValue:this.companyAsset.houseValue,    //住房价值
-			debtReceivableValue:this.companyAsset.debtReceivableValue,    //应收账款价值		    
-			debtReceivableLimit:this.companyAsset.debtReceivableLimit,    //应付账款额度
+			houseValue:this.companyAsset.houseValue*10000,    //住房价值
+			debtReceivableValue:this.companyAsset.debtReceivableValue*10000,    //应收账款价值		    
+			debtReceivableLimit:this.companyAsset.debtReceivableLimit*10000,    //应付账款额度
 			attachList:this.handleAttachData(),
 		}
 		this.riskM.save1(data)
@@ -374,11 +384,11 @@ export class RiskMComponent implements OnInit {
 	save2(){
 		let data:Part2Data={
 			memberId:this.memberId,		//会员ID：
-			creditDebtSituation:this.companyDebt.creditDebtSituation,		//征信负债状况			
-			houseMortgageLoanamt:this.companyDebt.houseMortgageLoanamt,		//住房按揭贷款金额
+			creditDebtSituation:this.companyDebt.creditDebtSituation*10000,		//征信负债状况			
+			houseMortgageLoanamt:this.companyDebt.houseMortgageLoanamt*10000,		//住房按揭贷款金额
 			mortgageLoanamtRate:this.companyDebt.mortgageLoanamtRate,		//低压贷占总贷款比例			
-			repayLoanamtPermonth:this.companyDebt.repayLoanamtPermonth,		//申请人每月偿还的贷款额
-			accountspayable:this.companyDebt.accountspayable,		//应付账款	
+			repayLoanamtPermonth:this.companyDebt.repayLoanamtPermonth*10000,		//申请人每月偿还的贷款额
+			accountspayable:this.companyDebt.accountspayable*10000,		//应付账款	
 		}
 
 		this.riskM.save2(data)
@@ -403,8 +413,8 @@ export class RiskMComponent implements OnInit {
 	save3(){
 		let data:Part3Data={
 			memberId:this.memberId,		//会员ID：
-			maxamtofoverdueCreditcard:this.companyCredit.maxamtofoverdueCreditcard,  //信用卡最大逾期金额			
-			maxamtofoverdueLoan:this.companyCredit.maxamtofoverdueLoan,  //贷款最大逾期金额
+			maxamtofoverdueCreditcard:this.companyCredit.maxamtofoverdueCreditcard*10000,  //信用卡最大逾期金额			
+			maxamtofoverdueLoan:this.companyCredit.maxamtofoverdueLoan*10000,  //贷款最大逾期金额
 			overdueNum:this.companyCredit.overdueNum,  //信用卡、贷款逾期次数							
 			overdueDay:this.companyCredit.overdueDay,  //信用卡、贷款最大逾期天数
 			housemortgageloanOverdueNum:this.companyCredit.housemortgageloanOverdueNum,  //租房按揭贷款逾期次数 		
@@ -422,7 +432,7 @@ export class RiskMComponent implements OnInit {
 					title:'提示信息',
 					text:'保存成功'
 				})
-				this.cancel('part2')
+				this.cancel('part3')
 			})
 			.catch(res=>{
 				this.pop.error({
