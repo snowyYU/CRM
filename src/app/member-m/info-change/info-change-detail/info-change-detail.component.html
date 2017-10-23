@@ -99,32 +99,32 @@
         <div *ngIf="changeType==3">
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡号:</label>
-            <div class="col-md-8 m-t-xs">
-            <!-- {{companyBankCard.cardNo | filterNull}} -->——
+            <div class="col-md-8 m-t-xs text-content">
+            <!-- {{companyBankCard.cardNo | filterNull}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户名:</label>
-            <div class="col-md-8 m-t-xs">
-            <!-- {{companyBankCard.cardName | filterNull}} -->——
+            <div class="col-md-8 m-t-xs text-content">
+            <!-- {{companyBankCard.cardName | filterNull}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户行:</label>
-            <div class="col-md-8 m-t-xs">
-            <!-- {{companyBankCard.bankName | filterNull}} -->——
+            <div class="col-md-8 m-t-xs text-content">
+            <!-- {{companyBankCard.bankName | filterNull}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">支行名称:</label>
-            <div class="col-md-9 m-t-xs">
-            <!-- {{companyBankCard.subbankName | filterNull}} -->——
+            <div class="col-md-9 m-t-xs text-content">
+            <!-- {{companyBankCard.subbankName | filterNull}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡类型:</label>
-            <div class="col-md-8 m-t-xs">
-            <!-- {{companyBankCard.typeDic | filterNull}} -->——
+            <div class="col-md-8 m-t-xs text-content">
+            <!-- {{companyBankCard.typeDic | filterNull}} -->--
             </div>
           </div>
         </div>
@@ -243,32 +243,32 @@
         <div *ngIf="changeType==4">
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡号:</label>
-            <div class="col-md-8 m-t-xs">
-            <!-- {{companyBankCard.cardNo | filterNull}} -->——
+            <div class="col-md-8 m-t-xs text-content">
+            <!-- {{companyBankCard.cardNo | filterNull}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户名:</label>
-            <div class="col-md-8 m-t-xs">
-            <!-- {{companyBankCard.cardName | filterNull}} -->——
+            <div class="col-md-8 m-t-xs text-content">
+            <!-- {{companyBankCard.cardName | filterNull}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户行:</label>
-            <div class="col-md-8 m-t-xs">
-            <!-- {{companyBankCard.bankName | filterNull}} -->——
+            <div class="col-md-8 m-t-xs text-content">
+            <!-- {{companyBankCard.bankName | filterNull}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">支行名称:</label>
-            <div class="col-md-9 m-t-xs">
-            <!-- {{companyBankCard.subbankName | filterNull}} -->——
+            <div class="col-md-9 m-t-xs text-content">
+            <!-- {{companyBankCard.subbankName | filterNull}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡类型:</label>
-            <div class="col-md-8 m-t-xs">
-            <!-- {{companyBankCard.typeDic | filterNull}} -->——
+            <div class="col-md-8 m-t-xs text-content">
+            <!-- {{companyBankCard.typeDic | filterNull}} -->--
             </div>
           </div>
         </div>
@@ -292,7 +292,7 @@
       <div class="clearfix">
         <label class="label-control label-special-w">审核意见:</label>
         <div class="col-md-8 m-t-xs">
-          <div *ngIf="!isCheck">{{applyMessage}}</div>
+          <div class="text-content" *ngIf="!isCheck">{{applyMessage | filterNull}}</div>
           <textarea name="applyMessage" class="form-control" cols="30" rows="4" *ngIf="isCheck" [(ngModel)]="applyMessage"></textarea>
 
         </div>

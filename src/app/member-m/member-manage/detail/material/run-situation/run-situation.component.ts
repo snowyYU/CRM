@@ -124,10 +124,10 @@ export class RunSituationComponent implements OnInit {
 		this.operatePattern=res.body.operatePattern//	经营模式：			
 		this.operatePatternDic=res.body.operatePatternDic//	经营模式：			
 		this.employeeNum=res.body.employeeNum//企业员工数量
-		this.turnover=res.body.turnover//年营业额						
+		this.turnover=res.body.turnover/10000//年营业额						
 		this.operatingArea=res.body.operatingArea//营业面积
-		this.mcacctmonthlyWate=res.body.mcacctmonthlyWate//	主要结算账户月均流水			
-		this.mainacctdailyFlow=res.body.mainacctdailyFlow//主要留存账户日均流水
+		this.mcacctmonthlyWate=res.body.mcacctmonthlyWate/10000//	主要结算账户月均流水			
+		this.mainacctdailyFlow=res.body.mainacctdailyFlow/10000//主要留存账户日均流水
 		this.upcooperClosing=res.body.upcooperClosing//与上游主要的结算周期					
 		this.upcoopertime=res.body.upcoopertime//与上游合作最长时间
 		this.mainTrading=res.body.mainTrading+''
@@ -309,12 +309,12 @@ export class RunSituationComponent implements OnInit {
 			let url:any=this.runS.getFileUrl(this.attachment[type].fileLoadId)
 			this.gallery.open(e,url);
 			
-		}else{
+		}/*else{
 			this.pop.error({
 				title:'错误提示',
 				text:'无此文件！'
 			})
-		}
+		}*/
 	}
 
 	edit(part){
@@ -345,18 +345,18 @@ export class RunSituationComponent implements OnInit {
 			memberId:this.memberId,
 			operatePattern:this.operatePattern,//	经营模式：// operatePatternDic			
 			employeeNum:this.employeeNum,//企业员工数量
-			turnover:this.turnover,//年营业额						
+			turnover:this.turnover*10000,//年营业额						
 			operatingArea:this.operatingArea,//营业面积
-			mcacctmonthlyWate:this.mcacctmonthlyWate,//	主要结算账户月均流水			
-			mainacctdailyFlow:this.mainacctdailyFlow,//主要留存账户日均流水
+			mcacctmonthlyWate:this.mcacctmonthlyWate*10000,//	主要结算账户月均流水			
+			mainacctdailyFlow:this.mainacctdailyFlow*10000,//主要留存账户日均流水
 			upcooperClosing:this.upcooperClosing,//与上游主要的结算周期					
 			upcoopertime:this.upcoopertime,//与上游合作最长时间
-			mainTrading:this.mainTrading,//	主要交易方式// mainTradingDic
+			mainTrading:this.mainTrading=='null'?'':this.mainTrading,//	主要交易方式// mainTradingDic
 			operateArea:this.operateArea,//业务区域
 			operateArea2:this.operateArea2,
-			salaryPayStatus:this.salaryPayStatus,//工资支出情况// salaryPayStatusDic	
-			insurance:this.insurance,//购买保险情况// insuranceDic
-			infoLevel:this.infoLevel,//信息化程度// infoLevelDic
+			salaryPayStatus:this.salaryPayStatus=='null'?'':this.salaryPayStatus,//工资支出情况// salaryPayStatusDic	
+			insurance:this.insurance=='null'?'':this.insurance,//购买保险情况// insuranceDic
+			infoLevel:this.infoLevel=='null'?'':this.infoLevel,//信息化程度// infoLevelDic
 			attachList:this.handleAttachData(),
 		}
 
