@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { EleAttachmentService } from './ele-attachment.service'
+import { GalleryComponent} from 'dolphinng';
+
 @Component({
 	moduleId: module.id,
 	selector: 'ele-attachment',
@@ -12,6 +14,10 @@ import { EleAttachmentService } from './ele-attachment.service'
 export class EleAttachmentComponent implements OnInit {
 	attachment:object={}
 	memberId:number
+
+	@ViewChild(GalleryComponent) gallery:GalleryComponent;
+
+
 	constructor(
 		private router:Router,
 		private route:ActivatedRoute,
@@ -71,12 +77,13 @@ export class EleAttachmentComponent implements OnInit {
 	}
 
 
-	show(type){
+	show(e,type){
 		console.log(type)
 		console.log(this.attachment[type])
 		console.log(!this.attachment[type])
 		if (!!this.attachment[type]) {
-			window.open(this.eleAttach.getFileUrl(this.attachment[type].fileLoadId))
+			let url:any=this.eleAttach.getFileUrl(this.attachment[type].fileLoadId)
+			this.gallery.open(e,url);
 			
 		}else{
 			this.pop.error({
