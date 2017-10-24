@@ -1458,13 +1458,13 @@
                 <div class="col-md-6">
                   <label for="" class="control-label">银行卡号:</label>
                   <div class="col-md-6 text-content">
-                    <input type="text" class="form-control" name="bankInfoCardNo_{{i}}" [(ngModel)]="bankCard.companyBankInfo.cardNo" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
+                    <input type="text" class="form-control" name="bankInfoCardNo_{{bankCard.uniqueId}}" [(ngModel)]="bankCard.companyBankInfo.cardNo" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <label for="" class="control-label">开户名:</label>
                   <div class="col-md-6 text-content">
-                    <input type="text" class="form-control" name="bankInfoCardName_{{i}}" [(ngModel)]="bankCard.companyBankInfo.cardName" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
+                    <input type="text" class="form-control" name="bankInfoCardName_{{bankCard.uniqueId}}" [(ngModel)]="bankCard.companyBankInfo.cardName" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
                   </div>
                 </div>
               </div>
@@ -1474,12 +1474,12 @@
                   <div class="col-md-6 text-content">
                     <select-bar #selectBar
                         (onDropdown)="bankCard.clearBanks();bankCard.queryBanks(bankCard.bankKey)">
-                      <input [(ngModel)]="bankCard.bankName" required name="bankName_{{i}}" class="form-control"
+                      <input [(ngModel)]="bankCard.bankName" required name="bankName_{{bankCard.uniqueId}}" class="form-control"
                              placeholder="请选择银行"
                              data-type="value"
                              [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
                       <input class="form-control" placeholder="银行关键字" [ngModel]="bankCard.bankKey"
-                             name="bankKeyword_{{i}}"
+                             name="bankKeyword_{{bankCard.uniqueId}}"
                              data-type="keyword" (ngModelChange)="bankCard.queryBanks($event)">
                       <ul class="list" *ngIf="bankCard.bankList.length>0">
                         <li *ngFor="let bk of bankCard.bankList"
@@ -1496,12 +1496,12 @@
                   <div class="col-md-6 text-content">
                     <select-bar #selectBar1
                         (onDropdown)="bankCard.clearSubBanks();bankCard.querySubBanks(bankCard.subBankKey)">
-                      <input [(ngModel)]="bankCard.subBankName" required name="subBankName_{{i}}" class="form-control"
+                      <input [(ngModel)]="bankCard.subBankName" required name="subBankName_{{bankCard.uniqueId}}" class="form-control"
                              placeholder="请选择支行"
                              data-type="value"
                              [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
                       <input class="form-control" placeholder="支行关键字" [ngModel]="bankCard.subBankKey"
-                             name="subBankKeyword_{{i}}"
+                             name="subBankKeyword_{{bankCard.uniqueId}}"
                              data-type="keyword" (ngModelChange)="bankCard.querySubBanks($event)">
                       <ul class="list" *ngIf="bankCard.subBankList.length>0">
                         <li *ngFor="let bk of bankCard.subBankList"
@@ -1517,7 +1517,7 @@
                 <div class="col-md-6">
                   <label for="" class="control-label">卡类型:</label>
                   <div class="col-md-6 text-content">
-                    <select name="banknfoCardType_{{i}}" class="form-control" [(ngModel)]="bankCard.accType" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
+                    <select name="banknfoCardType_{{bankCard.uniqueId}}" class="form-control" [(ngModel)]="bankCard.accType" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
                       <option [value]="accT.value" *ngFor="let accT of accTypeList">{{accT.label}}</option>
                     </select>
                   </div>
