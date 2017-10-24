@@ -28,8 +28,6 @@
           <p-column field="createTime" header="创建时间" styleClass="text-center" [style]="{'width':'180px'}"></p-column>
 
           <p-column field="color" header="操作" [style]="{'width':'80px'}" *ngIf="status===0">
-
-
             <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
               <div class="text-center">
                 <div *ngIf="auth.roleIn(['008'])">
