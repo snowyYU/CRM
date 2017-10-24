@@ -64,6 +64,7 @@ export class ElectricAccComponent implements OnInit {
 	//搜索框下拉列表
 	memberList:any[]=[]
 
+	timeMachine
 
 	constructor(	
 		private router:Router,
@@ -205,10 +206,10 @@ export class ElectricAccComponent implements OnInit {
 				this.accountTypeDicM=res.body.accountTypeDic
 				this.slaveAccountsM=res.body.slaveAccounts
 				this.getDetailData()
-				// this.pop.info({
-				// 	title:'提示信息',
-				// 	text:'提交成功！'
-				// })
+				this.pop.info({
+					title:'提示信息',
+					text:'开户成功！'
+				})
 			})
 			.catch(res=>{
 				// this.inGoldTypeSubmitting=false
@@ -263,7 +264,10 @@ export class ElectricAccComponent implements OnInit {
 	}
 	queryMemberList(key){
 		console.log(key)
-		this.eleAcc.getByMemberName(key)
+		clearTimeout(this.timeMachine);
+
+		this.timeMachine=setTimeout(()=>{
+			this.eleAcc.getByMemberName(key)
 			.then(res=>{
 				this.memberList=res.body.records	
 			})
@@ -277,6 +281,10 @@ export class ElectricAccComponent implements OnInit {
 					})
 				}
 			})
+
+		},200)
+
+		
 	}
 
 

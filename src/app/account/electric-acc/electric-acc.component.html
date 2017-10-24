@@ -5,8 +5,8 @@
   <a class="page-location-item active">开户</a>
 </div>
 <div class="wrapper-md">
-  <div class="text-center m-t-xxl" *ngIf="!secondShow">
-    <section>
+  
+    <section class="text-center m-t-xxl" *ngIf="!secondShow">
         <label class="h3 font-bold m-b-md"><i class="fa fa-search"></i> 会员开户信息查询</label>
         <div class="wrapper clearfix form-inline">
           <div class="form-group">
@@ -32,7 +32,7 @@
           <button type="button" class="btn-def" (click)="getDetailData()" [disabled]="!memberNameQ">查询<i class="fa fa-search"></i></button>
         </div>
       </section>
-  </div>
+  
   <div *ngIf="secondShow">
     <!-- <form #form="ngForm" (ngSubmit)="openInGold()"> -->
     <form #form="ngForm" (ngSubmit)="openAcc()">
