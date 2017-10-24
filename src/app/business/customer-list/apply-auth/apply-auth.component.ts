@@ -243,7 +243,7 @@ export class ApplyAuthComponent implements OnInit {
 		this.serviceMan=res.body.serviceMan;
 		this.companyType=res.body.companyTypeDic;
 		this.foundTime=res.body.foundTime;
-		this.registerCapital=res.body.registerCapital*0.0001;
+		this.registerCapital=res.body.registerCapital;
 		this.licenceNum=res.body.licenceNum;
 		this.companyAddress=res.body.companyAddress;
 		this.linkName=res.body.linkName;
