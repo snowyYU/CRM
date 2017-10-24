@@ -47,7 +47,6 @@ export class InfoChangeComponent implements OnInit{
 			.then(res=>{
 				this.handleData(res)
 				this.loading=false
-
 			})
 			.catch(res=>{
 				this.loading=false
@@ -61,9 +60,15 @@ export class InfoChangeComponent implements OnInit{
 	handleData(res){
 		this.dataList=res.body.records;
 		this.count=res.body.paginator.totalCount;
-		
+		this.sourceFrom(this.dataList)
 	}
-
+	sourceFrom(res:any){
+		for(let i in res){
+			if(res[i].source==1){
+				res[i].sourceDic=res[i].serviceMan
+			}
+		}
+	}
 	//审核
 	check(row){
 		this.router.navigate(['memberM/infoChange/detail',row.updateApplyId],{queryParams: {isCheck:true}})
