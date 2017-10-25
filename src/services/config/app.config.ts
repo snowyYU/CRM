@@ -1,17 +1,111 @@
-import {environment} from '../../environments/environment'
-export const CONFIG = {
-  name: 'FBPS',
-  version: '0.0.1',
-  env: !!environment.production
+import {environment} from '../../environments/environment';
+
+
+/**
+ * 环境
+ */
+interface Environment{
+  production?: boolean,
+  test?:boolean,
+  development?:boolean
 }
-export const HOST = {
-  dev: 'http://192.168.10.10:8090/crm/',
-  //dev:'http://192.168.1.117:8082/',
-  // prod: 'http://192.168.10.10:8090/crm-api/'
-  prod: 'http://192.168.10.10:9090/crm/'
-  //测试路径
+
+/**
+ * 主机地址
+ */
+class Host{
+  dev:string;
+  test:string;
+  prod:string;
+
+  /**
+   * 构造函数
+   * @param dev 开发环境地址
+   * @param test 测试环境地址
+   * @param prod 生产环境地址
+   */
+  constructor(dev:string,test:string,prod:string){
+    this.dev=dev;
+    this.test=test;
+    this.prod=prod;
+  }
+
+  /**
+   * 获取当前环境主机地址
+   * @param env
+   * @returns {string}
+   */
+  getCurrentHost(env:Environment){
+    if(env.production){
+      return this.prod;
+    }else if(env.test){
+      return this.test;
+    }else{
+      return this.dev;
+    }
+  }
+}
+
+/**
+ * 基本配置
+ * @type {{name: string; version: string; env: {production: boolean; test: boolean; development: boolean}}}
+ */
+export const config :{
+  name: string,
+  version: string,
+  env: Environment
+}= {
+  name: 'crm_web',
+  version: '0.0.1',
+  env: {
+    production:environment.production,
+    test:environment.test,
+    development:environment.development
+  }
 };
-export const host = environment.production?HOST.prod:HOST.dev
+
+{
+  //根据外部环境(assets/config/environment.js)设置覆盖当前环境设置
+  let env:string='';
+  if(typeof window['env']==='string'){
+    env=window['env'].toLowerCase();
+    if(env==='prod'||env==='production'){
+      config.env.production=true;
+      config.env.test=false;
+      config.env.development=false;
+    }else if(env==='test'){
+      config.env.production=false;
+      config.env.test=true;
+      config.env.development=false;
+    }else if(env==='dev'||env==='development'){
+      config.env.production=false;
+      config.env.test=false;
+      config.env.development=true;
+    }
+  }
+}
+
+//项目主接口地址
+export  const host=new Host(
+  'http://192.168.10.10:8090/crm/',//dev
+  'http://192.168.10.10:9090/crm/',//test
+  'http://192.168.10.10:9090/crm/'//prod
+).getCurrentHost(config.env);
+
+//认证相关接口地址
+export const host_ims=new Host(
+  'http://192.168.10.10:8090/ims/',//dev
+  'http://192.168.10.10:9090/ims/',//test
+  'http://192.168.10.10:9090/ims/'//prod
+).getCurrentHost(config.env);
+
+//文件相关接口地址
+export const host_file=new Host(
+  'http://121.46.18.25:9090',//dev
+  'http://121.46.18.25:9090',//test
+  'http://121.46.18.25:9090'//prod
+).getCurrentHost(config.env);
+
 
 export const API = {
   login: {
@@ -82,7 +176,7 @@ export const API = {
     method:'post'
   },
 
-  
+
   /*-----------------------------------业务员拓展---------------------------------------*/
   /*-----------------------------------会员认证部分的接口---------------------------------------*/
   authMemberList:{//获取申请认证列表（分页）
@@ -337,19 +431,16 @@ export const API = {
   },
 
   /*-----------------------------------文件服务器的接口---------------------------------------*/
-  fileServer:'http://121.46.18.25:9090',
-  
-  
+  fileServer:host_file,
+
+
   /*-----------------------------------登录接口，刷新token接口---------------------------------------*/
-  loginHost:environment.production?'http://192.168.10.10:9090/ims/':'http://192.168.10.10:8090/ims/',
+  loginHost:host_ims,
 
   getByDepart:{//根据部门获取下属员工
     url:'iam/employee/getByDepart',
     method:'get'
   }
-
-
-
 
 };
 

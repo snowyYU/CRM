@@ -293,7 +293,7 @@
         <label class="label-control label-special-w">审核意见:</label>
         <div class="col-md-8 m-t-xs">
           <div class="text-content" *ngIf="!isCheck">{{applyMessage | filterNull}}</div>
-          <textarea name="applyMessage" class="form-control" cols="30" rows="4" *ngIf="isCheck" [(ngModel)]="applyMessage"></textarea>
+          <textarea name="applyMessage" class="form-control" cols="30" rows="4" maxlength="200" placeholder="小于200字" *ngIf="isCheck" [(ngModel)]="applyMessage"></textarea>
 
         </div>
       </div>
@@ -301,9 +301,9 @@
     </section>
     <section class="wrapper">
       <div class="text-center">
-        <a (click)="back()" class="btn-def mar-r-xs" >返回<i class="fa fa-arrow-circle-o-left"></i></a>
+        <button class="btn-def btn-def-success mar-r-xs" *ngIf="isCheck" (click)="submit(2)">通过<i class="fa fa-check-circle-o"></i></button>
         <button class="btn-def btn-def-danger mar-r-xs" *ngIf="isCheck" (click)="submit(-1)">拒绝<i class="fa fa-ban"></i></button>
-        <button class="btn-def btn-def-success" *ngIf="isCheck" (click)="submit(2)">通过<i class="fa fa-check-circle-o"></i></button>
+        <a (click)="back()" class="btn-def mar-r-xs" >放弃<i class="fa fa-arrow-circle-o-left"></i></a>
       </div>
     </section>
   </form>

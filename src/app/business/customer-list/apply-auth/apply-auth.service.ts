@@ -2,6 +2,13 @@ import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../../services/myHttp/myhttp.service'
 import { MyHttpClient } from '../../../../services/myHttp/myhttpClient.service'
 
+interface AreaAddress{
+	parentCode:number;
+	level:number;
+	name?:string
+}
+
+
 @Injectable()
 export class ApplyAuthService{
 	constructor(
@@ -127,6 +134,67 @@ export class ApplyAuthService{
 			}
 		})
 	}
+
+
+	//新增可修改的部分
+
+	//获取几个下拉列表数据,根据字典值
+
+	getDictListData(type:string):Promise<any>{
+		return this.myHttp.get({
+			api:this.myHttp.api.getDictList,
+			query:{
+				type:type
+			}
+		}).toPromise().then(res=>{
+				if (res.status==200) {
+					return Promise.resolve(res)
+				}else{
+					return Promise.reject(res)
+				}
+				
+			})
+	}
+
+	//获取归属渠道下拉列表数据
+
+	getBelongAppData():Promise<any>{
+		return this.myHttp.get({
+			api:this.myHttp.api.getAllApp,
+
+		}).toPromise().then(res=>{
+				if (res.status==200) {
+					return Promise.resolve(res)
+				}else{
+					return Promise.reject(res)
+				}
+				
+			})
+
+	}
+
+	//获取地区类数据
+
+	getAddress(param:AreaAddress):Promise<any>{
+		return this.myHttp.get({
+			api:this.myHttp.api.areaAddress,
+			query:{
+				parentCode:param.parentCode,
+				level:param.level,
+				name:param.name
+			}
+		}).toPromise().then(res=>{
+			if (res.status==200) {
+				return Promise.resolve(res)
+			}else{
+				return Promise.reject(res)
+			}
+			
+		})
+	}
+
+	//提交
+
 
 
 }

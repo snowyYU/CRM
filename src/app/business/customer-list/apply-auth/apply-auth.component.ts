@@ -4,6 +4,7 @@ import { PopService } from 'dolphinng'
 import { ApplyAuthService } from './apply-auth.service'
 import { Uploader } from '../../../../utils/uploader/Uploader'
 import { GalleryComponent} from 'dolphinng';
+import { DateService } from "../../../../services/date/date.service"
 
 class Attachment {
 
@@ -117,9 +118,24 @@ class Attachment {
 	selector: 'apply-auth',
 	templateUrl: './apply-auth.component.html',
 	styleUrls:['./apply-auth.component.less'],
-	providers:[ApplyAuthService]
+	providers:[DateService,ApplyAuthService]
 })
 export class ApplyAuthComponent implements OnInit {
+
+	guest_status:Array<any>;
+	guest_from:Array<any>;
+	app_list:Array<any>;
+	app_list_temp:Array<any>;
+	guest_company_type:Array<any>;
+
+	province:string;
+	provinceList;
+	city:string;
+	cityList;
+	detailAddress:string
+
+	todayDate
+
 	attachment={}
 
 	guestId
@@ -156,12 +172,59 @@ export class ApplyAuthComponent implements OnInit {
 			private applyAuth:ApplyAuthService,
 			private route:ActivatedRoute,
 			private router:Router,
-			private pop:PopService
+			private pop:PopService,
+			private dateService:DateService
 		){
-		
+		//获客途径下拉
+		this.inputSelect("guest_from")
+			.then(res=>{
+				this.guest_from=res.body.records
+			})
+			.catch(res=>{
+				this.pop.error({
+					title:'错误信息',
+					text:res.message
+				})
+			})
+		//归属渠道下拉
+		this.applyAuth
+			.getBelongAppData()
+			.then(res=>{
+				console.log(res);
+				this.app_list=res.body.records
+				this.app_list_temp=res.body.records
+			})
+			.catch(res=>{
+				this.pop.error({
+					title:'错误信息',
+					text:res.message
+				})
+			})
+		//公司类型下拉
+		this.inputSelect("guest_company_type")
+			.then(res=>{
+				this.guest_company_type=res.body.records
+			})
+			.catch(res=>{
+				this.pop.error({
+					title:'错误信息',
+					text:res.message
+				})
+			})
+
+		//选择省的列表
+		this.provinceSelect()
 	}
 
 	ngOnInit(){
+
+
+		this.todayDate=this.dateService.format({
+			date:this.dateService.todayDate(),
+			formatType:'yyyy-MM-dd'
+		});
+
+
 
 		this.guestId=this.route.params['value']['id']
 
@@ -235,13 +298,14 @@ export class ApplyAuthComponent implements OnInit {
 
 	handleData(res){
 		this.guestName=res.body.guestName;
+		this.memberType=res.body.memberType;
 		this.status=res.body.statusDic;
-		this.guestFrom=res.body.guestFromDic;
+		this.guestFrom=res.body.guestFrom;
 		this.createTime=res.body.createTime;
 		this.appId=res.body.appId;
 		this.appName=res.body.appName;
 		this.serviceMan=res.body.serviceMan;
-		this.companyType=res.body.companyTypeDic;
+		this.companyType=res.body.companyType;
 		this.foundTime=res.body.foundTime;
 		this.registerCapital=res.body.registerCapital*0.0001;
 		this.licenceNum=res.body.licenceNum;
@@ -299,11 +363,30 @@ export class ApplyAuthComponent implements OnInit {
 
 	submit(){
 		//整理提交的数据
+		//整理地址
+		let companyAddress:string;
+		if(this.province&&this.city&&this.detailAddress){
+			companyAddress=this.province+'-'+this.city+'-'+this.detailAddress;
+		}else{
+			companyAddress='';
+		}
 		let sendData={
+			guestName:this.guestName,		//客户名称
+			guestFrom:this.guestFrom,		//获客途径
+			appId:this.appId,				//归属渠道
 			memberType:this.memberType,		//会员类别
 			guestId:this.guestId,			//客户跟踪ID
+			linkName:this.linkName,			//联系人
+			linkMobile:this.linkMobile,		//联系人手机
 			isLegal:this.isLegal,			//是否法人
-			linkIdcard:this.linkIdcard		//联系人身份证
+			linkJob:this.linkJob,			//联系人职位
+			linkIdcard:this.linkIdcard,		//联系人身份证
+			licenceNum:this.licenceNum,		//营业执照号
+			companyType:this.companyType,	//公司类型
+			registerCapital:this.registerCapital?this.registerCapital*10000:null,	//注册资金
+			foundTime:this.foundTime,
+			companyAddress:companyAddress,
+
 		} 
 		console.log(this.attachmentList[0])
 		if (this.attachmentList[0]&&this.attachmentList[0].uploader.customData.data){
@@ -348,4 +431,96 @@ export class ApplyAuthComponent implements OnInit {
 	}
 
 
+	//下拉
+	inputSelect(type:string):Promise<any>{
+		return this.applyAuth
+			.getDictListData(type)
+			
+	}
+
+	//获取地址下拉列表
+	//省
+	provinceSelect(){
+		this.applyAuth.getAddress({
+			parentCode:0,
+			level:1
+		}).then(res=>{
+			this.provinceList=res.body.records
+		})
+		.catch(res=>{
+				this.pop.error({
+					title:'错误信息',
+					text:res.message
+				})
+			})
+	}
+	
+	getCityList(v){
+		console.log(v);
+		//获取省code
+		this.applyAuth.getAddress({
+			parentCode:0,
+			level:1,
+			name:this.province
+		}).then(res=>{
+			return Promise.resolve(res.body.records[0].code)
+		}).then(res=>{
+			this.applyAuth.getAddress({
+				parentCode:res,
+				level:2
+			}).then(res=>{
+				if (v=="1") {
+					this.city=""
+					console.log("fffffffffff")
+				}
+				
+				this.cityList=res.body.records
+			}).catch(res=>{
+				this.pop.error({
+					title:'错误信息',
+					text:res.message
+				})
+			})
+			
+		})
+	}
+
+	change(){
+		if(this.guestFrom!=1){
+			this.app_list=this.app_list_temp
+			this.appId='C00001'
+		}else{
+			this.appId='undefined'
+			this.app_list=this.arrayCopy(this.app_list)
+		}
+	}
+
+	arrayCopy(str:Array<any>):Array<any>{
+		let app_array:Array<Resource>=new Array(str.length-1)
+		let add:boolean=false
+		let resource:Resource
+		 for(let i=0;i<app_array.length;i++){
+		 	if(str[i].resourceId=='C00001'){
+				add=true
+			}
+		 	if(add){
+		 		resource=new Resource(str[i+1].resourceId,str[i+1].resourceName)
+		 	}else{
+		 		resource=new Resource(str[i].resourceId,str[i].resourceName)
+		 	}
+		 	app_array[i]=resource
+		}
+		return app_array
+	}
+
+
+}
+
+class Resource {
+	resourceId:number
+	resourceName:string
+	constructor(resourceId:number,resourceName:string) {
+		this.resourceId=resourceId
+		this.resourceName=resourceName
+	}
 }

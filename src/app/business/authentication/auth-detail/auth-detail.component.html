@@ -156,28 +156,36 @@
       <div class="col-md-12">
        <!-- <label class="col-md-3">附件：</label>-->
         <div class="col-md-6">
+          
+          <div *ngIf="!(attch1TypeDic||attch2TypeDic||attch3TypeDic||attch4TypeDic||attch5TypeDic)">未上传附件</div>
+
           <table class="table no-margin table-bordered" >
             <tbody>
               <tr *ngIf="attch1Type">
                 <td>{{attch1TypeDic}}</td>
                 <!-- <td><a class="text-info" (click)="gallery.open($event,1, ['',''])">查看</a></td> -->
-                <td><a class="text-info" (click)="checkAttach($event,attch1Loadid)">查看</a></td>
+                <!-- <td><a class="text-info" (click)="checkAttach($event,attch1Loadid)">查看</a></td> -->
+                <td><a class="fa fa-search text-disabled" [class.text-info]="attch1Loadid" (click)="checkAttach($event,attch1Loadid)" title="查看"></a></td>
               </tr>
               <tr *ngIf="attch2Type">
                 <td>{{attch2TypeDic}}</td>
-                <td><a class="text-info" (click)="checkAttach($event,attch2Loadid)">查看</a></td>
+                <!-- <td><a class="text-info" (click)="checkAttach($event,attch2Loadid)">查看</a></td> -->
+                <td><a class="fa fa-search text-disabled" [class.text-info]="attch2Loadid" (click)="checkAttach($event,attch2Loadid)" title="查看"></a></td>
               </tr>
               <tr *ngIf="attch3Type">
                 <td>{{attch3TypeDic}}</td>
-                <td><a class="text-info" (click)="checkAttach($event,attch3Loadid)">查看</a></td>
+                <!-- <td><a class="text-info" (click)="checkAttach($event,attch3Loadid)">查看</a></td> -->
+                <td><a class="fa fa-search text-disabled" [class.text-info]="attch3Loadid" (click)="checkAttach($event,attch3Loadid)" title="查看"></a></td>
               </tr>
               <tr *ngIf="attch4Type">
                 <td>{{attch4TypeDic}}</td>
-                <td><a class="text-info" (click)="checkAttach($event,attch4Loadid)">查看</a></td>
+                <!-- <td><a class="text-info" (click)="checkAttach($event,attch4Loadid)">查看</a></td> -->
+                <td><a class="fa fa-search text-disabled" [class.text-info]="attch4Loadid" (click)="checkAttach($event,attch4Loadid)" title="查看"></a></td>
               </tr>
               <tr *ngIf="attch5Type">
                 <td>{{attch5TypeDic}}</td>
-                <td><a class="text-info" (click)="checkAttach($event,attch5Loadid)">查看</a></td>
+                <!-- <td><a class="text-info" (click)="checkAttach($event,attch5Loadid)">查看</a></td> -->
+                <td><a class="fa fa-search text-disabled" [class.text-info]="attch5Loadid" (click)="checkAttach($event,attch5Loadid)" title="查看"></a></td>
               </tr>
 
             </tbody>
@@ -193,4 +201,4 @@
     </section>
   </form>
 </div>
-<gallery #gallery></gallery>
+<gallery #gallery size="lg"></gallery>

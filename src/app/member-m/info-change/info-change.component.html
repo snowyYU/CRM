@@ -18,15 +18,17 @@
       <div class="tab-pane active">
         <p-dataTable  [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}"
                      [loading]="loading" scrollable="true" scrollHeight="375px">
-          <p-column field="updateApplyId" header="变更申请ID" [style]="{'width':'200px'}"></p-column>
-          <p-column field="memberName" header="会员名称" [style]="{'width':'200px'}"></p-column>
-          <p-column field="appName" header="归属渠道" [style]="{'width':'150px'}"></p-column>
+          <p-column field="updateApplyId" header="变更申请ID" [style]="{'width':'150px'}"></p-column>
+          <p-column field="memberName" header="会员名称" [style]="{'width':'220px'}"></p-column>
+          <p-column field="appName" header="归属渠道" [style]="{'width':'160px'}"></p-column>
           <p-column field="updateApplyWhatDic" header="变更对象" [style]="{'width':'100px'}"></p-column>
-          <p-column field="serverMan" header="变更来源" *ngIf="source==1" [style]="{'width':'100px'}"></p-column>
-          <p-column field="sourceDic" header="变更来源" *ngIf="source!=1" [style]="{'width':'100px'}"></p-column>
-          <p-column field="statusDic" header="状态" [style]="{'width':'100px'}"></p-column>
+          <p-column field="sourceDic" header="变更来源" [style]="{'width':'100px'}"></p-column>
+          <p-column field="statusDic" header="状态" [style]="{'width':'80px'}"></p-column>
           <p-column field="createTime" header="创建时间" styleClass="text-center" [style]="{'width':'180px'}"></p-column>
-          <p-column field="color" header="操作" [style]="{'width':'120px'}">
+
+          <p-column field="color" header="操作" [style]="{'width':'80px'}" *ngIf="status===0">
+
+
             <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
               <div class="text-center">
                 <div *ngIf="auth.roleIn(['008'])">

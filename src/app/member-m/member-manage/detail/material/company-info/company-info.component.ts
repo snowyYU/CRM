@@ -16,6 +16,10 @@ declare let $:any
 	providers:[CompanyInfoService]
 })
 export class CompanyInfoComponent implements OnInit {
+
+	originalArray:number[]=[]
+
+
 	//控制各个区域编辑和查看状态的切换
 	part1:boolean=false;
 	part1S:boolean=true;
@@ -244,6 +248,12 @@ export class CompanyInfoComponent implements OnInit {
 		) {}
 
 	ngOnInit() {
+
+		//给原数组originalArray赋值 
+		for (let i=0;i<300;i++){ 
+		this.originalArray[i]=i+1; 
+		} 
+
 		this.memberId=this.route.params['value']['id']
 		console.log(this.route.queryParams['value']['hash'])
 		this.getDetailData()
@@ -498,7 +508,7 @@ export class CompanyInfoComponent implements OnInit {
 	    if (this.companyBankCardVos[0]) {
 	    	this.companyBankCardDatas=[]
 	    	this.companyBankCardVos.forEach(e=>{
-	    		this.companyBankCardDatas.push(new BankCardInfo(this.companyInfo,e))
+	    		this.companyBankCardDatas.push(new BankCardInfo(this.companyInfo,this.createUniqueId(),e))
 	    	})
 	    }
 
@@ -722,7 +732,7 @@ export class CompanyInfoComponent implements OnInit {
 		// 	账户类型 companyBankCardVos[].typeDic		银行账号	companyBankCardVos[].cardNo
 	// 	银行名称 companyBankCardVos[].bankName		支行名称	companyBankCardVos[].subbankName
 	// 	认证状态 companyBankCardVos[].authStatusDic		默认		companyBankCardVos[].isDefaultDic
-		let o= new BankCardInfo(this.companyInfo);
+		let o= new BankCardInfo(this.companyInfo,this.createUniqueId());
 
 		this.companyBankCardDatas.push(o)
 
@@ -736,7 +746,12 @@ export class CompanyInfoComponent implements OnInit {
 		console.log(this.companyBankCardDatas)
 	}
 
-
+	//生成一个不重复的随机数1~300
+	createUniqueId():number{
+		let index=Math.floor(Math.random()*this.originalArray.length);
+		this.originalArray.splice(index,1)
+		return index+1
+	}
 
 
 }
@@ -744,7 +759,7 @@ export class CompanyInfoComponent implements OnInit {
 
 class BankCardInfo{
 
-	constructor(companyInfo:CompanyInfoService,companyBankInfo?) {
+	constructor(companyInfo:CompanyInfoService,uniqueId,companyBankInfo?) {
 
 		if (companyBankInfo) {
 			this.companyBankInfo=companyBankInfo
@@ -753,6 +768,11 @@ class BankCardInfo{
 			this.accType=companyBankInfo.type+''
 			console.log(this.accType)
 		}
+		
+		this.uniqueId=uniqueId
+		console.log(this.uniqueId)
+
+
 		this.companyInfo=companyInfo
 
 	}
@@ -760,6 +780,8 @@ class BankCardInfo{
 	accType
 	//存放账户类型列表
 	// accTypeList
+
+	uniqueId
 
 	//从外面导进来的银行卡信息
 	companyBankInfo:{

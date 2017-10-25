@@ -376,11 +376,16 @@ export class RunSituationComponent implements OnInit {
 					text:res.message
 				})
 			})
-
-
-
-
 	}
+
+	deleteFile(id,up){
+		this.runS.deleteFile(this.attachment[id].fileLoadId).then(res=>{
+			console.log(res)
+			delete this.attachment[id]
+			this[up].queue=[]
+		})
+	}
+
 
 	back(){
 		this.router.navigate(["memberM/memberManage/detail",this.memberId])

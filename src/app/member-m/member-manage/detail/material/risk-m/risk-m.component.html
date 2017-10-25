@@ -1,180 +1,175 @@
 <div class="wrapper">
-	<section class="text-center">
+  <section class="text-center">
     <div class="btn-group">
       <button class="btn btn-default" (click)="companyInfo()">企业基本信息</button>
       <button class="btn btn-default" (click)="runSituation()">运营状况</button>
-      <button class="btn btn-info" >风控补充</button>
+      <button class="btn btn-info">风控补充</button>
     </div>
-  	</section>
-  	<!-- <section class="m-t bg-white clearfix">
-  	<form #part1F="ngForm" (ngSubmit)='save1()'>
+  </section>
+  <!-- <section class="m-t bg-white clearfix">
+    <form #part1F="ngForm" (ngSubmit)='save1()'>
     <div class="col-md-12 padder-v b-b l-h-2x">资产信息
       <button type="button" class="btn pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part1" [disabled]="!part1F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part1" (click)="cancel('part1')">取消</button>
     </div> -->
-    <section class="clearfix">
+  <section class="clearfix">
     <form #part1F="ngForm" (ngSubmit)='save1()'>
-    <div class="page-location">
-      <a class="h4 pad-r-xs font-bold">资产信息</a>
-      <i class="fa fa-caret-right text-lg" *ngIf="!part1S" (click)="part1S=!part1S"></i>
-      <i class="fa fa-caret-down text-lg" *ngIf="part1S" (click)="part1S=!part1S"></i>
-      <a class="text-info pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</a>
-      <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
-      <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
-    </div>
-    <div class="padder-v clearfix col-md-12" *ngIf="!part1&&part1S">
-      <div class="col-md-12 border-content">
-        <div class="form-group clearfix l-h-2x  m-t-md">
-          <div class="col-md-6">
-            <label  class="control-label">家用轿车购买年份:</label>
-            <div class="col-md-6 text-content">{{companyAsset.buyCarYear | filterNull}}<span *ngIf="companyAsset.buyCarYear">年</span></div>
+      <div class="page-location">
+        <a class="h4 pad-r-xs font-bold">资产信息</a>
+        <i class="fa fa-caret-right text-lg" *ngIf="!part1S" (click)="part1S=!part1S"></i>
+        <i class="fa fa-caret-down text-lg" *ngIf="part1S" (click)="part1S=!part1S"></i>
+        <a class="text-info pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</a>
+        <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
+      </div>
+      <div class="padder-v clearfix col-md-12" *ngIf="!part1&&part1S">
+        <div class="col-md-12 border-content">
+          <div class="form-group clearfix l-h-2x  m-t-md">
+            <div class="col-md-6">
+              <label class="control-label">家用轿车购买年份:</label>
+              <div class="col-md-6 text-content">{{companyAsset.buyCarYear | filterNull}}<span *ngIf="companyAsset.buyCarYear">年</span></div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">轿车价值:</label>
+              <div class="col-md-6 text-content">{{companyAsset.carValue | filterNull | yuanFormat}}<span *ngIf="companyAsset.carValue">万元</span></div>
+            </div>
           </div>
-          <div class="col-md-6">
-            <label  class="control-label">轿车价值:</label>
-            <div class="col-md-6 text-content">{{companyAsset.carValue | filterNull | yuanFormat}}<span *ngIf="companyAsset.carValue">万元</span></div>
+          <div class="form-group clearfix l-h-2x">
+            <div class="col-md-6">
+              <label class="control-label">自有运营车辆数量:</label>
+              <div class="col-md-6 text-content">{{companyAsset.carNum | filterNull}}<span *ngIf="companyAsset.carNum">辆</span></div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">本地租房状况:</label>
+              <div class="col-md-6 text-content">{{companyAsset.nativeRentingDic | filterNull}}</div>
+            </div>
+          </div>
+          <div class="form-group clearfix l-h-2x">
+            <div class="col-md-6">
+              <label class="control-label">自有房产套数:</label>
+              <div class="col-md-6 text-content">{{companyAsset.houseNum | filterNull}}<span *ngIf="companyAsset.houseNum">套</span></div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">住房价值:</label>
+              <div class="col-md-6 text-content">{{companyAsset.houseValue | filterNull | yuanFormat}}<span *ngIf="companyAsset.houseValue">万元</span></div>
+            </div>
+          </div>
+          <div class="form-group clearfix l-h-2x">
+            <div class="col-md-6">
+              <label class="control-label">应收账款价值:</label>
+              <div class="col-md-6 text-content">{{companyAsset.debtReceivableValue | filterNull | yuanFormat}}<span *ngIf="companyAsset.debtReceivableValue">万元</span></div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">应付账款额度:</label>
+              <div class="col-md-6 text-content">{{companyAsset.debtReceivableLimit | filterNull | yuanFormat}}<span *ngIf="companyAsset.debtReceivableLimit">万元</span></div>
+            </div>
           </div>
         </div>
-        <div class="form-group clearfix l-h-2x">
+        <div class="col-md-12 group m-t padder-v clearfix">
+          <div class="group-title">相关证照</div>
           <div class="col-md-6">
-            <label  class="control-label">自有运营车辆数量:</label>
-            <div class="col-md-6 text-content">{{companyAsset.carNum | filterNull}}<span *ngIf="companyAsset.carNum">辆</span></div>
-          </div>
-          <div class="col-md-6">
-            <label  class="control-label">本地租房状况:</label>
-            <div class="col-md-6 text-content">{{companyAsset.nativeRentingDic | filterNull}}</div>
-          </div>
-        </div>
-        <div class="form-group clearfix l-h-2x">
-          <div class="col-md-6">
-            <label  class="control-label">自有房产套数:</label>
-            <div class="col-md-6 text-content">{{companyAsset.houseNum | filterNull}}<span *ngIf="companyAsset.houseNum">套</span></div>
-          </div>
-          <div class="col-md-6">
-            <label  class="control-label">住房价值:</label>
-            <div class="col-md-6 text-content">{{companyAsset.houseValue | filterNull | yuanFormat}}<span *ngIf="companyAsset.houseValue">万元</span></div>
-          </div>
-        </div>
-        <div class="form-group clearfix l-h-2x">
-          <div class="col-md-6">
-            <label  class="control-label">应收账款价值:</label>
-            <div class="col-md-6 text-content">{{companyAsset.debtReceivableValue | filterNull | yuanFormat}}<span *ngIf="companyAsset.debtReceivableValue">万元</span></div>
-          </div>
-          <div class="col-md-6">
-            <label  class="control-label">应付账款额度:</label>
-            <div class="col-md-6 text-content">{{companyAsset.debtReceivableLimit | filterNull | yuanFormat}}<span *ngIf="companyAsset.debtReceivableLimit">万元</span></div>
+            <div class="clearfix">
+              <div class="col-md-6 p-l-none">房产证明</div>
+              <!-- <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0301']" (click)="show($event,'0301')">查看</a></div> -->
+              <div class="col-md-6"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0301']" (click)="show($event,'0301')" title="查看"></a></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-md-12 group m-t padder-v clearfix">
-        <div class="group-title">相关证照</div>
-        <div class="col-md-6">
-          <div class="clearfix">
-            <div class="col-md-6">房产证明</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0301']" (click)="show($event,'0301')">查看</a></div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <!-- part1编辑模板 -->
-    <div class="padder-v clearfix col-md-12" *ngIf="part1">
-      <div class="col-md-12 border-content">
-        <div class="form-group clearfix l-h-2x form-inline m-t-md">
-          <div class="col-md-6">
-            <label  class="control-label">家用轿车购买年份:</label>
-            <div class="col-md-6 form-inline">
-              <input type="text" name="buyCarYear" class="form-control" [(ngModel)]="companyAsset.buyCarYear"> 年
+      <!-- part1编辑模板 -->
+      <div class="padder-v clearfix col-md-12" *ngIf="part1">
+        <div class="col-md-12 border-content">
+          <div class="form-group clearfix l-h-2x form-inline m-t-md">
+            <div class="col-md-6">
+              <label class="control-label">家用轿车购买年份:</label>
+              <div class="col-md-6 form-inline">
+                <input type="text" name="buyCarYear" class="form-control" maxlength="30" [(ngModel)]="companyAsset.buyCarYear"> 年
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">轿车价值:</label>
+              <div class="col-md-6">
+                <input type="text" name="carValue" class="form-control" maxlength="30" [(ngModel)]="companyAsset.carValue"> 万元
+              </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <label  class="control-label">轿车价值:</label>
+          <div class="form-group clearfix l-h-2x form-inline">
             <div class="col-md-6">
-              <input type="text" name="carValue" class="form-control" [(ngModel)]="companyAsset.carValue"> 万元
+              <label class="control-label">自有运营车辆数量:</label>
+              <div class="col-md-6">
+                <input name="carNum" class="form-control" maxlength="30" [(ngModel)]="companyAsset.carNum"> 辆
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="form-group clearfix l-h-2x form-inline">
-          <div class="col-md-6">
-            <label  class="control-label">自有运营车辆数量:</label>
             <div class="col-md-6">
-              <input name="carNum" class="form-control" [(ngModel)]="companyAsset.carNum"> 辆
-
-
-            </div>
-          </div>
-          <div class="col-md-6">
-            <label  class="control-label">本地租房状况:</label>
-            <div class="col-md-6">
-            <div class="pull-left form-inline m-r-lg" *ngFor="let item of nativeRentingList">
-                <div class="radio">
-                  <label class="i-checks">
-                    <input type="radio" name="nativeRenting" class="form-control " [value]="item.value" [(ngModel)]="companyAsset.nativeRenting" ><i></i> {{item.label}}
-                  </label>
+              <label class="control-label">本地租房状况:</label>
+              <div class="col-md-6">
+                <div class="pull-left form-inline m-r-lg" *ngFor="let item of nativeRentingList">
+                  <div class="radio">
+                    <label class="i-checks">
+                      <input type="radio" name="nativeRenting" class="form-control " [value]="item.value" [(ngModel)]="companyAsset.nativeRenting"><i></i> {{item.label}}
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="form-group clearfix l-h-2x form-inline">
+            <div class="col-md-6">
+              <label class="control-label">自有房产套数:</label>
+              <div class="col-md-6">
+                <input name="houseNum" class="form-control" maxlength="30" [(ngModel)]="companyAsset.houseNum"> 套
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">住房价值:</label>
+              <div class="col-md-6">
+                <input type="text" name="houseValue" class="form-control" maxlength="30" [(ngModel)]="companyAsset.houseValue"> 万元
+              </div>
+            </div>
+          </div>
+          <div class="form-group clearfix l-h-2x form-inline">
+            <div class="col-md-6">
+              <label class="control-label">应收账款价值:</label>
+              <div class="col-md-6">
+                <input type="text" name="debtReceivableValue" class="form-control" maxlength="30" [(ngModel)]="companyAsset.debtReceivableValue"> 万元
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">应付账款额度:</label>
+              <div class="col-md-6">
+                <input type="text" name="debtReceivableLimit" class="form-control" maxlength="30" [(ngModel)]="companyAsset.debtReceivableLimit"> 万元
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group clearfix l-h-2x form-inline">
-          <div class="col-md-6">
-            <label  class="control-label">自有房产套数:</label>
-            <div class="col-md-6">
-            	<input name="houseNum" class="form-control" [(ngModel)]="companyAsset.houseNum"> 套
-
-            </div>
-          </div>
-          <div class="col-md-6">
-            <label  class="control-label">住房价值:</label>
-            <div class="col-md-6">
-              <input type="text" name="houseValue" class="form-control" [(ngModel)]="companyAsset.houseValue"> 万元
-            </div>
-          </div>
-        </div>
-        <div class="form-group clearfix l-h-2x form-inline">
-          <div class="col-md-6">
-            <label  class="control-label">应收账款价值:</label>
-            <div class="col-md-6">
-            	<input type="text" name="debtReceivableValue" class="form-control" [(ngModel)]="companyAsset.debtReceivableValue"> 万元
-            </div>
-          </div>
-          <div class="col-md-6">
-            <label  class="control-label">应付账款额度:</label>
-            <div class="col-md-6">
-              <input type="text" name="debtReceivableLimit" class="form-control" [(ngModel)]="companyAsset.debtReceivableLimit"> 万元
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12 border-content m-t padder-v">
-        <div class="clearfix">
-          <label  class="control-label col-md-3">相关证照:</label>
-          <div class="col-md-9 p-r-none">
-            <div class="clearfix">
-              <div class="col-md-6 p-r-none">
-                <div class="col-md-7">
-                    <div *ngIf="attachment['0301']">
-                      <a class="text-info" (click)="show($event,'0301')">房产证明</a>
-                    </div>
-                    <div *ngIf="!attachment['0301']">房产证明</div>
-                  </div>
-                <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0301']&&(!uploader1.queue[0])">上传
-                      <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1" />
-                    </div>
-                    <div *ngIf="attachment['0301']">
-                      <i class="glyphicon glyphicon-ok text-success"></i>
-                      <a class="text-danger" (click)="deleteFile('0301','uploader1')">删除</a>
-                    </div>
-                    <!-- 进度条模块 -->
-                    <div *ngIf="uploader1.queue[0]&&(uploader1.queue[0].success==false)">
-                      <div class="active m-b-none m-t-xs progress progress-sm progress-striped">
-                        <div class="progress-bar bg-success" [style.width.%]="uploader1.queue[0].progress">
-                        </div>
-                      </div>
-                    </div>
+        <div class="col-md-12 group m-t padder-v">
+          <div class="group-title">相关证照</div>
+          <div class="col-md-9 p-r-none p-l-none">
+            <div class="col-md-6 p-r-none p-l-none">
+              <div class="col-md-7 ">
+                <div *ngIf="attachment['0301']">
+                  <a class="text-info" (click)="show($event,'0301')">房产证明</a>
                 </div>
-                <!-- <table class="form-group clearfix table table-striped m-b-none showL text-center">
+                <div *ngIf="!attachment['0301']">房产证明</div>
+              </div>
+              <div class="col-md-5">
+                <div class="text-info pos-rlt" *ngIf="!attachment['0301']&&(!uploader1.queue[0])">上传
+                  <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1" />
+                </div>
+                <div *ngIf="attachment['0301']">
+                  <i class="glyphicon glyphicon-ok text-success"></i>
+                  <a class="text-danger" (click)="deleteFile('0301','uploader1')">删除</a>
+                </div>
+                <!-- 进度条模块 -->
+                <div *ngIf="uploader1.queue[0]&&(uploader1.queue[0].success==false)">
+                  <div class="active m-b-none m-t-xs progress progress-sm progress-striped">
+                    <div class="progress-bar bg-success" [style.width.%]="uploader1.queue[0].progress">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <table class="form-group clearfix table table-striped m-b-none showL text-center">
                   <thead>
                     <tr>
                       <th>房产证明</th>
@@ -219,275 +214,264 @@
                     </tr>
                   </tbody>
                 </table> -->
-              </div>
-
             </div>
-
           </div>
         </div>
       </div>
-    </div>
     </form>
-
-  	</section>
-  	<!-- <section class="m-t bg-white clearfix">
-  	<form #part2F="ngForm" (ngSubmit)='save2()'>
+  </section>
+  <!-- <section class="m-t bg-white clearfix">
+    <form #part2F="ngForm" (ngSubmit)='save2()'>
     <div class="col-md-12 padder-v b-b l-h-2x">负债信息
       <button type="button" class="btn pull-right" *ngIf="!part2" (click)="edit('part2')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part2" [disabled]="!part2F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part2" (click)="cancel('part2')">取消</button>
     </div> -->
-    <section class="m-t clearfix">
+  <section class="m-t clearfix">
     <form #part2F="ngForm" (ngSubmit)='save2()'>
-    <div class="page-location">
-      <a class="h4 pad-r-xs font-bold">负债信息</a>
-      <i class="fa fa-caret-right text-lg" *ngIf="!part2S" (click)="part2S=!part2S"></i>
-      <i class="fa fa-caret-down text-lg" *ngIf="part2S" (click)="part2S=!part2S"></i>
-      <a class="text-info pull-right" *ngIf="!part2" (click)="edit('part2')">编辑</a>
-      <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part2&&part2S" [disabled]="!part2F.form.valid">保存</button>
-      <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part2&&part2S" (click)="cancel('part2')">取消</button>
-    </div>
-    <div class="padder-v clearfix col-md-12" *ngIf="!part2&&part2S">
-      <div class="col-md-12 border-content">
-      <div class="form-group clearfix m-t-md">
-        <div class="col-md-6">
-          <label  class="control-label">征信负债状况:</label>
-          <div class="col-md-6 text-content">{{companyDebt.creditDebtSituation | filterNull | yuanFormat}}<span *ngIf="companyDebt.creditDebtSituation">万元</span></div>
-        </div>
-        <div class="col-md-6">
-          <label  class="control-label">住房按揭贷款金额:</label>
-          <div class="col-md-6 text-content">{{companyDebt.houseMortgageLoanamt | filterNull | yuanFormat}}<span *ngIf="companyDebt.houseMortgageLoanamt">万元</span></div>
-        </div>
+      <div class="page-location">
+        <a class="h4 pad-r-xs font-bold">负债信息</a>
+        <i class="fa fa-caret-right text-lg" *ngIf="!part2S" (click)="part2S=!part2S"></i>
+        <i class="fa fa-caret-down text-lg" *ngIf="part2S" (click)="part2S=!part2S"></i>
+        <a class="text-info pull-right" *ngIf="!part2" (click)="edit('part2')">编辑</a>
+        <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part2&&part2S" [disabled]="!part2F.form.valid">保存</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part2&&part2S" (click)="cancel('part2')">取消</button>
       </div>
-      <div class="form-group clearfix">
-        <div class="col-md-6">
-          <label  class="control-label">抵押贷占总贷款比例:</label>
-          <div class="col-md-6 text-content">{{companyDebt.mortgageLoanamtRate | filterNull}}<span *ngIf="companyDebt.mortgageLoanamtRate">%</span></div>
-        </div>
-        <div class="col-md-6">
-          <label  class="control-label">申请人每月需偿还的贷款额:</label>
-          <div class="col-md-6 text-content">{{companyDebt.repayLoanamtPermonth | filterNull | yuanFormat}}<span *ngIf="companyDebt.repayLoanamtPermonth">万元</span></div>
-        </div>
-      </div>
-      <div class="form-group clearfix">
-        <div class="col-md-6">
-          <label  class="control-label">应付账款:</label>
-          <div class="col-md-6 text-content">{{companyDebt.accountspayable | filterNull | yuanFormat}}<span *ngIf="companyDebt.accountspayable">万元</span></div>
-        </div>
-      </div>
-      </div>
-    </div>
-    <!-- part2编辑模板 -->
-    <div class="padder-v clearfix col-md-12" *ngIf="part2">
-      <div class="col-md-12 border-content">
-
-      <div class="form-group clearfix l-h-2x form-inline m-t">
-        <div class="col-md-6">
-          <label  class="control-label">征信负债状况:</label>
-          <div class="col-md-6">
-            <input type="text" name="creditDebtSituation" class="form-control" [(ngModel)]="companyDebt.creditDebtSituation"> 万元
+      <div class="padder-v clearfix col-md-12" *ngIf="!part2&&part2S">
+        <div class="col-md-12 border-content">
+          <div class="form-group clearfix m-t-md">
+            <div class="col-md-6">
+              <label class="control-label">征信负债状况:</label>
+              <div class="col-md-6 text-content">{{companyDebt.creditDebtSituation | filterNull | yuanFormat}}<span *ngIf="companyDebt.creditDebtSituation">万元</span></div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">住房按揭贷款金额:</label>
+              <div class="col-md-6 text-content">{{companyDebt.houseMortgageLoanamt | filterNull | yuanFormat}}<span *ngIf="companyDebt.houseMortgageLoanamt">万元</span></div>
+            </div>
           </div>
-        </div>
-        <div class="col-md-6">
-          <label  class="control-label">住房按揭贷款金额:</label>
-          <div class="col-md-6">
-            <input type="text" name="houseMortgageLoanamt" class="form-control" [(ngModel)]="companyDebt.houseMortgageLoanamt"> 万元
+          <div class="form-group clearfix">
+            <div class="col-md-6">
+              <label class="control-label">抵押贷占总贷款比例:</label>
+              <div class="col-md-6 text-content">{{companyDebt.mortgageLoanamtRate | filterNull}}<span *ngIf="companyDebt.mortgageLoanamtRate">%</span></div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">申请人每月需偿还的贷款额:</label>
+              <div class="col-md-6 text-content">{{companyDebt.repayLoanamtPermonth | filterNull | yuanFormat}}<span *ngIf="companyDebt.repayLoanamtPermonth">万元</span></div>
+            </div>
+          </div>
+          <div class="form-group clearfix">
+            <div class="col-md-6">
+              <label class="control-label">应付账款:</label>
+              <div class="col-md-6 text-content">{{companyDebt.accountspayable | filterNull | yuanFormat}}<span *ngIf="companyDebt.accountspayable">万元</span></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="form-group clearfix l-h-2x form-inline">
-        <div class="col-md-6">
-          <label  class="control-label">抵押贷占总贷款比例:</label>
-          <div class="col-md-6">
-            <input type="text" name="mortgageLoanamtRate" class="form-control" [(ngModel)]="companyDebt.mortgageLoanamtRate"> %
+      <!-- part2编辑模板 -->
+      <div class="padder-v clearfix col-md-12" *ngIf="part2">
+        <div class="col-md-12 border-content">
+          <div class="form-group clearfix l-h-2x form-inline m-t">
+            <div class="col-md-6">
+              <label class="control-label">征信负债状况:</label>
+              <div class="col-md-6">
+                <input type="text" name="creditDebtSituation" class="form-control" maxlength="30" [(ngModel)]="companyDebt.creditDebtSituation"> 万元
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">住房按揭贷款金额:</label>
+              <div class="col-md-6">
+                <input type="text" name="houseMortgageLoanamt" class="form-control" maxlength="30" [(ngModel)]="companyDebt.houseMortgageLoanamt"> 万元
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="col-md-6">
-          <label  class="control-label">申请人每月需偿还的贷款额:</label>
-          <div class="col-md-6">
-            <input type="text" name="repayLoanamtPermonth" class="form-control" [(ngModel)]="companyDebt.repayLoanamtPermonth"> 万元
+          <div class="form-group clearfix l-h-2x form-inline">
+            <div class="col-md-6">
+              <label class="control-label">抵押贷占总贷款比例:</label>
+              <div class="col-md-6">
+                <input type="text" name="mortgageLoanamtRate" class="form-control" maxlength="30" [(ngModel)]="companyDebt.mortgageLoanamtRate"> %
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">申请人每月需偿还的贷款额:</label>
+              <div class="col-md-6">
+                <input type="text" name="repayLoanamtPermonth" class="form-control" maxlength="30" [(ngModel)]="companyDebt.repayLoanamtPermonth"> 万元
+              </div>
+            </div>
+          </div>
+          <div class="form-group clearfix l-h-2x form-inline">
+            <div class="col-md-6">
+              <label class="control-label">应付账款:</label>
+              <div class="col-md-6">
+                <input type="text" name="accountspayable" class="form-control" maxlength="30" [(ngModel)]="companyDebt.accountspayable"> 万元
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="form-group clearfix l-h-2x form-inline">
-        <div class="col-md-6">
-          <label  class="control-label">应付账款:</label>
-          <div class="col-md-6">
-            <input type="text" name="accountspayable" class="form-control" [(ngModel)]="companyDebt.accountspayable"> 万元
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
     </form>
-
   </section>
   <!-- <section class="m-t bg-white clearfix">
-  	<form #part3F="ngForm" (ngSubmit)='save3()'>
+    <form #part3F="ngForm" (ngSubmit)='save3()'>
     <div class="col-md-12 padder-v b-b l-h-2x">履约信息
       <button type="button" class="btn pull-right" *ngIf="!part3" (click)="edit('part3')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part3" [disabled]="!part3F.form.valid">保存</button>
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part3" (click)="cancel('part3')">取消</button>
     </div> -->
-    <section class="m-t clearfix">
+  <section class="m-t clearfix">
     <form #part3F="ngForm" (ngSubmit)='save3()'>
-    <div class="page-location">
-      <a class="h4 pad-r-xs font-bold">履约信息</a>
-      <i class="fa fa-caret-right text-lg" *ngIf="!part3S" (click)="part3S=!part3S"></i>
-      <i class="fa fa-caret-down text-lg" *ngIf="part3S" (click)="part3S=!part3S"></i>
-      <a class="text-info pull-right" *ngIf="!part3" (click)="edit('part3')">编辑</a>
-      <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part3&&part3S" [disabled]="!part3F.form.valid">保存</button>
-      <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part3&&part3S" (click)="cancel('part3')">取消</button>
-    </div>
-    <div class="padder-v clearfix col-md-12" *ngIf="!part3&&part3S">
-      <div class="col-md-12 border-content ">
-      <div class="form-group clearfix m-t-md">
-        <div class="col-md-6">
-          <label  class="control-label">信用卡最大逾期金额:</label>
-          <div class="col-md-6 text-content">{{companyCredit.maxamtofoverdueCreditcard | filterNull | yuanFormat}}<span *ngIf="companyCredit.maxamtofoverdueCreditcard">万元</span></div>
-        </div>
-        <div class="col-md-6">
-          <label  class="control-label">贷款最大逾期金额:</label>
-          <div class="col-md-6 text-content">{{companyCredit.maxamtofoverdueLoan | filterNull | yuanFormat}}<span *ngIf="companyCredit.maxamtofoverdueLoan">万元</span></div>
-        </div>
+      <div class="page-location">
+        <a class="h4 pad-r-xs font-bold">履约信息</a>
+        <i class="fa fa-caret-right text-lg" *ngIf="!part3S" (click)="part3S=!part3S"></i>
+        <i class="fa fa-caret-down text-lg" *ngIf="part3S" (click)="part3S=!part3S"></i>
+        <a class="text-info pull-right" *ngIf="!part3" (click)="edit('part3')">编辑</a>
+        <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part3&&part3S" [disabled]="!part3F.form.valid">保存</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part3&&part3S" (click)="cancel('part3')">取消</button>
       </div>
-      <div class="form-group clearfix">
-        <div class="col-md-6">
-          <label  class="control-label">信用卡/贷款逾期次数:</label>
-          <div class="col-md-6 text-content">{{companyCredit.overdueNum | filterNull}}<span *ngIf="companyCredit.overdueNum">次</span></div>
-        </div>
-        <div class="col-md-6">
-          <label  class="control-label">信用卡/贷款最大逾期天数:</label>
-          <div class="col-md-6 text-content">{{companyCredit.overdueDay | filterNull}}<span *ngIf="companyCredit.overdueDay">天</span></div>
-        </div>
-      </div>
-      <div class="form-group clearfix">
-        <div class="col-md-6">
-          <label  class="control-label">住房按揭贷款逾期次数:</label>
-          <div class="col-md-6 text-content">{{companyCredit.inquiriesnumWithintwoyear | filterNull}}<span *ngIf="companyCredit.inquiriesnumWithintwoyear">次</span></div>
-        </div>
-        <div class="col-md-6">
-          <label  class="control-label">两年内征信被查询次数:</label>
-          <div class="col-md-6 text-content">{{companyCredit.housemortgageloanOverdueNum | filterNull}}<span *ngIf="companyCredit.housemortgageloanOverdueNum">次</span></div>
-        </div>
-      </div>
-      <div class="form-group clearfix">
-        <div class="col-md-6">
-          <label  class="control-label">3个月内征信被查询次数:</label>
-          <div class="col-md-6 text-content">{{companyCredit.inquiriesnumWithinthreemonth | filterNull}}<span *ngIf="companyCredit.inquiriesnumWithinthreemonth">次</span></div>
-        </div>
-        <div class="col-md-6">
-          <label  class="control-label">征信评级:</label>
-          <div class="col-md-6 text-content">{{member.memberRatingGrate | filterNull}}</div>
-        </div>
-      </div>
-    </div>
-      <div class="col-md-12 group m-t padder-v clearfix">
-        <div class="group-title">相关证照</div>
-        <div class="col-md-6">
-          <div class="clearfix">
-            <div class="col-md-6">人行版征信报告</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0111']" (click)="show($event,'0111')">查看</a></div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-    <!-- part3编辑模板 -->
-    <div class="padder-v clearfix col-md-12" *ngIf="part3">
-      <div class="col-md-12 border-content">
-
-        <div class="form-group clearfix l-h-2x form-inline m-t">
-          <div class="col-md-6">
-            <label  class="control-label">信用卡最大逾期金额:</label>
+      <div class="padder-v clearfix col-md-12" *ngIf="!part3&&part3S">
+        <div class="col-md-12 border-content ">
+          <div class="form-group clearfix m-t-md">
             <div class="col-md-6">
-              <input type="text" name="maxamtofoverdueCreditcard" class="form-control" [(ngModel)]="companyCredit.maxamtofoverdueCreditcard"> 万元
+              <label class="control-label">信用卡最大逾期金额:</label>
+              <div class="col-md-6 text-content">{{companyCredit.maxamtofoverdueCreditcard | filterNull | yuanFormat}}<span *ngIf="companyCredit.maxamtofoverdueCreditcard">万元</span></div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">贷款最大逾期金额:</label>
+              <div class="col-md-6 text-content">{{companyCredit.maxamtofoverdueLoan | filterNull | yuanFormat}}<span *ngIf="companyCredit.maxamtofoverdueLoan">万元</span></div>
             </div>
           </div>
-          <div class="col-md-6">
-            <label  class="control-label">贷款最大逾期金额:</label>
+          <div class="form-group clearfix">
             <div class="col-md-6">
-              <input type="text" name="maxamtofoverdueLoan" class="form-control" [(ngModel)]="companyCredit.maxamtofoverdueLoan"> 万元
+              <label class="control-label">信用卡/贷款逾期次数:</label>
+              <div class="col-md-6 text-content">{{companyCredit.overdueNum | filterNull}}<span *ngIf="companyCredit.overdueNum">次</span></div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">信用卡/贷款最大逾期天数:</label>
+              <div class="col-md-6 text-content">{{companyCredit.overdueDay | filterNull}}<span *ngIf="companyCredit.overdueDay">天</span></div>
+            </div>
+          </div>
+          <div class="form-group clearfix">
+            <div class="col-md-6">
+              <label class="control-label">住房按揭贷款逾期次数:</label>
+              <div class="col-md-6 text-content">{{companyCredit.inquiriesnumWithintwoyear | filterNull}}<span *ngIf="companyCredit.inquiriesnumWithintwoyear">次</span></div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">两年内征信被查询次数:</label>
+              <div class="col-md-6 text-content">{{companyCredit.housemortgageloanOverdueNum | filterNull}}<span *ngIf="companyCredit.housemortgageloanOverdueNum">次</span></div>
+            </div>
+          </div>
+          <div class="form-group clearfix">
+            <div class="col-md-6">
+              <label class="control-label">3个月内征信被查询次数:</label>
+              <div class="col-md-6 text-content">{{companyCredit.inquiriesnumWithinthreemonth | filterNull}}<span *ngIf="companyCredit.inquiriesnumWithinthreemonth">次</span></div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">征信评级:</label>
+              <div class="col-md-6 text-content">{{member.memberRatingGrate | filterNull}}</div>
             </div>
           </div>
         </div>
-        <div class="form-group clearfix l-h-2x form-inline">
+        <div class="col-md-12 group m-t padder-v clearfix">
+          <div class="group-title">相关证照</div>
           <div class="col-md-6">
-            <label  class="control-label">信用卡/贷款逾期次数:</label>
-            <div class="col-md-6">
-              <input type="text" name="overdueNum" class="form-control" [(ngModel)]="companyCredit.overdueNum"> 次
-            </div>
-          </div>
-          <div class="col-md-6">
-            <label  class="control-label">信用卡/贷款最大逾期天数:</label>
-            <div class="col-md-6">
-              <input type="text" name="overdueDay" class="form-control" [(ngModel)]="companyCredit.overdueDay"> 天
-            </div>
-          </div>
-        </div>
-        <div class="form-group clearfix l-h-2x form-inline">
-          <div class="col-md-6">
-            <label  class="control-label">住房按揭贷款逾期次数:</label>
-            <div class="col-md-6">
-              <input type="text" name="inquiriesnumWithintwoyear" class="form-control" [(ngModel)]="companyCredit.inquiriesnumWithintwoyear"> 次
-            </div>
-          </div>
-          <div class="col-md-6">
-            <label  class="control-label">两年内征信被查询次数:</label>
-            <div class="col-md-6">
-              <input type="text" name="housemortgageloanOverdueNum" class="form-control" [(ngModel)]="companyCredit.housemortgageloanOverdueNum"> 次
-            </div>
-          </div>
-        </div>
-        <div class="form-group clearfix l-h-2x form-inline">
-          <div class="col-md-6">
-            <label  class="control-label">3个月内征信被查询次数:</label>
-            <div class="col-md-6">
-              <input type="text" name="inquiriesnumWithinthreemonth" class="form-control" [(ngModel)]="companyCredit.inquiriesnumWithinthreemonth"> 次
-            </div>
-          </div>
-          <div class="col-md-6">
-            <label  class="control-label">征信评级:</label>
-            <div class="col-md-6">
-              <select name="memberRatingGrate" class="form-control" [(ngModel)]="member.memberRatingGrate">
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-
-              </select>
+            <div class="clearfix">
+              <div class="col-md-6 p-l-none">人行版征信报告</div>
+              <!-- <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0111']" (click)="show($event,'0111')">查看</a></div> -->
+              <div class="col-md-6"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0111']" (click)="show($event,'0111')" title="查看"></a></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="padder-v clearfix col-md-12 border-content m-t">
-        <label  class="control-label col-md-3">相关证照:</label>
-        <div class="col-md-9 p-r-none">
-          <div class="clearfix">
-            <div class="col-md-6 p-r-none">
-              <div class="col-md-7">
-                    <div *ngIf="attachment['0111']">
-                      <a class="text-info" (click)="show($event,'0111')">人行版征信报告</a>
-                    </div>
-                    <div *ngIf="!attachment['0111']">人行版征信报告</div>
+      <!-- part3编辑模板 -->
+      <div class="padder-v clearfix col-md-12" *ngIf="part3">
+        <div class="col-md-12 border-content">
+          <div class="form-group clearfix l-h-2x form-inline m-t">
+            <div class="col-md-6">
+              <label class="control-label">信用卡最大逾期金额:</label>
+              <div class="col-md-6">
+                <input type="text" name="maxamtofoverdueCreditcard" class="form-control" maxlength="30" [(ngModel)]="companyCredit.maxamtofoverdueCreditcard"> 万元
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">贷款最大逾期金额:</label>
+              <div class="col-md-6">
+                <input type="text" name="maxamtofoverdueLoan" class="form-control" maxlength="30" [(ngModel)]="companyCredit.maxamtofoverdueLoan"> 万元
+              </div>
+            </div>
+          </div>
+          <div class="form-group clearfix l-h-2x form-inline">
+            <div class="col-md-6">
+              <label class="control-label">信用卡/贷款逾期次数:</label>
+              <div class="col-md-6">
+                <input type="text" name="overdueNum" class="form-control" maxlength="30" [(ngModel)]="companyCredit.overdueNum"> 次
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">信用卡/贷款最大逾期天数:</label>
+              <div class="col-md-6">
+                <input type="text" name="overdueDay" class="form-control" maxlength="30" [(ngModel)]="companyCredit.overdueDay"> 天
+              </div>
+            </div>
+          </div>
+          <div class="form-group clearfix l-h-2x form-inline">
+            <div class="col-md-6">
+              <label class="control-label">住房按揭贷款逾期次数:</label>
+              <div class="col-md-6">
+                <input type="text" name="inquiriesnumWithintwoyear" class="form-control" maxlength="30" [(ngModel)]="companyCredit.inquiriesnumWithintwoyear"> 次
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">两年内征信被查询次数:</label>
+              <div class="col-md-6">
+                <input type="text" name="housemortgageloanOverdueNum" class="form-control" maxlength="30" [(ngModel)]="companyCredit.housemortgageloanOverdueNum"> 次
+              </div>
+            </div>
+          </div>
+          <div class="form-group clearfix l-h-2x form-inline">
+            <div class="col-md-6">
+              <label class="control-label">3个月内征信被查询次数:</label>
+              <div class="col-md-6">
+                <input type="text" name="inquiriesnumWithinthreemonth" class="form-control" maxlength="30" [(ngModel)]="companyCredit.inquiriesnumWithinthreemonth"> 次
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label">征信评级:</label>
+              <div class="col-md-6">
+                <select name="memberRatingGrate" class="form-control" [(ngModel)]="member.memberRatingGrate">
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 group m-t padder-v clearfix">
+          <div class="group-title">相关证照</div>
+          <div class="col-md-9 p-r-none p-l-none">
+              <div class="col-md-6 p-r-none p-l-none">
+                <div class="col-md-7">
+                  <div *ngIf="attachment['0111']">
+                    <a class="text-info" (click)="show($event,'0111')">人行版征信报告</a>
                   </div>
+                  <div *ngIf="!attachment['0111']">人行版征信报告</div>
+                </div>
                 <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0111']&&(!uploader2.queue[0])">上传
-                      <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2" />
-                    </div>
-                    <div *ngIf="attachment['0111']">
-                      <i class="glyphicon glyphicon-ok text-success"></i>
-                      <a class="text-danger" (click)="deleteFile('0111','uploader2')">删除</a>
-                    </div>
-                    <!-- 进度条模块 -->
-                    <div *ngIf="uploader2.queue[0]&&(uploader2.queue[0].success==false)">
-                      <div class="active m-b-none m-t-xs progress progress-sm progress-striped">
-                        <div class="progress-bar bg-success" [style.width.%]="uploader2.queue[0].progress">
-                        </div>
+                  <div class="text-info pos-rlt" *ngIf="!attachment['0111']&&(!uploader2.queue[0])">上传
+                    <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2" />
+                  </div>
+                  <div *ngIf="attachment['0111']">
+                    <i class="glyphicon glyphicon-ok text-success"></i>
+                    <a class="text-danger" (click)="deleteFile('0111','uploader2')">删除</a>
+                  </div>
+                  <!-- 进度条模块 -->
+                  <div *ngIf="uploader2.queue[0]&&(uploader2.queue[0].success==false)">
+                    <div class="active m-b-none m-t-xs progress progress-sm progress-striped">
+                      <div class="progress-bar bg-success" [style.width.%]="uploader2.queue[0].progress">
                       </div>
                     </div>
+                  </div>
                 </div>
-              <!-- <table class="form-group clearfix table table-striped m-b-none showL text-center">
+                <!-- <table class="form-group clearfix table table-striped m-b-none showL text-center">
                 <thead>
                   <tr>
                     <th>人行版征信报告</th>
@@ -532,21 +516,16 @@
                   </tr>
                 </tbody>
               </table> -->
-            </div>
-
+              </div>
           </div>
-
         </div>
       </div>
-    </div>
     </form>
-
-  	</section>
-  	<section class="text-center">
-		<div class="col-md-12">
-			<button class="btn-def m-b-md" (click)="back()">返回<i class="fa fa-arrow-circle-o-left"></i></button>
-		</div>
-	</section>
+  </section>
+  <section class="text-center">
+    <div class="col-md-12">
+      <button class="btn-def m-b-md" (click)="back()">返回<i class="fa fa-arrow-circle-o-left"></i></button>
+    </div>
+  </section>
 </div>
-
-<gallery #gallery></gallery>
+<gallery #gallery size="lg"></gallery>
