@@ -31,7 +31,7 @@ export class AuthListComponent implements OnInit{
 
 	ngOnInit(){
 		this.authApplyReplyNum=this.route.params['value']['count'];
-		this.getList(1)
+		this.getList(this.authApplyReplyNum)
 
 	}
 	getList(type){
@@ -66,7 +66,7 @@ export class AuthListComponent implements OnInit{
 	}
 
 	detail(data){
-		this.router.navigate(['business/customerList/authDetail',data.authId])
+		this.router.navigate(['business/customerList/authDetail',data.authId],{queryParams: { status: this.authApplyReplyNum }})
 	}
 
 }
