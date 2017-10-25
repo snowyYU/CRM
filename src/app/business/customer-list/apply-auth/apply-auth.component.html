@@ -11,7 +11,7 @@
         <div class="form-group">
           <label class="control-label pull-left required">客户名称：</label>
           <div class="pull-left" style="min-width: 300px;max-width: 100%">
-            <input placeholder="请输入关键字" type="text" name="guestName" class="form-control" required maxlength="30" [(ngModel)]="guestName">
+            <input type="text" name="guestName" class="form-control" required maxlength="30" [(ngModel)]="guestName">
           </div>
         </div>
         <div class="form-group">
@@ -87,19 +87,19 @@
         <div class="form-group">
           <label class="control-label pull-left required">联系人：</label>
           <div class="pull-left">
-            <input placeholder="请输入关键字" type="text" name="linkName" class="form-control " required maxlength="30" [(ngModel)]="linkName">
+            <input type="text" name="linkName" class="form-control " required maxlength="30" [(ngModel)]="linkName">
           </div>
         </div>
         <div class="form-group">
           <label class="control-label pull-left required">联系人手机：</label>
           <div class="pull-left">
-            <input placeholder="请输入关键字" type="number" name="linkMobile" class="form-control " required maxlength="30" [(ngModel)]="linkMobile">
+            <input type="number" name="linkMobile" class="form-control " required maxlength="30" [(ngModel)]="linkMobile">
           </div>
         </div>
         <div class="form-group">
           <label class="control-label pull-left required">联系人职位：</label>
           <div class="pull-left">
-            <input placeholder="请输入关键字" type="text" name="linkJob" class="form-control " maxlength="30" required [(ngModel)]="linkJob">
+            <input type="text" name="linkJob" class="form-control " maxlength="30" required [(ngModel)]="linkJob">
           </div>
         </div>
         <!-- <div class="form-group ">
@@ -141,7 +141,7 @@
         <div class="form-group clearfix">
           <label class="control-label pull-left required">营业执照号：</label>
           <div class="pull-left" style="min-width: 300px;max-width: 100%">
-            <input placeholder="请输入关键字" type="text" name="licenceNum" class="form-control " required maxlength="30" [(ngModel)]="licenceNum">
+            <input type="text" name="licenceNum" class="form-control " required maxlength="30" [(ngModel)]="licenceNum">
           </div>
         </div>
         <div class="form-group">
@@ -157,14 +157,14 @@
         <div class="form-group clearfix">
           <label class="control-label pull-left required">注册资金：</label>
           <div class="pull-left">
-            <input placeholder="请输入关键字" type="number" name="registerCapital" class="form-control " maxlength="30" [(ngModel)]="registerCapital" required>
+            <input type="number" name="registerCapital" class="form-control " maxlength="30" [(ngModel)]="registerCapital" required>
           </div>
           <span class="pull-left" style="padding-top: 8px;padding-left: 10px;">  万元</span>
         </div>
         <div class="form-group">
           <label class="control-label pull-left required">成立时间：</label>
           <div class="pull-left">
-            <input placeholder="请输入关键字" type="text" name="foundTime" datePicker class="form-control " [opt-max]="todayDate" maxlength="30" [(ngModel)]="foundTime" required>
+            <input type="text" name="foundTime" datePicker class="form-control " [opt-max]="todayDate" maxlength="30" [(ngModel)]="foundTime" required>
           </div>
         </div>
         <div class="form-group clearfix">
@@ -188,7 +188,7 @@
             </div>
             <div class="row m-t-xs">
               <div class="col-md-12">
-                <input placeholder="请输入关键字" type="text" name="detailAddress" class="form-control " maxlength="180" [(ngModel)]="detailAddress" required>
+                <input placeholder="请输入详细地址" type="text" name="detailAddress" class="form-control " maxlength="180" [(ngModel)]="detailAddress" required>
               </div>
             </div>
           </div>
@@ -347,7 +347,7 @@
       </div> -->
       <div class="text-center m-t-xl">
         <button class="btn-def mar-r-sm" type="submit" [disabled]="!form.valid">提交申请<i class="fa fa-check-circle-o"></i></button>
-        <button class="btn-def" (click)="cancel()" type="button">返回<i class="fa fa-arrow-circle-o-left"></i></button>
+        <button class="btn-def" (click)="cancel()" type="button">放弃<i class="fa fa-arrow-circle-o-left"></i></button>
       </div>
     </div>
   </form>
