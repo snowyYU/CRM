@@ -126,7 +126,7 @@
         <div class="form-group clearfix pos-rlt">
           <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
           <label class="control-label m-l-md m-t-xs">入金(属性):</label>
-          <div class="col-md-3">
+          <div class="col-md-3 p-l-none">
             <select name="inGoldType" class="form-control " [(ngModel)]="inGoldType" required>
               <option [value]="undefined" hidden>请选择</option>
               <option [value]="item.value" *ngFor="let item of inGoldTypeList" required>{{item.label}}</option>
@@ -137,7 +137,7 @@
           <label class="control-label m-l-md m-t-xs">配置账户:</label>
           <div class="col-md-7 p-l-none">
             <div class="col-md-11 p-l-none">
-              <div class="pull-left m-l-sm m-t-sm w-sm">
+              <div class="pull-left m-t-sm w-sm">
                 <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['4']" disabled>电子钱包</checkbox>
                 <!-- <label class="i-checks">
                         <input type="checkbox" [checked]="checkList['4']" disabled>
@@ -163,7 +163,7 @@
               </div>
             </div>
             <div class="col-md-11 checkbox-inline">
-              <div class="pull-left m-l-sm m-t-sm w-sm">
+              <div class="pull-left m-t-sm w-sm">
                 <checkbox innerStyle="checked" customBackground="#23b7e5" [(value)]="checkList['3']" disabled>定向户</checkbox>
                 <!-- <label class="i-checks">
                         <input type="checkbox" [checked]="checkList['3']" disabled>

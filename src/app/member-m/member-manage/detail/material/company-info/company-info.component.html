@@ -106,13 +106,13 @@
             <div class="col-md-6">
               <label for="" class="control-label">姓名:</label>
               <div class="col-md-6">
-                <input type="text" name="borrwerPerson" class="form-control" [(ngModel)]="companyborrowerVo.borrwerPerson">
+                <input type="text" name="borrwerPerson" class="form-control" maxlength="30" [(ngModel)]="companyborrowerVo.borrwerPerson">
               </div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">身份证号码:</label>
               <div class="col-md-6">
-                <input type="text" name="borrwerIdcard" class="form-control" [(ngModel)]="companyborrowerVo.borrwerIdcard">
+                <input type="text" name="borrwerIdcard" class="form-control" maxlength="30" [(ngModel)]="companyborrowerVo.borrwerIdcard">
               </div>
             </div>
           </div>
@@ -132,7 +132,7 @@
             <div class="col-md-6">
               <label for="" class="control-label">联系手机:</label>
               <div class="col-md-6">
-                <input type="text" name="borrwerMobile" class="form-control" [(ngModel)]="companyborrowerVo.borrwerMobile">
+                <input type="text" name="borrwerMobile" class="form-control" maxlength="30" [(ngModel)]="companyborrowerVo.borrwerMobile">
               </div>
             </div>
           </div>
@@ -867,13 +867,14 @@
             <div class="col-md-6">
               <label for="" class="control-label">公司名称:</label>
               <div class="col-md-6">
-                <input type="text" name="companyName" class="form-control" [(ngModel)]="memberVo.companyName">
+                <input type="text" name="companyName" class="form-control" maxlength="30" [(ngModel)]="memberVo.companyName">
               </div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">公司类型:</label>
               <div class="col-md-6">
                 <select name="companyTypeName" class="form-control" [(ngModel)]="companyVo.companyType">
+                  <option [value]="undefined" hidden>请选择</option>
                   <option [value]="item.value" *ngFor="let item of companyTypeList">{{item.label}}</option>
                 </select>
               </div>
@@ -883,13 +884,13 @@
             <div class="col-md-6">
               <label for="" class="control-label">注册资金:</label>
               <div class="col-md-6">
-                <input type="text" name="registerCapital" class="form-control" [(ngModel)]="companyVo.registerCapital">
+                <input type="text" name="registerCapital" class="form-control" maxlength="30" [(ngModel)]="companyVo.registerCapital">
               </div>万元
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">注册时间:</label>
               <div class="col-md-6">
-                <input type="text" datePicker name="foundTime" class="form-control" [(ngModel)]="companyVo.foundTime">
+                <input type="text" datePicker name="foundTime" class="form-control" maxlength="30" [(ngModel)]="companyVo.foundTime">
               </div>
             </div>
           </div>
@@ -897,13 +898,13 @@
             <div class="col-md-6">
               <label for="" class="control-label">联系人:</label>
               <div class="col-md-6">
-                <input type="text" name="linkName" class="form-control" [(ngModel)]="companyVo.linkName">
+                <input type="text" name="linkName" class="form-control" maxlength="30" [(ngModel)]="companyVo.linkName">
               </div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">联系手机:</label>
               <div class="col-md-6">
-                <input type="text" name="linkMobile" class="form-control" [(ngModel)]="companyVo.linkMobile">
+                <input type="text" name="linkMobile" class="form-control" maxlength="30" [(ngModel)]="companyVo.linkMobile">
               </div>
             </div>
           </div>
@@ -911,7 +912,7 @@
             <div class="col-md-6">
               <label for="" class="control-label">营业执照号:</label>
               <div class="col-md-6">
-                <input type="text" name="licenceNum" class="form-control" [(ngModel)]="companyVo.licenceNum">
+                <input type="text" name="licenceNum" class="form-control" maxlength="30" [(ngModel)]="companyVo.licenceNum">
               </div>
             </div>
             <div class="col-md-6">
@@ -920,12 +921,14 @@
                 <div class="row">
                   <div class="col-md-6">
                     <select name="provnice" class="form-control" [(ngModel)]="province" (ngModelChange)='getCityList($event)'>
-                      <option [ngValue]='item.name' *ngFor="let item of provinceList">{{item.name}}</option>
+                      <option [value]="undefined" hidden>请选择</option>
+                      <option [value]='item.name' *ngFor="let item of provinceList">{{item.name}}</option>
                     </select>
                   </div>
                   <div class="col-md-6">
                     <select name="city" id="" class="form-control" [(ngModel)]="city" [disabled]='!province'>
-                      <option [ngValue]="item.name" *ngFor="let item of cityList">{{item.name}}</option>
+                      <option [value]="undefined" hidden>请选择</option>
+                      <option [value]="item.name" *ngFor="let item of cityList">{{item.name}}</option>
                     </select>
                   </div>
                 </div>
@@ -1354,13 +1357,13 @@
           <div class="col-md-6">
             <label for="" class="control-label">法人姓名:</label>
             <div class="col-md-6">
-              <input type="text" name="legalPerson" class="form-control" [(ngModel)]="companyLegalVo.legalPerson">
+              <input type="text" name="legalPerson" class="form-control" maxlength="30" [(ngModel)]="companyLegalVo.legalPerson">
             </div>
           </div>
           <div class="col-md-6">
             <label for="" class="control-label">法人身份证:</label>
             <div class="col-md-6">
-              <input type="text" name="legalIdcard" class="form-control" [(ngModel)]="companyLegalVo.legalIdcard">
+              <input type="text" name="legalIdcard" class="form-control" maxlength="30" [(ngModel)]="companyLegalVo.legalIdcard">
             </div>
           </div>
         </div>
@@ -1395,7 +1398,7 @@
           <div class="col-md-6">
             <label for="" class="control-label">联系手机:</label>
             <div class="col-md-6">
-              <input type="text" name="legalMobile" class="form-control" [(ngModel)]="companyLegalVo.legalMobile">
+              <input type="text" name="legalMobile" class="form-control" maxlength="30" [(ngModel)]="companyLegalVo.legalMobile">
             </div>
           </div>
         </div>
@@ -1458,13 +1461,13 @@
                 <div class="col-md-6">
                   <label for="" class="control-label">银行卡号:</label>
                   <div class="col-md-6 text-content">
-                    <input type="text" class="form-control" name="bankInfoCardNo_{{bankCard.uniqueId}}" [(ngModel)]="bankCard.companyBankInfo.cardNo" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
+                    <input type="text" class="form-control" name="bankInfoCardNo_{{bankCard.uniqueId}}" maxlength="30" [(ngModel)]="bankCard.companyBankInfo.cardNo" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <label for="" class="control-label">开户名:</label>
                   <div class="col-md-6 text-content">
-                    <input type="text" class="form-control" name="bankInfoCardName_{{bankCard.uniqueId}}" [(ngModel)]="bankCard.companyBankInfo.cardName" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
+                    <input type="text" class="form-control" name="bankInfoCardName_{{bankCard.uniqueId}}" maxlength="30" [(ngModel)]="bankCard.companyBankInfo.cardName" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
                   </div>
                 </div>
               </div>
@@ -1474,11 +1477,11 @@
                   <div class="col-md-6 text-content">
                     <select-bar #selectBar
                         (onDropdown)="bankCard.clearBanks();bankCard.queryBanks(bankCard.bankKey)">
-                      <input [(ngModel)]="bankCard.bankName" required name="bankName_{{bankCard.uniqueId}}" class="form-control"
+                      <input [(ngModel)]="bankCard.bankName" required name="bankName_{{bankCard.uniqueId}}" maxlength="30" class="form-control"
                              placeholder="请选择银行"
                              data-type="value"
                              [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
-                      <input class="form-control" placeholder="银行关键字" [ngModel]="bankCard.bankKey"
+                      <input class="form-control" placeholder="银行关键字" maxlength="30" [ngModel]="bankCard.bankKey"
                              name="bankKeyword_{{bankCard.uniqueId}}"
                              data-type="keyword" (ngModelChange)="bankCard.queryBanks($event)">
                       <ul class="list" *ngIf="bankCard.bankList.length>0">
@@ -1496,11 +1499,11 @@
                   <div class="col-md-6 text-content">
                     <select-bar #selectBar1
                         (onDropdown)="bankCard.clearSubBanks();bankCard.querySubBanks(bankCard.subBankKey)">
-                      <input [(ngModel)]="bankCard.subBankName" required name="subBankName_{{bankCard.uniqueId}}" class="form-control"
+                      <input [(ngModel)]="bankCard.subBankName" required name="subBankName_{{bankCard.uniqueId}}" maxlength="30" class="form-control"
                              placeholder="请选择支行"
                              data-type="value"
                              [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
-                      <input class="form-control" placeholder="支行关键字" [ngModel]="bankCard.subBankKey"
+                      <input class="form-control" placeholder="支行关键字" maxlength="30" [ngModel]="bankCard.subBankKey"
                              name="subBankKeyword_{{bankCard.uniqueId}}"
                              data-type="keyword" (ngModelChange)="bankCard.querySubBanks($event)">
                       <ul class="list" *ngIf="bankCard.subBankList.length>0">
@@ -1518,6 +1521,7 @@
                   <label for="" class="control-label">卡类型:</label>
                   <div class="col-md-6 text-content">
                     <select name="banknfoCardType_{{bankCard.uniqueId}}" class="form-control" [(ngModel)]="bankCard.accType" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
+                      <option [value]="undefined" hidden>请选择</option>
                       <option [value]="accT.value" *ngFor="let accT of accTypeList">{{accT.label}}</option>
                     </select>
                   </div>
