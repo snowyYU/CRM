@@ -19,7 +19,7 @@
     </div>
     <div class="form-group">
     	<label >会员名称：</label>
-    	<input type="text" name="memberName" [(ngModel)]="memberName" class="form-control">
+    	<input type="text" name="memberName" maxlength="30" [(ngModel)]="memberName" class="form-control">
     </div>
     <div class="form-group">
     	<button class="btn-def" (click)='getListData()'>查询<i class="fa fa-search"></i></button>
@@ -184,6 +184,7 @@
         </div>
         <div class="col-md-4 text-center m-t-xs">
           <select name="changeServiceM" class="form-control" [(ngModel)]="modalServiceMan" required>
+            <option [value]="undefined" hidden>请选择</option>
             <option [value]="item.employeeName" *ngFor="let item of modalServiceManL">{{item.employeeName}}</option>
           </select>
         </div>

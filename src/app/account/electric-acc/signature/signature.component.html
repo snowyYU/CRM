@@ -12,11 +12,11 @@
           <div class="form-group">
             <select-bar #selectBar1
               (onDropdown)="clearMemberList();queryMemberList(memberNameQKey)">
-              <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control search"
+              <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control search" maxlength="30" 
                      placeholder="请选择会员"
                      data-type="value"
                       />
-              <input class="form-control search" placeholder="会员关键字" autocomplete="off" [ngModel]="memberNameQKey"
+              <input class="form-control search" placeholder="会员关键字" autocomplete="off" maxlength="30" [ngModel]="memberNameQKey"
                      name="memberNameQKeyword"
                      data-type="keyword" (ngModelChange)="queryMemberList($event)">
               <ul class="list" *ngIf="memberList.length>0">
@@ -37,11 +37,11 @@
         <div class="form-group">
           <select-bar #selectBar1
             (onDropdown)="clearMemberList();queryMemberList(memberNameQKey)">
-            <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control i-width"
+            <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control i-width" maxlength="30" 
                    placeholder="请选择会员"
                    data-type="value"
                     />
-            <input class="form-control i-width" placeholder="会员关键字" autocomplete="off" [ngModel]="memberNameQKey"
+            <input class="form-control i-width" placeholder="会员关键字" autocomplete="off" maxlength="30" [ngModel]="memberNameQKey"
                    name="memberNameQKeyword"
                    data-type="keyword" (ngModelChange)="queryMemberList($event)">
             <ul class="list" *ngIf="memberList.length>0">

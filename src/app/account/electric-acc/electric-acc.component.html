@@ -12,11 +12,11 @@
           <div class="form-group">
             <select-bar #selectBar1
               (onDropdown)="clearMemberList();queryMemberList(memberNameQKey)">
-              <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control search"
+              <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control search" maxlength="30" 
                      placeholder="请选择会员"
                      data-type="value"
                       />
-              <input class="form-control search" placeholder="会员关键字" autocomplete="off" [ngModel]="memberNameQKey"
+              <input class="form-control search" placeholder="会员关键字" autocomplete="off" maxlength="30" [ngModel]="memberNameQKey"
                      name="memberNameQKeyword"
                      data-type="keyword" (ngModelChange)="queryMemberList($event)">
               <ul class="list" *ngIf="memberList.length>0">
@@ -40,11 +40,11 @@
         <div class="form-group">
           <select-bar #selectBar1
             (onDropdown)="clearMemberList();queryMemberList(memberNameQKey)">
-            <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control i-width"
+            <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control i-width" maxlength="30" 
                    placeholder="请选择会员"
                    data-type="value"
                     />
-            <input class="form-control i-width" placeholder="会员关键字" autocomplete="off" [ngModel]="memberNameQKey"
+            <input class="form-control i-width" placeholder="会员关键字" autocomplete="off" maxlength="30" [ngModel]="memberNameQKey"
                    name="memberNameQKeyword"
                    data-type="keyword" (ngModelChange)="queryMemberList($event)">
             <ul class="list" *ngIf="memberList.length>0">
@@ -68,13 +68,13 @@
           </div>
           <div class="col-md-6">
             <label class="control-label m-l-md">状态:</label>
-            <span class="text-content" [class.text-danger]="isOpenAcctDic=='未开户'">{{isOpenAcctDic}}</span>
+            <span class="text-content" [class.text-danger]="isOpenAcctDic=='未开户'">{{isOpenAcctDic | filterNull}}</span>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <label class="control-label m-l-md">归属渠道:</label>
-            <span class="text-content">{{appName}}</span>
+            <span class="text-content">{{appName | filterNull}}</span>
           </div>
         </div>
       </section>
@@ -82,19 +82,20 @@
       <section class="wrapper border-content m-t-md " *ngIf="isOpenAcctDic=='未开户'">
         <div class="form-group clearfix">
           <label class="control-label m-l-md">开户行:</label>
-          <span class="text-content">{{bankName}}</span>
+          <span class="text-content">{{bankName | filterNull}}</span>
         </div>
         <div class="form-group form-inline pos-rlt">
           <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
           <label class="control-label m-l-md m-t-xs">账户类型:</label>
           <select name="memberType" class="form-control" [(ngModel)]="memberType" required>
+            <option [value]="undefined" hidden>请选择</option>
             <option [value]="item.value" *ngFor="let item of accountTypeList">{{item.label}}</option>
           </select>
         </div>
         <div class="form-group form-inline pos-rlt">
           <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
           <label class="control-label m-l-md m-t-xs">账户名称:</label>
-          <input type="text" name="accountName" class="form-control" [(ngModel)]="accountName" required>
+          <input type="text" name="accountName" class="form-control" maxlength="30" [(ngModel)]="accountName" required>
         </div>
       </section>
       <!-- 已开户的状态 -->
@@ -102,21 +103,21 @@
         <div class="row form-group">
           <div class="col-md-6 m-t-xs">
             <label class="control-label m-l-md">二级账户:</label>
-            <span class="text-content">{{bankAccount}}</span>
+            <span class="text-content">{{bankAccount | filterNull}}</span>
           </div>
           <div class="col-md-6">
             <label class="control-label m-l-md">账户名称:</label>
-            <span class="text-content">{{accountName}}</span>
+            <span class="text-content">{{accountName | filterNull}}</span>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 m-t-xs">
             <label class="control-label m-l-md">开户行:</label>
-            <span class="text-content">{{bankName}}</span>
+            <span class="text-content">{{bankName | filterNull}}</span>
           </div>
           <div class="col-md-6">
             <label class="control-label m-l-md">账户类型:</label>
-            <span class="text-content">{{accountTypeDic}}</span>
+            <span class="text-content">{{accountTypeDic | filterNull}}</span>
           </div>
         </div>
       </section>
@@ -127,6 +128,7 @@
           <label class="control-label m-l-md m-t-xs">入金(属性):</label>
           <div class="col-md-3">
             <select name="inGoldType" class="form-control " [(ngModel)]="inGoldType" required>
+              <option [value]="undefined" hidden>请选择</option>
               <option [value]="item.value" *ngFor="let item of inGoldTypeList" required>{{item.label}}</option>
             </select>
           </div>
