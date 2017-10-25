@@ -9,7 +9,7 @@ import {
   Request,
   RequestOptionsArgs
 } from '@angular/http';
-import {API, HOST, CONFIG} from '../config/app.config';
+import {API,host} from '../config/app.config';
 import {Observable} from "rxjs/Observable";
 import {CookieService} from 'ng2-cookies';
 export interface MyHttpAPIOptions {
@@ -88,7 +88,7 @@ export class MyHttp {
           url += '?' + urlParams;
         }
       }
-      url = CONFIG.env ? HOST.prod + url : HOST.dev + url;
+      url = host + url;
       return url;
     }
   }
