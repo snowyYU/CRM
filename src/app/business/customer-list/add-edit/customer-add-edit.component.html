@@ -97,7 +97,7 @@
         <div class="form-group">
           <label class="control-label pull-left">成立时间：</label>
           <div class="pull-left">
-            <input placeholder="请输入关键字" type="text" name="foundTime" datePicker class="form-control " maxlength="30" [(ngModel)]="foundTime">
+            <input placeholder="请输入关键字" type="text" name="foundTime" datePicker class="form-control " maxlength="30" [opt-max]="todayDate" [(ngModel)]="foundTime">
           </div>
         </div>
         <div class="form-group clearfix">

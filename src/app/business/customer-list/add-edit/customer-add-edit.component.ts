@@ -5,12 +5,13 @@ import { CustomerAddEditService } from './customer-add-edit.service';
 import { PopService } from 'dolphinng';
 import { SendData } from './sendData'
 import { AuthRoleService } from '../../../../services/authRole/authRole.service';
+import { DateService } from "../../../../services/date/date.service"
 
 @Component({
 	selector:'customer-add-edit',
 	templateUrl:'./customer-add-edit.component.html',
 	styleUrls:['./customer-add-edit.component.less'],
-	providers:[CustomerAddEditService,PopService,AuthRoleService]
+	providers:[CustomerAddEditService,PopService,AuthRoleService,DateService]
 })
 
 export class CustomerAddEditComponent implements OnInit{
@@ -47,12 +48,17 @@ export class CustomerAddEditComponent implements OnInit{
 	city:string;
 	cityList;
 	detailAddress:string
+
+	todayDate
+
 	constructor(
 		private router:Router,
 		private route:ActivatedRoute,
 		private popService:PopService,
 		private addEditService:CustomerAddEditService,
-		private authRoleService:AuthRoleService
+		private authRoleService:AuthRoleService,
+		private dateService:DateService
+
 		){
 		//状态下拉
 		this.inputSelect("guest_status")
@@ -129,6 +135,11 @@ export class CustomerAddEditComponent implements OnInit{
 	}
 
 	ngOnInit(){
+		this.todayDate=this.dateService.format({
+			date:this.dateService.todayDate(),
+			formatType:'yyyy-MM-dd'
+		});
+		
 		this.serviceMan=this.authRoleService.userName;
 		this.role=this.authRoleService.role
 		if (this.route.params['value']['id']) {
