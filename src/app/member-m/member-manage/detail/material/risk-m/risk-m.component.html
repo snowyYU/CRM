@@ -70,8 +70,9 @@
         <div class="group-title">相关证照</div>
         <div class="col-md-6">
           <div class="clearfix">
-            <div class="col-md-6">房产证明</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0301']" (click)="show($event,'0301')">查看</a></div>
+            <div class="col-md-6 p-l-none">房产证明</div>
+            <!-- <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0301']" (click)="show($event,'0301')">查看</a></div> -->
+            <div class="col-md-6"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0301']" (click)="show($event,'0301')" title="查看"></a></div>
           </div>
 
         </div>
@@ -386,8 +387,9 @@
         <div class="group-title">相关证照</div>
         <div class="col-md-6">
           <div class="clearfix">
-            <div class="col-md-6">人行版征信报告</div>
-            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0111']" (click)="show($event,'0111')">查看</a></div>
+            <div class="col-md-6 p-l-none">人行版征信报告</div>
+            <!-- <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0111']" (click)="show($event,'0111')">查看</a></div> -->
+            <div class="col-md-6"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0111']" (click)="show($event,'0111')" title="查看"></a></div>
           </div>
 
         </div>
