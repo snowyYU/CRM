@@ -162,14 +162,14 @@
         <div class="col-md-12 group m-t padder-v">
           <div class="group-title">相关证照</div>
           <div class="clearfix">
-            <div class="col-md-12 p-r-none">
+            <div class="col-md-12 row">
               <div class="form-group clearfix">
-                <div class="col-md-6 p-r-none">
+                <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0104']">
-                      <a class="text-info" (click)="show('0104',$event)">申请人身份证(正面)</a>
+                      <a class="text-info" (click)="show('0104',$event)">申请人身份证（正面）</a>
                     </div>
-                    <div *ngIf="!attachment['0104']">申请人身份证(正面)</div>
+                    <div *ngIf="!attachment['0104']">申请人身份证（正面）</div>
                   </div>
                   <div class="col-md-5">
                     <div class="text-info pos-rlt" *ngIf="!attachment['0104']&&(!uploader1_1.queue[0])">上传
@@ -283,9 +283,9 @@
                 <div class="col-md-6">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0105']">
-                      <a class="text-info" (click)="show('0105',$event)">申请人身份证(反面)</a>
+                      <a class="text-info" (click)="show('0105',$event)">申请人身份证（反面）</a>
                     </div>
-                    <div *ngIf="!attachment['0105']">申请人身份证(反面)</div>
+                    <div *ngIf="!attachment['0105']">申请人身份证（反面）</div>
                   </div>
                   <div class="col-md-5">
                     <div class="text-info pos-rlt" *ngIf="!attachment['0105']&&(!uploader1_2.queue[0])">上传
@@ -351,7 +351,7 @@
                 </div>
               </div>
               <div class="form-group clearfix">
-                <div class="col-md-6 p-r-none">
+                <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0110']">
                       <a class="text-info" (click)="show('0110',$event)">户口本</a>
@@ -491,7 +491,7 @@
                 </div>
               </div>
               <div class="form-group clearfix">
-                <div class="col-md-6 p-r-none">
+                <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0108']">
                       <a class="text-info" (click)="show('0108',$event)">结婚证（正面）</a>
@@ -630,8 +630,8 @@
                   </table> -->
                 </div>
               </div>
-              <div class="form-group clearfix">
-                <div class="col-md-6 p-r-none">
+              <div class=" clearfix">
+                <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0106']">
                       <a class="text-info" (click)="show('0106',$event)">配偶身份证（正面）</a>
@@ -957,9 +957,9 @@
         <div class="col-md-12 group m-t padder-v">
           <div class="group-title">相关证照</div>
           <div class="clearfix">
-            <div class="col-md-12 p-r-none">
+            <div class="col-md-12 row">
               <div class="form-group clearfix">
-                <div class="col-md-6 p-r-none">
+                <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0102']">
                       <a class="text-info" (click)="show('0102',$event)">公司章程</a>
@@ -1099,7 +1099,7 @@
                 </div>
               </div>
               <div class="form-group clearfix">
-                <div class="col-md-6 p-r-none">
+                <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0113']">
                       <a class="text-info" (click)="show('0113',$event)">公司门面照</a>
@@ -1238,8 +1238,8 @@
                 </table> -->
                 </div>
               </div>
-              <div class="form-group clearfix">
-                <div class="col-md-6 p-r-none">
+              <div class=" clearfix">
+                <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0101']">
                       <a class="text-info" (click)="show('0101',$event)">四证合一</a>
@@ -1582,9 +1582,9 @@
             </div>
           </div>
           <div class="clearfix" *ngIf="part4_2">
-            <div class="col-md-12 p-r-none m-t">
+            <div class="col-md-12 row m-t">
               <div class="form-group clearfix">
-                <div class="col-md-6 p-r-none">
+                <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0501']">
                       <a class="text-info" (click)="show('0501',$event)">开户证明</a>
@@ -1723,8 +1723,8 @@
               </table> -->
                 </div>
               </div>
-              <div class="form-group clearfix">
-                <div class="col-md-6 p-r-none">
+              <div class="clearfix">
+                <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0504']">
                       <a class="text-info" (click)="show('0504',$event)">网银流水</a>

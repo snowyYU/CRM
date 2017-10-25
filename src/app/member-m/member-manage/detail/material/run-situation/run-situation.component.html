@@ -7,13 +7,13 @@
     </div>
   </section>
   <!-- <section class="m-t bg-white clearfix">
-  	<form #runSituationF="ngForm" (ngSubmit)='save()'>
+    <form #runSituationF="ngForm" (ngSubmit)='save()'>
 
-		<div class="col-md-12 padder-v b-b l-h-2x">运营状况
-		<button type="button" class="btn pull-right" *ngIf="!part" (click)="edit('part')">编辑</button>
-      	<button type="submit" class="btn btn-info pull-right" *ngIf="part" [disabled]="!runSituationF.form.valid">保存</button>
-      	<button type="button" class="btn pull-right m-r-xs" *ngIf="part" (click)="cancel('part')">取消</button>
-		</div> -->
+    <div class="col-md-12 padder-v b-b l-h-2x">运营状况
+    <button type="button" class="btn pull-right" *ngIf="!part" (click)="edit('part')">编辑</button>
+        <button type="submit" class="btn btn-info pull-right" *ngIf="part" [disabled]="!runSituationF.form.valid">保存</button>
+        <button type="button" class="btn pull-right m-r-xs" *ngIf="part" (click)="cancel('part')">取消</button>
+    </div> -->
   <section class="clearfix">
     <form #runSituationF="ngForm" (ngSubmit)='save()'>
       <div class="page-location">
@@ -147,49 +147,49 @@
           </div>
         </div>
         <!-- <div class="form-group clearfix">
-				<label  class="control-label col-md-3">相关证照:</label>
-				<div class="col-md-6">
-					<div class="form-group clearfix">
-						<div class="col-md-6">道路运输许可证</div>
-						<div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0202']" (click)="show($event,'0202')">查看</a></div>
-					</div>
-					<div class="form-group clearfix">
-						<div class="col-md-6">运输合作合同</div>
-						<div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0203']" (click)="show($event,'0203')">查看</a></div>
-					</div>
-					<div class="form-group clearfix">
-						<div class="col-md-6">租赁合同</div>
-						<div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0302']" (click)="show($event,'0302')">查看</a></div>
-					</div>
-					<div class="form-group clearfix">
-						<div class="col-md-6">行驶证</div>
-						<div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0205']" (click)="show($event,'0205')">查看</a></div>
-					</div>
-					<div class="form-group clearfix">
-						<div class="col-md-6">营运车辆挂靠协议</div>
-						<div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0206']" (click)="show($event,'0206')">查看</a></div>
-					</div>
-					<div class="form-group clearfix">
-						<div class="col-md-6">货物保险</div>
-						<div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0404']" (click)="show($event,'0404')">查看</a></div>
-					</div>
-					<div class="form-group clearfix">
-						<div class="col-md-6">自有车辆保险</div>
-						<div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0405']" (click)="show($event,'0405')">查看</a></div>
-					</div>
-					<div class="form-group clearfix">
-						<div class="col-md-6">营运车辆机动车登记证</div>
-						<div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0204']" (click)="show($event,'0204')">查看</a></div>
-					</div>
-				</div>
-			</div> -->
+        <label  class="control-label col-md-3">相关证照:</label>
+        <div class="col-md-6">
+          <div class="form-group clearfix">
+            <div class="col-md-6">道路运输许可证</div>
+            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0202']" (click)="show($event,'0202')">查看</a></div>
+          </div>
+          <div class="form-group clearfix">
+            <div class="col-md-6">运输合作合同</div>
+            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0203']" (click)="show($event,'0203')">查看</a></div>
+          </div>
+          <div class="form-group clearfix">
+            <div class="col-md-6">租赁合同</div>
+            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0302']" (click)="show($event,'0302')">查看</a></div>
+          </div>
+          <div class="form-group clearfix">
+            <div class="col-md-6">行驶证</div>
+            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0205']" (click)="show($event,'0205')">查看</a></div>
+          </div>
+          <div class="form-group clearfix">
+            <div class="col-md-6">营运车辆挂靠协议</div>
+            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0206']" (click)="show($event,'0206')">查看</a></div>
+          </div>
+          <div class="form-group clearfix">
+            <div class="col-md-6">货物保险</div>
+            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0404']" (click)="show($event,'0404')">查看</a></div>
+          </div>
+          <div class="form-group clearfix">
+            <div class="col-md-6">自有车辆保险</div>
+            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0405']" (click)="show($event,'0405')">查看</a></div>
+          </div>
+          <div class="form-group clearfix">
+            <div class="col-md-6">营运车辆机动车登记证</div>
+            <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0204']" (click)="show($event,'0204')">查看</a></div>
+          </div>
+        </div>
+      </div> -->
       </div>
       <!-- 编辑部分 -->
       <div class="padder-v clearfix col-md-12 " *ngIf="part">
         <div class="col-md-12 border-content ">
           <div class="form-group clearfix m-t-md">
             <div class="col-md-6 l-h-2x">
-              <label  class="control-label">经营模式:</label>
+              <label class="control-label">经营模式:</label>
               <div class="col-md-6">
                 <select type="text" name="operatePatternDic" class="form-control" [(ngModel)]="operatePattern">
                   <option [value]="item.value" *ngFor="let item of patternList">{{item.label}}</option>
@@ -197,7 +197,7 @@
               </div>
             </div>
             <div class="col-md-6 l-h-2x">
-              <label  class="control-label">企业员工数量:</label>
+              <label class="control-label">企业员工数量:</label>
               <div class="col-md-6">
                 <input type="text" name="employeeNum" class="form-control" maxlength="30" [(ngModel)]="employeeNum">
               </div> 人
@@ -205,13 +205,13 @@
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6 l-h-2x">
-              <label  class="control-label">年营业额:</label>
+              <label class="control-label">年营业额:</label>
               <div class="col-md-6">
                 <input type="text" name="turnover" class="form-control" maxlength="30" [(ngModel)]="turnover">
               </div> 万元
             </div>
             <div class="col-md-6 l-h-2x">
-              <label  class="control-label">营业面积:</label>
+              <label class="control-label">营业面积:</label>
               <div class="col-md-6">
                 <input type="text" name="operatingArea" class="form-control" maxlength="30" [(ngModel)]="operatingArea">
               </div>平方米
@@ -219,13 +219,13 @@
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6 l-h-2x">
-              <label  class="control-label">主要结算账户月均流水:</label>
+              <label class="control-label">主要结算账户月均流水:</label>
               <div class="col-md-6">
                 <input type="text" name="mcacctmonthlyWate" class="form-control" maxlength="30" [(ngModel)]="mcacctmonthlyWate">
               </div> 万元
             </div>
             <div class="col-md-6 l-h-2x">
-              <label  class="control-label">主要留存账户日均流水:</label>
+              <label class="control-label">主要留存账户日均流水:</label>
               <div class="col-md-6">
                 <input type="text" name="mainacctdailyFlow" class="form-control" maxlength="30" [(ngModel)]="mainacctdailyFlow">
               </div> 万元
@@ -233,13 +233,13 @@
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6 l-h-2x">
-              <label  class="control-label">与上游主要的结算周期:</label>
+              <label class="control-label">与上游主要的结算周期:</label>
               <div class="col-md-6">
                 <input type="text" name="upcooperClosing" class="form-control" maxlength="30" [(ngModel)]="upcooperClosing">
               </div>天
             </div>
             <div class="col-md-6 l-h-2x">
-              <label  class="control-label">与上游合作最长时间:</label>
+              <label class="control-label">与上游合作最长时间:</label>
               <div class="col-md-6">
                 <input type="text" name="upcoopertime" class="form-control" maxlength="30" [(ngModel)]="upcoopertime">
               </div>月
@@ -247,7 +247,7 @@
           </div>
           <div class="form-group clearfix">
             <div class="col-md-12 ">
-              <label  class="control-label l-h-2x">主要交易方式:</label>
+              <label class="control-label l-h-2x">主要交易方式:</label>
               <div class="col-md-9">
                 <div class="pull-left form-inline m-r-lg" *ngFor="let item of mainTradingList">
                   <div class="radio">
@@ -261,7 +261,7 @@
           </div>
           <div class="form-group clearfix">
             <div class="col-md-12">
-              <label  class="control-label l-h-2x">业务区域:</label>
+              <label class="control-label l-h-2x">业务区域:</label>
               <div class="col-md-6">
                 <div class="pull-left form-inline m-r-lg">
                   <div class="radio">
@@ -285,7 +285,7 @@
           </div>
           <div class="form-group clearfix">
             <div class="col-md-12">
-              <label  class="control-label l-h-2x">工资支出情况:</label>
+              <label class="control-label l-h-2x">工资支出情况:</label>
               <div class="col-md-6">
                 <div class="pull-left form-inline m-r-lg" *ngFor="let item of payStatusList">
                   <div class="radio">
@@ -299,7 +299,7 @@
           </div>
           <div class="form-group clearfix">
             <div class="col-md-12">
-              <label  class="control-label l-h-2x">购买保险情况:</label>
+              <label class="control-label l-h-2x">购买保险情况:</label>
               <div class="col-md-6">
                 <div class="pull-left form-inline m-r-lg" *ngFor="let item of insuranceList">
                   <div class="radio">
@@ -313,7 +313,7 @@
           </div>
           <div class="form-group clearfix">
             <div class="col-md-12">
-              <label  class="control-label l-h-2x">信息化程度:</label>
+              <label class="control-label l-h-2x">信息化程度:</label>
               <div class="col-md-6">
                 <div class="pull-left form-inline m-r-lg" *ngFor="let item of infoLevelList">
                   <div class="radio">
@@ -326,13 +326,12 @@
             </div>
           </div>
         </div>
-        <div class="col-md-12 border-content padder-v m-t">
+        <div class="col-md-12 group m-t padder-v">
           <div class="clearfix">
-            <label  class="control-label col-md-3">相关证照:</label>
-            <div class="col-md-9 row">
+            <div class="group-title">相关证照</div>
+            <div class="col-md-12 row">
               <div class="form-group clearfix">
-                <div class="col-md-6 p-r-none">
-
+                <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0202']">
                       <a class="text-info" (click)="show($event,'0202')">道路运输许可证</a>
@@ -472,8 +471,7 @@
                 </div>
               </div>
               <div class="form-group clearfix">
-                <div class="col-md-6 p-r-none">
-
+                <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0302']">
                       <a class="text-info" (click)="show($event,'0302')">租赁合同</a>
@@ -543,7 +541,6 @@
                   </table> -->
                 </div>
                 <div class="col-md-6">
-
                   <div class="col-md-7">
                     <div *ngIf="attachment['0205']">
                       <a class="text-info" (click)="show($event,'0205')">行驶证</a>
@@ -614,9 +611,8 @@
                 </div>
               </div>
               <div class="form-group clearfix">
-                <div class="col-md-6 p-r-none">
-
-                  <div class="col-md-7">
+                <div class="col-md-6 p-r-none p-l-none">
+                  <div class="col-md-7 ">
                     <div *ngIf="attachment['0206']">
                       <a class="text-info" (click)="show($event,'0206')">营运车辆挂靠协议</a>
                     </div>
@@ -685,7 +681,6 @@
                   </table> -->
                 </div>
                 <div class="col-md-6">
-
                   <div class="col-md-7">
                     <div *ngIf="attachment['0404']">
                       <a class="text-info" (click)="show($event,'0404')">货物保险</a>
@@ -756,9 +751,8 @@
                 </div>
               </div>
               <div class="clearfix">
-                <div class="col-md-6 p-r-none">
-
-                  <div class="col-md-7">
+                <div class="col-md-6 p-r-none p-l-none">
+                  <div class="col-md-7 ">
                     <div *ngIf="attachment['0405']">
                       <a class="text-info" (click)="show($event,'0405')">自有车辆保险</a>
                     </div>
@@ -827,7 +821,6 @@
                   </table> -->
                 </div>
                 <div class="col-md-6">
-
                   <div class="col-md-7">
                     <div *ngIf="attachment['0204']">
                       <a class="text-info" (click)="show($event,'0204')">营运车辆激动车登记证</a>
