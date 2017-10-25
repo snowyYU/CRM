@@ -13,7 +13,7 @@
 				<option [value]="item.resourceId" *ngFor="let item of appIdList">{{item.resourceName}}</option>
 			</select>
 
-			<input type="text " name="memberName" class="form-control m-l-md mar-r-xs" [(ngModel)]="memberName" placeholder="会员名">
+			<input type="text " name="memberName" class="form-control m-l-md mar-r-xs" maxlength="30" [(ngModel)]="memberName" placeholder="会员名">
 			<button class="btn-def" (click)="page=0;getDataList()" >查询<i class="fa fa-search"></i></button>
 		</div>
 		<!-- <div class="col-md-6 l-h-2x">

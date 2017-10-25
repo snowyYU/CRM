@@ -22,7 +22,7 @@
 		</div>
 		<div class="col-md-4 form-inline">
 			<button class="btn-def pull-right m-l-md" (click)="page=0;getDataList()" >查询<i class="fa fa-search"></i></button>
-			<input type="text " name="memberName" class="form-control pull-right" [(ngModel)]="memberName" placeholder="会员名">
+			<input type="text " name="memberName" class="form-control pull-right" maxlength="30" [(ngModel)]="memberName" placeholder="会员名">
 
 		</div>
 	</div>
