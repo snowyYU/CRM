@@ -84,13 +84,13 @@
           <div class="col-md-6">
             <label  class="control-label">家用轿车购买年份:</label>
             <div class="col-md-6 form-inline">
-              <input type="text" name="buyCarYear" class="form-control" [(ngModel)]="companyAsset.buyCarYear"> 年
+              <input type="text" name="buyCarYear" class="form-control" maxlength="30" [(ngModel)]="companyAsset.buyCarYear"> 年
             </div>
           </div>
           <div class="col-md-6">
             <label  class="control-label">轿车价值:</label>
             <div class="col-md-6">
-              <input type="text" name="carValue" class="form-control" [(ngModel)]="companyAsset.carValue"> 万元
+              <input type="text" name="carValue" class="form-control" maxlength="30" [(ngModel)]="companyAsset.carValue"> 万元
             </div>
           </div>
         </div>
@@ -98,7 +98,7 @@
           <div class="col-md-6">
             <label  class="control-label">自有运营车辆数量:</label>
             <div class="col-md-6">
-              <input name="carNum" class="form-control" [(ngModel)]="companyAsset.carNum"> 辆
+              <input name="carNum" class="form-control" maxlength="30" [(ngModel)]="companyAsset.carNum"> 辆
 
 
             </div>
@@ -120,14 +120,14 @@
           <div class="col-md-6">
             <label  class="control-label">自有房产套数:</label>
             <div class="col-md-6">
-            	<input name="houseNum" class="form-control" [(ngModel)]="companyAsset.houseNum"> 套
+            	<input name="houseNum" class="form-control" maxlength="30" [(ngModel)]="companyAsset.houseNum"> 套
 
             </div>
           </div>
           <div class="col-md-6">
             <label  class="control-label">住房价值:</label>
             <div class="col-md-6">
-              <input type="text" name="houseValue" class="form-control" [(ngModel)]="companyAsset.houseValue"> 万元
+              <input type="text" name="houseValue" class="form-control" maxlength="30" [(ngModel)]="companyAsset.houseValue"> 万元
             </div>
           </div>
         </div>
@@ -135,13 +135,13 @@
           <div class="col-md-6">
             <label  class="control-label">应收账款价值:</label>
             <div class="col-md-6">
-            	<input type="text" name="debtReceivableValue" class="form-control" [(ngModel)]="companyAsset.debtReceivableValue"> 万元
+            	<input type="text" name="debtReceivableValue" class="form-control" maxlength="30" [(ngModel)]="companyAsset.debtReceivableValue"> 万元
             </div>
           </div>
           <div class="col-md-6">
             <label  class="control-label">应付账款额度:</label>
             <div class="col-md-6">
-              <input type="text" name="debtReceivableLimit" class="form-control" [(ngModel)]="companyAsset.debtReceivableLimit"> 万元
+              <input type="text" name="debtReceivableLimit" class="form-control" maxlength="30" [(ngModel)]="companyAsset.debtReceivableLimit"> 万元
             </div>
           </div>
         </div>
@@ -285,13 +285,13 @@
         <div class="col-md-6">
           <label  class="control-label">征信负债状况:</label>
           <div class="col-md-6">
-            <input type="text" name="creditDebtSituation" class="form-control" [(ngModel)]="companyDebt.creditDebtSituation"> 万元
+            <input type="text" name="creditDebtSituation" class="form-control" maxlength="30" [(ngModel)]="companyDebt.creditDebtSituation"> 万元
           </div>
         </div>
         <div class="col-md-6">
           <label  class="control-label">住房按揭贷款金额:</label>
           <div class="col-md-6">
-            <input type="text" name="houseMortgageLoanamt" class="form-control" [(ngModel)]="companyDebt.houseMortgageLoanamt"> 万元
+            <input type="text" name="houseMortgageLoanamt" class="form-control" maxlength="30" [(ngModel)]="companyDebt.houseMortgageLoanamt"> 万元
           </div>
         </div>
       </div>
@@ -299,13 +299,13 @@
         <div class="col-md-6">
           <label  class="control-label">抵押贷占总贷款比例:</label>
           <div class="col-md-6">
-            <input type="text" name="mortgageLoanamtRate" class="form-control" [(ngModel)]="companyDebt.mortgageLoanamtRate"> %
+            <input type="text" name="mortgageLoanamtRate" class="form-control" maxlength="30" [(ngModel)]="companyDebt.mortgageLoanamtRate"> %
           </div>
         </div>
         <div class="col-md-6">
           <label  class="control-label">申请人每月需偿还的贷款额:</label>
           <div class="col-md-6">
-            <input type="text" name="repayLoanamtPermonth" class="form-control" [(ngModel)]="companyDebt.repayLoanamtPermonth"> 万元
+            <input type="text" name="repayLoanamtPermonth" class="form-control" maxlength="30" [(ngModel)]="companyDebt.repayLoanamtPermonth"> 万元
           </div>
         </div>
       </div>
@@ -313,7 +313,7 @@
         <div class="col-md-6">
           <label  class="control-label">应付账款:</label>
           <div class="col-md-6">
-            <input type="text" name="accountspayable" class="form-control" [(ngModel)]="companyDebt.accountspayable"> 万元
+            <input type="text" name="accountspayable" class="form-control" maxlength="30" [(ngModel)]="companyDebt.accountspayable"> 万元
           </div>
         </div>
       </div>
@@ -402,13 +402,13 @@
           <div class="col-md-6">
             <label  class="control-label">信用卡最大逾期金额:</label>
             <div class="col-md-6">
-              <input type="text" name="maxamtofoverdueCreditcard" class="form-control" [(ngModel)]="companyCredit.maxamtofoverdueCreditcard"> 万元
+              <input type="text" name="maxamtofoverdueCreditcard" class="form-control" maxlength="30" [(ngModel)]="companyCredit.maxamtofoverdueCreditcard"> 万元
             </div>
           </div>
           <div class="col-md-6">
             <label  class="control-label">贷款最大逾期金额:</label>
             <div class="col-md-6">
-              <input type="text" name="maxamtofoverdueLoan" class="form-control" [(ngModel)]="companyCredit.maxamtofoverdueLoan"> 万元
+              <input type="text" name="maxamtofoverdueLoan" class="form-control" maxlength="30" [(ngModel)]="companyCredit.maxamtofoverdueLoan"> 万元
             </div>
           </div>
         </div>
@@ -416,13 +416,13 @@
           <div class="col-md-6">
             <label  class="control-label">信用卡/贷款逾期次数:</label>
             <div class="col-md-6">
-              <input type="text" name="overdueNum" class="form-control" [(ngModel)]="companyCredit.overdueNum"> 次
+              <input type="text" name="overdueNum" class="form-control" maxlength="30" [(ngModel)]="companyCredit.overdueNum"> 次
             </div>
           </div>
           <div class="col-md-6">
             <label  class="control-label">信用卡/贷款最大逾期天数:</label>
             <div class="col-md-6">
-              <input type="text" name="overdueDay" class="form-control" [(ngModel)]="companyCredit.overdueDay"> 天
+              <input type="text" name="overdueDay" class="form-control" maxlength="30" [(ngModel)]="companyCredit.overdueDay"> 天
             </div>
           </div>
         </div>
@@ -430,13 +430,13 @@
           <div class="col-md-6">
             <label  class="control-label">住房按揭贷款逾期次数:</label>
             <div class="col-md-6">
-              <input type="text" name="inquiriesnumWithintwoyear" class="form-control" [(ngModel)]="companyCredit.inquiriesnumWithintwoyear"> 次
+              <input type="text" name="inquiriesnumWithintwoyear" class="form-control" maxlength="30" [(ngModel)]="companyCredit.inquiriesnumWithintwoyear"> 次
             </div>
           </div>
           <div class="col-md-6">
             <label  class="control-label">两年内征信被查询次数:</label>
             <div class="col-md-6">
-              <input type="text" name="housemortgageloanOverdueNum" class="form-control" [(ngModel)]="companyCredit.housemortgageloanOverdueNum"> 次
+              <input type="text" name="housemortgageloanOverdueNum" class="form-control" maxlength="30" [(ngModel)]="companyCredit.housemortgageloanOverdueNum"> 次
             </div>
           </div>
         </div>
@@ -444,7 +444,7 @@
           <div class="col-md-6">
             <label  class="control-label">3个月内征信被查询次数:</label>
             <div class="col-md-6">
-              <input type="text" name="inquiriesnumWithinthreemonth" class="form-control" [(ngModel)]="companyCredit.inquiriesnumWithinthreemonth"> 次
+              <input type="text" name="inquiriesnumWithinthreemonth" class="form-control" maxlength="30" [(ngModel)]="companyCredit.inquiriesnumWithinthreemonth"> 次
             </div>
           </div>
           <div class="col-md-6">
