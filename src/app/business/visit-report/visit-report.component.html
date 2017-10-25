@@ -52,16 +52,21 @@
       <p-column field="serviceMan" header="服务经理"  [style]="{'width':'120px'}"></p-column>
       <p-column field="remark" header="备忘录" [style]="{'width':'320px'}">
          <ng-template let-operation="rowData" pTemplate="body" >
-           <div textMaxLength="300px">
+          <!-- <div class="remark"> -->
+           <div textMaxLength="300px" title="{{operation.remark}}">
              {{operation.remark}}
            </div>
+           <!-- <div class="tips">
+              {{operation.remark}}
+           </div>
+         </div> -->
          </ng-template>
        </p-column>
       <p-column field="color" header="操作" [style]="{'width':'150px'}">
         <ng-template let-operation="rowData" pTemplate="body" >
           <div >
-            <a class="table-btn text-info" (click)="detail(operation)">查看</a>
-            <a class="table-btn text-info" (click)="edit(operation)" *ngIf="authRole.roleIn(['007'])">修改</a>
+            <a class="table-btn text-info" (click)="detail(operation)">详情</a>
+            <a class="table-btn text-info" (click)="edit(operation)" *ngIf="authRole.roleIn(['007'])">编辑</a>
           </div>
         </ng-template>
       </p-column>
