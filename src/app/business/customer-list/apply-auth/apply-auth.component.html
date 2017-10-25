@@ -140,6 +140,7 @@
           <div class="pull-left">
             <a class="text-info pos-rlt o-h inline-block" [class.disabled]="!item.secondType" *ngIf="!item.uploader.queue[0]" >上传
             <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="item.uploader" [disabled]="!item.secondType"/>
+            <!-- <span class="file-uploader-content">上传</span> -->
           </a>
           </div>
           <div class="pull-left">
