@@ -156,6 +156,9 @@
       <div class="col-md-12">
        <!-- <label class="col-md-3">附件：</label>-->
         <div class="col-md-6">
+          
+          <div *ngIf="!(attch1TypeDic||attch2TypeDic||attch3TypeDic||attch4TypeDic||attch5TypeDic)">未上传附件</div>
+
           <table class="table no-margin table-bordered" >
             <tbody>
               <tr *ngIf="attch1Type">
