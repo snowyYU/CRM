@@ -301,6 +301,10 @@ export const API = {
     url:'ms/commondb/companyBankCard/updateApply',
     method:'post'
   },
+  upBankCardApply:{//公司银行卡编辑
+    url:'ms/commondb/companyBankCard/upBankCardApply',
+    method:'post'
+  },
 
 
 
