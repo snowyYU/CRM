@@ -7,7 +7,9 @@ export class FilterNullPipe implements PipeTransform {
 	transform(value: any, args: any[]): any {
 		if(value) {
 			return value
-		} else {
+		} else if(value==0){
+			return 0
+		}else{
 			return '--';
 		}
 	}

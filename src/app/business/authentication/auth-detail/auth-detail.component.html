@@ -33,15 +33,21 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label pull-left" >类别：</label>
+          <label class="control-label pull-left" >获客途径：</label>
           <div class="form-control-static pull-left">
-            {{memberTypeDic | filterNull}}
+            {{guestFrom | filterNull}}
           </div>
         </div>
         <div class="form-group">
           <label class="control-label pull-left" >归属渠道：</label>
           <div class="form-control-static pull-left">
             {{appName | filterNull}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label pull-left" >服务经理：</label>
+          <div class="form-control-static pull-left">
+            {{serviceMan | filterNull}}
           </div>
         </div>
       </div>
@@ -53,9 +59,9 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label pull-left" >服务经理：</label>
+          <label class="control-label pull-left" >类别：</label>
           <div class="form-control-static pull-left">
-            {{serviceMan | filterNull}}
+            {{memberTypeDic | filterNull}}
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { PopService } from 'dolphinng'
 import { Uploader } from '../../../../../../utils/uploader/Uploader'
 import { API } from '../../../../../../services/config/app.config'
 import { GalleryComponent} from 'dolphinng';
+import { AuthRoleService } from '../../../../../../services/authRole/authRole.service';
 
 @Component({
 	moduleId: module.id,
@@ -14,6 +15,7 @@ import { GalleryComponent} from 'dolphinng';
 	providers:[RiskMService]
 })
 export class RiskMComponent implements OnInit {
+	userName:string
 	attachment:object={}
 	memberId:number
 	part1:boolean=false
@@ -137,13 +139,15 @@ export class RiskMComponent implements OnInit {
 			private router:Router,
 			private route:ActivatedRoute,
 			private riskM:RiskMService,
-			private pop:PopService
+			private pop:PopService,
+			private auth:AuthRoleService
 		) {}
 
 	ngOnInit() {
 		this.memberId=this.route.params['value']['id']
 		console.log(this.route.queryParams['value']['hash'])
-
+		
+		this.userName=this.auth.userName
 		this.getDetailData()
 		this.getNativeRenting()
 
