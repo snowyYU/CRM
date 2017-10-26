@@ -218,7 +218,7 @@ export class RunSituationComponent implements OnInit {
 	      			setTimeout(()=>{
 	      				this[upName].queue[0].setSuccess()
 				      	this.attachment[type]={
-				      		attachId:'',
+				      		attachId:null,
 				      		attachName:uploader.queue[0].fileName,
 				      		fileType:type,
 				      		fileLoadId:data.body.fileId

@@ -282,14 +282,18 @@ export class RiskMComponent implements OnInit {
 	    		let data=JSON.parse(uploader.queue[0].response)
 	    		this[upName].customData.data=data
 	      		if (data.status==200) {
-			      	this[upName].queue[0].setSuccess()
-			      	this.attachment[type]={
-			      		attachId:'',
+			      	setTimeout(()=>{
+	      				this[upName].queue[0].setSuccess()
+
+	      				this.attachment[type]={
+			      		attachId:null,
 			      		attachName:uploader.queue[0].fileName,
 			      		fileType:type,
 			      		fileLoadId:data.body.fileId
-			      	}
-			      	console.log(this.attachment)
+			      		}
+			      		console.log(this.attachment)
+
+	      			},1000)
 			      	
 			     }
 	    	}
