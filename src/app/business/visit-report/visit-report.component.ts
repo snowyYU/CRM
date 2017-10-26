@@ -15,6 +15,7 @@ import { SendData } from './sendDate'
 export class VisitReportComponent implements OnInit{
 	dateStart:string='';
 	dateEnd:string='';
+	dateToday
 	pastMonthNum:number=1;
 	monthSelectBtn:number=1;
 	dateList:any;       
@@ -69,6 +70,11 @@ export class VisitReportComponent implements OnInit{
 	}
 
 	setVistDate(pastMonthNum:number){
+		this.dateToday=this.dateService.format({
+			date:this.dateService.todayDate(),
+			formatType:'yyyy-MM-dd'
+		});
+
 		this.dateEnd=this.dateService.format({
 			date:this.dateService.todayDate(),
 			formatType:'yyyy-MM-dd'

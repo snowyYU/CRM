@@ -26,7 +26,7 @@
         <div class="input-group date-input-group">
           <input class="form-control" datePicker [(ngModel)]="dateStart" [opt-max]="dateEnd" name="dateStart" placeholder="选择日期" />
           <span class="input-group-addon">至</span>
-          <input class="form-control" datePicker [(ngModel)]="dateEnd"  [opt-min]="dateStart" name="dateEnd" placeholder="选择日期" />
+          <input class="form-control" datePicker [(ngModel)]="dateEnd"  [opt-min]="dateStart" [opt-max]="dateToday" name="dateEnd" placeholder="选择日期" />
         </div>
       </div>
       <!-- <div class="form-group">
@@ -65,8 +65,8 @@
       <p-column field="color" header="操作" [style]="{'width':'150px'}">
         <ng-template let-operation="rowData" pTemplate="body" >
           <div >
-            <a class="table-btn text-info" (click)="detail(operation)">详情</a>
-            <a class="table-btn text-info" (click)="edit(operation)" *ngIf="authRole.roleIn(['007'])">编辑</a>
+            <button class="table-btn text-info" (click)="detail(operation)">详情</button>
+            <button class="table-btn"  [disabled]="operation.status!==0||operation.serviceMan!==authRole.userName" (click)="edit(operation)" [class.text-disabled]="operation.status!==0||operation.serviceMan!==authRole.userName" *ngIf="authRole.roleIn(['007'])">编辑</button>
           </div>
         </ng-template>
       </p-column>
