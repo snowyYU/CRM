@@ -15,12 +15,12 @@
         <span class="m-l-sm">(注:申请人需为法定代表或直接控制人，占股不得少于20%)</span>
         <a class="text-info pull-right" *ngIf="!part1&&memberVo.serviceMan==authRole.userName" (click)="edit('part1')">编辑</a>
         <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
-        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">放弃</button>
       </div>
       <!-- <div class="col-md-12 padder-v b-b l-h-2x">借款人信息 <span>(注:申请人需为法定代表或直接控制人，占股不得少于20%)</span>
       <button type="button" class="btn pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
-      <button type="button" class="btn pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">放弃</button>
     </div> -->
       <div class="padder-v  col-md-12" *ngIf="!part1&&part1S">
         <div class="col-md-12 border-content ">
@@ -172,9 +172,9 @@
                     <div *ngIf="!attachment['0104']">申请人身份证（正面）</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0104']&&(!uploader1_1.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0104']&&(!uploader1_1.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1_1" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0104']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0104','uploader1_1')">删除</a>
@@ -784,12 +784,12 @@
         <i class="fa fa-caret-down text-lg" *ngIf="part2S" (click)="part2S=!part2S"></i>
         <a class="text-info pull-right" *ngIf="!part2&&memberVo.serviceMan==authRole.userName" (click)="edit('part2')">编辑</a>
         <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part2&&part2S" [disabled]="!part2F.form.valid">保存</button>
-        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part2&&part2S" (click)="cancel('part2')">取消</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part2&&part2S" (click)="cancel('part2')">放弃</button>
       </div>
       <!-- <div class="col-md-12 padder-v b-b l-h-2x">公司信息
       <button type="button" class="btn pull-right" *ngIf="!part2" (click)="edit('part2')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part2" [disabled]="!part2F.form.valid">保存</button>
-      <button type="button" class="btn pull-right m-r-xs" *ngIf="part2" (click)="cancel('part2')">取消</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part2" (click)="cancel('part2')">放弃</button>
     </div> -->
       <div class="padder-v clearfix col-md-12" *ngIf="!part2&&part2S">
         <div class="col-md-12 border-content">
@@ -1325,12 +1325,12 @@
         <i class="fa fa-caret-down text-lg" *ngIf="part3S" (click)="part3S=!part3S"></i>
         <a class="text-info pull-right" *ngIf="!part3&&memberVo.serviceMan==authRole.userName" (click)="edit('part3')">编辑</a>
         <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part3&&part3S" [disabled]="!part3F.form.valid">保存</button>
-        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part3&&part3S" (click)="cancel('part3')">取消</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part3&&part3S" (click)="cancel('part3')">放弃</button>
       </div>
       <!-- <div class="col-md-12 padder-v b-b l-h-2x">法人基本情况
       <button type="button" class="btn pull-right" *ngIf="!part3" (click)="edit('part3')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part3"  [disabled]="!part3F.form.valid">保存</button>
-      <button type="button" class="btn pull-right m-r-xs" *ngIf="part3" (click)="cancel('part3')">取消</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part3" (click)="cancel('part3')">放弃</button>
     </div> -->
       <div class="padder-v clearfix col-md-12" *ngIf="!part3&&part3S">
         <div class="col-md-12 border-content">
@@ -1431,7 +1431,7 @@
           <div class="col-md-12 m-t">
             <!-- <a class="text-info pull-right" *ngIf="!part4_1" (click)="edit('part4_1')">吃屎啊</a> -->
             <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part4_1" [disabled]="!part4_1F.form.valid">提交</button>
-            <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part4_1" (click)="cancel('part4_1')">取消</button>
+            <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part4_1" (click)="cancel('part4_1')">放弃</button>
           </div>
           <div *ngIf="!part4_1">
             <div class="col-md-12 border-content m-b padder-v" *ngFor="let item of companyBankCardVos">
@@ -1547,7 +1547,7 @@
           <div class="col-md-12">
             <a class="text-info pull-right" *ngIf="!part4_2&&memberVo.serviceMan==authRole.userName" (click)="edit('part4_2')">编辑</a>
             <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part4_2" [disabled]="!part4_2F.form.valid">保存</button>
-            <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part4_2" (click)="cancel('part4_2')">取消</button>
+            <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part4_2" (click)="cancel('part4_2')">放弃</button>
           </div>
           <div class="clearfix" *ngIf="!part4_2">
             <div class="col-md-12 row">
@@ -1865,7 +1865,7 @@
       </div>
     </modal-body>
     <modal-footer styleClass="no-t-padding">
-      <button class="btn btn-default" (click)="closeModal()" type="button">取消</button>
+      <button class="btn btn-default" (click)="closeModal()" type="button">放弃</button>
       <button class="btn btn-info" [disabled]="!formBankCard.valid" *ngIf="bankCardModalEditOrAdd=='add'" type="submit" (click)="bankCardSubmit(1)">申请添加</button>
       <button class="btn btn-info" [disabled]="!formBankCard.valid" *ngIf="bankCardModalEditOrAdd=='edit'" type="submit" (click)="bankCardSubmit(2)">申请修改</button>
       <button class="btn btn-info" *ngIf="bankCardModalEditOrAdd=='edit'" type="button" (click)="bankCardSubmit(3)">申请删除</button>

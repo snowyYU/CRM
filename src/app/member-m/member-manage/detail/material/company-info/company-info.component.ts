@@ -297,7 +297,10 @@ export class CompanyInfoComponent implements OnInit {
 	}
 
 	ngAfterViewInit(){
-		document.querySelector('#' + this.route.queryParams['value']['hash']).scrollIntoView();
+		if (this.route.queryParams['value']['hash']) {
+			document.querySelector('#' + this.route.queryParams['value']['hash']).scrollIntoView();
+			
+		}
 
 	}
 
