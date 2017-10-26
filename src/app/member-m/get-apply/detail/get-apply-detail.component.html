@@ -12,13 +12,13 @@
         <div class="col-md-6">
           <label class="label-control label-special-w font-bold" for="geustName">申请ID:</label>
           <div class="col-md-8 m-t-xs text-content">
-            {{creditAuthId | filterNull}}
+            {{creditAuthId | filterNull:false}}
           </div>
         </div>
         <div class="col-md-6 ">
           <label class="label-control label-special-w font-bold">申请时间:</label>
           <div class="col-md-8 m-t-xs text-content">
-            {{createTime | filterNull}}
+            {{createTime | filterNull:false}}
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
         <div class="col-md-6 ">
           <label class="label-control label-special-w font-bold">状态:</label>
           <div class="col-md-8 m-t-xs text-content">
-            {{statusDic | filterNull}}
+            {{statusDic | filterNull:false}}
           </div>
         </div>
       </div>
@@ -42,20 +42,20 @@
         <div class="col-md-6">
           <label class="label-control label-special-w font-bold">申请产品:</label>
           <div class="col-md-4 m-t-xs text-content">
-            {{productName | filterNull}}
+            {{productName | filterNull:false}}
           </div>
         </div>
         <div class="col-md-6">
           <label class="label-control label-special-w font-bold">产品类型:</label>
           <div class="col-md-4 m-t-xs text-content">
-            {{productTypeName | filterNull}}
+            {{productTypeName | filterNull:false}}
           </div>
         </div>
       </div>
       <div class="clearfix">
         <label class="label-control label-special-w font-bold" for="geustName">服务经理:</label>
         <div class="col-md-4 m-t-xs text-content">
-          {{serviceMan | filterNull}}
+          {{serviceMan | filterNull:false}}
         </div>
       </div>
     </section>
@@ -64,13 +64,13 @@
         <div class="col-md-6">
           <label class="label-control label-special-w font-bold" for="geustName">申请额度:</label>
           <div class="col-md-8 m-t-xs text-content">
-            {{addCreditValue | filterNull | yuanFormat:2:true}}<span *ngIf="addCreditValue">元</span>
+            {{addCreditValue | filterNull:false | yuanFormat:2:true}}<span *ngIf="addCreditValue">元</span>
           </div>
         </div>
         <div class="col-md-6 ">
           <label class="label-control label-special-w font-bold">原授信额度:</label>
           <div class="col-md-8 m-t-xs text-content">
-            {{oldCreditValue | filterNull | yuanFormat:2:true}}<span *ngIf="oldCreditValue">元</span>
+            {{oldCreditValue | filterNull:false | yuanFormat:2:true}}<span *ngIf="oldCreditValue">元</span>
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@
         <div class="col-md-6">
           <label class="label-control label-special-w font-bold">申请原因:</label>
           <div class="col-md-8 m-t-xs text-content">
-            {{authRemark | filterNull}}
+            {{authRemark | filterNull:false}}
           </div>
         </div>
       </div>
@@ -124,13 +124,13 @@
         <div class="col-md-6">
           <label class="label-control label-special-w font-bold" for="geustName">审核员:</label>
           <div class="col-md-6 m-t-xs text-content">
-            {{auditBy | filterNull}}
+            {{auditBy | filterNull:false}}
           </div>
         </div>
         <div class="col-md-6 ">
           <label class="label-control label-special-w font-bold">审核时间:</label>
           <div class="col-md-6 m-t-xs text-content">
-            {{auditDate | filterNull}}
+            {{auditDate | filterNull:false}}
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@
         <div class="col-md-6">
           <label class="label-control label-special-w font-bold">审核意见:</label>
           <div class="col-md-8 m-t-xs text-content">
-            {{auditRemark | filterNull}}
+            {{auditRemark | filterNull:false}}
           </div>
         </div>
       </div>
