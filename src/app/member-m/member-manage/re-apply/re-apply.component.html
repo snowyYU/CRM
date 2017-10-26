@@ -46,15 +46,15 @@
 
 	<section class="panel-body border-content m-t-md form-inline">
 		<div class="col-md-12">
-			<label class="pull-left w-sm label-control required">申请原因:</label>
-			<textarea name="authRemark" id="" cols="50" rows="5" class="form-control" maxlength="200" placeholder="小于200字" [(ngModel)]="authRemark" required></textarea>
+			<label class="pull-left w-sm label-control">申请原因:</label>
+			<textarea name="authRemark" id="" cols="50" rows="5" class="form-control" maxlength="200" placeholder="小于200字" [(ngModel)]="authRemark"></textarea>
 		</div>
 	</section>
     <section class="m-t-md">
         <div class="text-center">
 
             <button class="btn-def mar-r-sm" type="submit" [disabled]="!newApply.form.valid">提交申请<i class="fa fa-check-circle-o"></i></button>
-          <button type="button" class="btn-def" (click)="cancel()">返回<i class="fa fa-arrow-circle-o-left"></i></button>
+          <button type="button" class="btn-def" (click)="cancel()">放弃<i class="fa fa-arrow-circle-o-left"></i></button>
         </div>
     </section>
 </form>
