@@ -6,7 +6,7 @@
 </div>
 <div class="wrapper">
   <form #form>
-    <section class="form-horizontal form-label-7 clearfix no-t-padding">
+    <section class="form-horizontal form-label-7 clearfix group mar-b-sm">
       <div class="col-md-6">
         <div class="form-group">
           <label class="control-label pull-left" >申请ID：</label>
@@ -35,7 +35,7 @@
         <div class="form-group">
           <label class="control-label pull-left" >获客途径：</label>
           <div class="form-control-static pull-left">
-            {{guestFrom | filterNull}}
+            {{guestFromDic | filterNull}}
           </div>
         </div>
         <div class="form-group">
