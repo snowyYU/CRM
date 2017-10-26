@@ -6,14 +6,14 @@
       <button class="btn btn-default" (click)="riskM()">风控补充</button>
     </div>
   </section>
-  <section class="clearfix">
+  <section class="clearfix" id="borrower">
     <form #part1F="ngForm" (ngSubmit)='save1()'>
       <div class="page-location">
         <a class="h4 pad-r-xs font-bold">借款人信息</a>
         <i class="fa fa-caret-right text-lg" *ngIf="!part1S" (click)="part1S=!part1S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part1S" (click)="part1S=!part1S"></i>
         <span class="m-l-sm">(注:申请人需为法定代表或直接控制人，占股不得少于20%)</span>
-        <a class="text-info pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</a>
+        <a class="text-info pull-right" *ngIf="!part1&&memberVo.serviceMan==authRole.userName" (click)="edit('part1')">编辑</a>
         <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
         <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
       </div>
@@ -776,13 +776,13 @@
       </div>
     </form>
   </section>
-  <section class="m-t clearfix">
+  <section class="m-t clearfix" id="companyInfo">
     <form #part2F="ngForm" (ngSubmit)='save2()'>
       <div class="page-location">
         <a class="h4 pad-r-xs font-bold">公司信息</a>
         <i class="fa fa-caret-right text-lg" *ngIf="!part2S" (click)="part2S=!part2S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part2S" (click)="part2S=!part2S"></i>
-        <a class="text-info pull-right" *ngIf="!part2" (click)="edit('part2')">编辑</a>
+        <a class="text-info pull-right" *ngIf="!part2&&memberVo.serviceMan==authRole.userName" (click)="edit('part2')">编辑</a>
         <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part2&&part2S" [disabled]="!part2F.form.valid">保存</button>
         <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part2&&part2S" (click)="cancel('part2')">取消</button>
       </div>
@@ -1317,13 +1317,13 @@
       </div>
     </form>
   </section>
-  <section class="m-t clearfix">
+  <section class="m-t clearfix" id="legalPerson">
     <form #part3F="ngForm" (ngSubmit)='save3()'>
       <div class="page-location">
         <a class="h4 pad-r-xs font-bold">法人基本情况</a>
         <i class="fa fa-caret-right text-lg" *ngIf="!part3S" (click)="part3S=!part3S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part3S" (click)="part3S=!part3S"></i>
-        <a class="text-info pull-right" *ngIf="!part3" (click)="edit('part3')">编辑</a>
+        <a class="text-info pull-right" *ngIf="!part3&&memberVo.serviceMan==authRole.userName" (click)="edit('part3')">编辑</a>
         <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part3&&part3S" [disabled]="!part3F.form.valid">保存</button>
         <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part3&&part3S" (click)="cancel('part3')">取消</button>
       </div>
@@ -1418,7 +1418,7 @@
       </div>
     </div>
   </section>
-  <section class="m-t clearfix">
+  <section class="m-t clearfix" id="bankInfo">
     <div class="page-location">
       <a class="h4 pad-r-xs font-bold">银行信息</a>
       <i class="fa fa-caret-right text-lg" *ngIf="!part4S" (click)="part4S=!part4S"></i>
@@ -1429,20 +1429,22 @@
         <div class="clearfix group col-md-12">
           <div class="group-title">银行卡信息</div>
           <div class="col-md-12 m-t">
-            <a class="text-info pull-right" *ngIf="!part4_1" (click)="edit('part4_1')">编辑</a>
+            <!-- <a class="text-info pull-right" *ngIf="!part4_1" (click)="edit('part4_1')">吃屎啊</a> -->
             <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part4_1" [disabled]="!part4_1F.form.valid">提交</button>
             <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part4_1" (click)="cancel('part4_1')">取消</button>
           </div>
           <div *ngIf="!part4_1">
-            <div class="col-md-12 border-content m-b" *ngFor="let item of companyBankCardVos">
+            <div class="col-md-12 border-content m-b padder-v" *ngFor="let item of companyBankCardVos">
+              <button class="table-btn pull-right" [disabled]="!item.authStatus" [class.text-disabled]="!item.authStatus" (click)="bankCardEdit(item)" *ngIf="memberVo.serviceMan==authRole.userName" type="button">编辑</button>
               <div class="form-group clearfix m-t-md">
+                
                 <div class="col-md-6">
-                  <label for="" class="control-label">卡类型:</label>
-                  <div class="col-md-6 text-content">{{item.typeDic | filterNull}}</div>
+                  <label for="" class="control-label">银行卡号:</label>
+                  <div class="col-md-6 text-content">{{item.cardNo | filterNull}}</div>
                 </div>
                 <div class="col-md-6">
-                  <label for="" class="control-label">银行账号:</label>
-                  <div class="col-md-6 text-content">{{item.cardNo | filterNull}}</div>
+                  <label for="" class="control-label">开户名:</label>
+                  <div class="col-md-6 text-content">{{item.cardName | filterNull}}</div>
                 </div>
               </div>
               <div class="form-group clearfix">
@@ -1452,19 +1454,24 @@
                 </div>
                 <div class="col-md-6">
                   <label for="" class="control-label">支行名称:</label>
-                  <div class="col-md-6 text-content">{{item.subbankName | filterNull}}</div>
+                  <div class="col-md-7 text-content">{{item.subbankName | filterNull}}</div>
                 </div>
               </div>
               <div class="form-group clearfix">
                 <div class="col-md-6">
-                  <label for="" class="control-label">认证状态:</label>
-                  <div class="col-md-6 text-content">{{item.authStatusDic | filterNull}}</div>
+                  <label for="" class="control-label">卡类型:</label>
+                  <div class="col-md-6 text-content">{{item.typeDic | filterNull}}</div>
                 </div>
+                
                 <div class="col-md-6">
-                  <label for="" class="control-label">默认:</label>
-                  <div class="col-md-6 text-content">{{item.isDefaultDic | filterNull}}</div>
+                  <label for="" class="control-label">状态:</label>
+                  <div class="col-md-6" [ngClass]="{'text-success':item.authStatus==1,'text-danger':item.authStatus!=1}">{{item.authStatusDic | filterNull}}</div>
                 </div>
+                
               </div>
+            </div>
+            <div class="col-md-12">
+              <a class="text-info" (click)="bankCardAdd()">+添加</a>
             </div>
           </div>
           <!-- 编辑 -->
@@ -1488,18 +1495,11 @@
                 <div class="col-md-6">
                   <label for="" class="control-label">银行名称:</label>
                   <div class="col-md-6 text-content">
-                    <select-bar #selectBar
-                        (onDropdown)="bankCard.clearBanks();bankCard.queryBanks(bankCard.bankKey)">
-                      <input [(ngModel)]="bankCard.bankName" required name="bankName_{{bankCard.uniqueId}}" maxlength="30" class="form-control"
-                             placeholder="请选择银行"
-                             data-type="value"
-                             [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
-                      <input class="form-control" placeholder="银行关键字" maxlength="30" [ngModel]="bankCard.bankKey"
-                             name="bankKeyword_{{bankCard.uniqueId}}"
-                             data-type="keyword" (ngModelChange)="bankCard.queryBanks($event)">
+                    <select-bar #selectBar (onDropdown)="bankCard.clearBanks();bankCard.queryBanks(bankCard.bankKey)">
+                      <input [(ngModel)]="bankCard.bankName" required name="bankName_{{bankCard.uniqueId}}" maxlength="30" class="form-control" placeholder="请选择银行" data-type="value" [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
+                      <input class="form-control" placeholder="银行关键字" maxlength="30" [ngModel]="bankCard.bankKey" name="bankKeyword_{{bankCard.uniqueId}}" data-type="keyword" (ngModelChange)="bankCard.queryBanks($event)">
                       <ul class="list" *ngIf="bankCard.bankList.length>0">
-                        <li *ngFor="let bk of bankCard.bankList"
-                            (click)="bankCard.subBankName='';bankCard.clearSubBanks();bankCard.bankName=bk.name;selectBar.dropup()">
+                        <li *ngFor="let bk of bankCard.bankList" (click)="bankCard.subBankName='';bankCard.clearSubBanks();bankCard.bankName=bk.name;selectBar.dropup()">
                           {{bk.name}}
                         </li>
                       </ul>
@@ -1510,18 +1510,11 @@
                   <label for="" class="control-label">支行名称:</label>
                   <!-- <div class="col-md-6 text-content">{{item.subbankName}}</div> -->
                   <div class="col-md-6 text-content">
-                    <select-bar #selectBar1
-                        (onDropdown)="bankCard.clearSubBanks();bankCard.querySubBanks(bankCard.subBankKey)">
-                      <input [(ngModel)]="bankCard.subBankName" required name="subBankName_{{bankCard.uniqueId}}" maxlength="30" class="form-control"
-                             placeholder="请选择支行"
-                             data-type="value"
-                             [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
-                      <input class="form-control" placeholder="支行关键字" maxlength="30" [ngModel]="bankCard.subBankKey"
-                             name="subBankKeyword_{{bankCard.uniqueId}}"
-                             data-type="keyword" (ngModelChange)="bankCard.querySubBanks($event)">
+                    <select-bar #selectBar1 (onDropdown)="bankCard.clearSubBanks();bankCard.querySubBanks(bankCard.subBankKey)">
+                      <input [(ngModel)]="bankCard.subBankName" required name="subBankName_{{bankCard.uniqueId}}" maxlength="30" class="form-control" placeholder="请选择支行" data-type="value" [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
+                      <input class="form-control" placeholder="支行关键字" maxlength="30" [ngModel]="bankCard.subBankKey" name="subBankKeyword_{{bankCard.uniqueId}}" data-type="keyword" (ngModelChange)="bankCard.querySubBanks($event)">
                       <ul class="list" *ngIf="bankCard.subBankList.length>0">
-                        <li *ngFor="let bk of bankCard.subBankList"
-                            (click)="bankCard.subBankName='';bankCard.clearSubBanks();bankCard.subBankName=bk.subbank;bankCard.companyBankInfo.lineNo=bk.lineno;selectBar1.dropup()">
+                        <li *ngFor="let bk of bankCard.subBankList" (click)="bankCard.subBankName='';bankCard.clearSubBanks();bankCard.subBankName=bk.subbank;bankCard.companyBankInfo.lineNo=bk.lineno;selectBar1.dropup()">
                           {{bk.subbank}}
                         </li>
                       </ul>
@@ -1542,11 +1535,9 @@
               </div>
               <i *ngIf="bankCard.companyBankInfo.authStatus!=0" class="glyphicon glyphicon-remove text-danger pos-abt delete-p" (click)="deleteBankCard(i)"></i>
             </div>
-
             <div class="col-md-12">
               <a class="text-info" (click)="addBankCardInfo()">+添加</a>
             </div>
-
           </div>
         </div>
       </form>
@@ -1554,7 +1545,7 @@
         <div class="form-group col-md-12 group m-t padder-v">
           <div class="group-title">相关证照</div>
           <div class="col-md-12">
-            <a class="text-info pull-right" *ngIf="!part4_2" (click)="edit('part4_2')">编辑</a>
+            <a class="text-info pull-right" *ngIf="!part4_2&&memberVo.serviceMan==authRole.userName" (click)="edit('part4_2')">编辑</a>
             <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part4_2" [disabled]="!part4_2F.form.valid">保存</button>
             <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part4_2" (click)="cancel('part4_2')">取消</button>
           </div>
@@ -1806,4 +1797,78 @@
     </div>
   </section>
 </div>
-<gallery #gallery size="lg"></gallery>
+<gallery #gallery size="md"></gallery>
+<!-- 更改银行卡模态框部分 -->
+<modal [(visible)]="bankCardModal" size="lg" [overflow]="true">
+  <form #formBankCard="ngForm">
+    <modal-header>
+      <h4 class="modal-title">银行卡变更</h4>
+    </modal-header>
+    <modal-body >
+      <div class="form-horizontal form-label-7 wrapper">
+        <div class="clearfix form-group">
+          <div class="col-md-6">
+            <label for="" class="control-label-modal">银行卡号:</label>
+            <div class="col-md-9 text-content">
+              <input type="text" class="form-control" name="bankInfoCardNo" maxlength="30" [(ngModel)]="bankCardModalData.cardNo" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="" class="control-label-modal">开户名:</label>
+            <div class="col-md-9 text-content">
+              <input type="text" class="form-control" name="bankInfoCardName" maxlength="30" [(ngModel)]="bankCardModalData.cardName" required>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix form-group">
+          <div class="col-md-6">
+            <label for="" class="control-label-modal">银行名称:</label>
+            <div class="col-md-9 text-content">
+              <select-bar #selectBar (onDropdown)="clearBanks();queryBanks(bankKey)">
+                <input [(ngModel)]="bankCardModalData.bankName" name="bankName" maxlength="30" class="form-control" placeholder="请选择银行" data-type="value" required/>
+                <input class="form-control" placeholder="银行关键字" maxlength="30" [ngModel]="bankKey" name="bankKeyword" data-type="keyword" (ngModelChange)="queryBanks($event)">
+                <ul class="list" *ngIf="bankList.length>0">
+                  <li *ngFor="let bk of bankList" (click)="bankCardModalData.subbankName='';clearSubBanks();bankCardModalData.bankName=bk.name;selectBar.dropup()">
+                    {{bk.name}}
+                  </li>
+                </ul>
+              </select-bar>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="" class="control-label-modal">支行名称:</label>
+            <!-- <div class="col-md-9 text-content">{{item.subbankName}}</div> -->
+            <div class="col-md-9 text-content">
+              <select-bar #selectBar1 (onDropdown)="clearSubBanks();querySubBanks(subBankKey)">
+                <input [(ngModel)]="bankCardModalData.subbankName" name="subbankName" maxlength="30" class="form-control" placeholder="请选择支行" data-type="value" required/>
+                <input class="form-control" placeholder="支行关键字" maxlength="30" [ngModel]="subBankKey" name="subBankKeyword" data-type="keyword" (ngModelChange)="querySubBanks($event)">
+                <ul class="list" *ngIf="subBankList.length>0">
+                  <li *ngFor="let bk of subBankList" (click)="bankCardModalData.subbankName='';clearSubBanks();bankCardModalData.subbankName=bk.subbank;bankCardModalData.lineNo=bk.lineno;selectBar1.dropup()">
+                    {{bk.subbank}}
+                  </li>
+                </ul>
+              </select-bar>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix form-group">
+          <div class="col-md-6">
+            <label for="" class="control-label-modal">卡类型:</label>
+            <div class="col-md-9 text-content">
+              <select name="bankInfoCardType" class="form-control" [(ngModel)]="bankCardModalData.type" required>
+                <option [value]="undefined" hidden>请选择</option>
+                <option [value]="accT.value" *ngFor="let accT of accTypeList">{{accT.label}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </modal-body>
+    <modal-footer styleClass="no-t-padding">
+      <button class="btn btn-default" (click)="closeModal()" type="button">取消</button>
+      <button class="btn btn-info" [disabled]="!formBankCard.valid" *ngIf="bankCardModalEditOrAdd=='add'" type="submit" (click)="bankCardSubmit(1)">申请添加</button>
+      <button class="btn btn-info" [disabled]="!formBankCard.valid" *ngIf="bankCardModalEditOrAdd=='edit'" type="submit" (click)="bankCardSubmit(2)">申请修改</button>
+      <button class="btn btn-info" *ngIf="bankCardModalEditOrAdd=='edit'" type="button" (click)="bankCardSubmit(3)">申请删除</button>
+    </modal-footer>
+  </form>
+</modal>

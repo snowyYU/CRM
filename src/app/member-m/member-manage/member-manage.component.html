@@ -32,7 +32,7 @@
       <p-column field='prmResourceRegister.resourceName' header='归属渠道' [style]="{'width':'150px'}"></p-column>
       <p-column field='memberTypeDic' header='类别' styleClass="text-center" [style]="{'width':'120px'}"></p-column>
       <!-- <p-column field='memberRating' header='评定等级' styleClass="text-center" [style]="{'width':'100px'}"></p-column> -->
-      <p-column  header='电子账户' [style]="{'width':'150px'}">
+      <p-column  header='电子账户' [style]="{'width':'100px'}">
         <ng-template let-operation="rowData" pTemplate="body">
           <div textMaxLength="110px" title="{{operation.eaccountDic}}">
             {{operation.eaccountDic}}
@@ -125,7 +125,7 @@
             </div>
           </ng-template>
         </p-column> -->
-        <p-column field="" header="操作" *ngIf="authRole.roleIn(['007'])">
+        <p-column field="" header="操作" *ngIf="authRole.roleIn(['007'])&&authRole.userName==modalApplyServiceMan">
         	<ng-template let-operation="rowData" pTemplate="body">
         		<div class="table-btn-group">
               <button class="table-btn" *ngIf="!operation.lineThrough" (click)='checkApplyExist(1,operation)'>重新授信</button>

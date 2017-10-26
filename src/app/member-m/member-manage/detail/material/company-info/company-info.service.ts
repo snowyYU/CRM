@@ -2,7 +2,17 @@ import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../../../../services/myHttp/myhttp.service'
 import { MyHttpClient } from '../../../../../../services/myHttp/myhttpClient.service'
 
-
+export interface BankCardSubmitData{
+	memberId	//必输项 会员ID
+	operation	//必输项 操作状态 1.新增申请，2.更新申请，3.删除申请，4.正常
+	cardId?	//编辑申请和删除申请需要必填，新增申请不需要
+	cardNo?	//编辑和新增必填
+	cardName?	//编辑和新增必填
+	bankName?	//编辑和新增必填
+	subbankName?	//编辑和新增必填
+	lineNo?	//编辑和新增必填
+	type	//必输项 银行卡类型（0：收款卡；1：还款卡）
+}
 interface AreaAddress{
 	parentCode:number;
 	level:number;
@@ -268,6 +278,20 @@ export class CompanyInfoService {
 			}
 		})
 	}
+
+	upBankCardApply(card:BankCardSubmitData):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.upBankCardApply,
+			query:card
+		}).toPromise().then(res=>{
+			if (res.status==200) {
+				return Promise.resolve(res)
+			}else{
+				return Promise.reject(res)
+			}
+		})
+	}
+
 
 
 }
