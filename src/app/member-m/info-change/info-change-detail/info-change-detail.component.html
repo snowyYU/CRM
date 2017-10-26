@@ -303,7 +303,8 @@
       <div class="text-center">
         <button class="btn-def btn-def-success mar-r-xs" *ngIf="isCheck" (click)="submit(2)">通过<i class="fa fa-check-circle-o"></i></button>
         <button class="btn-def btn-def-danger mar-r-xs" *ngIf="isCheck" (click)="submit(-1)">拒绝<i class="fa fa-ban"></i></button>
-        <a (click)="back()" class="btn-def mar-r-xs" >放弃<i class="fa fa-arrow-circle-o-left"></i></a>
+        <a (click)="back()" class="btn-def mar-r-xs" *ngIf="isCheck">放弃<i class="fa fa-arrow-circle-o-left"></i></a>
+        <a (click)="back()" class="btn-def mar-r-xs" *ngIf="!isCheck">返回<i class="fa fa-arrow-circle-o-left"></i></a>
       </div>
     </section>
   </form>

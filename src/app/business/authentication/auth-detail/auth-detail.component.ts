@@ -31,6 +31,8 @@ export class AuthDetailComponent implements OnInit{
 	auditBy:string;			//审核人
     auditDate:string;		//审核时间
     auditRemark:string;		//审核意见
+    guestFrom:number;       //获客途径
+    guestFromDic:string;    //获客途径,中文
 
     attch1Loadid
 	attch1Type
@@ -88,6 +90,7 @@ export class AuthDetailComponent implements OnInit{
 		this.createTime=res.body.createTime;		//申请时间	
 		this.companyName=res.body.companyName;		//客户名称
 		this.statusDic=res.body.statusDic;		//状态
+		this.guestFromDic=res.body.guestFromDic;    //获客途径
 		this.appName=res.body.appName;			//来源渠道
 		this.memberTypeDic=res.body.memberTypeDic;	//会员类别
 		this.serviceMan=res.body.serviceMan;		//服务经理
