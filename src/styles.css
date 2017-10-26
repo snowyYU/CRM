@@ -132,3 +132,7 @@ select option{
     overflow-x: visible;
 }
 }
+
+// input[type="file"] {
+//     display: none;
+// }
