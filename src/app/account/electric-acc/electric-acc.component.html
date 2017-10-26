@@ -68,13 +68,13 @@
           </div>
           <div class="col-md-6">
             <label class="control-label m-l-md">状态:</label>
-            <span class="text-content" [class.text-danger]="isOpenAcctDic=='未开户'">{{isOpenAcctDic | filterNull}}</span>
+            <span class="text-content" [class.text-danger]="isOpenAcctDic=='未开户'">{{isOpenAcctDic | filterNull:false}}</span>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <label class="control-label m-l-md">归属渠道:</label>
-            <span class="text-content">{{appName | filterNull}}</span>
+            <span class="text-content">{{appName | filterNull:false}}</span>
           </div>
         </div>
       </section>
@@ -82,7 +82,7 @@
       <section class="wrapper border-content m-t-md " *ngIf="isOpenAcctDic=='未开户'">
         <div class="form-group clearfix">
           <label class="control-label m-l-md">开户行:</label>
-          <span class="text-content">{{bankName | filterNull}}</span>
+          <span class="text-content">{{bankName | filterNull:false}}</span>
         </div>
         <div class="form-group form-inline pos-rlt">
           <span class="text-danger requiredSpan l-h-2x pos-abt">*</span>
@@ -103,21 +103,21 @@
         <div class="row form-group">
           <div class="col-md-6 m-t-xs">
             <label class="control-label m-l-md">二级账户:</label>
-            <span class="text-content">{{bankAccount | filterNull}}</span>
+            <span class="text-content">{{bankAccount | filterNull:false}}</span>
           </div>
           <div class="col-md-6">
             <label class="control-label m-l-md">账户名称:</label>
-            <span class="text-content">{{accountName | filterNull}}</span>
+            <span class="text-content">{{accountName | filterNull:false}}</span>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 m-t-xs">
             <label class="control-label m-l-md">开户行:</label>
-            <span class="text-content">{{bankName | filterNull}}</span>
+            <span class="text-content">{{bankName | filterNull:false}}</span>
           </div>
           <div class="col-md-6">
             <label class="control-label m-l-md">账户类型:</label>
-            <span class="text-content">{{accountTypeDic | filterNull}}</span>
+            <span class="text-content">{{accountTypeDic | filterNull:false}}</span>
           </div>
         </div>
       </section>

@@ -15,39 +15,39 @@
         </div>
         <div class="col-md-6">
             <label class="label-control">创建日期:</label>
-            <span class="text-content">{{createTime | filterNull}}</span>
+            <span class="text-content">{{createTime | filterNull:false}}</span>
         </div>
     </div>
     <div class="form-group clearfix">
 
         <div class="col-md-6">
             <label class="label-control">归属渠道:</label>
-            <span class="text-content">{{prmResourceRegister.resourceName | filterNull}}</span>
+            <span class="text-content">{{prmResourceRegister.resourceName | filterNull:false}}</span>
         </div>
          <div class="col-md-6">
             <label class="label-control">类别:</label>
-            <span class="text-content">{{memberTypeDic | filterNull}}</span>
+            <span class="text-content">{{memberTypeDic | filterNull:false}}</span>
         </div>
     </div>
     <div class="form-group clearfix">
         <div class="col-md-6">
             <label class="label-control">服务经理:</label>
-            <span class="text-content">{{serviceMan | filterNull}}</span>
+            <span class="text-content">{{serviceMan | filterNull:false}}</span>
         </div>
         <div class="col-md-6">
             <label class="label-control">状态:</label>
-            <span class="text-content">{{memberStatusDic | filterNull}}</span>
+            <span class="text-content">{{memberStatusDic | filterNull:false}}</span>
         </div>
 
     </div>
     <div class="form-group clearfix">
         <div class="col-md-6">
             <label class="label-control">信用等级:</label>
-            <span class="text-content">{{memberRating | filterNull}}</span>
+            <span class="text-content">{{memberRating | filterNull:false}}</span>
         </div>
         <div class="col-md-6">
             <label class="label-control">信用评分:</label>
-            <span class="text-content">{{memberRatingGrate | filterNull}}</span>
+            <span class="text-content">{{memberRatingGrate | filterNull:false}}</span>
         </div>
 
     </div>

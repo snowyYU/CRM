@@ -57,7 +57,7 @@
       <!-- <div class="col-md-6 form-horizontal form-label-9">
         <div class="form-group">
           <label class="control-label">客户名称：</label>
-          <span class="form-control-static">{{guestName | filterNull}}</span>
+          <span class="form-control-static">{{guestName | filterNull:false}}</span>
         </div>
         <div class="form-group no-b-margin">
           <label class="control-label pull-left required">类别：</label>
@@ -74,11 +74,11 @@
       <div class="col-md-6 form-horizontal form-label-9">
         <div class="form-group">
           <label class="control-label">归属渠道：</label>
-          <span class="form-control-static">  {{appName | filterNull}}</span>
+          <span class="form-control-static">  {{appName | filterNull:false}}</span>
         </div>
         <div class="form-group no-b-margin">
           <label class="control-label">服务经理：</label>
-          <span class="form-control-static">  {{serviceMan | filterNull}}</span>
+          <span class="form-control-static">  {{serviceMan | filterNull:false}}</span>
         </div>
       </div> -->
     </section >
@@ -105,19 +105,19 @@
         <!-- <div class="form-group ">
           <label  class="control-label pull-left">联系人：</label>
           <div class="form-control-static pull-left">
-            {{linkName | filterNull}}
+            {{linkName | filterNull:false}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">联系手机：</label>
           <div class="form-control-static pull-left">
-            {{linkMobile | filterNull}}
+            {{linkMobile | filterNull:false}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">联系人职位：</label>
           <div class="form-control-static pull-left">
-            {{linkJob | filterNull}}
+            {{linkJob | filterNull:false}}
           </div>
         </div> -->
         <div class="form-group">
@@ -196,31 +196,31 @@
         <!-- <div class="form-group">
           <label  class="control-label pull-left">营业执照号：</label>
           <div class="form-control-static pull-left">
-            {{licenceNum | filterNull}}
+            {{licenceNum | filterNull:false}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">公司类型：</label>
           <div class="form-control-static pull-left">
-            {{companyType | filterNull}}
+            {{companyType | filterNull:false}}
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">注册资金：</label>
           <div class="form-control-static pull-left">
-            {{registerCapital | filterNull | filterMultiply:0.0001 | yuanFormat:2:true}}<span *ngIf="registerCapital">万元</span>
+            {{registerCapital | filterNull:false | filterMultiply:0.0001 | yuanFormat:2:true}}<span *ngIf="registerCapital">万元</span>
           </div>
         </div>
         <div class="form-group">
           <label  class="control-label pull-left">成立时间：</label>
           <div class="form-control-static pull-left">
-            {{foundTime | filterNull}}
+            {{foundTime | filterNull:false}}
           </div>
         </div>
         <div class="form-group clearfix">
           <label  class="control-label pull-left">公司地址：</label>
           <div class="form-control-static pull-left enter">
-            {{companyAddress | filterNull}}
+            {{companyAddress | filterNull:false}}
           </div>
         </div> -->
       </div>
@@ -256,10 +256,10 @@
         </div>
         <div class="col-md-2">
           <div class="pull-left">
-            <a class="text-info pos-rlt o-h inline-block" [class.disabled]="!item.secondType" *ngIf="!item.uploader.queue[0]" >上传
+            <label class="text-info pos-rlt o-h inline-block" [class.disabled]="!item.secondType" *ngIf="!item.uploader.queue[0]" >上传
             <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="item.uploader" [disabled]="!item.secondType"/>
             <!-- <span class="file-uploader-content">上传</span> -->
-          </a>
+          </label>
           </div>
           <div class="pull-left">
             <a *ngIf="!item.uploader.queue[0]||(item.uploader.queue[0].success)" class="text-danger m-l-sm inline-block" (click)="deleteFile(item)">删除</a>
