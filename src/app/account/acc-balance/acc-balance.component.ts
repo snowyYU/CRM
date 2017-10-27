@@ -31,7 +31,7 @@ export class AccBalanceComponent implements OnInit {
 
 	loading:boolean=false
 	constructor(
-		private authRole:AuthRoleService,
+		public authRole:AuthRoleService,
 		private router:Router,
 		private pop:PopService,
 		private accB:AccBalanceService
