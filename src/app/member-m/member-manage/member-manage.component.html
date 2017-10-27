@@ -139,8 +139,8 @@
         		<span>授信总额(元):{{totalCreditValue | yuanFormat}}</span>
         		<span class="m-l-md">可用总额(元):{{totalCreditBanlance | yuanFormat}}</span>
         	</div>
-          <div class="pull-right">
-           	<a class="btn btn-default-dk btn-sm" (click)="goToNew()" *ngIf="authRole.roleIn(['007'])" ><i class="fa fa-plus"></i>添加</a>
+          <div class="pull-right" *ngIf="authRole.roleIn(['007'])&&authRole.userName==modalApplyServiceMan">
+           	<a class="btn btn-default-dk btn-sm" (click)="goToNew()" *ngIf="authRole.roleIn(['007'])"><i class="fa fa-plus"></i>添加</a>
           </div>
         </div>
       </p-footer>

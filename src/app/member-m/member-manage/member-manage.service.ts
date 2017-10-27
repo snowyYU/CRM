@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { MyHttp } from '../../../services/myHttp/myhttp.service'
 import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
-
+import { API } from '../../../services/config/app.config'
 
 //获取list发送的参数格式
 export interface SendData{
@@ -130,8 +130,11 @@ export class MemberManageService{
 	}
 
 	getManageL():Promise<any>{
-		return this.myHttp.get({
-			api:this.myHttp.api.getServiceManList
+		return this.myHttp.post({
+			url:API.loginHost+API.getByDepart.url,
+			body:{
+				departCode:'003'
+			}
 		})
 		.toPromise()
 		.then(res=>{

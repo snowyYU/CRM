@@ -1389,6 +1389,7 @@
                 <option value="中专">中专</option>
                 <option value="高中">高中</option>
                 <option value="大专">大专</option>
+                <option value="本科">本科</option>
                 <option value="硕士及以上">硕士及以上</option>
               </select>
             </div>
@@ -1454,7 +1455,7 @@
                 </div>
                 <div class="col-md-6">
                   <label for="" class="control-label">支行名称:</label>
-                  <div class="col-md-7 text-content">{{item.subbankName | filterNull:false}}</div>
+                  <div class="col-md-8 text-content">{{item.subbankName | filterNull:false}}</div>
                 </div>
               </div>
               <div class="form-group clearfix">
@@ -1471,7 +1472,7 @@
               </div>
             </div>
             <div class="col-md-12">
-              <a class="text-info" (click)="bankCardAdd()">+添加</a>
+              <a class="text-info" *ngIf="memberVo.serviceMan==authRole.userName" (click)="bankCardAdd()">+添加</a>
             </div>
           </div>
           <!-- 编辑 -->

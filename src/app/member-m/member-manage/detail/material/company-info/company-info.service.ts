@@ -176,7 +176,7 @@ export class CompanyInfoService {
 	saveCompanyBorrower(data:Part1Data):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveCompanyBorrower,
-			query:data
+			body:data
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {
@@ -190,7 +190,7 @@ export class CompanyInfoService {
 	saveCompanyInfo(data:Part2Data):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveCompanyInfo,
-			query:data
+			body:data
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {
@@ -204,7 +204,7 @@ export class CompanyInfoService {
 	saveCompanyLegal(data:Part3Data):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveCompanyLegal,
-			query:data
+			body:data
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {
@@ -220,7 +220,7 @@ export class CompanyInfoService {
 	saveCompanyBankCard(data:Part4Data):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveCompanyBankCard,
-			query:data
+			body:data
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {

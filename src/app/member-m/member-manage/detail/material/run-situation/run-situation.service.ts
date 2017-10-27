@@ -95,7 +95,7 @@ export class RunSituationService {
 	saveData(data:SendData):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveRunInfo,
-			query:data
+			body:data
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {

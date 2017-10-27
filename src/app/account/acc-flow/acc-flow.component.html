@@ -14,9 +14,9 @@
 			</select>
 			<label  class="m-l-md">交易日期：</label>
 			<div class="input-group date-input-group">
-	          <input class="form-control" datePicker [(ngModel)]="startTime" name="startTime" placeholder="选择日期" />
+	          <input class="form-control" datePicker [opt-max]="endTime" [(ngModel)]="startTime" name="startTime" placeholder="选择日期" />
 	          <span class="input-group-addon">至</span>
-	          <input class="form-control" datePicker [(ngModel)]="endTime" name="endTime" placeholder="选择日期" />
+	          <input class="form-control" datePicker [opt-min]="startTime" [opt-max]="todayDate" [(ngModel)]="endTime" name="endTime" placeholder="选择日期" />
 	        </div>
 
 		</div>

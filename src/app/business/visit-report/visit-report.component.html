@@ -66,7 +66,7 @@
         <ng-template let-operation="rowData" pTemplate="body" >
           <div >
             <button class="table-btn text-info" (click)="detail(operation)">详情</button>
-            <button class="table-btn"  [disabled]="operation.status!==0||operation.serviceMan!==authRole.userName" (click)="edit(operation)" [class.text-disabled]="operation.status!==0||operation.serviceMan!==authRole.userName" *ngIf="authRole.roleIn(['007'])">编辑</button>
+            <button class="table-btn"  [disabled]="operation.serviceMan!==authRole.userName" (click)="edit(operation)" [class.text-disabled]="operation.serviceMan!==authRole.userName" *ngIf="authRole.roleIn(['007'])">编辑</button>
           </div>
         </ng-template>
       </p-column>

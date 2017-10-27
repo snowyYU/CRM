@@ -171,7 +171,7 @@ export class MemberManageComponent implements OnInit{
 					this.totalCreditBanlance=res.body.totalCreditBanlance
 					this.modalDataList=res.body.records
 				}else{
-					if (this.authRole.roleIn(['008','002'])||this.authRole.userName!=row.serviceMan) {
+					if (this.authRole.roleIn(['008','002'])&&this.authRole.userName!=row.serviceMan) {
 						this.pop.info({
 							title:'提示信息',
 							text:'会员无产品授信记录'
@@ -260,7 +260,7 @@ export class MemberManageComponent implements OnInit{
 			.then(res=>{
 				console.log(res)
 
-				res.body.forEach(e=>{
+				res.body.records.forEach(e=>{
 					if (row.serviceMan!=e.employeeName) {
 						this.modalServiceManL.push(e)
 					}

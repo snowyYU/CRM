@@ -79,7 +79,7 @@ export class CustomerListService{
 	}
 
 	updateServiceMan(companyName,serviceMan):Promise<any>{
-		return this.myHttp.get({
+		return this.myHttp.post({
 			api:this.myHttp.api.updateServiceMan,
 			query:{
 				companyName:companyName,

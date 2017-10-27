@@ -101,7 +101,7 @@ export class RiskMService {
 	save1(data:Part1Data):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveCompanyAsset,
-			query:data
+			body:data
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {
@@ -115,7 +115,7 @@ export class RiskMService {
 	save2(data:Part2Data):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveCompanyDebt,
-			query:data
+			body:data
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {
@@ -129,7 +129,7 @@ export class RiskMService {
 	save3(data:Part3Data):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveCompanyCredit,
-			query:data
+			body:data
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {

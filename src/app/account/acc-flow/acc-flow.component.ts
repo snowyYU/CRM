@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { PopService } from 'dolphinng'
 import { AccFlowService,SendData } from './acc-flow.service'
+import { DateService } from '../../../services/date/date.service'
 @Component({
 	moduleId: module.id,
 	selector: 'acc-flow',
 	templateUrl: 'acc-flow.component.html',
 	styleUrls:['./acc-flow.component.less'],
-	providers:[AccFlowService]
+	providers:[AccFlowService,DateService]
 })
 export class AccFlowComponent implements OnInit {
 	dataList:any[]
@@ -20,13 +21,21 @@ export class AccFlowComponent implements OnInit {
 	endTime
 	loading:boolean=false
 
+	todayDate
 	constructor(
 		private pop:PopService,
-		private accF:AccFlowService
+		private accF:AccFlowService,
+		private dateService:DateService
 		) {}
 
 	ngOnInit() {
 		this.getTradeTypeList()
+
+		this.todayDate=this.dateService.format({
+			date:this.dateService.todayDate(),
+			formatType:"yyyy-MM-dd"
+
+		})
 		// this.getDataList()
 	}
 

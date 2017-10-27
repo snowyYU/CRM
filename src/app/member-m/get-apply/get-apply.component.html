@@ -21,7 +21,7 @@
     	<div class="input-group date-input-group">
           <input class="form-control" datePicker [(ngModel)]="startDate" name="dateStart" [opt-max]="endDate" placeholder="选择日期" />
           <span class="input-group-addon">至</span>
-          <input class="form-control" datePicker [(ngModel)]="endDate" name="dateEnd" [opt-min]="startDate" placeholder="选择日期" />
+          <input class="form-control" datePicker [(ngModel)]="endDate" name="dateEnd" [opt-min]="startDate" [opt-max]="todayDate" placeholder="选择日期" />
         </div>
     </div>
     <button class="btn-def" (click)="getDataList(qryStatus)">查询<i class="fa fa-search"></i></button>
