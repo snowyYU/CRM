@@ -37,7 +37,7 @@
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">年营业额:</label>
-              <div class="col-md-6 text-content">{{turnover | filterNull:true | yuanFormat:2:true}}<span *ngIf="turnover||turnover==0">万元</span></div>
+              <div class="col-md-6 text-content">{{turnover | filterNull:false | yuanFormat:2:true}}<span *ngIf="turnover">万元</span></div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">营业面积:</label>
@@ -47,11 +47,11 @@
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">主要结算账户月均流水:</label>
-              <div class="col-md-6 text-content">{{mcacctmonthlyWate | filterNull:true | yuanFormat:2:true}}<span *ngIf="mcacctmonthlyWate||mcacctmonthlyWate==0">万元</span></div>
+              <div class="col-md-6 text-content">{{mcacctmonthlyWate | filterNull:false | yuanFormat:2:true}}<span *ngIf="mcacctmonthlyWate">万元</span></div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">主要留存账户日均流水:</label>
-              <div class="col-md-6 text-content">{{mainacctdailyFlow | filterNull:true | yuanFormat:2:true}}<span *ngIf="mainacctdailyFlow||mainacctdailyFlow==0">万元</span></div>
+              <div class="col-md-6 text-content">{{mainacctdailyFlow | filterNull:false | yuanFormat:2:true}}<span *ngIf="mainacctdailyFlow">万元</span></div>
             </div>
           </div>
           <div class="form-group clearfix">
@@ -138,7 +138,7 @@
                   <div class="col-md-5"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0405']" (click)="show($event,'0405')" title="查看"></a></div>
                 </div>
                 <div class="col-md-6">
-                  <div class="col-md-7">营运车辆激动车登记证</div>
+                  <div class="col-md-7">营运车辆机动车登记证</div>
                   <!-- <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0204']" (click)="show($event,'0204')">查看</a></div> -->
                   <div class="col-md-5"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0204']" (click)="show($event,'0204')" title="查看"></a></div>
                 </div>
