@@ -1,6 +1,7 @@
 <div (click)="stopProp($event)" class="select-bar{{styleClass!==undefined?' '+styleClass:''}}" >
   <div  [class.transparent]="!showValue" #valueWrap>
     <ng-content select="input[data-type=value]"></ng-content>
+    <div class="select-arrow"><i class="fa-sort-desc fa"></i></div>
   </div>
   <div [class.transparent]="!showKeyword" #kwWrap>
     <ng-content select="input[data-type=keyword]"></ng-content>
