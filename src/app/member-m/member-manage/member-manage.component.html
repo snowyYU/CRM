@@ -93,14 +93,14 @@
         <p-column field="" header="授信额度(元)">
           <ng-template let-creditValue="rowData" pTemplate="body" >
             <div class="text-right" [class.lineThrough]='creditValue.lineThrough'>
-              {{creditValue.creditFacility.creditValue | yuanFormat}}
+              {{creditValue.creditFacility.creditValue | yuanFormat:2:true}}
             </div>
           </ng-template>
         </p-column>
         <p-column field="" header="可用额度(元)">
           <ng-template let-creditBanlance="rowData" pTemplate="body" >
             <div class="text-right" [class.lineThrough]='creditBanlance.lineThrough'>
-              {{creditBanlance.creditFacility.creditBanlance | yuanFormat}}
+              {{creditBanlance.creditFacility.creditBanlance | yuanFormat:2:true}}
             </div>
           </ng-template>
         </p-column>
@@ -136,8 +136,8 @@
         <p-footer>
         <div class="clearfix">
         	<div class="pull-left form-control-static no-b-padding">
-        		<span>授信总额(元):{{totalCreditValue | yuanFormat}}</span>
-        		<span class="m-l-md">可用总额(元):{{totalCreditBanlance | yuanFormat}}</span>
+        		<span>授信总额(元):{{totalCreditValue | yuanFormat:2:true}}</span>
+        		<span class="m-l-md">可用总额(元):{{totalCreditBanlance | yuanFormat:2:true}}</span>
         	</div>
           <div class="pull-right">
            	<a class="btn btn-default-dk btn-sm" (click)="goToNew()" *ngIf="authRole.roleIn(['007'])" ><i class="fa fa-plus"></i>添加</a>

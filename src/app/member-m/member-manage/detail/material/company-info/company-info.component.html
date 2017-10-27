@@ -120,7 +120,7 @@
             <div class="col-md-6">
               <label for="" class="control-label">身份证号码:</label>
               <div class="col-md-6">
-                <input type="text" name="borrwerIdcard" class="form-control" maxlength="30" [(ngModel)]="companyborrowerVo.borrwerIdcard">
+                <input type="text" name="borrwerIdcard" class="form-control" maxlength="18" [(ngModel)]="companyborrowerVo.borrwerIdcard">
               </div>
             </div>
           </div>
@@ -140,7 +140,7 @@
             <div class="col-md-6">
               <label for="" class="control-label">联系手机:</label>
               <div class="col-md-6">
-                <input type="text" name="borrwerMobile" class="form-control" maxlength="30" [(ngModel)]="companyborrowerVo.borrwerMobile">
+                <input type="text" name="borrwerMobile" class="form-control" maxlength="11" [(ngModel)]="companyborrowerVo.borrwerMobile">
               </div>
             </div>
           </div>
@@ -806,7 +806,7 @@
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">注册资金:</label>
-              <div class="col-md-6 text-content">{{companyVo.registerCapital | filterNull:false | yuanFormat:2:true}}<span *ngIf="companyVo.registerCapital">万元</span></div>
+              <div class="col-md-6 text-content">{{companyVo.registerCapital | filterNull:true | yuanFormat:2:true}}<span *ngIf="companyVo.registerCapital||companyVo.registerCapital==0">万元</span></div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">注册时间:</label>
@@ -917,7 +917,7 @@
             <div class="col-md-6">
               <label for="" class="control-label">联系手机:</label>
               <div class="col-md-6">
-                <input type="text" name="linkMobile" class="form-control" maxlength="30" [(ngModel)]="companyVo.linkMobile">
+                <input type="text" name="linkMobile" class="form-control" maxlength="11" [(ngModel)]="companyVo.linkMobile">
               </div>
             </div>
           </div>
@@ -925,7 +925,7 @@
             <div class="col-md-6">
               <label for="" class="control-label">营业执照号:</label>
               <div class="col-md-6">
-                <input type="text" name="licenceNum" class="form-control" maxlength="30" [(ngModel)]="companyVo.licenceNum">
+                <input type="text" name="licenceNum" class="form-control" maxlength="20" [(ngModel)]="companyVo.licenceNum">
               </div>
             </div>
             <div class="col-md-6">
@@ -1376,7 +1376,7 @@
           <div class="col-md-6">
             <label for="" class="control-label">法人身份证:</label>
             <div class="col-md-6">
-              <input type="text" name="legalIdcard" class="form-control" maxlength="30" [(ngModel)]="companyLegalVo.legalIdcard">
+              <input type="text" name="legalIdcard" class="form-control" maxlength="18" [(ngModel)]="companyLegalVo.legalIdcard">
             </div>
           </div>
         </div>
@@ -1411,7 +1411,7 @@
           <div class="col-md-6">
             <label for="" class="control-label">联系手机:</label>
             <div class="col-md-6">
-              <input type="text" name="legalMobile" class="form-control" maxlength="30" [(ngModel)]="companyLegalVo.legalMobile">
+              <input type="text" name="legalMobile" class="form-control" maxlength="11" [(ngModel)]="companyLegalVo.legalMobile">
             </div>
           </div>
         </div>
@@ -1481,7 +1481,7 @@
                 <div class="col-md-6">
                   <label for="" class="control-label">银行卡号:</label>
                   <div class="col-md-6 text-content">
-                    <input type="text" class="form-control" name="bankInfoCardNo_{{bankCard.uniqueId}}" maxlength="30" [(ngModel)]="bankCard.companyBankInfo.cardNo" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
+                    <input type="text" class="form-control" name="bankInfoCardNo_{{bankCard.uniqueId}}" maxlength="20" [(ngModel)]="bankCard.companyBankInfo.cardNo" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
                   </div>
                 </div>
                 <div class="col-md-6">

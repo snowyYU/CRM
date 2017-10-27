@@ -34,13 +34,13 @@
                 <div *ngIf="auth.roleIn(['008'])">
                   <a class="table-btn text-info" *ngIf="status===0&&operation.source=='1'"
                    (click)="check(operation)">审核</a>
-                  <a class="table-btn text-info" *ngIf="status===2||operation.source!='1'"
+                  <a class="table-btn text-info" *ngIf="(status===2||operation.source!='1')&&!auth.roleIn(['007'])"
                    (click)="detail(operation)">详情</a>
                 </div>
                 <div *ngIf="auth.roleIn(['007'])">
                   <a class="table-btn text-info" *ngIf="status===0&&operation.source!='1'"
                    (click)="check(operation)">审核</a>
-                  <a class="table-btn text-info" *ngIf="status===2||operation.source=='1'"
+                  <a class="table-btn text-info" *ngIf="(status===2||operation.source=='1')&&!auth.roleIn(['008'])"
                    (click)="detail(operation)">详情</a>
                 </div>
                 <div *ngIf="auth.roleIn(['002'])">
