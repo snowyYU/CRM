@@ -85,12 +85,12 @@ export class EleAttachmentComponent implements OnInit {
 			let url:any=this.eleAttach.getFileUrl(this.attachment[type].fileLoadId)
 			this.gallery.open(e,url);
 			
-		}else{
+		}/*else{
 			this.pop.error({
 				title:'错误提示',
 				text:'无此文件！'
 			})
-		}
+		}*/
 	}
 
 	back(){
