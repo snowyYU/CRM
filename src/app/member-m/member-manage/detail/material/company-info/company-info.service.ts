@@ -89,9 +89,15 @@ export class CompanyInfoService {
 				
 	}
 
-	deleteFile(id):Promise<any>{
-		return this.myHttp.sDelete(id)
-				.toPromise()
+	deleteFile(memberId,attachId,fileLoadId):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.deleteAttach,
+			query:{
+				memberId:memberId,
+				attachId:attachId,
+				fileLoadId:fileLoadId
+			}
+			}).toPromise()
 				.then(res=>{
 					let data=res
 					if (data.status==200) {
@@ -100,6 +106,7 @@ export class CompanyInfoService {
 						return Promise.reject(data)
 					}
 				})
+				
 	}
 
 	//获取婚姻单选数据

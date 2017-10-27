@@ -453,7 +453,7 @@ export class RiskMComponent implements OnInit {
 	}
 
 	deleteFile(id,up){
-		this.riskM.deleteFile(this.attachment[id].fileLoadId).then(res=>{
+		this.riskM.deleteFile(this.memberId,this.attachment[id].attachId,this.attachment[id].fileLoadId).then(res=>{
 			console.log(res)
 			delete this.attachment[id]
 			this[up].queue=[]

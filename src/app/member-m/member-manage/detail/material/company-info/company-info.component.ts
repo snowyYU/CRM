@@ -558,7 +558,7 @@ export class CompanyInfoComponent implements OnInit {
 	}
 
 	deleteFile(id,up){
-		this.companyInfo.deleteFile(this.attachment[id].fileLoadId)
+		this.companyInfo.deleteFile(this.memberId,this.attachment[id].attachId,this.attachment[id].fileLoadId)
 			.then(res=>{
 				console.log(res)
 				delete this.attachment[id]
