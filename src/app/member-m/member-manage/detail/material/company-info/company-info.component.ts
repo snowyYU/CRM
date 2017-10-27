@@ -465,7 +465,7 @@ export class CompanyInfoComponent implements OnInit {
 		this.companyLegalVo=data.body.companyLegalVo
 		this.companyBankCardVos=data.body.companyBankCardVos
 
-		this.borrwerMarry=data.body.companyborrowerVo.borrwerMarry?data.body.companyborrowerVo.borrwerMarry+'':''
+		this.borrwerMarry=data.body.companyborrowerVo.borrwerMarry+''
 		console.log('borrwerMarry',this.borrwerMarry)
 		this.companyLegalVo.legalMarry=data.body.companyLegalVo.legalMarry+''
 
@@ -908,13 +908,6 @@ export class CompanyInfoComponent implements OnInit {
 		this.bankList=[]
 		this.subBankList=[]
 	}
-
-
-
-
-
-
-
 }
 
 
@@ -994,7 +987,4 @@ class BankCardInfo{
 	customTrackBy(index: number, obj: any): any {
 	  return index;
 	}
-
-
-
 }

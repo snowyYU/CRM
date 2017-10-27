@@ -114,7 +114,7 @@ export class InfoChangeDetailComponent implements OnInit {
 				console.log(res)
 				this.pop.info({
 					title:'提示信息',
-					text:'提交成功!'
+					text:'处理成功'
 				})
 				this.router.navigate(['memberM/infoChange'])
 				

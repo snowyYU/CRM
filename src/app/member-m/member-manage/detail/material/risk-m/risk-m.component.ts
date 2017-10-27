@@ -186,6 +186,7 @@ export class RiskMComponent implements OnInit {
 		this.companyDebt=res.body.companyDebt
 		this.companyCredit=res.body.companyCredit
 		this.member=res.body.member
+		this.companyAsset.nativeRenting=res.body.companyAsset.nativeRenting+""  //本地租房状况
 
 		this.companyAsset.carValue=res.body.companyAsset.carValue/10000
 		this.companyAsset.houseValue=res.body.companyAsset.houseValue/10000

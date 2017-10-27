@@ -807,7 +807,7 @@
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">注册资金:</label>
-              <div class="col-md-6 text-content">{{companyVo.registerCapital | filterNull:true | yuanFormat:2:true}}<span *ngIf="companyVo.registerCapital||companyVo.registerCapital==0">万元</span></div>
+              <div class="col-md-6 text-content">{{companyVo.registerCapital | filterNull:false | yuanFormat:2:true}}<span *ngIf="companyVo.registerCapital">万元</span></div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">注册时间:</label>
