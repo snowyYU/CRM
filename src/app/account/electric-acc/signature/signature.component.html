@@ -10,10 +10,10 @@
         <label class="h3 font-bold m-b-md"><i class="fa fa-search"></i> 会员电子签章信息查询</label>
         <div class="wrapper clearfix form-inline">
           <div class="form-group">
-            <select-bar #selectBar1
+            <select-bar #selectBar1 [isTriangle]="false"
               (onDropdown)="clearMemberList();queryMemberList(memberNameQKey)">
               <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control search" maxlength="30" 
-                     placeholder="请选择会员"
+                     placeholder="请输入会员关键字"
                      data-type="value"
                       />
               <input class="form-control search" placeholder="会员关键字" autocomplete="off" maxlength="30" [ngModel]="memberNameQKey"
@@ -35,10 +35,10 @@
 <form #form="ngForm" ngSubmit="openAcc()">
     <section class="wrapper clearfix form-inline">
         <div class="form-group">
-          <select-bar #selectBar1
+          <select-bar #selectBar1 [isTriangle]="false"
             (onDropdown)="clearMemberList();queryMemberList(memberNameQKey)">
             <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control i-width" maxlength="30" 
-                   placeholder="请选择会员"
+                   placeholder="请输入会员关键字"
                    data-type="value"
                     />
             <input class="form-control i-width" placeholder="会员关键字" autocomplete="off" maxlength="30" [ngModel]="memberNameQKey"
