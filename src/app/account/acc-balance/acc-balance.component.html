@@ -39,21 +39,21 @@
 			<p-column field="mainAccount.availableBalance" header="可用余额(元)" [style]="{'width':'120px'}">
 				<ng-template let-row="rowData" pTemplate="body">
 					<div class="text-right">
-					{{row.mainAccount.availableBalance | yuanFormat}}
+					{{row.mainAccount.availableBalance | yuanFormat:2:true}}
 					</div>
 			</ng-template>
 			</p-column>
 			<p-column field="mainAccount.undeterminedBalance" header="在途金额(元)" [style]="{'width':'120px'}">
 				<ng-template let-row="rowData" pTemplate="body">
 					<div class="text-right">
-					{{row.mainAccount.undeterminedBalance | yuanFormat}}
+					{{row.mainAccount.undeterminedBalance | yuanFormat:2:true}}
 					</div>
 			</ng-template>
 			</p-column>
 			<p-column field="mainAccount.freezeBalance" header="冻结金额(元)" [style]="{'width':'120px'}">
 				<ng-template let-row="rowData" pTemplate="body">
 					<div class="text-right">
-					{{row.mainAccount.freezeBalance | yuanFormat}}
+					{{row.mainAccount.freezeBalance | yuanFormat:2:true}}
 					</div>
 			</ng-template>
 			</p-column>
@@ -67,28 +67,28 @@
 						<p-column field="availableBalance" header="可用余额(元)">
 							<ng-template let-row="rowData" pTemplate="body">
 								<div class="text-right">
-								{{row.availableBalance | yuanFormat}}
+								{{row.availableBalance | yuanFormat:2:true}}
 								</div>
 							</ng-template>
 						</p-column>
 						<p-column field="undeterminedBalance" header="在途金额(元)">
 							<ng-template let-row="rowData" pTemplate="body">
 								<div class="text-right">
-								{{row.undeterminedBalance | yuanFormat}}
+								{{row.undeterminedBalance | yuanFormat:2:true}}
 								</div>
 							</ng-template>
 						</p-column>
 						<p-column field="freezeBalance" header="冻结金额(元)">
 							<ng-template let-row="rowData" pTemplate="body">
 								<div class="text-right">
-								{{row.freezeBalance | yuanFormat}}
+								{{row.freezeBalance | yuanFormat:2:true}}
 								</div>
 							</ng-template>
 						</p-column>
 						<p-column field="lockBalance" header="锁定金额(元)">
 							<ng-template let-row="rowData" pTemplate="body">
 								<div class="text-right">
-								{{row.lockBalance | yuanFormat}}
+								{{row.lockBalance | yuanFormat:2:true}}
 								</div>
 							</ng-template>
 						</p-column>
@@ -145,7 +145,7 @@
       		<tr *ngFor="let item of notAccountMemberList">
       			<td>{{item.companyName}}</td>
       			<td>{{item.appName}}</td>
-      			<td *ngIf="authRole.roleIn(['002'])"><a class="text-info" (click)="goToOpen(item.memberId)" >去开户</a></td>
+      			<td *ngIf="authRole.roleIn(['002'])"><a class="text-info" (click)="goToOpen(item.companyName)" >去开户</a></td>
       		</tr>
       	</tbody>
       </table>
