@@ -21,7 +21,7 @@
     	<div class="input-group date-input-group">
           <input class="form-control" datePicker [(ngModel)]="startDate" name="dateStart" [opt-max]="endDate" placeholder="选择日期" />
           <span class="input-group-addon">至</span>
-          <input class="form-control" datePicker [(ngModel)]="endDate" name="dateEnd" [opt-min]="startDate" placeholder="选择日期" />
+          <input class="form-control" datePicker [(ngModel)]="endDate" name="dateEnd" [opt-min]="startDate" [opt-max]="todayDate" placeholder="选择日期" />
         </div>
     </div>
     <button class="btn-def" (click)="getDataList(qryStatus)">查询<i class="fa fa-search"></i></button>
@@ -29,7 +29,7 @@
   <div>
     <p-dataTable  [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading"
               scrollable="true" scrollHeight="375px">
-      <p-column field="creditAuthId" header="申请ID" styleClass="text-center" [style]="{'width':'150px'}"></p-column>
+      <p-column field="creditAuthId" header="申请ID" styleClass="text-center" [style]="{'width':'130px'}"></p-column>
       <p-column  header="会员名称" [style]="{'width':'200px'}">
         <ng-template let-data="rowData" pTemplate="body">
           <div textMaxLength="200px">
@@ -57,7 +57,7 @@
         </ng-template>
       </p-column>
       <p-column field="statusDic" header="状态" [style]="{'width':'80px'}"></p-column>
-      <p-column field="serviceMan" header="服务经理" [style]="{'width':'100px'}"></p-column>
+      <p-column field="serviceMan" header="服务经理" [style]="{'width':'120px'}"></p-column>
       <p-column field="createTime" header="申请日期" [style]="{'width':'120px'}" styleClass="text-center">
         <ng-template let-row="rowData" pTemplate="body">
           {{row.createTime|date:'yyyy-MM-dd'}}
@@ -74,7 +74,7 @@
       <p-footer>
         <div class="clearfix">
           <div class="pull-right">
-            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="getDataList()" size="sm" [showTotal]="true"></paginator>
+            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="getDataList(qryStatus)" size="sm" [showTotal]="true"></paginator>
           </div>
         </div>
       </p-footer>

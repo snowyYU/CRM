@@ -18,76 +18,76 @@
     <form #runSituationF="ngForm" (ngSubmit)='save()'>
       <div class="page-location">
         <a class="h4 pad-r-xs font-bold">运营状况</a>
-        <a class="text-info pull-right" *ngIf="!part" (click)="edit('part')">编辑</a>
+        <a class="text-info pull-right" *ngIf="!part&&userName==serviceMan" (click)="edit('part')">编辑</a>
         <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part" [disabled]="!runSituationF.form.valid">保存</button>
-        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part" (click)="cancel('part')">取消</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part" (click)="cancel('part')">放弃</button>
       </div>
       <div class="padder-v clearfix col-md-12" *ngIf="!part">
         <div class="col-md-12 border-content ">
           <div class="form-group clearfix m-t-md">
             <div class="col-md-6">
               <label for="" class="control-label">经营模式:</label>
-              <div class="col-md-6 text-content">{{operatePatternDic | filterNull}}</div>
+              <div class="col-md-6 text-content">{{operatePatternDic | filterNull:false}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">企业员工数量:</label>
-              <div class="col-md-6 text-content">{{employeeNum | filterNull}}<span *ngIf="employeeNum">人</span></div>
+              <div class="col-md-6 text-content">{{employeeNum | filterNull:false}}<span *ngIf="employeeNum">人</span></div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">年营业额:</label>
-              <div class="col-md-6 text-content">{{turnover | filterNull | yuanFormat}}<span *ngIf="turnover">万元</span></div>
+              <div class="col-md-6 text-content">{{turnover | filterNull:false | yuanFormat:2:true}}<span *ngIf="turnover">万元</span></div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">营业面积:</label>
-              <div class="col-md-6 text-content">{{operatingArea | filterNull}}<span *ngIf="operatingArea">平方米</span></div>
+              <div class="col-md-6 text-content">{{operatingArea | filterNull:false}}<span *ngIf="operatingArea">平方米</span></div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">主要结算账户月均流水:</label>
-              <div class="col-md-6 text-content">{{mcacctmonthlyWate | filterNull | yuanFormat}}<span *ngIf="mcacctmonthlyWate">万元</span></div>
+              <div class="col-md-6 text-content">{{mcacctmonthlyWate | filterNull:false | yuanFormat:2:true}}<span *ngIf="mcacctmonthlyWate">万元</span></div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">主要留存账户日均流水:</label>
-              <div class="col-md-6 text-content">{{mainacctdailyFlow | filterNull | yuanFormat}}<span *ngIf="mainacctdailyFlow">万元</span></div>
+              <div class="col-md-6 text-content">{{mainacctdailyFlow | filterNull:false | yuanFormat:2:true}}<span *ngIf="mainacctdailyFlow">万元</span></div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">与上游主要的结算周期:</label>
-              <div class="col-md-6 text-content">{{upcooperClosing | filterNull}}<span *ngIf="upcooperClosing">天</span></div>
+              <div class="col-md-6 text-content">{{upcooperClosing | filterNull:false}}<span *ngIf="upcooperClosing">天</span></div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">与上游合作最长时间:</label>
-              <div class="col-md-6 text-content">{{upcoopertime | filterNull}}<span *ngIf="upcoopertime">月</span></div>
+              <div class="col-md-6 text-content">{{upcoopertime | filterNull:false}}<span *ngIf="upcoopertime">月</span></div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">主要交易方式:</label>
-              <div class="col-md-6 text-content">{{mainTradingDic | filterNull}}</div>
+              <div class="col-md-6 text-content">{{mainTradingDic | filterNull:false}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">业务区域:</label>
-              <div class="col-md-6 text-content">{{operateArea2 | filterNull}}</div>
+              <div class="col-md-6 text-content">{{operateArea2 | filterNull:false}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">工资支出情况:</label>
-              <div class="col-md-6 text-content">{{salaryPayStatusDic | filterNull}}</div>
+              <div class="col-md-6 text-content">{{salaryPayStatusDic | filterNull:false}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">购买保险情况:</label>
-              <div class="col-md-6 text-content">{{insuranceDic | filterNull}}</div>
+              <div class="col-md-6 text-content">{{insuranceDic | filterNull:false}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">信息化程度:</label>
-              <div class="col-md-6 text-content">{{infoLevelDic | filterNull}}</div>
+              <div class="col-md-6 text-content">{{infoLevelDic | filterNull:false}}</div>
             </div>
           </div>
         </div>
@@ -138,7 +138,7 @@
                   <div class="col-md-5"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0405']" (click)="show($event,'0405')" title="查看"></a></div>
                 </div>
                 <div class="col-md-6">
-                  <div class="col-md-7">营运车辆激动车登记证</div>
+                  <div class="col-md-7">营运车辆机动车登记证</div>
                   <!-- <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0204']" (click)="show($event,'0204')">查看</a></div> -->
                   <div class="col-md-5"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0204']" (click)="show($event,'0204')" title="查看"></a></div>
                 </div>
@@ -199,7 +199,7 @@
             <div class="col-md-6 l-h-2x">
               <label class="control-label">企业员工数量:</label>
               <div class="col-md-6">
-                <input type="text" name="employeeNum" class="form-control" maxlength="30" [(ngModel)]="employeeNum">
+                <input type="text" name="employeeNum" class="form-control" max=99999999 [(ngModel)]="employeeNum">
               </div> 人
             </div>
           </div>
@@ -339,9 +339,9 @@
                     <div *ngIf="!attachment['0202']">道路运输许可证</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0202']&&(!uploader1.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0202']&&(!uploader1.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0202']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0202','uploader1')">删除</a>
@@ -408,9 +408,9 @@
                     <div *ngIf="!attachment['0203']">运输合作合同</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0203']&&(!uploader2.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0203']&&(!uploader2.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0203']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0203','uploader2')">删除</a>
@@ -479,9 +479,9 @@
                     <div *ngIf="!attachment['0302']">租赁合同</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0302']&&(!uploader3.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0302']&&(!uploader3.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader3" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0302']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0302','uploader3')">删除</a>
@@ -548,9 +548,9 @@
                     <div *ngIf="!attachment['0205']">行驶证</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0205']&&(!uploader4.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0205']&&(!uploader4.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader4" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0205']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0205','uploader4')">删除</a>
@@ -619,9 +619,9 @@
                     <div *ngIf="!attachment['0206']">营运车辆挂靠协议</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0206']&&(!uploader5.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0206']&&(!uploader5.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader5" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0206']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0206','uploader5')">删除</a>
@@ -688,9 +688,9 @@
                     <div *ngIf="!attachment['0404']">货物保险</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0404']&&(!uploader6.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0404']&&(!uploader6.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader6" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0404']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0404','uploader6')">删除</a>
@@ -759,9 +759,9 @@
                     <div *ngIf="!attachment['0405']">自有车辆保险</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0405']&&(!uploader7.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0405']&&(!uploader7.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader7" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0405']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0405','uploader7')">删除</a>
@@ -828,9 +828,9 @@
                     <div *ngIf="!attachment['0204']">营运车辆激动车登记证</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0204']&&(!uploader8.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0204']&&(!uploader8.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader8" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0204']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0204','uploader8')">删除</a>

@@ -6,48 +6,48 @@
       <button class="btn btn-default" (click)="riskM()">风控补充</button>
     </div>
   </section>
-  <section class="clearfix">
+  <section class="clearfix" id="borrower">
     <form #part1F="ngForm" (ngSubmit)='save1()'>
       <div class="page-location">
         <a class="h4 pad-r-xs font-bold">借款人信息</a>
         <i class="fa fa-caret-right text-lg" *ngIf="!part1S" (click)="part1S=!part1S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part1S" (click)="part1S=!part1S"></i>
         <span class="m-l-sm">(注:申请人需为法定代表或直接控制人，占股不得少于20%)</span>
-        <a class="text-info pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</a>
+        <a class="text-info pull-right" *ngIf="!part1&&memberVo.serviceMan==authRole.userName" (click)="edit('part1')">编辑</a>
         <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
-        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">放弃</button>
       </div>
       <!-- <div class="col-md-12 padder-v b-b l-h-2x">借款人信息 <span>(注:申请人需为法定代表或直接控制人，占股不得少于20%)</span>
       <button type="button" class="btn pull-right" *ngIf="!part1" (click)="edit('part1')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
-      <button type="button" class="btn pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">取消</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">放弃</button>
     </div> -->
       <div class="padder-v  col-md-12" *ngIf="!part1&&part1S">
         <div class="col-md-12 border-content ">
           <div class="form-group clearfix m-t-md">
             <div class="col-md-6">
               <label for="" class="control-label">姓名:</label>
-              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerPerson | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerPerson | filterNull:false}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">身份证号码:</label>
-              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerIdcard | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerIdcard | filterNull:false}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">最高学历:</label>
-              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerDegree | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerDegree | filterNull:false}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">联系手机:</label>
-              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMobile | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMobile | filterNull:false}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">婚姻状况:</label>
-              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMarryDic | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyborrowerVo.borrwerMarryDic | filterNull:false}}</div>
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@
             <div class="col-md-6">
               <label for="" class="control-label">身份证号码:</label>
               <div class="col-md-6">
-                <input type="text" name="borrwerIdcard" class="form-control" maxlength="30" [(ngModel)]="companyborrowerVo.borrwerIdcard">
+                <input type="text" name="borrwerIdcard" class="form-control" maxlength="18" [(ngModel)]="companyborrowerVo.borrwerIdcard">
               </div>
             </div>
           </div>
@@ -133,6 +133,7 @@
                   <option value="中专">中专</option>
                   <option value="高中">高中</option>
                   <option value="大专">大专</option>
+                  <option value="本科">本科</option>
                   <option value="硕士及以上">硕士及以上</option>
                 </select>
               </div>
@@ -140,7 +141,7 @@
             <div class="col-md-6">
               <label for="" class="control-label">联系手机:</label>
               <div class="col-md-6">
-                <input type="text" name="borrwerMobile" class="form-control" maxlength="30" [(ngModel)]="companyborrowerVo.borrwerMobile">
+                <input type="text" name="borrwerMobile" class="form-control" maxlength="11" [(ngModel)]="companyborrowerVo.borrwerMobile">
               </div>
             </div>
           </div>
@@ -172,9 +173,9 @@
                     <div *ngIf="!attachment['0104']">申请人身份证（正面）</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0104']&&(!uploader1_1.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0104']&&(!uploader1_1.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1_1" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0104']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0104','uploader1_1')">删除</a>
@@ -288,9 +289,9 @@
                     <div *ngIf="!attachment['0105']">申请人身份证（反面）</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0105']&&(!uploader1_2.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0105']&&(!uploader1_2.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1_2" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0105']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0105','uploader1_2')">删除</a>
@@ -359,9 +360,9 @@
                     <div *ngIf="!attachment['0110']">户口本</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0110']&&(!uploader1_3.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0110']&&(!uploader1_3.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1_3" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0110']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0110','uploader1_3')">删除</a>
@@ -428,9 +429,9 @@
                     <div *ngIf="!attachment['0112']">申请人与经营场所合照</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0112']&&(!uploader1_4.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0112']&&(!uploader1_4.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1_4" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0112']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0112','uploader1_4')">删除</a>
@@ -499,9 +500,9 @@
                     <div *ngIf="!attachment['0108']">结婚证（正面）</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0108']&&(!uploader1_5.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0108']&&(!uploader1_5.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1_5" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0108']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0108','uploader1_5')">删除</a>
@@ -568,9 +569,9 @@
                     <div *ngIf="!attachment['0109']">结婚证（反面）</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0109']&&(!uploader1_6.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0109']&&(!uploader1_6.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1_6" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0109']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0109','uploader1_6')">删除</a>
@@ -639,9 +640,9 @@
                     <div *ngIf="!attachment['0106']">配偶身份证（正面）</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0106']&&(!uploader1_7.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0106']&&(!uploader1_7.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1_7" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0106']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0106','uploader1_7')">删除</a>
@@ -708,9 +709,9 @@
                     <div *ngIf="!attachment['0107']">配偶身份证（反面）</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0107']&&(!uploader1_8.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0107']&&(!uploader1_8.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1_8" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0107']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0107','uploader1_8')">删除</a>
@@ -776,61 +777,61 @@
       </div>
     </form>
   </section>
-  <section class="m-t clearfix">
+  <section class="m-t clearfix" id="companyInfo">
     <form #part2F="ngForm" (ngSubmit)='save2()'>
       <div class="page-location">
         <a class="h4 pad-r-xs font-bold">公司信息</a>
         <i class="fa fa-caret-right text-lg" *ngIf="!part2S" (click)="part2S=!part2S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part2S" (click)="part2S=!part2S"></i>
-        <a class="text-info pull-right" *ngIf="!part2" (click)="edit('part2')">编辑</a>
+        <a class="text-info pull-right" *ngIf="!part2&&memberVo.serviceMan==authRole.userName" (click)="edit('part2')">编辑</a>
         <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part2&&part2S" [disabled]="!part2F.form.valid">保存</button>
-        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part2&&part2S" (click)="cancel('part2')">取消</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part2&&part2S" (click)="cancel('part2')">放弃</button>
       </div>
       <!-- <div class="col-md-12 padder-v b-b l-h-2x">公司信息
       <button type="button" class="btn pull-right" *ngIf="!part2" (click)="edit('part2')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part2" [disabled]="!part2F.form.valid">保存</button>
-      <button type="button" class="btn pull-right m-r-xs" *ngIf="part2" (click)="cancel('part2')">取消</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part2" (click)="cancel('part2')">放弃</button>
     </div> -->
       <div class="padder-v clearfix col-md-12" *ngIf="!part2&&part2S">
         <div class="col-md-12 border-content">
           <div class="form-group clearfix m-t">
             <div class="col-md-6">
               <label for="" class="control-label">公司名称:</label>
-              <div class="col-md-6 text-content">{{memberVo.companyName | filterNull}}</div>
+              <div class="col-md-6 text-content">{{memberVo.companyName | filterNull:false}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">公司类型:</label>
-              <div class="col-md-6 text-content">{{companyVo.companyTypeName | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyVo.companyTypeName | filterNull:false}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">注册资金:</label>
-              <div class="col-md-6 text-content">{{companyVo.registerCapital | filterNull | yuanFormat}}<span *ngIf="companyVo.registerCapital">万元</span></div>
+              <div class="col-md-6 text-content">{{companyVo.registerCapital | filterNull:false | yuanFormat:2:true}}<span *ngIf="companyVo.registerCapital">万元</span></div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">注册时间:</label>
-              <div class="col-md-6 text-content">{{companyVo.foundTime | filterNull | effDateFormat}}</div>
+              <div class="col-md-6 text-content">{{companyVo.foundTime | filterNull:false | effDateFormat}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">联系人:</label>
-              <div class="col-md-6 text-content">{{companyVo.linkName | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyVo.linkName | filterNull:false}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">联系手机:</label>
-              <div class="col-md-6 text-content">{{companyVo.linkMobile | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyVo.linkMobile | filterNull:false}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">营业执照号:</label>
-              <div class="col-md-6 text-content">{{companyVo.licenceNum | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyVo.licenceNum | filterNull:false}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">企业地址:</label>
-              <div class="col-md-7 text-content">{{companyVo.companyAddress | filterNull}}</div>
+              <div class="col-md-7 text-content">{{companyVo.companyAddress | filterNull:false}}</div>
             </div>
           </div>
         </div>
@@ -917,7 +918,7 @@
             <div class="col-md-6">
               <label for="" class="control-label">联系手机:</label>
               <div class="col-md-6">
-                <input type="text" name="linkMobile" class="form-control" maxlength="30" [(ngModel)]="companyVo.linkMobile">
+                <input type="text" name="linkMobile" class="form-control" maxlength="11" [(ngModel)]="companyVo.linkMobile">
               </div>
             </div>
           </div>
@@ -925,7 +926,7 @@
             <div class="col-md-6">
               <label for="" class="control-label">营业执照号:</label>
               <div class="col-md-6">
-                <input type="text" name="licenceNum" class="form-control" maxlength="30" [(ngModel)]="companyVo.licenceNum">
+                <input type="text" name="licenceNum" class="form-control" maxlength="20" [(ngModel)]="companyVo.licenceNum">
               </div>
             </div>
             <div class="col-md-6">
@@ -967,9 +968,9 @@
                     <div *ngIf="!attachment['0102']">公司章程</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0102']&&(!uploader2_1.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0102']&&(!uploader2_1.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2_1" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0102']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0102','uploader2_1')">删除</a>
@@ -1036,9 +1037,9 @@
                     <div *ngIf="!attachment['0103']">验资报告</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0103']&&(!uploader2_2.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0103']&&(!uploader2_2.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2_2" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0103']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0103','uploader2_2')">删除</a>
@@ -1107,9 +1108,9 @@
                     <div *ngIf="!attachment['0113']">公司门面照</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0113']&&(!uploader2_3.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0113']&&(!uploader2_3.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2_3" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0113']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0113','uploader2_3')">删除</a>
@@ -1176,9 +1177,9 @@
                     <div *ngIf="!attachment['0201']">职业资格证书（财务）</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0201']&&(!uploader2_4.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0201']&&(!uploader2_4.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2_4" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0201']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0201','uploader2_4')">删除</a>
@@ -1247,9 +1248,9 @@
                     <div *ngIf="!attachment['0101']">四证合一</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0101']&&(!uploader2_5.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0101']&&(!uploader2_5.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2_5" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0101']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0101','uploader2_5')">删除</a>
@@ -1317,47 +1318,47 @@
       </div>
     </form>
   </section>
-  <section class="m-t clearfix">
+  <section class="m-t clearfix" id="legalPerson">
     <form #part3F="ngForm" (ngSubmit)='save3()'>
       <div class="page-location">
         <a class="h4 pad-r-xs font-bold">法人基本情况</a>
         <i class="fa fa-caret-right text-lg" *ngIf="!part3S" (click)="part3S=!part3S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part3S" (click)="part3S=!part3S"></i>
-        <a class="text-info pull-right" *ngIf="!part3" (click)="edit('part3')">编辑</a>
+        <a class="text-info pull-right" *ngIf="!part3&&memberVo.serviceMan==authRole.userName" (click)="edit('part3')">编辑</a>
         <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part3&&part3S" [disabled]="!part3F.form.valid">保存</button>
-        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part3&&part3S" (click)="cancel('part3')">取消</button>
+        <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part3&&part3S" (click)="cancel('part3')">放弃</button>
       </div>
       <!-- <div class="col-md-12 padder-v b-b l-h-2x">法人基本情况
       <button type="button" class="btn pull-right" *ngIf="!part3" (click)="edit('part3')">编辑</button>
       <button type="submit" class="btn btn-info pull-right" *ngIf="part3"  [disabled]="!part3F.form.valid">保存</button>
-      <button type="button" class="btn pull-right m-r-xs" *ngIf="part3" (click)="cancel('part3')">取消</button>
+      <button type="button" class="btn pull-right m-r-xs" *ngIf="part3" (click)="cancel('part3')">放弃</button>
     </div> -->
       <div class="padder-v clearfix col-md-12" *ngIf="!part3&&part3S">
         <div class="col-md-12 border-content">
           <div class="form-group clearfix m-t-md">
             <div class="col-md-6">
               <label for="" class="control-label">法人姓名:</label>
-              <div class="col-md-6 text-content">{{companyLegalVo.legalPerson | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyLegalVo.legalPerson | filterNull:false}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">法人身份证:</label>
-              <div class="col-md-6 text-content">{{companyLegalVo.legalIdcard | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyLegalVo.legalIdcard | filterNull:false}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">最高学历:</label>
-              <div class="col-md-6 text-content">{{companyLegalVo.legalDegree | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyLegalVo.legalDegree | filterNull:false}}</div>
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">婚姻状况:</label>
-              <div class="col-md-6 text-content">{{companyLegalVo.legalMarryDic | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyLegalVo.legalMarryDic | filterNull:false}}</div>
             </div>
           </div>
           <div class="form-group clearfix">
             <div class="col-md-6">
               <label for="" class="control-label">联系手机:</label>
-              <div class="col-md-6 text-content">{{companyLegalVo.legalMobile | filterNull}}</div>
+              <div class="col-md-6 text-content">{{companyLegalVo.legalMobile | filterNull:false}}</div>
             </div>
           </div>
         </div>
@@ -1376,7 +1377,7 @@
           <div class="col-md-6">
             <label for="" class="control-label">法人身份证:</label>
             <div class="col-md-6">
-              <input type="text" name="legalIdcard" class="form-control" maxlength="30" [(ngModel)]="companyLegalVo.legalIdcard">
+              <input type="text" name="legalIdcard" class="form-control" maxlength="18" [(ngModel)]="companyLegalVo.legalIdcard">
             </div>
           </div>
         </div>
@@ -1389,6 +1390,7 @@
                 <option value="中专">中专</option>
                 <option value="高中">高中</option>
                 <option value="大专">大专</option>
+                <option value="本科">本科</option>
                 <option value="硕士及以上">硕士及以上</option>
               </select>
             </div>
@@ -1411,14 +1413,14 @@
           <div class="col-md-6">
             <label for="" class="control-label">联系手机:</label>
             <div class="col-md-6">
-              <input type="text" name="legalMobile" class="form-control" maxlength="30" [(ngModel)]="companyLegalVo.legalMobile">
+              <input type="text" name="legalMobile" class="form-control" maxlength="11" [(ngModel)]="companyLegalVo.legalMobile">
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section class="m-t clearfix">
+  <section class="m-t clearfix" id="bankInfo">
     <div class="page-location">
       <a class="h4 pad-r-xs font-bold">银行信息</a>
       <i class="fa fa-caret-right text-lg" *ngIf="!part4S" (click)="part4S=!part4S"></i>
@@ -1429,42 +1431,49 @@
         <div class="clearfix group col-md-12">
           <div class="group-title">银行卡信息</div>
           <div class="col-md-12 m-t">
-            <a class="text-info pull-right" *ngIf="!part4_1" (click)="edit('part4_1')">编辑</a>
+            <!-- <a class="text-info pull-right" *ngIf="!part4_1" (click)="edit('part4_1')">吃屎啊</a> -->
             <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part4_1" [disabled]="!part4_1F.form.valid">提交</button>
-            <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part4_1" (click)="cancel('part4_1')">取消</button>
+            <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part4_1" (click)="cancel('part4_1')">放弃</button>
           </div>
           <div *ngIf="!part4_1">
-            <div class="col-md-12 border-content m-b" *ngFor="let item of companyBankCardVos">
+            <div class="col-md-12 border-content m-b padder-v" *ngFor="let item of companyBankCardVos">
+              <button class="table-btn pull-right" [disabled]="!item.authStatus" [class.text-disabled]="!item.authStatus" (click)="bankCardEdit(item)" *ngIf="memberVo.serviceMan==authRole.userName" type="button">编辑</button>
               <div class="form-group clearfix m-t-md">
+                
                 <div class="col-md-6">
-                  <label for="" class="control-label">卡类型:</label>
-                  <div class="col-md-6 text-content">{{item.typeDic | filterNull}}</div>
+                  <label for="" class="control-label">银行卡号:</label>
+                  <div class="col-md-6 text-content">{{item.cardNo | filterNull:false}}</div>
                 </div>
                 <div class="col-md-6">
-                  <label for="" class="control-label">银行账号:</label>
-                  <div class="col-md-6 text-content">{{item.cardNo | filterNull}}</div>
+                  <label for="" class="control-label">开户名:</label>
+                  <div class="col-md-6 text-content">{{item.cardName | filterNull:false}}</div>
                 </div>
               </div>
               <div class="form-group clearfix">
                 <div class="col-md-6">
                   <label for="" class="control-label">银行名称:</label>
-                  <div class="col-md-6 text-content">{{item.bankName | filterNull}}</div>
+                  <div class="col-md-6 text-content">{{item.bankName | filterNull:false}}</div>
                 </div>
                 <div class="col-md-6">
                   <label for="" class="control-label">支行名称:</label>
-                  <div class="col-md-6 text-content">{{item.subbankName | filterNull}}</div>
+                  <div class="col-md-8 text-content">{{item.subbankName | filterNull:false}}</div>
                 </div>
               </div>
               <div class="form-group clearfix">
                 <div class="col-md-6">
-                  <label for="" class="control-label">认证状态:</label>
-                  <div class="col-md-6 text-content">{{item.authStatusDic | filterNull}}</div>
+                  <label for="" class="control-label">卡类型:</label>
+                  <div class="col-md-6 text-content">{{item.typeDic | filterNull:false}}</div>
                 </div>
+                
                 <div class="col-md-6">
-                  <label for="" class="control-label">默认:</label>
-                  <div class="col-md-6 text-content">{{item.isDefaultDic | filterNull}}</div>
+                  <label for="" class="control-label">状态:</label>
+                  <div class="col-md-6" [ngClass]="{'text-success':item.authStatus==1,'text-danger':item.authStatus!=1}">{{item.authStatusDic | filterNull:false}}</div>
                 </div>
+                
               </div>
+            </div>
+            <div class="col-md-12">
+              <a class="text-info" *ngIf="memberVo.serviceMan==authRole.userName" (click)="bankCardAdd()">+添加</a>
             </div>
           </div>
           <!-- 编辑 -->
@@ -1474,7 +1483,7 @@
                 <div class="col-md-6">
                   <label for="" class="control-label">银行卡号:</label>
                   <div class="col-md-6 text-content">
-                    <input type="text" class="form-control" name="bankInfoCardNo_{{bankCard.uniqueId}}" maxlength="30" [(ngModel)]="bankCard.companyBankInfo.cardNo" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
+                    <input type="text" class="form-control" name="bankInfoCardNo_{{bankCard.uniqueId}}" maxlength="20" [(ngModel)]="bankCard.companyBankInfo.cardNo" [disabled]="bankCard.companyBankInfo.authStatus==0" required>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -1488,18 +1497,11 @@
                 <div class="col-md-6">
                   <label for="" class="control-label">银行名称:</label>
                   <div class="col-md-6 text-content">
-                    <select-bar #selectBar
-                        (onDropdown)="bankCard.clearBanks();bankCard.queryBanks(bankCard.bankKey)">
-                      <input [(ngModel)]="bankCard.bankName" required name="bankName_{{bankCard.uniqueId}}" maxlength="30" class="form-control"
-                             placeholder="请选择银行"
-                             data-type="value"
-                             [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
-                      <input class="form-control" placeholder="银行关键字" maxlength="30" [ngModel]="bankCard.bankKey"
-                             name="bankKeyword_{{bankCard.uniqueId}}"
-                             data-type="keyword" (ngModelChange)="bankCard.queryBanks($event)">
+                    <select-bar #selectBar (onDropdown)="bankCard.clearBanks();bankCard.queryBanks(bankCard.bankKey)">
+                      <input [(ngModel)]="bankCard.bankName" required name="bankName_{{bankCard.uniqueId}}" maxlength="30" class="form-control" placeholder="请选择银行" data-type="value" [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
+                      <input class="form-control" placeholder="银行关键字" maxlength="30" [ngModel]="bankCard.bankKey" name="bankKeyword_{{bankCard.uniqueId}}" data-type="keyword" (ngModelChange)="bankCard.queryBanks($event)">
                       <ul class="list" *ngIf="bankCard.bankList.length>0">
-                        <li *ngFor="let bk of bankCard.bankList"
-                            (click)="bankCard.subBankName='';bankCard.clearSubBanks();bankCard.bankName=bk.name;selectBar.dropup()">
+                        <li *ngFor="let bk of bankCard.bankList" (click)="bankCard.subBankName='';bankCard.clearSubBanks();bankCard.bankName=bk.name;selectBar.dropup()">
                           {{bk.name}}
                         </li>
                       </ul>
@@ -1510,18 +1512,11 @@
                   <label for="" class="control-label">支行名称:</label>
                   <!-- <div class="col-md-6 text-content">{{item.subbankName}}</div> -->
                   <div class="col-md-6 text-content">
-                    <select-bar #selectBar1
-                        (onDropdown)="bankCard.clearSubBanks();bankCard.querySubBanks(bankCard.subBankKey)">
-                      <input [(ngModel)]="bankCard.subBankName" required name="subBankName_{{bankCard.uniqueId}}" maxlength="30" class="form-control"
-                             placeholder="请选择支行"
-                             data-type="value"
-                             [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
-                      <input class="form-control" placeholder="支行关键字" maxlength="30" [ngModel]="bankCard.subBankKey"
-                             name="subBankKeyword_{{bankCard.uniqueId}}"
-                             data-type="keyword" (ngModelChange)="bankCard.querySubBanks($event)">
+                    <select-bar #selectBar1 (onDropdown)="bankCard.clearSubBanks();bankCard.querySubBanks(bankCard.subBankKey)">
+                      <input [(ngModel)]="bankCard.subBankName" required name="subBankName_{{bankCard.uniqueId}}" maxlength="30" class="form-control" placeholder="请选择支行" data-type="value" [disabled]="bankCard.companyBankInfo.authStatus==0" required/>
+                      <input class="form-control" placeholder="支行关键字" maxlength="30" [ngModel]="bankCard.subBankKey" name="subBankKeyword_{{bankCard.uniqueId}}" data-type="keyword" (ngModelChange)="bankCard.querySubBanks($event)">
                       <ul class="list" *ngIf="bankCard.subBankList.length>0">
-                        <li *ngFor="let bk of bankCard.subBankList"
-                            (click)="bankCard.subBankName='';bankCard.clearSubBanks();bankCard.subBankName=bk.subbank;bankCard.companyBankInfo.lineNo=bk.lineno;selectBar1.dropup()">
+                        <li *ngFor="let bk of bankCard.subBankList" (click)="bankCard.subBankName='';bankCard.clearSubBanks();bankCard.subBankName=bk.subbank;bankCard.companyBankInfo.lineNo=bk.lineno;selectBar1.dropup()">
                           {{bk.subbank}}
                         </li>
                       </ul>
@@ -1542,11 +1537,9 @@
               </div>
               <i *ngIf="bankCard.companyBankInfo.authStatus!=0" class="glyphicon glyphicon-remove text-danger pos-abt delete-p" (click)="deleteBankCard(i)"></i>
             </div>
-
             <div class="col-md-12">
               <a class="text-info" (click)="addBankCardInfo()">+添加</a>
             </div>
-
           </div>
         </div>
       </form>
@@ -1554,9 +1547,9 @@
         <div class="form-group col-md-12 group m-t padder-v">
           <div class="group-title">相关证照</div>
           <div class="col-md-12">
-            <a class="text-info pull-right" *ngIf="!part4_2" (click)="edit('part4_2')">编辑</a>
+            <a class="text-info pull-right" *ngIf="!part4_2&&memberVo.serviceMan==authRole.userName" (click)="edit('part4_2')">编辑</a>
             <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part4_2" [disabled]="!part4_2F.form.valid">保存</button>
-            <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part4_2" (click)="cancel('part4_2')">取消</button>
+            <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part4_2" (click)="cancel('part4_2')">放弃</button>
           </div>
           <div class="clearfix" *ngIf="!part4_2">
             <div class="col-md-12 row">
@@ -1592,9 +1585,9 @@
                     <div *ngIf="!attachment['0501']">开户证明</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0501']&&(!uploader3_1.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0501']&&(!uploader3_1.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader3_1" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0501']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0501','uploader3_1')">删除</a>
@@ -1661,9 +1654,9 @@
                     <div *ngIf="!attachment['0502']">银行卡</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0502']&&(!uploader3_2.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0502']&&(!uploader3_2.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader3_2" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0502']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0502','uploader3_2')">删除</a>
@@ -1732,9 +1725,9 @@
                     <div *ngIf="!attachment['0504']">网银流水</div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-info pos-rlt" *ngIf="!attachment['0504']&&(!uploader3_3.queue[0])">上传
+                    <label class="text-info pos-rlt" *ngIf="!attachment['0504']&&(!uploader3_3.queue[0])">上传
                       <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader3_3" />
-                    </div>
+                    </label>
                     <div *ngIf="attachment['0504']">
                       <i class="glyphicon glyphicon-ok text-success"></i>
                       <a class="text-danger" (click)="deleteFile('0504','uploader3_3')">删除</a>
@@ -1806,4 +1799,78 @@
     </div>
   </section>
 </div>
-<gallery #gallery size="lg"></gallery>
+<gallery #gallery size="md"></gallery>
+<!-- 更改银行卡模态框部分 -->
+<modal [(visible)]="bankCardModal" size="lg" [overflow]="true">
+  <form #formBankCard="ngForm">
+    <modal-header>
+      <h4 class="modal-title">银行卡变更</h4>
+    </modal-header>
+    <modal-body >
+      <div class="form-horizontal form-label-7 wrapper">
+        <div class="clearfix form-group">
+          <div class="col-md-6">
+            <label for="" class="control-label-modal">银行卡号:</label>
+            <div class="col-md-9 text-content">
+              <input type="text" class="form-control" name="bankInfoCardNo" maxlength="30" [(ngModel)]="bankCardModalData.cardNo" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="" class="control-label-modal">开户名:</label>
+            <div class="col-md-9 text-content">
+              <input type="text" class="form-control" name="bankInfoCardName" maxlength="30" [(ngModel)]="bankCardModalData.cardName" required>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix form-group">
+          <div class="col-md-6">
+            <label for="" class="control-label-modal">银行名称:</label>
+            <div class="col-md-9 text-content">
+              <select-bar #selectBar (onDropdown)="clearBanks();queryBanks(bankKey)">
+                <input [(ngModel)]="bankCardModalData.bankName" name="bankName" maxlength="30" class="form-control" placeholder="请选择银行" data-type="value" required/>
+                <input class="form-control" placeholder="银行关键字" maxlength="30" [ngModel]="bankKey" name="bankKeyword" data-type="keyword" (ngModelChange)="queryBanks($event)">
+                <ul class="list" *ngIf="bankList.length>0">
+                  <li *ngFor="let bk of bankList" (click)="bankCardModalData.subbankName='';clearSubBanks();bankCardModalData.bankName=bk.name;selectBar.dropup()">
+                    {{bk.name}}
+                  </li>
+                </ul>
+              </select-bar>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="" class="control-label-modal">支行名称:</label>
+            <!-- <div class="col-md-9 text-content">{{item.subbankName}}</div> -->
+            <div class="col-md-9 text-content">
+              <select-bar #selectBar1 (onDropdown)="clearSubBanks();querySubBanks(subBankKey)">
+                <input [(ngModel)]="bankCardModalData.subbankName" name="subbankName" maxlength="30" class="form-control" placeholder="请选择支行" data-type="value" required/>
+                <input class="form-control" placeholder="支行关键字" maxlength="30" [ngModel]="subBankKey" name="subBankKeyword" data-type="keyword" (ngModelChange)="querySubBanks($event)">
+                <ul class="list" *ngIf="subBankList.length>0">
+                  <li *ngFor="let bk of subBankList" (click)="bankCardModalData.subbankName='';clearSubBanks();bankCardModalData.subbankName=bk.subbank;bankCardModalData.lineNo=bk.lineno;selectBar1.dropup()">
+                    {{bk.subbank}}
+                  </li>
+                </ul>
+              </select-bar>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix form-group">
+          <div class="col-md-6">
+            <label for="" class="control-label-modal">卡类型:</label>
+            <div class="col-md-9 text-content">
+              <select name="bankInfoCardType" class="form-control" [(ngModel)]="bankCardModalData.type" required>
+                <option [value]="undefined" hidden>请选择</option>
+                <option [value]="accT.value" *ngFor="let accT of accTypeList">{{accT.label}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </modal-body>
+    <modal-footer styleClass="no-t-padding">
+      <button class="btn btn-default" (click)="closeModal()" type="button">放弃</button>
+      <button class="btn btn-info" [disabled]="!formBankCard.valid" *ngIf="bankCardModalEditOrAdd=='add'" type="submit" (click)="bankCardSubmit(1)">申请添加</button>
+      <button class="btn btn-info" [disabled]="!formBankCard.valid" *ngIf="bankCardModalEditOrAdd=='edit'" type="submit" (click)="bankCardSubmit(2)">申请修改</button>
+      <button class="btn btn-info" *ngIf="bankCardModalEditOrAdd=='edit'" type="button" (click)="bankCardSubmit(3)">申请删除</button>
+    </modal-footer>
+  </form>
+</modal>

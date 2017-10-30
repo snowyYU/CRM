@@ -1,13 +1,14 @@
 import { Component,OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router,ActivatedRoute } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { GetApplyService,SendData } from './get-apply.service'
+import { DateService } from '../../../services/date/date.service'
 
 @Component({
 	selector:'get-apply',
 	templateUrl:'./get-apply.component.html',
 	styleUrls:['./get-apply.component.less'],
-	providers:[GetApplyService]
+	providers:[GetApplyService,DateService]
 })
 export class GetApplyComponent implements OnInit{
 	loading:boolean
@@ -30,13 +31,28 @@ export class GetApplyComponent implements OnInit{
 	count:number
 
 	dataList:any
+
+	todayDate
+
 	constructor(
 		private pop:PopService,
 		private router:Router,
-		private getApply:GetApplyService
+		private route:ActivatedRoute,
+		private getApply:GetApplyService,
+		private dateService:DateService
 		){}
 	ngOnInit(){
-		this.getDataList("0")
+		if (this.route.queryParams['value']['qry']) {
+			this.qryStatus=this.route.queryParams['value']['qry']
+		}
+		this.getDataList(this.qryStatus)
+
+		this.todayDate=this.dateService.format({
+			date:this.dateService.todayDate(),
+			formatType:"yyyy-MM-dd"
+
+		})
+
 	}
 
 	getDataList(s?:string){

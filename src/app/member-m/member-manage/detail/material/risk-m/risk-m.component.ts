@@ -5,6 +5,7 @@ import { PopService } from 'dolphinng'
 import { Uploader } from '../../../../../../utils/uploader/Uploader'
 import { API } from '../../../../../../services/config/app.config'
 import { GalleryComponent} from 'dolphinng';
+import { AuthRoleService } from '../../../../../../services/authRole/authRole.service';
 
 @Component({
 	moduleId: module.id,
@@ -14,6 +15,7 @@ import { GalleryComponent} from 'dolphinng';
 	providers:[RiskMService]
 })
 export class RiskMComponent implements OnInit {
+	userName:string
 	attachment:object={}
 	memberId:number
 	part1:boolean=false
@@ -137,13 +139,15 @@ export class RiskMComponent implements OnInit {
 			private router:Router,
 			private route:ActivatedRoute,
 			private riskM:RiskMService,
-			private pop:PopService
+			private pop:PopService,
+			private auth:AuthRoleService
 		) {}
 
 	ngOnInit() {
 		this.memberId=this.route.params['value']['id']
 		console.log(this.route.queryParams['value']['hash'])
-
+		
+		this.userName=this.auth.userName
 		this.getDetailData()
 		this.getNativeRenting()
 
@@ -182,6 +186,7 @@ export class RiskMComponent implements OnInit {
 		this.companyDebt=res.body.companyDebt
 		this.companyCredit=res.body.companyCredit
 		this.member=res.body.member
+		this.companyAsset.nativeRenting=res.body.companyAsset.nativeRenting+""  //本地租房状况
 
 		this.companyAsset.carValue=res.body.companyAsset.carValue/10000
 		this.companyAsset.houseValue=res.body.companyAsset.houseValue/10000
@@ -278,14 +283,18 @@ export class RiskMComponent implements OnInit {
 	    		let data=JSON.parse(uploader.queue[0].response)
 	    		this[upName].customData.data=data
 	      		if (data.status==200) {
-			      	this[upName].queue[0].setSuccess()
-			      	this.attachment[type]={
-			      		attachId:'',
+			      	setTimeout(()=>{
+	      				this[upName].queue[0].setSuccess()
+
+	      				this.attachment[type]={
+			      		attachId:null,
 			      		attachName:uploader.queue[0].fileName,
 			      		fileType:type,
 			      		fileLoadId:data.body.fileId
-			      	}
-			      	console.log(this.attachment)
+			      		}
+			      		console.log(this.attachment)
+
+	      			},1000)
 			      	
 			     }
 	    	}
@@ -444,7 +453,13 @@ export class RiskMComponent implements OnInit {
 
 	}
 
-
+	deleteFile(id,up){
+		this.riskM.deleteFile(this.memberId,this.attachment[id].attachId,this.attachment[id].fileLoadId).then(res=>{
+			console.log(res)
+			delete this.attachment[id]
+			this[up].queue=[]
+		})
+	}
 
 
 

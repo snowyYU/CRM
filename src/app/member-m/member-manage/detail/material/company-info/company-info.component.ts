@@ -1,11 +1,11 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild,AfterViewInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router'
 import { PopService } from 'dolphinng'
-import { Part1Data,Part2Data,Part3Data,Part4Data,CompanyInfoService } from './company-info.service'
+import { BankCardSubmitData,Part1Data,Part2Data,Part3Data,Part4Data,CompanyInfoService } from './company-info.service'
 import { Uploader } from '../../../../../../utils/uploader/Uploader'
 import { API } from '../../../../../../services/config/app.config'
 import { GalleryComponent} from 'dolphinng';
-
+import { AuthRoleService } from '../../../../../../services/authRole/authRole.service'
 
 declare let $:any
 @Component({
@@ -240,7 +240,8 @@ export class CompanyInfoComponent implements OnInit {
 		private route:ActivatedRoute,
 		private router:Router,
 		private pop:PopService,
-		private companyInfo:CompanyInfoService
+		private companyInfo:CompanyInfoService,
+		public authRole:AuthRoleService
 
 
 
@@ -248,6 +249,8 @@ export class CompanyInfoComponent implements OnInit {
 		) {}
 
 	ngOnInit() {
+
+		// window.location.hash=this.route.queryParams['value']['hash']
 
 		//给原数组originalArray赋值 
 		for (let i=0;i<300;i++){ 
@@ -290,6 +293,14 @@ export class CompanyInfoComponent implements OnInit {
 
 
 
+
+	}
+
+	ngAfterViewInit(){
+		if (this.route.queryParams['value']['hash']) {
+			document.querySelector('#' + this.route.queryParams['value']['hash']).scrollIntoView();
+			
+		}
 
 	}
 
@@ -454,7 +465,7 @@ export class CompanyInfoComponent implements OnInit {
 		this.companyLegalVo=data.body.companyLegalVo
 		this.companyBankCardVos=data.body.companyBankCardVos
 
-		this.borrwerMarry=data.body.companyborrowerVo.borrwerMarry?data.body.companyborrowerVo.borrwerMarry:''
+		this.borrwerMarry=data.body.companyborrowerVo.borrwerMarry+''
 		console.log('borrwerMarry',this.borrwerMarry)
 		this.companyLegalVo.legalMarry=data.body.companyLegalVo.legalMarry+''
 
@@ -547,11 +558,18 @@ export class CompanyInfoComponent implements OnInit {
 	}
 
 	deleteFile(id,up){
-		this.companyInfo.deleteFile(this.attachment[id].fileLoadId).then(res=>{
-			console.log(res)
-			delete this.attachment[id]
-			this[up].queue=[]
-		})
+		this.companyInfo.deleteFile(this.memberId,this.attachment[id].attachId,this.attachment[id].fileLoadId)
+			.then(res=>{
+				console.log(res)
+				delete this.attachment[id]
+				this[up].queue=[]
+			})
+			.catch(res=>{
+				this.pop.error({
+					titile:"错误信息",
+					text:res.message
+				})
+			})
 	}
 
 
@@ -740,11 +758,11 @@ export class CompanyInfoComponent implements OnInit {
 
 	}
 
-	deleteBankCard(index){
+	// deleteBankCard(index){
 
-		this.companyBankCardDatas.splice(index,1)
-		console.log(this.companyBankCardDatas)
-	}
+	// 	this.companyBankCardDatas.splice(index,1)
+	// 	console.log(this.companyBankCardDatas)
+	// }
 
 	//生成一个不重复的随机数1~300
 	createUniqueId():number{
@@ -754,6 +772,142 @@ export class CompanyInfoComponent implements OnInit {
 	}
 
 
+	//2017.10.26修改银行卡编辑部分的交互
+	//相关的变量
+
+	bankCardModal:boolean=false
+
+	bankCardModalEditOrAdd:string
+
+	bankCardModalData:BankCardSubmitData={
+		memberId:'',
+		operation:'',
+		type:''
+		}
+	// bankName
+	// subBankName
+	bankKey
+	subBankKey
+	bankList=[]
+	subBankList=[]
+
+	httpRequestKiller
+
+	bankCardEdit(item){
+		console.log(item)
+		this.bankCardModalEditOrAdd="edit"
+		this.initBankCardModalData()
+
+		if (item) {
+			this.bankCardModalData=item
+		}
+		
+		this.bankCardModal=true
+	}
+
+	bankCardAdd(){
+		if (this.companyBankCardVos.length>2) {
+			this.pop.info({
+				title:'提示信息',
+				text:'会员最多有三个银行卡!'
+			})
+			return
+		}
+		this.bankCardModalEditOrAdd="add"
+
+		this.initBankCardModalData()
+		this.bankCardModalData.memberId=this.memberId		
+		this.bankCardModal=true
+	}
+
+	clearBanks(){
+		this.bankList=[]
+
+	}
+
+	
+
+	clearSubBanks(){
+		this.subBankList=[]
+	}
+
+	queryBanks(key){
+
+		clearTimeout(this.httpRequestKiller)
+		this.httpRequestKiller=setTimeout(()=>{
+			this.bankKey=key
+			this.companyInfo.getBanks(key)
+				.then(res=>{
+					this.bankList=res.body.records
+				})
+				.catch(res=>{
+				this.pop.error({
+					title:'错误提示',
+					text:res.message
+				})
+			})
+		},200)
+		
+		
+	}
+
+	querySubBanks(key){
+		clearTimeout(this.httpRequestKiller)
+		this.httpRequestKiller=setTimeout(()=>{
+			this.companyInfo.getSubbankList(this.bankCardModalData.bankName,key)
+			.then(res=>{
+				this.subBankList=res.body.records
+			})
+			.catch(res=>{
+				this.pop.error({
+					title:'错误提示',
+					text:res.message
+				})
+			})
+		},200)
+		
+	}
+
+
+	bankCardSubmit(operation){
+		this.bankCardModalData.operation=operation
+		this.companyInfo.upBankCardApply(this.bankCardModalData)
+			.then(res=>{
+				this.pop.info({
+					title:'提示',
+					text:'提交成功'
+				})
+				this.getDetailData()
+				this.closeModal()
+
+			})
+			.catch(res=>{
+				this.pop.error({
+					title:'错误提示',
+					text:res.message
+				})
+				this.getDetailData()
+
+			})
+	}
+
+	closeModal(){
+		this.bankCardModal=false
+	}
+
+	initBankCardModalData(){
+		this.bankCardModalData={
+			memberId:'',
+			operation:'',
+			type:''
+		}
+		// bankName
+		// subBankName
+		this.bankKey=""
+		this.subBankKey=""
+		this.bankList=[]
+		this.subBankList=[]
+	}
 }
 
 
@@ -833,7 +987,4 @@ class BankCardInfo{
 	customTrackBy(index: number, obj: any): any {
 	  return index;
 	}
-
-
-
 }

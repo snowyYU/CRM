@@ -13,6 +13,7 @@ export class SelectBarComponent implements AfterViewInit{
 
 
   @Input() styleClass:string;
+  @Input() isTriangle:boolean=true
 
   @Output() onDropdown:EventEmitter<any>=new EventEmitter();
   @Output() onDropup:EventEmitter<any>=new EventEmitter();

@@ -79,9 +79,15 @@ export class RunSituationService {
 				
 	}
 
-	deleteFile(id):Promise<any>{
-		return this.myHttp.sDelete(id)
-				.toPromise()
+	deleteFile(memberId,attachId,fileLoadId):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.deleteAttach,
+			query:{
+				memberId:memberId,
+				attachId:attachId,
+				fileLoadId:fileLoadId
+			}
+			}).toPromise()
 				.then(res=>{
 					let data=res
 					if (data.status==200) {
@@ -90,12 +96,13 @@ export class RunSituationService {
 						return Promise.reject(data)
 					}
 				})
+				
 	}
 
 	saveData(data:SendData):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveRunInfo,
-			query:data
+			body:data
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {

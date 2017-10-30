@@ -111,7 +111,7 @@ export class SigninComponent {
   	extractData(res: any){
         this.authRoleService.eTime=res.body.expiresIn*500
         // this.authTokenService.expiresT=response.body.expiresIn*500
-        this.authRoleService.userName=this.user;
+        this.authRoleService.userName=res.body.employeeName;
   			this.authRoleService.token=res.body.accessToken
         this.authRoleService.employeeId=res.body.employeeId
 

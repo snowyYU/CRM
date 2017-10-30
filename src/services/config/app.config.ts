@@ -301,6 +301,10 @@ export const API = {
     url:'ms/commondb/companyBankCard/updateApply',
     method:'post'
   },
+  upBankCardApply:{//公司银行卡编辑
+    url:'ms/commondb/companyBankCard/upBankCardApply',
+    method:'post'
+  },
 
 
 
@@ -429,6 +433,14 @@ export const API = {
     url:'signature/user/deleteUserSeal',
     method:'post'
   },
+
+  /*-----------------------------------删除附件接口---------------------------------------*/
+  deleteAttach:{
+    url:'file/deleteAttach',
+    method:'post'
+  },
+
+
 
   /*-----------------------------------文件服务器的接口---------------------------------------*/
   fileServer:host_file,

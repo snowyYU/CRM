@@ -11,13 +11,13 @@
         <div class="col-md-6">
           <label class="label-control label-special-w" >变更申请ID:</label>
           <div class="col-md-8 m-t-xs text-content">
-            {{updateApplyId | filterNull}}
+            {{updateApplyId | filterNull:false}}
           </div>
         </div>
         <div class="col-md-6 ">
           <label class="label-control label-special-w">申请时间:</label>
           <div class="col-md-8 m-t-xs text-content">
-            {{createTime | filterNull}}
+            {{createTime | filterNull:false}}
           </div>
         </div>
       </div>
@@ -27,26 +27,26 @@
         <div class="col-md-6">
           <label class="label-control label-special-w" >客户名称:</label>
           <div class="col-md-8 m-t-xs text-content">
-            {{memberName | filterNull}}
+            {{memberName | filterNull:false}}
           </div>
         </div>
         <div class="col-md-6 ">
           <label class="label-control label-special-w">状态:</label>
           <div class="col-md-8 m-t-xs text-content">
-            {{statusDic | filterNull}}
+            {{statusDic | filterNull:false}}
           </div>
         </div>
       </div>
       <div class="form-group clearfix">
         <label class="label-control label-special-w">归属渠道:</label>
         <div class="col-md-4 m-t-xs text-content">
-          {{appName | filterNull}}
+          {{appName | filterNull:false}}
         </div>
       </div>
       <div class=" clearfix">
         <label class="label-control label-special-w" >服务经理:</label>
         <div class="col-md-4 m-t-xs text-content">
-          {{serviceMan | filterNull}}
+          {{serviceMan | filterNull:false}}
         </div>
       </div>
     </section>
@@ -58,7 +58,7 @@
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">手机号:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{oldPhome | filterNull}}
+            {{oldPhome | filterNull:false}}
             </div>
           </div>
         </div>
@@ -67,31 +67,31 @@
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡号:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{companyBankCard.cardNo | filterNull}}
+            {{companyBankCard.cardNo | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户名:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{companyBankCard.cardName | filterNull}}
+            {{companyBankCard.cardName | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户行:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{companyBankCard.bankName | filterNull}}
+            {{companyBankCard.bankName | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">支行名称:</label>
             <div class="col-md-9 m-t-xs text-content">
-            {{companyBankCard.subbankName | filterNull}}
+            {{companyBankCard.subbankName | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡类型:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{companyBankCard.typeDic | filterNull}}
+            {{companyBankCard.typeDic | filterNull:false}}
             </div>
           </div>
         </div>
@@ -100,31 +100,31 @@
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡号:</label>
             <div class="col-md-8 m-t-xs text-content">
-            <!-- {{companyBankCard.cardNo | filterNull}} -->--
+            <!-- {{companyBankCard.cardNo | filterNull:false}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户名:</label>
             <div class="col-md-8 m-t-xs text-content">
-            <!-- {{companyBankCard.cardName | filterNull}} -->--
+            <!-- {{companyBankCard.cardName | filterNull:false}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户行:</label>
             <div class="col-md-8 m-t-xs text-content">
-            <!-- {{companyBankCard.bankName | filterNull}} -->--
+            <!-- {{companyBankCard.bankName | filterNull:false}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">支行名称:</label>
             <div class="col-md-9 m-t-xs text-content">
-            <!-- {{companyBankCard.subbankName | filterNull}} -->--
+            <!-- {{companyBankCard.subbankName | filterNull:false}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡类型:</label>
             <div class="col-md-8 m-t-xs text-content">
-            <!-- {{companyBankCard.typeDic | filterNull}} -->--
+            <!-- {{companyBankCard.typeDic | filterNull:false}} -->--
             </div>
           </div>
         </div>
@@ -133,31 +133,31 @@
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡号:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{companyBankCard.cardNo | filterNull}}
+            {{companyBankCard.cardNo | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户名:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{companyBankCard.cardName | filterNull}}
+            {{companyBankCard.cardName | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户行:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{companyBankCard.bankName | filterNull}}
+            {{companyBankCard.bankName | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">支行名称:</label>
             <div class="col-md-9 m-t-xs text-content">
-            {{companyBankCard.subbankName | filterNull}}
+            {{companyBankCard.subbankName | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡类型:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{companyBankCard.typeDic | filterNull}}
+            {{companyBankCard.typeDic | filterNull:false}}
             </div>
           </div>
         </div>
@@ -169,7 +169,7 @@
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">手机号:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{newPhone | filterNull}}
+            {{newPhone | filterNull:false}}
             </div>
           </div>
         </div>
@@ -178,31 +178,31 @@
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡号:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{newCardNo | filterNull}}
+            {{newCardNo | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户名:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{newCardName | filterNull}}
+            {{newCardName | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户行:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{newBankName | filterNull}}
+            {{newBankName | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">支行名称:</label>
             <div class="col-md-9 m-t-xs text-content">
-            {{newSubbankName | filterNull}}
+            {{newSubbankName | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡类型:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{newTypeDic | filterNull}}
+            {{newTypeDic | filterNull:false}}
             </div>
           </div>
         </div>
@@ -211,31 +211,31 @@
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡号:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{newCardNo | filterNull}}
+            {{newCardNo | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户名:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{newCardName | filterNull}}
+            {{newCardName | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户行:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{newBankName | filterNull}}
+            {{newBankName | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">支行名称:</label>
             <div class="col-md-9 m-t-xs text-content">
-            {{newSubbankName | filterNull}}
+            {{newSubbankName | filterNull:false}}
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡类型:</label>
             <div class="col-md-8 m-t-xs text-content">
-            {{newTypeDic | filterNull}}
+            {{newTypeDic | filterNull:false}}
             </div>
           </div>
         </div>
@@ -244,31 +244,31 @@
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡号:</label>
             <div class="col-md-8 m-t-xs text-content">
-            <!-- {{companyBankCard.cardNo | filterNull}} -->--
+            <!-- {{companyBankCard.cardNo | filterNull:false}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户名:</label>
             <div class="col-md-8 m-t-xs text-content">
-            <!-- {{companyBankCard.cardName | filterNull}} -->--
+            <!-- {{companyBankCard.cardName | filterNull:false}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">开户行:</label>
             <div class="col-md-8 m-t-xs text-content">
-            <!-- {{companyBankCard.bankName | filterNull}} -->--
+            <!-- {{companyBankCard.bankName | filterNull:false}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">支行名称:</label>
             <div class="col-md-9 m-t-xs text-content">
-            <!-- {{companyBankCard.subbankName | filterNull}} -->--
+            <!-- {{companyBankCard.subbankName | filterNull:false}} -->--
             </div>
           </div>
           <div class="form-group clearfix">
             <label  class="label-control label-special-w">银行卡类型:</label>
             <div class="col-md-8 m-t-xs text-content">
-            <!-- {{companyBankCard.typeDic | filterNull}} -->--
+            <!-- {{companyBankCard.typeDic | filterNull:false}} -->--
             </div>
           </div>
         </div>
@@ -292,7 +292,7 @@
       <div class="clearfix">
         <label class="label-control label-special-w">审核意见:</label>
         <div class="col-md-8 m-t-xs">
-          <div class="text-content" *ngIf="!isCheck">{{applyMessage | filterNull}}</div>
+          <div class="text-content" *ngIf="!isCheck">{{applyMessage | filterNull:false}}</div>
           <textarea name="applyMessage" class="form-control" cols="30" rows="4" maxlength="200" placeholder="小于200字" *ngIf="isCheck" [(ngModel)]="applyMessage"></textarea>
 
         </div>
@@ -303,7 +303,8 @@
       <div class="text-center">
         <button class="btn-def btn-def-success mar-r-xs" *ngIf="isCheck" (click)="submit(2)">通过<i class="fa fa-check-circle-o"></i></button>
         <button class="btn-def btn-def-danger mar-r-xs" *ngIf="isCheck" (click)="submit(-1)">拒绝<i class="fa fa-ban"></i></button>
-        <a (click)="back()" class="btn-def mar-r-xs" >放弃<i class="fa fa-arrow-circle-o-left"></i></a>
+        <a (click)="back()" class="btn-def mar-r-xs" *ngIf="isCheck">放弃<i class="fa fa-arrow-circle-o-left"></i></a>
+        <a (click)="back()" class="btn-def mar-r-xs" *ngIf="!isCheck">返回<i class="fa fa-arrow-circle-o-left"></i></a>
       </div>
     </section>
   </form>

@@ -313,6 +313,32 @@ export class ApplyAuthComponent implements OnInit {
 		this.linkName=res.body.linkName;
 		this.linkMobile=res.body.linkMobile;
 		this.linkJob=res.body.linkJob;
+
+		//处理公司地址
+
+		if (res.body.companyAddress) {
+			let array=res.body.companyAddress.split('-')
+			switch (array.length) {
+				case 1:
+					this.province=array[0];
+					break;
+				case 2:
+					this.province=array[0];
+					this.getCityList("2");
+					this.city=array[1];
+					break;
+				case 3:
+					this.province=array[0];
+					this.detailAddress=array[2];
+					this.getCityList("2");
+					this.city=array[1];
+					break;
+				default:
+					
+					break;
+			}
+		}
+		
 	}
 
 	addAttachment(){

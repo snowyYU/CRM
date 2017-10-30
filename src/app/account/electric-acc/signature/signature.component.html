@@ -10,10 +10,10 @@
         <label class="h3 font-bold m-b-md"><i class="fa fa-search"></i> 会员电子签章信息查询</label>
         <div class="wrapper clearfix form-inline">
           <div class="form-group">
-            <select-bar #selectBar1
+            <select-bar #selectBar1 [isTriangle]="false"
               (onDropdown)="clearMemberList();queryMemberList(memberNameQKey)">
               <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control search" maxlength="30" 
-                     placeholder="请选择会员"
+                     placeholder="请输入会员关键字"
                      data-type="value"
                       />
               <input class="form-control search" placeholder="会员关键字" autocomplete="off" maxlength="30" [ngModel]="memberNameQKey"
@@ -35,10 +35,10 @@
 <form #form="ngForm" ngSubmit="openAcc()">
     <section class="wrapper clearfix form-inline">
         <div class="form-group">
-          <select-bar #selectBar1
+          <select-bar #selectBar1 [isTriangle]="false"
             (onDropdown)="clearMemberList();queryMemberList(memberNameQKey)">
             <input [(ngModel)]="memberNameQ"  name="memberNameQ" class="form-control i-width" maxlength="30" 
-                   placeholder="请选择会员"
+                   placeholder="请输入会员关键字"
                    data-type="value"
                     />
             <input class="form-control i-width" placeholder="会员关键字" autocomplete="off" maxlength="30" [ngModel]="memberNameQKey"
@@ -65,14 +65,14 @@
             </div>
             <div class="col-md-6">
                 <label class="control-label m-l-md">状态:</label>
-                <span class="text-content">{{signatureUserStatusDit | filterNull}}</span>
+                <span class="text-content">{{signatureUserStatusDit | filterNull:false}}</span>
             </div>
             
         </div>
         <div class="row">
             <div class="col-md-12">
                 <label class="control-label m-l-md">归属渠道:</label>
-                <span class="text-content">{{prmResourceRegister.resourceName | filterNull}}</span>
+                <span class="text-content">{{prmResourceRegister.resourceName | filterNull:false}}</span>
             </div>
             
         </div>
@@ -82,33 +82,33 @@
         <div class="row form-group">
             <div class="col-md-6 m-t-xs">
                 <label class="control-label m-l-md">公司类型:</label>
-                <span class="text-content">{{company.companyTypeName | filterNull}}</span>
+                <span class="text-content">{{company.companyTypeName | filterNull:false}}</span>
             </div>
             <div class="col-md-6">
                 <label class="control-label m-l-md">借款人:</label>
-                <span class="text-content">{{companyborrower.borrwerPerson | filterNull}}</span>
+                <span class="text-content">{{companyborrower.borrwerPerson | filterNull:false}}</span>
             </div>
             
         </div>
         <div class="row form-group">
             <div class="col-md-6 m-t-xs">
                 <label class="control-label m-l-md">法人:</label>
-                <span class="text-content">{{companyLegal.legalPerson | filterNull}}</span>
+                <span class="text-content">{{companyLegal.legalPerson | filterNull:false}}</span>
             </div>
             <div class="col-md-6">
                 <label class="control-label m-l-md">借款人身份证:</label>
-                <span class="text-content">{{companyborrower.borrwerIdcard | filterNull}}</span>
+                <span class="text-content">{{companyborrower.borrwerIdcard | filterNull:false}}</span>
             </div>
             
         </div>
         <div class="row">
             <div class="col-md-6 m-t-xs">
                 <label class="control-label m-l-md">营业执照号:</label>
-                <span class="text-content">{{company.licenceNum | filterNull}}</span>
+                <span class="text-content">{{company.licenceNum | filterNull:false}}</span>
             </div>
             <div class="col-md-6">
                 <label class="control-label m-l-md">借款人手机:</label>
-                <span class="text-content">{{companyborrower.borrwerMobile | filterNull}}</span>
+                <span class="text-content">{{companyborrower.borrwerMobile | filterNull:false}}</span>
             </div>
             
         </div>
@@ -137,12 +137,12 @@
         <div class="row">
         <div class="col-md-6 m-t-xs">
             <label class="control-label m-l-md">电子合同章:</label>
-            <span class="text-content">{{companyName | filterNull}}</span>
+            <span class="text-content">{{companyName | filterNull:false}}</span>
             <!-- <span>{{eaccount.signatureid1}}</span> -->
         </div>
         <div class="col-md-6 m-t-xs">
             <label class="control-label m-l-md">个人签章:</label>
-            <span class="text-content">{{companyborrower.borrwerPerson | filterNull}}</span>
+            <span class="text-content">{{companyborrower.borrwerPerson | filterNull:false}}</span>
             <!-- <span>{{eaccount.signatureid2}}</span> -->
         </div>
     </div>

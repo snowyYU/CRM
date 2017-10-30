@@ -54,6 +54,10 @@ export class MemberManageComponent implements OnInit{
 	modalServiceMan
 	modalServiceManO
 	modalAppName
+
+	//授信额度模态框的服务经理
+	modalApplyServiceMan
+
 	constructor(
 		private router:Router,
 		private pop:PopService,
@@ -155,7 +159,7 @@ export class MemberManageComponent implements OnInit{
 		this.memberId=row.memberId
 		this.companyName=row.companyName
 		this.sAppId=row.appId
-
+		this.modalApplyServiceMan=row.serviceMan
 		this.memManage
 			.getModalData(row.memberId)
 			.then(res=>{
@@ -167,7 +171,7 @@ export class MemberManageComponent implements OnInit{
 					this.totalCreditBanlance=res.body.totalCreditBanlance
 					this.modalDataList=res.body.records
 				}else{
-					if (this.authRole.roleIn(['008','002'])) {
+					if (this.authRole.roleIn(['008','002'])&&this.authRole.userName!=row.serviceMan) {
 						this.pop.info({
 							title:'提示信息',
 							text:'会员无产品授信记录'
@@ -256,7 +260,7 @@ export class MemberManageComponent implements OnInit{
 			.then(res=>{
 				console.log(res)
 
-				res.body.forEach(e=>{
+				res.body.records.forEach(e=>{
 					if (row.serviceMan!=e.employeeName) {
 						this.modalServiceManL.push(e)
 					}

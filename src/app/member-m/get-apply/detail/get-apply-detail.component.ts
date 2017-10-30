@@ -15,6 +15,7 @@ export class GetApplyDetailComponent implements OnInit{
 	memberId
 	memberName:string;		//客户名称
 	statusDic:string;		//状态
+	status
 	productName:string;	//申请产品
 	productTypeName:string;	//产品类型
 	serviceMan:string;		//服务经理
@@ -57,6 +58,7 @@ export class GetApplyDetailComponent implements OnInit{
 		this.memberId=res.body.memberId
 		this.memberName=res.body.memberName;		//客户名称
 		this.statusDic=res.body.statusDic;		//状态
+		this.status=res.body.status;		//状态
 		this.productName=res.body.productName;	//申请产品
 		this.productTypeName=res.body.productTypeName;	//会员类别
 		this.serviceMan=res.body.serviceMan;		//服务经理
@@ -71,7 +73,8 @@ export class GetApplyDetailComponent implements OnInit{
 	}
 
 	back(){
-		window.history.back()
+		console.log(this.status)
+		this.router.navigate(['memberM/getApply'],{queryParams:{qry:this.status}})
 	}
 
 }

@@ -26,7 +26,7 @@
         <div class="form-group">
           <label class="control-label pull-left">服务经理：</label>
           <div class="pull-left form-control-static">
-            {{serviceMan | filterNull}}
+            {{serviceMan | filterNull:false}}
           </div>
         </div>
         <div class="form-group">
@@ -109,7 +109,7 @@
     </section>
     <section class="text-center">
       <button type="submit" class="btn-def mar-r-sm " [disabled]="visitReportForm.form.invalid">保存<i class="fa fa-check-circle-o"></i></button>
-      <button type="button" class="btn-def" (click)="cancel()">放弃<i class="fa fa-times-circle-o"></i></button>
+      <button type="button" class="btn-def" (click)="cancel()">放弃<i class="fa fa-arrow-circle-o-left"></i></button>
       <a *ngIf="showCustomerSave" href="javascript:void(0)" class="text-info" (click)="saveCustomerInfo()">保存客户信息</a>
     </section>
   </form>

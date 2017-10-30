@@ -49,10 +49,10 @@
       	</ng-template>
       </p-column>
       <p-column field="linkName" header="联系人"  [style]="{'width':'110px'}"></p-column>
-      <p-column field="linkMobile" header="联系手机" styleClass="text-center " [style]="{'width':'150px'}"></p-column>
+      <p-column field="linkMobile" header="联系手机" styleClass="text-center " [style]="{'width':'110px'}"></p-column>
       <p-column field="guestFromDic" header="获客途径" styleClass="text-center " [style]="{'width':'120px'}"></p-column>
       <p-column field="serviceMan" header="服务经理"  [style]="{'width':'120px'}"></p-column>
-      <p-column field="statusDic" header="状态" [style]="{'width':'100px'}">
+      <p-column field="statusDic" header="状态" [style]="{'width':'80px'}">
         <ng-template let-row="rowData" pTemplate="body">
           <a *ngIf="row.status==1" [routerLink]="['/business/authDetail',row.guestId]">
             {{row.statusDic}}
@@ -62,12 +62,12 @@
           </div>
         </ng-template>
       </p-column>
-      <p-column field="ooo" header="操作" [style]="{'width':'200px'}">
+      <p-column field="ooo" header="操作" [style]="{'width':'250px'}">
         <ng-template let-operation="rowData" pTemplate="body" >
           <div class="table-btn-group">
-            <button class="table-btn " [disabled]="operation.status!==0" [class.text-disabled]="operation.status!==0" (click)="operation.status===1?null:applyAuth(operation)" *ngIf="authRole.roleIn(['007'])">申请认证</button>
-            <button class="table-btn " [disabled]="operation.status===1" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:edit(operation)" *ngIf="authRole.roleIn(['007'])">编辑</button>
-            <button class="table-btn " [disabled]="operation.status===1" [class.text-disabled]="operation.status===1" (click)="operation.status===1?null:delete(operation)" *ngIf="authRole.roleIn(['007'])">删除</button>
+            <button class="table-btn " [disabled]="operation.status!==0||operation.serviceMan!==authRole.userName" [class.text-disabled]="operation.status!==0||operation.serviceMan!==authRole.userName" (click)="operation.status===1?null:applyAuth(operation)" *ngIf="authRole.roleIn(['007'])">申请认证</button>
+            <button class="table-btn " [disabled]="operation.status===1||operation.serviceMan!==authRole.userName" [class.text-disabled]="operation.status===1||operation.serviceMan!==authRole.userName" (click)="operation.status===1?null:edit(operation)" *ngIf="authRole.roleIn(['007'])">编辑</button>
+            <button class="table-btn " [disabled]="operation.status===1||operation.serviceMan!==authRole.userName" [class.text-disabled]="operation.status===1||operation.serviceMan!==authRole.userName" (click)="operation.status===1?null:delete(operation)" *ngIf="authRole.roleIn(['007'])">删除</button>
             <button class="table-btn " (click)="changeManage(operation)" *ngIf="authRole.roleIn(['008'])">变更经理</button>
           </div>
 

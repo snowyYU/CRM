@@ -84,9 +84,15 @@ export class RiskMService {
 				
 	}
 
-	deleteFile(id):Promise<any>{
-		return this.myHttp.sDelete(id)
-				.toPromise()
+	deleteFile(memberId,attachId,fileLoadId):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.deleteAttach,
+			query:{
+				memberId:memberId,
+				attachId:attachId,
+				fileLoadId:fileLoadId
+			}
+			}).toPromise()
 				.then(res=>{
 					let data=res
 					if (data.status==200) {
@@ -95,13 +101,14 @@ export class RiskMService {
 						return Promise.reject(data)
 					}
 				})
+				
 	}
 
 	//三块的保存
 	save1(data:Part1Data):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveCompanyAsset,
-			query:data
+			body:data
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {
@@ -115,7 +122,7 @@ export class RiskMService {
 	save2(data:Part2Data):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveCompanyDebt,
-			query:data
+			body:data
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {
@@ -129,7 +136,7 @@ export class RiskMService {
 	save3(data:Part3Data):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.saveCompanyCredit,
-			query:data
+			body:data
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {

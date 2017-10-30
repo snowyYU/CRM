@@ -112,12 +112,18 @@ export class InfoChangeDetailComponent implements OnInit {
 		this.infoChangeDetailService.submitData(sendData)
 			.then(res=>{
 				console.log(res)
-				this.pop.confirm({
-					title:'提示框',
-					text:'提交成功！是否跳转至资料变更列表页面'
-				}).onConfirm(res=>{
-					this.router.navigate(['memberM/infoChange'])
+				this.pop.info({
+					title:'提示信息',
+					text:'处理成功'
 				})
+				this.router.navigate(['memberM/infoChange'])
+				
+				// this.pop.confirm({
+				// 	title:'提示框',
+				// 	text:'提交成功！是否跳转至资料变更列表页面'
+				// }).onConfirm(res=>{
+				// 	this.router.navigate(['memberM/infoChange'])
+				// })
 			})
 			.catch(res=>{
 				this.pop.error({

@@ -5,6 +5,7 @@ import { PopService } from 'dolphinng'
 import { Uploader } from '../../../../../../utils/uploader/Uploader'
 import { API } from '../../../../../../services/config/app.config'
 import { GalleryComponent} from 'dolphinng';
+import { AuthRoleService } from '../../../../../../services/authRole/authRole.service';
 
 @Component({
 	moduleId: module.id,
@@ -14,6 +15,7 @@ import { GalleryComponent} from 'dolphinng';
 	providers:[RunSituationService]
 })
 export class RunSituationComponent implements OnInit {
+	userName:string
 	memberId:number
 	part:boolean=false
 
@@ -53,7 +55,7 @@ export class RunSituationComponent implements OnInit {
 	insuranceDic//购买保险情况
 	infoLevel//信息化程度
 	infoLevelDic//信息化程度
-
+	serviceMan//服务经理
 
 	attachment:object={}
 
@@ -64,13 +66,15 @@ export class RunSituationComponent implements OnInit {
 			private router:Router,
 			private route:ActivatedRoute,
 			private runS:RunSituationService,
-			private pop:PopService
+			private pop:PopService,
+			private auth:AuthRoleService
 		) {}
 
 	ngOnInit() {
 		this.memberId=this.route.params['value']['id']
 		console.log(this.route.queryParams['value']['hash'])
 
+		this.userName=this.auth.userName
 		//获取详情数据
 		this.getDetailData()
 
@@ -140,6 +144,7 @@ export class RunSituationComponent implements OnInit {
 		this.insuranceDic=res.body.insuranceDic//购买保险情况
 		this.infoLevel=res.body.infoLevel+''//信息化程度
 		this.infoLevelDic=res.body.infoLevelDic//信息化程度
+		this.serviceMan=res.body.serviceMan
 
 		if (this.operateArea2=="全国") {
 			this.operateArea=null
@@ -213,7 +218,7 @@ export class RunSituationComponent implements OnInit {
 	      			setTimeout(()=>{
 	      				this[upName].queue[0].setSuccess()
 				      	this.attachment[type]={
-				      		attachId:'',
+				      		attachId:null,
 				      		attachName:uploader.queue[0].fileName,
 				      		fileType:type,
 				      		fileLoadId:data.body.fileId
@@ -379,7 +384,7 @@ export class RunSituationComponent implements OnInit {
 	}
 
 	deleteFile(id,up){
-		this.runS.deleteFile(this.attachment[id].fileLoadId).then(res=>{
+		this.runS.deleteFile(this.memberId,this.attachment[id].attachId,this.attachment[id].fileLoadId).then(res=>{
 			console.log(res)
 			delete this.attachment[id]
 			this[up].queue=[]
