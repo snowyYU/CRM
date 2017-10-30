@@ -127,8 +127,15 @@ export class SigninComponent {
         this.authRoleService.subsysFuncs=JSON.stringify(subsysFuncs)
         console.log(this.authRoleService.subsysFuncs)
 
+        setInterval(e=>{
+          this.authRoleService.refreshToken()
+        },res.body.expiresIn*500)
+
         this.router.navigate([this.o[subsysFuncs[0]]])
-        subsysFuncs[0]
+
+
+
+        // subsysFuncs[0]
 
         // if (this.authRoleService.roleIn(['007','008'])) {
         //   this.router.navigate(['/business/customerList'])
