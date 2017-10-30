@@ -28,16 +28,30 @@
   <div>
     <p-dataTable  [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading"
                  scrollable="true" scrollHeight="375px">
-      <p-column field='companyName' header='会员名称' [style]="{'width':'200px'}"></p-column>
-      <p-column field='prmResourceRegister.resourceName' header='归属渠道' [style]="{'width':'150px'}"></p-column>
+      <!-- <p-column field='companyName' header='会员名称' [style]="{'width':'200px'}"></p-column> -->
+      <p-column header='会员名称' [style]="{'width':'200px'}">
+        <ng-template let-operation="rowData" pTemplate="body">
+          <div textMaxLength="200px" title="{{operation.companyName}}">
+            {{operation.companyName}}
+          </div>
+        </ng-template>
+      </p-column>
+      <!-- <p-column field='prmResourceRegister.resourceName' header='归属渠道' [style]="{'width':'150px'}"></p-column> -->
+      <p-column header='归属渠道' [style]="{'width':'150px'}">
+        <ng-template let-operation="rowData" pTemplate="body">
+          <div textMaxLength="150px" title="{{operation.prmResourceRegister.resourceName}}">
+            {{operation.prmResourceRegister.resourceName}}
+          </div>
+        </ng-template>
+      </p-column>
       <p-column field='memberTypeDic' header='类别' [style]="{'width':'120px'}"></p-column>
       <!-- <p-column field='memberRating' header='评定等级' styleClass="text-center" [style]="{'width':'100px'}"></p-column> -->
       <p-column  header='电子账户' [style]="{'width':'100px'}">
         <ng-template let-operation="rowData" pTemplate="body">
-          <div textMaxLength="110px" title="{{operation.eaccountDic}}">
+          <div textMaxLength="100px" title="{{operation.eaccountDic}}">
             {{operation.eaccountDic}}
-            </div>
-          </ng-template>
+          </div>
+        </ng-template>
       </p-column>
       <p-column field='serviceMan' header='服务经理' [style]="{'width':'120px'}"></p-column>
       <p-column  header='创建日期' styleClass="text-center" [style]="{'width':'110px'}">
