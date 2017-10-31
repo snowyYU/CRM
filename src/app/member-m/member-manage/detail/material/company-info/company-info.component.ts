@@ -318,6 +318,13 @@ export class CompanyInfoComponent implements OnInit {
 	    	if (this.attachment[type]) {
 	      		uploadFile.addSubmitData('fileId',this.attachment[type].fileLoadId);  //发送此字段删除该指定ID的文件
 	    	}
+	    	if (uploadFile.file.name.length>30) {
+	    		this.pop.info({
+	    			title:"提示信息",
+	    			text:"文件名过长"
+	    		})
+	    		this[upName].queue=[]
+	    	}
 	      uploadFile.addSubmitData('businessType',type);
 	      uploadFile.addSubmitData('fileName',uploadFile.fileName);
 	      uploadFile.addSubmitData('fileType',uploadFile.fileExtension);

@@ -12,23 +12,31 @@ export class ModifyPasswordService{
   setPassword(body:{
     employeeId:string,
     pwd:string,
+    oldPwd:string,
     type:number|string
-  }):Promise<{ok:boolean,message:string}>{
+  }):Promise<any>{
     return this.myHttp.post({
       url:API.loginHost+API.setPassword.url,
       body:body
     }).toPromise()
       .then((res)=>{
-        let data={
-          ok:false,
-          message:''
-        };
-        if(res.ok){
-          let response=res;
-          data.ok=(response.status==200);
-          data.message=response.message;
+        if (res.status==200) {
+          return Promise.resolve(res)
+        }else{
+          return Promise.reject(res)
         }
-        return Promise.resolve(data);
+
+
+        // let data={
+        //   ok:false,
+        //   message:''
+        // };
+        // if(res.ok){
+        //   let response=res;
+        //   data.ok=(response.status==200);
+        //   data.message=response.message;
+        // }
+        // return Promise.resolve(data);
       });
   }
 }

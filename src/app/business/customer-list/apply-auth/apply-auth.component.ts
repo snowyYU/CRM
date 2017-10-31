@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild,ReflectiveInjector } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { PopService } from 'dolphinng'
 import { ApplyAuthService } from './apply-auth.service'
@@ -18,14 +18,25 @@ class Attachment {
 		this.uploader=new Uploader()
 		this.applyAuth=applyAuth
 		this.id=id
+		this.pop=ReflectiveInjector.resolveAndCreate([PopService]).get(PopService)
 		//上传方法和参数
 		this.uploader.url='http://121.46.18.25:9090/fileserver/file/upload';
 	    this.uploader.isCompress=true;
 	    this.uploader.onSelect((files)=>{//文件选择完毕
-	      console.log(files);
+	    	
+
+	      console.log(files[0].name.length);
 	    });
 	    this.uploader.onQueue((uploadFile)=>{//文件加入队列
 	      //uploadFile.addSubmitData('fileId','文件ID');  //发送此字段删除该指定ID的文件
+	      console.log(uploadFile)
+	      if (uploadFile.file.name.length>30) {
+	    		this.pop.info({
+	    			title:"提示信息",
+	    			text:"文件名过长"
+	    		})
+	    		this.uploader.queue=[]
+	    	}
 	      uploadFile.addSubmitData('businessType',this.secondType);
 	      uploadFile.addSubmitData('fileName',uploadFile.fileName);
 	      uploadFile.addSubmitData('fileType',uploadFile.fileExtension);
@@ -87,6 +98,8 @@ class Attachment {
 	secondType//第二个下拉列表model数据
 	attachLoadId:any[]
 	
+	pop
+
 	deleteClick(){
 		this.uploader.queue.forEach(e=>{
 			let data=e.response.json()
@@ -165,6 +178,9 @@ export class ApplyAuthComponent implements OnInit {
 	attachmentList:Attachment[]=[]
 
 	originalArray:number[]=[]
+
+	//这个变量用来存放已选择的附件下拉列表
+	selectedAttachTypeL:any[]=[]
 
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
 
@@ -341,6 +357,19 @@ export class ApplyAuthComponent implements OnInit {
 		
 	}
 
+	selectSecondL(){
+		this.selectedAttachTypeL=[]
+		if (this.attachmentList.length>0) {
+			this.attachmentList.forEach(e=>{
+				this.selectedAttachTypeL.push(e.secondType)
+			})
+		}
+
+		console.log(this.selectedAttachTypeL)
+
+	}
+
+
 	addAttachment(){
 		console.log(this.firstList)
 		console.log(this.attachmentList.length)
@@ -372,15 +401,11 @@ export class ApplyAuthComponent implements OnInit {
 			}
 		})
 		this.attachmentList.splice(deleteIndex,1)
-
-
 	}
 
 	show(e,item){
 		let url:any=this.applyAuth.getFileUrl(item.uploader.customData.data.body.fileId)
 		this.gallery.open(e,url);
-
-		
 	}
 
 	cancel(){

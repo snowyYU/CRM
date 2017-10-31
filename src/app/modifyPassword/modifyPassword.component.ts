@@ -11,7 +11,7 @@ import {PopService} from 'dolphinng';
 export class ModifyPasswordComponent {
 
   employeeId:string='';
-
+  oldPassword:string=''
   newPassword:string='';
   newPasswordCopy:string='';
 
@@ -30,26 +30,27 @@ export class ModifyPasswordComponent {
     let body={
       employeeId:this.employeeId,
       pwd:this.newPassword,
+      oldPwd:this.oldPassword,
       type:1
     };
     console.log(body);
     this.modifyPWSvc.setPassword(body)
       .then((res)=>{
         this.submitted=false;
-        if(res.ok){
+        
           this.pop.info({text:'修改成功！'})
             .onConfirm(()=>{
               history.back();
             }).onClose(()=>{
             history.back();
           });
-        }else{
-          this.pop.error({text:res.message||'修改密码失败！'});
-        }
+        
+          // this.pop.error({text:res.message||'修改密码失败！'});
+        
       })
-      .catch((err)=>{
+      .catch((res)=>{
         this.submitted=false;
-        this.pop.error({text:'请求失败！'});
+        this.pop.error({text:res.message});
       })
   }
 

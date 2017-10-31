@@ -28,7 +28,7 @@
       <div class="col-md-12 form-inline form-group">
         <label class="pull-left w-sm label-control required">申请额度:</label>
         <div class="input-group">
-          <input type="text" name="addCreditValue" class="form-control text-right" maxlength="30" [(ngModel)]="addCreditValue" required>
+          <input type="number" name="addCreditValue" class="form-control text-right" max=9999999999 [(ngModel)]="addCreditValue" required>
 
           <span class="input-group-addon">元</span>
         </div>

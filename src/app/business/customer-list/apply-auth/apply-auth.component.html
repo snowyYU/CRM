@@ -240,10 +240,10 @@
            </select>
          </div>
          <div class="col-md-3" >
-           <select name="secondType{{i}}"  class="form-control" [disabled]="!item.firstType" [(ngModel)]="item.secondType">
+           <select name="secondType{{i}}"  class="form-control" [disabled]="!item.firstType" [(ngModel)]="item.secondType" (change)="selectSecondL()">
               <option [value]="undefined" hidden>请选择</option>
             
-             <option [value]="type.code" *ngFor="let type of item.secondList">{{type.msg}}</option>
+             <option [value]="type.code" [hidden]="!(selectedAttachTypeL.indexOf(type.code+''))" *ngFor="let type of item.secondList">{{type.msg}}</option>
 
            </select>
          </div>
