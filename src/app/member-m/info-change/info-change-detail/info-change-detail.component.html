@@ -293,7 +293,7 @@
         <label class="label-control label-special-w">审核意见:</label>
         <div class="col-md-8 m-t-xs">
           <div class="text-content" *ngIf="!isCheck">{{applyMessage | filterNull:false}}</div>
-          <textarea name="applyMessage" class="form-control" cols="30" rows="4" maxlength="200" placeholder="小于200字" *ngIf="isCheck" [(ngModel)]="applyMessage"></textarea>
+          <textarea name="applyMessage" class="form-control width-textarea" cols="30" rows="4" maxlength="200" placeholder="小于200字" *ngIf="isCheck" [(ngModel)]="applyMessage"></textarea>
 
         </div>
       </div>

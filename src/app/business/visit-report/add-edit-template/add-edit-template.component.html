@@ -99,7 +99,7 @@
         <div class="form-group">
           <label class="control-label pull-left required">备忘录：</label>
           <div class="pull-left form-control-static  col-md-10 no-padding">
-            <textarea name="remark" cols="40" rows="5" class="form-control mar-b-xs" [(ngModel)]="remark" placeholder="大于20字，小于200字" minlength="20" maxlength="200" required style="min-height: 175px;"></textarea>
+            <textarea name="remark" cols="40" rows="5" class="form-control mar-b-xs width-textarea" [(ngModel)]="remark" placeholder="大于20字，小于200字" minlength="20" maxlength="200" required style="min-height: 175px;"></textarea>
             <div class="text-danger" *ngIf="visitReportForm.form.controls.remark&&visitReportForm.form.controls.remark.dirty&&visitReportForm.form.controls.remark.invalid">
               字数不能小于20
             </div>
