@@ -51,6 +51,8 @@ export class CustomerAddEditComponent implements OnInit{
 
 	todayDate
 
+	submitting:boolean=false
+
 	constructor(
 		private router:Router,
 		private route:ActivatedRoute,
@@ -139,7 +141,7 @@ export class CustomerAddEditComponent implements OnInit{
 			date:this.dateService.todayDate(),
 			formatType:'yyyy-MM-dd'
 		});
-		
+
 		this.serviceMan=this.authRoleService.userName;
 		this.role=this.authRoleService.role
 		if (this.route.params['value']['id']) {
@@ -166,9 +168,9 @@ export class CustomerAddEditComponent implements OnInit{
 	inputSelect(type:string):Promise<any>{
 		return this.addEditService
 			.getDictListData(type)
-			
+
 	}
-	
+
 	//获取地址下拉列表
 	//省
 	provinceSelect(){
@@ -185,7 +187,7 @@ export class CustomerAddEditComponent implements OnInit{
 				})
 			})
 	}
-	
+
 	getCityList(v){
 		console.log(v);
 		//获取省code
@@ -204,7 +206,7 @@ export class CustomerAddEditComponent implements OnInit{
 					this.city=""
 					console.log("fffffffffff")
 				}
-				
+
 				this.cityList=res.body.records
 			}).catch(res=>{
 				this.popService.error({
@@ -212,7 +214,7 @@ export class CustomerAddEditComponent implements OnInit{
 					text:res.message
 				})
 			})
-			
+
 		})
 	}
 
@@ -255,11 +257,11 @@ export class CustomerAddEditComponent implements OnInit{
 						this.city=array[1];
 						break;
 					default:
-						
+
 						break;
 				}
 			}
-			
+
 
 		}
 	}
@@ -294,6 +296,7 @@ export class CustomerAddEditComponent implements OnInit{
 
 	//提交数据
 	onSubmit(){
+		this.submitting=true
 		let companyAddress:string;
 		if(this.province&&this.city&&this.detailAddress){
 			companyAddress=this.province+'-'+this.city+'-'+this.detailAddress;
@@ -326,6 +329,7 @@ export class CustomerAddEditComponent implements OnInit{
 					title:"提示信息",
 					text:"保存成功!"
 				})
+				this.submitting=false
 				this.router.navigate(['/business/customerList'])
 				// this.popService.confirm({
 				// 	titile:'系统提示',
@@ -335,6 +339,7 @@ export class CustomerAddEditComponent implements OnInit{
 				// })
 			})
 			.catch(res=>{
+				this.submitting=false
 				this.popService.error({
 					title:'错误信息',
 					text:res.message
