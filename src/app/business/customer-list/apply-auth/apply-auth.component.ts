@@ -30,7 +30,7 @@ class Attachment {
 	    this.uploader.onQueue((uploadFile)=>{//文件加入队列
 	      //uploadFile.addSubmitData('fileId','文件ID');  //发送此字段删除该指定ID的文件
 	      console.log(uploadFile)
-	      if (uploadFile.file.name.length>30) {
+	      if (uploadFile.file.name.length>45) {
 	    		this.pop.info({
 	    			title:"提示信息",
 	    			text:"文件名过长"
