@@ -19,7 +19,7 @@
         <a class="h4 pad-r-xs font-bold">资产信息</a>
         <i class="fa fa-caret-right text-lg" *ngIf="!part1S" (click)="part1S=!part1S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part1S" (click)="part1S=!part1S"></i>
-        <a class="text-info pull-right" *ngIf="!part1&&userName==member.serviceMan" (click)="edit('part1')">编辑</a>
+        <a class="text-info pull-right" *ngIf="part1S&&!part1&&userName==member.serviceMan" (click)="edit('part1')">编辑</a>
         <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
         <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">放弃</button>
       </div>
@@ -155,7 +155,7 @@
               </div>
               <div class="col-md-5">
                 <label class="text-info pos-rlt" *ngIf="!attachment['0301']&&(!uploader1.queue[0])">上传
-                  <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1" />
+                  <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp" class="uploadBtn" [uploader]="uploader1" />
                 </label>
                 <div *ngIf="attachment['0301']">
                   <i class="glyphicon glyphicon-ok text-success"></i>
@@ -202,11 +202,11 @@
                       </td>
                       <td>
                         <div class="btn btn-info btn-sm pos-rlt" *ngIf="!attachment['0301']">上传
-                          <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1" />
+                          <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp" class="uploadBtn" [uploader]="uploader1" />
                         </div>
                         <div *ngIf="attachment['0301']">
                           <div class="btn btn-info btn-sm pos-rlt" *ngIf="attachment['0301']">重新上传
-                            <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader1" />
+                            <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp" class="uploadBtn" [uploader]="uploader1" />
                           </div>
                           <button type="button" class="btn btn-sm btn-danger" (click)="deleteFile('0301','uploader1')">删除</button>
                         </div>
@@ -233,7 +233,7 @@
         <a class="h4 pad-r-xs font-bold">负债信息</a>
         <i class="fa fa-caret-right text-lg" *ngIf="!part2S" (click)="part2S=!part2S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part2S" (click)="part2S=!part2S"></i>
-        <a class="text-info pull-right" *ngIf="!part2&&userName==member.serviceMan" (click)="edit('part2')">编辑</a>
+        <a class="text-info pull-right" *ngIf="part2S&&!part2&&userName==member.serviceMan" (click)="edit('part2')">编辑</a>
         <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part2&&part2S" [disabled]="!part2F.form.valid">保存</button>
         <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part2&&part2S" (click)="cancel('part2')">放弃</button>
       </div>
@@ -323,7 +323,7 @@
         <a class="h4 pad-r-xs font-bold">履约信息</a>
         <i class="fa fa-caret-right text-lg" *ngIf="!part3S" (click)="part3S=!part3S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part3S" (click)="part3S=!part3S"></i>
-        <a class="text-info pull-right" *ngIf="!part3&&userName==member.serviceMan" (click)="edit('part3')">编辑</a>
+        <a class="text-info pull-right" *ngIf="part3S&&!part3&&userName==member.serviceMan" (click)="edit('part3')">编辑</a>
         <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part3&&part3S" [disabled]="!part3F.form.valid">保存</button>
         <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part3&&part3S" (click)="cancel('part3')">放弃</button>
       </div>
@@ -457,7 +457,7 @@
                 </div>
                 <div class="col-md-5">
                   <label class="text-info pos-rlt" *ngIf="!attachment['0111']&&(!uploader2.queue[0])">上传
-                    <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2" />
+                    <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp" class="uploadBtn" [uploader]="uploader2" />
                   </label>
                   <div *ngIf="attachment['0111']">
                     <i class="glyphicon glyphicon-ok text-success"></i>
@@ -504,11 +504,11 @@
                     </td>
                     <td>
                       <div class="btn btn-info btn-sm pos-rlt" *ngIf="!attachment['0111']">上传
-                        <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2" />
+                        <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp" class="uploadBtn" [uploader]="uploader2" />
                       </div>
                       <div *ngIf="attachment['0111']">
                         <div class="btn btn-info btn-sm pos-rlt" *ngIf="attachment['0111']">重新上传
-                          <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="uploadBtn" [uploader]="uploader2" />
+                          <input type="file" accept="image/png,image/gif,image/jpg|,image/jpeg,image/bmp" class="uploadBtn" [uploader]="uploader2" />
                         </div>
                         <button type="button" class="btn btn-sm btn-danger" (click)="deleteFile('0111','uploader2')">删除</button>
                       </div>
