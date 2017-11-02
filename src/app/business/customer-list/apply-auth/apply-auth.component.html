@@ -20,7 +20,7 @@
             <!-- <select class="form-control min-width" name="guestFrom" required [(ngModel)]="guestFrom" (change)="appId='C00001'"> -->
               <select class="form-control min-width" name="guestFrom" required [(ngModel)]="guestFrom" (change)="change()">
               <option [value]="undefined" hidden>请选择</option>
-              
+
               <option [value]="item.value" *ngFor="let item of guest_from">{{item.label}}</option>
             </select>
           </div>
@@ -31,7 +31,7 @@
             <select class="form-control min-width" name="appId" required [(ngModel)]="appId" [disabled]="guestFrom!='1'">
               <option [value]="undefined" hidden>请选择</option>
                 <option [value]="item.resourceId" *ngFor="let item of app_list">{{item.resourceName}}</option>
-              
+
             </select>
           </div>
         </div>
@@ -53,7 +53,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- <div class="col-md-6 form-horizontal form-label-9">
         <div class="form-group">
           <label class="control-label">客户名称：</label>
@@ -149,7 +149,7 @@
           <div class="pull-left">
             <select name="companyType"  class="form-control min-width" [(ngModel)]="companyType" required>
               <option [value]="undefined" hidden>请选择</option>
-              
+
               <option [value]="item.value" *ngFor="let item of guest_company_type">{{item.label}}</option>
             </select>
           </div>
@@ -174,14 +174,14 @@
               <div class="col-md-6 no-r-padding">
                 <select name="provnice"  class="form-control" [(ngModel)]="province" (ngModelChange)='getCityList("1")' required>
                   <option [value]="undefined" hidden>请选择</option>
-                  
+
                   <option [value]='item.name' *ngFor="let item of provinceList">{{item.name}}</option>
                 </select>
               </div>
               <div class="col-md-6">
                 <select name="city"  class="form-control" [(ngModel)]="city" [disabled]='!province' required>
               <option [value]="undefined" hidden>请选择</option>
-                  
+
                   <option [value]="item.name" *ngFor="let item of cityList">{{item.name}}</option>
                 </select>
               </div>
@@ -233,17 +233,17 @@
        <label for="" class="col-md-2 m-t-xs text-right">附件{{i+1}}</label>
        <div class="col-md-10 l-h-2x">
          <div class="col-md-3">
-           <select name="firstType{{i}}" id="" class="form-control" [(ngModel)]="item.firstType" (change)="item.selectFirstL()">
+           <select name="firstType{{item.id}}" class="form-control" [(ngModel)]="item.firstType" (change)="item.selectFirstL()">
               <option [value]="undefined" hidden>请选择</option>
 
              <option [value]="type.code" *ngFor="let type of item.firstList">{{type.msg}}</option>
            </select>
          </div>
          <div class="col-md-3" >
-           <select name="secondType{{i}}"  class="form-control" [disabled]="!item.firstType" [(ngModel)]="item.secondType" (change)="selectSecondL()">
+           <select name="secondType{{item.id}}"  class="form-control" [disabled]="!item.firstType" [(ngModel)]="item.secondType" (click)="selectSecondL()">
               <option [value]="undefined" hidden>请选择</option>
-            
-             <option [value]="type.code" [hidden]="!(selectedAttachTypeL.indexOf(type.code+''))" *ngFor="let type of item.secondList">{{type.msg}}</option>
+
+             <option [value]="type.code" [hidden]="ifHidden(type.code)" *ngFor="let type of item.secondList">{{type.msg}}</option>
 
            </select>
          </div>
@@ -340,7 +340,7 @@
       </div>
 
     </section>
-    
+
     <div class="col-md-12">
       <!-- <div class="text-disabled text-left pos-abt padder-l" *ngIf="!form.valid||!licenceNum||!companyType||!registerCapital||!foundTime||!companyAddress">
         提醒：请完善客户所有信息后再进行认证申请
