@@ -6,6 +6,7 @@ import {environment} from '../../environments/environment'
 // import { AuthTokenService } from '../../services/authToken/authToken.service';
 import { AuthRoleService } from '../../services/authRole/authRole.service'
 import { PopService } from 'dolphinng'
+import { config } from '../../services/config/app.config'
 
 @Component({
   selector: 'signin',
@@ -21,11 +22,7 @@ export class SigninComponent {
   msg:string;
 
 
-  banners:{
-    title?:string,
-    link?:string,
-    active?:boolean
-  }[];
+  systems=config.getSystems();
 
   constructor(
   	private router:Router,
@@ -34,35 +31,10 @@ export class SigninComponent {
     private authRoleService:AuthRoleService,
     private pop:PopService
     ){
-    this.banners=[{
-      title:'金融业务处理系统',
-      link:this.createBannerLink('fbps')
-    },{
-      title:'客户关系处理系统',
-      link:this.createBannerLink('crm'),
-      active:true
-    },{
-      title:'金融风控管理系统',
-      link:this.createBannerLink('rcm')
-    },{
-      title:'后台综合管理系统',
-      link:this.createBannerLink('ims')
-    }/*,{
-      title:'',
-      link:''
-    },{
-      title:'',
-      link:''
-    }*/]
+    
   }
 
-  private createBannerLink(sysName:string):string{
-    if(environment.production){
-      return '';
-    }else{
-      return 'http://192.168.10.10:9091/'+sysName;
-    }
-  }
+
 
   signIn():void{
 
@@ -109,6 +81,41 @@ export class SigninComponent {
     }
 
   	extractData(res: any){
+        console.log(res)
+
+        //账号未分配角色
+
+        //两个判断
+        //先检验role
+
+        if(res.body.roles&&res.body.roles.length==0) {
+          this.submiting=false;
+          this.msg="您没有此系统的使用权限"
+          return
+        }
+        if(res.body.subsysFuncs&&res.body.subsysFuncs.length==0) {
+          this.submiting=false;
+          this.msg="您没有此系统的使用权限"
+          return
+        }
+        // console.log(this.o[res.body.subsysFuncs[0].functionPoint])
+        // console.log(res.body.subsysFuncs[0].functionPoint)
+
+        let subsysFuncsFunctionPoint:any[]=[]
+        res.body.subsysFuncs.forEach(e=>{
+          if(this.o[e.functionPoint]) {
+            subsysFuncsFunctionPoint.push(e.functionPoint)
+          }
+          
+        })
+
+        if(subsysFuncsFunctionPoint.length==0) {
+          this.submiting=false;
+          this.msg="您没有此系统的使用权限"
+          return
+        }
+
+
         this.authRoleService.eTime=res.body.expiresIn*500
         // this.authTokenService.expiresT=response.body.expiresIn*500
         this.authRoleService.userName=res.body.employeeName;
@@ -120,18 +127,19 @@ export class SigninComponent {
           roles.push(e.roleCode)
         })
         this.authRoleService.role=JSON.stringify(roles)
-        let subsysFuncs:any[]=[]
-        res.body.subsysFuncs.forEach(e=>{
-          subsysFuncs.push(e.functionPoint)
-        })
-        this.authRoleService.subsysFuncs=JSON.stringify(subsysFuncs)
+        // let subsysFuncs:any[]=[]
+        // res.body.subsysFuncs.forEach(e=>{
+        //   subsysFuncs.push(e.functionPoint)
+        // })
+        this.authRoleService.subsysFuncs=JSON.stringify(subsysFuncsFunctionPoint)
         console.log(this.authRoleService.subsysFuncs)
 
         setInterval(e=>{
           this.authRoleService.refreshToken()
         },res.body.expiresIn*500)
 
-        this.router.navigate([this.o[subsysFuncs[0]]])
+
+        this.router.navigate([this.o[subsysFuncsFunctionPoint[0]]])
 
 
 

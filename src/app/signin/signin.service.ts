@@ -24,6 +24,7 @@ export class SignInService{
 	  		if (data.status==200) {
 	  			return Promise.resolve(data)
 	  		}else{
+	  			console.log("wrong",data)
 	  			return Promise.reject(data)
 	  		}
 	  	})

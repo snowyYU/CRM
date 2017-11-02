@@ -17,13 +17,11 @@
                 </a>
                 <div class="signin-banener-nav">
                   <a class="signin-banener-nav-item"
-                     *ngFor="let banner of banners"
-                     [href]="banner.link"
-                     [title]="banner.title"
-                     [ngClass]="{'active':banner.active}"
+                     *ngFor="let sys of systems"
+                     [href]="sys.link"
+                     [title]="sys.name"
+                     [ngClass]="{'active':sys.active}"
                   ></a>
-                  <a class="signin-banener-nav-item"></a>
-                  <a class="signin-banener-nav-item"></a>
                 </div>
             </div>
             <div class="signin-form">
