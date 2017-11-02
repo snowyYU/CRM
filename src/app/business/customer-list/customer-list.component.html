@@ -23,7 +23,11 @@
     <div class="pull-left form-inline">
       <div class="form-group">
         <label >客户名称：</label>
-        <input type="text" name="customerName" placeholder="请输入客户名称" maxlength="30" [(ngModel)]="customerName" class="form-control">
+        <input type="text" name="customerName" placeholder="请输入客户名称" maxlength="50" [(ngModel)]="customerName" class="form-control">
+        <!-- <input type="text" name="customerName" placeholder="请输入客户名称" [(ngModel)]="customerName" class="form-control" 
+               pattern="^.{0,50}$"  #customerNamedRef="ngModel"
+               [HTML5Validate]="[[!!(customerNamedRef.errors&&customerNamedRef.errors.pattern),'客户名称应少于50字']]"
+        /> -->
       </div>
       <div class="form-group">
         <button class="btn-def" (click)='queryData()'>查询<i class="fa fa-search"></i></button>

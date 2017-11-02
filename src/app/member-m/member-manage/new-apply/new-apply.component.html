@@ -5,7 +5,7 @@
   <a class="page-location-item active">新增申请授信</a>
 </div>
 <div class="wrapper-md pos-rlt">
-  <form #newApply="ngForm" (ngSubmit)='submit()'>
+  <form #newApply="ngForm" (ngSubmit)='submit()' HTML5Validate>
     <section class="panel-body border-content">
       <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">会员名称:</label>
@@ -28,7 +28,7 @@
       <div class="col-md-12 form-inline form-group">
         <label class="pull-left w-sm label-control required">申请额度:</label>
         <div class="input-group">
-          <input type="number" name="addCreditValue" class="form-control text-right" max=9999999999 [(ngModel)]="addCreditValue" required>
+          <input type="number" name="addCreditValue" class="form-control text-right" max="9999999999999.99" [(ngModel)]="addCreditValue" required>
 
           <span class="input-group-addon">元</span>
         </div>
