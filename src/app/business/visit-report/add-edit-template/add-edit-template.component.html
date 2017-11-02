@@ -5,20 +5,28 @@
   <a class="page-location-item active"><span *ngIf="!isEdit">新增</span><span *ngIf="isEdit">修改</span></a>
 </div>
 <div class="wrapper-md">
-  <form #visitReportForm="ngForm" (ngSubmit)='submit()'>
+  <form #visitReportForm="ngForm" (ngSubmit)='submit()' HTML5Validate>
     <section class="panel-body group mar-b-sm">
       <div class="col-md-6 form-horizontal form-label-7">
         <div class="form-group">
           <label class="control-label pull-left required">客户名称：</label>
           <div class="pull-left">
-            <input type="text" name="guestName" class="form-control" [(ngModel)]="guestName" [disabled]="isEdit" required maxlength="50" (focus)="focusFun()">
+            <!-- <input type="text" name="guestName" class="form-control" [(ngModel)]="guestName" [disabled]="isEdit" required maxlength="50" (focus)="focusFun()"> -->
+            <input type="text" name="guestName" class="form-control" [(ngModel)]="guestName" [disabled]="isEdit" required       (focus)="focusFun()" pattern="^.{0,50}$" #guestNameRef="ngModel"
+                   [HTML5Validate]="[[guestName==='','请输入客户名称！'],[!!(guestNameRef.errors&&guestNameRef.errors.pattern),'客户名称应少于50字']]"
+            />
           </div>
           <button type="button" class="btn btn-info mar-l-xs" [disabled]="isEdit" (click)="choose()"><i class="fa fa-user"></i>选择</button>
         </div>
         <div class="form-group">
           <label class="control-label pull-left required">拜访日期：</label>
           <div class="pull-left">
-            <input type="text" name="visitDate" class="form-control" datePicker required maxlength="10" [(ngModel)]="visitDate" [opt-max]="maxDate" [disabled]="isEdit">
+            <!-- <input type="text" name="visitDate" class="form-control" datePicker required maxlength="10" [(ngModel)]="visitDate" [opt-max]="maxDate" [disabled]="isEdit"> -->
+            <input type="text" name="visitDate" class="form-control" datePicker required [(ngModel)]="visitDate" 
+                   [opt-max]="maxDate" [disabled]="isEdit" autocomplete="off"
+                   pattern="^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$" #visitDateRef="ngModel"
+                   [HTML5Validate]="[[visitDate==='','请输入拜访日期！'],[!!(visitDateRef.errors&&visitDateRef.errors.pattern),'拜访日期输入有误，YYYY-mm-dd']]"
+            />
           </div>
         </div>
       </div>
@@ -32,8 +40,10 @@
         <div class="form-group">
           <label class="control-label pull-left required">拜访目的：</label>
           <div class="pull-left">
-            <select name="visitWhat" required class="form-control min-width" [(ngModel)]="visitWhat" [disabled]="isEdit">
-              <option [value]="undefined" hidden>请选择</option>
+            <!-- <select name="visitWhat" required class="form-control min-width" [(ngModel)]="visitWhat" [disabled]="isEdit"> -->
+              <select name="visitWhat" required class="form-control min-width" [(ngModel)]="visitWhat" [disabled]="isEdit"
+                      pattern="^\S+$" [HTML5Validate]="[[visitWhat==='','请选择拜访目的']]">
+              <!-- <option [value]="undefined" hidden>请选择</option> -->
               <option [value]="item.value" *ngFor="let item of visitWhatList">{{item.label}}</option>
             </select>
           </div>
@@ -45,7 +55,11 @@
         <div class="form-group">
           <label class="control-label pull-left required">联系人：</label>
           <div class="pull-left">
-            <input type="text" name="linkName" class="form-control" maxlength="10" [(ngModel)]="linkName" [disabled]="isEdit" required>
+            <input type="text" name="linkName" class="form-control" [(ngModel)]="linkName" [disabled]="isEdit" required
+                   pattern="^.{0,10}$" #linkNameRef="ngModel"
+                   [HTML5Validate]="[[linkName==='','请输入联系人！'],[!!(linkNameRef.errors&&linkNameRef.errors.pattern),'联系人长度应少于10字']]"
+            />
+            <!-- <input type="text" name="linkName" class="form-control" maxlength="10" [(ngModel)]="linkName" [disabled]="isEdit" required> -->
             <!-- <input type="text" name="linkName" class="form-control" [(ngModel)]="linkName" [disabled]="isEdit||customerDisabled" required> -->
           </div>
           <!-- <button class="btn btn-default pull-left mar-l-xs" *ngIf="customerDisabled" (click)="enable()"><i class="fa fa-pencil"></i>修改</button> -->
@@ -53,7 +67,10 @@
         <div class="form-group">
           <label class="control-label pull-left required">联系手机：</label>
           <div class="pull-left">
-            <input type="number" name="linkMobile" class="form-control" max="99999999999" [(ngModel)]="linkMobile" [disabled]="isEdit" required>
+            <input type="text" name="linkMobile" class="form-control" [(ngModel)]="linkMobile" 
+                   [disabled]="isEdit" required pattern="^1[0-9]{10}$" #linkMobileRef="ngModel"
+                   [HTML5Validate]="[[linkMobile==='','请输入联系手机！'],[!!(linkMobileRef.errors&&linkMobileRef.errors.pattern),'联系手机输入有误，请输入正确的手机号']]"/>
+            <!-- <input type="number" name="linkMobile" class="form-control" max="99999999999" [(ngModel)]="linkMobile" [disabled]="isEdit" required> -->
             <!-- <input type="text" name="linkMobile" class="form-control" [(ngModel)]="linkMobile" [disabled]="isEdit||customerDisabled" required> -->
           </div>
         </div>
@@ -71,16 +88,19 @@
           <div class="pull-left" style="min-width: 300px;max-width: 100%">
             <div class="row">
               <div class="col-md-6 no-r-padding">
-                <select name="province" class="form-control" [(ngModel)]="province" (ngModelChange)='getCityList($event)' [disabled]="isEdit" required>
+                <select name="province" class="form-control" [(ngModel)]="province" (ngModelChange)='getCityList($event)' [disabled]="isEdit" required pattern="^\S+$" [HTML5Validate]="[[province==='','请选择省份']]">
+                <!-- <select name="province" class="form-control" [(ngModel)]="province" (ngModelChange)='getCityList($event)' [disabled]="isEdit" required> -->
                   <!-- <select name="province" class="form-control" [(ngModel)]="province" (ngModelChange)='getCityList($event)' [disabled]="isEdit||customerDisabled" required> -->
-                  <option [value]="undefined" hidden>请选择</option>
+                  <!-- <option [value]="undefined" hidden>请选择</option> -->
                   <option [value]='item.name' *ngFor="let item of provinceList">{{item.name}}</option>
                 </select>
               </div>
               <div class="col-md-6">
-                <select name="city" class="form-control" [(ngModel)]="city" [disabled]='!province||isEdit' required>
+                <select name="city" class="form-control" [(ngModel)]="city" [disabled]='!province||isEdit' required
+                        pattern="^\S+$" [HTML5Validate]="[[city==='','请选择城市']]">
+                <!-- <select name="city" class="form-control" [(ngModel)]="city" [disabled]='!province||isEdit' required> -->
                   <!-- <select name="city" class="form-control col-md-6" [(ngModel)]="city" [disabled]='!province||isEdit||customerDisabled' required> -->
-                  <option [value]="undefined" hidden>请选择</option>
+                  <!-- <option [value]="undefined" hidden>请选择</option> -->
                   <option [value]='item.name' *ngFor="let item of cityList">{{item.name}}</option>
                 </select>
               </div>
@@ -90,7 +110,10 @@
         <div class="form-group">
           <label class="control-label pull-left required">地址：</label>
           <div class="pull-left" style="min-width: 300px;max-width: 100%">
-            <input type="text" name="companyAddress" class="form-control" maxlength="180" [(ngModel)]="companyAddress" [disabled]="isEdit" required>
+            <input type="text" name="companyAddress" class="form-control" [(ngModel)]="companyAddress" [disabled]="isEdit"       required pattern="^.{0,180}$" #companyAddressRef="ngModel"
+                   [HTML5Validate]="[[companyAddress==='','请输入详细地址'],[!!(companyAddressRef.errors&&companyAddressRef.errors.pattern),'详细地址应少于180字']]"
+            />
+            <!-- <input type="text" name="companyAddress" class="form-control" maxlength="180" [(ngModel)]="companyAddress" [disabled]="isEdit" required> -->
             <!-- <input type="text" name="companyAddress" class="form-control" [(ngModel)]="companyAddress" [disabled]="isEdit||customerDisabled" required> -->
           </div>
         </div>
@@ -108,7 +131,8 @@
       </div>
     </section>
     <section class="text-center">
-      <button type="submit" class="btn-def mar-r-sm " [disabled]="visitReportForm.form.invalid">保存<i class="fa fa-check-circle-o"></i></button>
+      <!-- <button type="submit" class="btn-def mar-r-sm " [disabled]="visitReportForm.form.invalid">保存<i class="fa fa-check-circle-o"></i></button> -->
+      <button type="submit" class="btn-def mar-r-sm ">保存<i class="fa fa-check-circle-o"></i></button>
       <button type="button" class="btn-def" (click)="cancel()">放弃<i class="fa fa-arrow-circle-o-left"></i></button>
       <!-- <a *ngIf="showCustomerSave" href="javascript:void(0)" class="text-info" (click)="saveCustomerInfo()">保存客户信息</a> -->
     </section>

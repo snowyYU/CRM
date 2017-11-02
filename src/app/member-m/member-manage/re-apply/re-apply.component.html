@@ -6,7 +6,7 @@
   <a class="page-location-item active">重新申请授信</a>
 </div>
 <div class="wrapper-md pos-rlt">
-    <form #newApply="ngForm" (ngSubmit)='submit()'>
+    <form #newApply="ngForm" (ngSubmit)='submit()' HTML5Validate>
   <section class="panel-body border-content ">
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">会员名称:</label>
@@ -27,7 +27,12 @@
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control required">申请额度:</label>
         <div class="input-group">
-          <input type="number" name="addCreditValue" class="form-control" max="9999999999999.99" [(ngModel)]="addCreditValue" required>
+          <!-- <input type="number" name="addCreditValue" class="form-control" max="9999999999999.99" [(ngModel)]="addCreditValue" required> -->
+          <input type="text" name="addCreditValue" class="form-control" [(ngModel)]="addCreditValue" required
+                 pattern="^[0-9]{1,9}$" #addCreditValueRef="ngModel"
+                 [HTML5Validate]="[[addCreditValue==='','请输入申请额度！'],[!!(addCreditValueRef.errors&&addCreditValueRef.errors.pattern),'申请额度输入有误，请输入9位以内数字']]"
+          />
+
           <span class="input-group-addon">元</span>
         </div>
     </div>
@@ -53,7 +58,8 @@
     <section class="m-t-md">
         <div class="text-center">
 
-            <button class="btn-def mar-r-sm" type="submit" [disabled]="!newApply.form.valid">提交申请<i class="fa fa-check-circle-o"></i></button>
+            <!-- <button class="btn-def mar-r-sm" type="submit" [disabled]="!newApply.form.valid">提交申请<i class="fa fa-check-circle-o"></i></button> -->
+            <button class="btn-def mar-r-sm" type="submit">提交申请<i class="fa fa-check-circle-o"></i></button>
           <button type="button" class="btn-def" (click)="cancel()">放弃<i class="fa fa-arrow-circle-o-left"></i></button>
         </div>
     </section>
@@ -70,7 +76,7 @@
       </div>
       <div class="col-md-12 form-group clearfix">
           <label for="" class="col-md-3 label-control">产品简介:</label>
-          <div class="col-md-9 m-t-xs">{{productRemark}}</div>
+          <div class="col-md-9 m-t-xs newLine">{{productRemark}}</div>
       </div>
       <div class="col-md-12">
           <table class="table showL b-t">

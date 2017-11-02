@@ -122,7 +122,7 @@
             <!-- <input type="text" name="linkJob" class="form-control " maxlength="20" required [(ngModel)]="linkJob"> -->
             <input type="text" name="linkJob" class="form-control" required [(ngModel)]="linkJob"
                    pattern="^.{0,20}$" #linkJobRef="ngModel"
-                   [HTML5Validate]="[[!!(linkJobRef.errors&&linkJobRef.errors.pattern),'联系人职位应少于20字']]"
+                   [HTML5Validate]="[[linkJob==='','请输入联系人职位！'],[!!(linkJobRef.errors&&linkJobRef.errors.pattern),'联系人职位应少于20字']]"
             />
           </div>
         </div>
@@ -171,7 +171,7 @@
             <!-- <input type="text" name="licenceNum" class="form-control " required maxlength="30" [(ngModel)]="licenceNum"> -->
             <input type="text" name="licenceNum" class="form-control " required [(ngModel)]="licenceNum"
                    pattern="^\w{0,30}$" #licenceNumRef="ngModel"
-                   [HTML5Validate]="[[!!(licenceNumRef.errors&&licenceNumRef.errors.pattern),'营业执照号输入有误，请输入数字或字母']]"
+                   [HTML5Validate]="[[licenceNum==='','请输入营业执照号！'],[!!(licenceNumRef.errors&&licenceNumRef.errors.pattern),'营业执照号输入有误，请输入数字或字母']]"
             />
           </div>
         </div>
@@ -194,8 +194,8 @@
           <div class="pull-left">
             <!-- <input type="number" name="registerCapital" class="form-control " max="999999999" [(ngModel)]="registerCapital" required> -->
             <input type="text" name="registerCapital" class="form-control" [(ngModel)]="registerCapital" required
-                   pattern="^[0-9]{1,13}(\.[0-9]{1,2})?$" #registerCapitalRef="ngModel"
-                   [HTML5Validate]="[[!!(registerCapitalRef.errors&&registerCapitalRef.errors.pattern),'注册资金输入有误，请输入9位以内数字']]"
+                   pattern="^[0-9]{1,9}$" #registerCapitalRef="ngModel"
+                   [HTML5Validate]="[[registerCapital==='','请输入注册资金！'],[!!(registerCapitalRef.errors&&registerCapitalRef.errors.pattern),'注册资金输入有误，请输入9位以内数字']]"
             />
           </div>
           <span class="pull-left" style="padding-top: 8px;padding-left: 10px;">  万元</span>
@@ -207,7 +207,7 @@
             <input type="text" name="foundTime" datePicker class="form-control" [opt-max]="todayDate" 
                    [(ngModel)]="foundTime" required autocomplete="off"
                    pattern="^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$" #foundTimeRef="ngModel"
-                   [HTML5Validate]="[[!!(foundTimeRef.errors&&foundTimeRef.errors.pattern),'成立时间输入有误，YYYY-mm-dd']]"
+                   [HTML5Validate]="[[foundTime==='','请输入成立时间！'],[!!(foundTimeRef.errors&&foundTimeRef.errors.pattern),'成立时间输入有误，YYYY-mm-dd']]"
             />
           </div>
         </div>
@@ -243,7 +243,7 @@
                 <input placeholder="请输入详细地址" type="text" name="detailAddress" class="form-control" 
                        [(ngModel)]="detailAddress" required
                        pattern="^.{0,180}$" #detailAddressRef="ngModel"
-                       [HTML5Validate]="[[!!(detailAddressRef.errors&&detailAddressRef.errors.pattern),'详细地址应少于180字']]"
+                       [HTML5Validate]="[[detailAddress==='','请输入详细地址！'],[!!(detailAddressRef.errors&&detailAddressRef.errors.pattern),'详细地址应少于180字']]"
                 />
               </div>
             </div>

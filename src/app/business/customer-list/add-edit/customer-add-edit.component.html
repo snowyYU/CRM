@@ -68,7 +68,7 @@
             <!-- <input type="text" name="linkName" class="form-control " required maxlength="10" [(ngModel)]="linkName"> -->
             <input type="text" name="linkName" class="form-control" required [(ngModel)]="linkName"
                    pattern="^.{0,10}$" #linkNameRef="ngModel"
-                   [HTML5Validate]="[[linkNameRef==='','请输入联系人！'],[!!(linkNameRef.errors&&linkNameRef.errors.pattern),'联系人长度应少于10字']]"
+                   [HTML5Validate]="[[linkName==='','请输入联系人！'],[!!(linkNameRef.errors&&linkNameRef.errors.pattern),'联系人长度应少于10字']]"
             />
           </div>
         </div>
@@ -79,7 +79,7 @@
             <!-- <input type="number" name="linkMobile" class="form-control" required max="99999999999" [(ngModel)]="linkMobile"> -->
             <input type="text" name="linkMobile" class="form-control " required [(ngModel)]="linkMobile"
                    pattern="^1[0-9]{10}$" #linkMobileRef="ngModel"
-                   [HTML5Validate]="[[linkMobileRef==='','请输入联系人手机！'],[!!(linkMobileRef.errors&&linkMobileRef.errors.pattern),'联系人手机输入有误，请输入11位纯数字']]"
+                   [HTML5Validate]="[[linkMobile==='','请输入联系人手机！'],[!!(linkMobileRef.errors&&linkMobileRef.errors.pattern),'联系人手机输入有误，请输入正确的手机号']]"
             />
 
           </div>
@@ -102,7 +102,7 @@
             <!-- <input type="text" name="licenceNum" class="form-control " maxlength="30" [(ngModel)]="licenceNum"> -->
             <input type="text" name="licenceNum" class="form-control " [(ngModel)]="licenceNum"
                    pattern="^\w{0,30}$" #licenceNumRef="ngModel"
-                   [HTML5Validate]="[[!!(licenceNumRef.errors&&licenceNumRef.errors.pattern),'营业执照号输入有误，请输入数字或字母']]"
+                   [HTML5Validate]="[[!!(licenceNumRef.errors&&licenceNumRef.errors.pattern),'营业执照号输入有误，请输入正确的营业执照号']]"
             />
           </div>
         </div>
@@ -120,7 +120,7 @@
           <div class="pull-left">
             <!-- <input type="number" name="registerCapital" class="form-control" max="999999999" [(ngModel)]="registerCapital"> -->
             <input type="text" name="registerCapital" class="form-control" [(ngModel)]="registerCapital"
-                   pattern="^[0-9]{1,13}(\.[0-9]{1,2})?$" #registerCapitalRef="ngModel"
+                   pattern="^[0-9]{1,9}$" #registerCapitalRef="ngModel"
                    [HTML5Validate]="[[!!(registerCapitalRef.errors&&registerCapitalRef.errors.pattern),'注册资金输入有误，请输入9位以内数字']]"
             />
           </div>
@@ -130,7 +130,8 @@
           <label class="control-label pull-left">成立时间：</label>
           <div class="pull-left">
             <!-- <input type="text" name="foundTime" datePicker class="form-control " maxlength="10" [opt-max]="todayDate" [(ngModel)]="foundTime"> -->
-            <input type="text" name="foundTime" datePicker class="form-control" [opt-max]="todayDate" [(ngModel)]="foundTime"
+            <input type="text" name="foundTime" datePicker class="form-control" [opt-max]="todayDate" 
+                   [(ngModel)]="foundTime" autocomplete="off"
                    pattern="^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$" #foundTimeRef="ngModel"
                    [HTML5Validate]="[[!!(foundTimeRef.errors&&foundTimeRef.errors.pattern),'成立时间输入有误，YYYY-mm-dd']]"
             />
@@ -156,8 +157,8 @@
             <div class="row m-t-xs">
               <div class="col-md-12">
                 <!-- <input placeholder="请输入详细地址" type="text" name="detailAddress" class="form-control " maxlength="180" [(ngModel)]="detailAddress"> -->
-                <input placeholder="请输入详细地址" type="text" name="detailAddress" class="form-control" [(ngModel)]="detailAddress"
-                       pattern="^.{0,180}$" #detailAddressRef="ngModel"
+                <input placeholder="请输入详细地址" type="text" name="detailAddress" class="form-control" 
+                       [(ngModel)]="detailAddress" pattern="^.{0,180}$" #detailAddressRef="ngModel"
                        [HTML5Validate]="[[!!(detailAddressRef.errors&&detailAddressRef.errors.pattern),'详细地址应少于180字']]"
                 />
               </div>
