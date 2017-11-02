@@ -125,8 +125,8 @@ export class AccBalanceComponent implements OnInit {
 
 	}
 
-	goToOpen(id){
-		this.router.navigate(['account/electricAcc/openAcc'],{queryParams: { hash: id }})
+	goToOpen(key){
+		this.router.navigate(['account/electricAcc/openAcc'],{queryParams: { hash: key }})
 
 	}
 
