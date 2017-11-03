@@ -101,7 +101,7 @@
           <div class="pull-left" style="min-width: 300px;max-width: 100%">
             <!-- <input type="text" name="licenceNum" class="form-control " maxlength="30" [(ngModel)]="licenceNum"> -->
             <input type="text" name="licenceNum" class="form-control " [(ngModel)]="licenceNum"
-                   pattern="^\w{0,30}$" #licenceNumRef="ngModel"
+                   pattern="^[0-9a-zA-Z]{0,30}$" #licenceNumRef="ngModel"
                    [HTML5Validate]="[[!!(licenceNumRef.errors&&licenceNumRef.errors.pattern),'营业执照号输入有误，请输入正确的营业执照号']]"
             />
           </div>
@@ -120,8 +120,8 @@
           <div class="pull-left">
             <!-- <input type="number" name="registerCapital" class="form-control" max="999999999" [(ngModel)]="registerCapital"> -->
             <input type="text" name="registerCapital" class="form-control" [(ngModel)]="registerCapital"
-                   pattern="^[0-9]{1,9}$" #registerCapitalRef="ngModel"
-                   [HTML5Validate]="[[!!(registerCapitalRef.errors&&registerCapitalRef.errors.pattern),'注册资金输入有误，请输入9位以内数字']]"
+                   pattern="^[0-9]{1,9}(\.[0-9]{1,2})?$" #registerCapitalRef="ngModel"
+                   [HTML5Validate]="[[!!(registerCapitalRef.errors&&registerCapitalRef.errors.pattern),'注册资金输入有误，请输入9位(含)以内整数,可保留两位小数']]"
             />
           </div>
           <span class="pull-left" style="padding-top: 8px;padding-left: 10px;">  万元</span>

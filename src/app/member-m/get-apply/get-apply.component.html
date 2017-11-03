@@ -27,7 +27,7 @@
   </div>
   <div>
     <p-dataTable [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading" scrollable="true" scrollHeight="375px">
-      <p-column field="creditAuthId" header="申请ID" styleClass="text-center" [style]="{'width':'130px'}"></p-column>
+      <p-column field="creditAuthId" header="申请单号" styleClass="text-center" [style]="{'width':'130px'}"></p-column>
       <p-column header="会员名称" [style]="{'width':'200px'}">
         <ng-template let-data="rowData" pTemplate="body">
           <div textMaxLength="200px" title="{{data.memberName}}">
@@ -44,14 +44,14 @@
           </div>
         </ng-template>
       </p-column>
-      <p-column field="oldCreditValue" header="原授信额度(元)" styleClass="text-right" [style]="{'width':'140px'}">
+      <!-- <p-column field="oldCreditValue" header="原授信额度(元)" styleClass="text-right" [style]="{'width':'140px'}">
         <ng-template let-row="rowData" pTemplate="body">
           <div class="text-right">
-            <!-- {{addCreditValue.addCreditValue | currency:'CNY' :true}} -->
+            {{addCreditValue.addCreditValue | currency:'CNY' :true}}
             {{row.oldCreditValue | yuanFormat:2:true}}
           </div>
         </ng-template>
-      </p-column>
+      </p-column> -->
       <p-column field="statusDic" header="状态" [style]="{'width':'80px'}"></p-column>
       <!-- <p-column field="serviceMan" header="服务经理" [style]="{'width':'120px'}"></p-column> -->
       <p-column header='服务经理' [style]="{'width':'120px'}">
@@ -61,9 +61,9 @@
           </div>
         </ng-template>
       </p-column>
-      <p-column field="createTime" header="申请日期" [style]="{'width':'120px'}" styleClass="text-center">
+      <p-column field="createTime" header="申请时间" [style]="{'width':'120px'}" styleClass="text-center">
         <ng-template let-row="rowData" pTemplate="body">
-          {{row.createTime|date:'yyyy-MM-dd'}}
+          {{row.createTime}}
         </ng-template>
       </p-column>
       <p-column field="color" header="操作" [style]="{'width':'60px'}">

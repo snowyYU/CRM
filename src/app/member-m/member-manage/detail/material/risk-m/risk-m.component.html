@@ -14,13 +14,14 @@
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part1" (click)="cancel('part1')">取消</button>
     </div> -->
   <section class="clearfix">
-    <form #part1F="ngForm" (ngSubmit)='save1()'>
+    <form #part1F="ngForm" (ngSubmit)='save1()' HTML5Validate>
       <div class="page-location">
         <a class="h4 pad-r-xs font-bold">资产信息</a>
         <i class="fa fa-caret-right text-lg" *ngIf="!part1S" (click)="part1S=!part1S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part1S" (click)="part1S=!part1S"></i>
         <a class="text-info pull-right" *ngIf="part1S&&!part1&&userName==member.serviceMan" (click)="edit('part1')">编辑</a>
-        <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button>
+        <!-- <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part1&&part1S" [disabled]="!part1F.form.valid">保存</button> -->
+        <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part1&&part1S">保存</button>
         <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part1&&part1S" (click)="cancel('part1')">放弃</button>
       </div>
       <div class="padder-v clearfix col-md-12" *ngIf="!part1&&part1S">
@@ -84,13 +85,21 @@
             <div class="col-md-6">
               <label class="control-label">家用轿车购买年份:</label>
               <div class="col-md-6 form-inline">
-                <input type="text" name="buyCarYear" class="form-control" maxlength="30" [(ngModel)]="companyAsset.buyCarYear"> 年
+                <!-- <input type="text" name="buyCarYear" class="form-control" maxlength="30" [(ngModel)]="companyAsset.buyCarYear"> 年 -->
+                <input type="text" name="buyCarYear" class="form-control" [(ngModel)]="companyAsset.buyCarYear"
+                       pattern="^[0-9]{1,5}$" #buyCarYearRef="ngModel"
+                       [HTML5Validate]="[[!!(buyCarYearRef.errors&&buyCarYearRef.errors.pattern),'家用轿车购买年份应少于5位整数']]"
+                /> 年
               </div>
             </div>
             <div class="col-md-6">
               <label class="control-label">轿车价值:</label>
               <div class="col-md-6">
-                <input type="text" name="carValue" class="form-control" maxlength="30" [(ngModel)]="companyAsset.carValue"> 万元
+                <!-- <input type="text" name="carValue" class="form-control" maxlength="30" [(ngModel)]="companyAsset.carValue"> 万元 -->
+                <input type="text" name="carValue" class="form-control" [(ngModel)]="companyAsset.carValue"
+                       pattern="^[0-9]{1,9}(\.[0-9]{1,2})?$" #carValueRef="ngModel"
+                       [HTML5Validate]="[[!!(carValueRef.errors&&carValueRef.errors.pattern),'轿车价值输入有误，请输入9位(含)以内整数,可保留两位小数']]"
+                /> 万元
               </div>
             </div>
           </div>
@@ -98,7 +107,11 @@
             <div class="col-md-6">
               <label class="control-label">自有运营车辆数量:</label>
               <div class="col-md-6">
-                <input name="carNum" class="form-control" maxlength="30" [(ngModel)]="companyAsset.carNum"> 辆
+                <!-- <input name="carNum" class="form-control" maxlength="30" [(ngModel)]="companyAsset.carNum"> 辆 -->
+                <input name="carNum" class="form-control" [(ngModel)]="companyAsset.carNum"
+                       pattern="^[0-9]{1,5}$" #carNumRef="ngModel"
+                       [HTML5Validate]="[[!!(carNumRef.errors&&carNumRef.errors.pattern),'自有运营车辆数量应少于5位整数']]"
+                /> 辆
               </div>
             </div>
             <div class="col-md-6">
@@ -118,13 +131,21 @@
             <div class="col-md-6">
               <label class="control-label">自有房产套数:</label>
               <div class="col-md-6">
-                <input name="houseNum" class="form-control" maxlength="30" [(ngModel)]="companyAsset.houseNum"> 套
+                <!-- <input name="houseNum" class="form-control" maxlength="30" [(ngModel)]="companyAsset.houseNum"> 套 -->
+                <input name="houseNum" class="form-control" [(ngModel)]="companyAsset.houseNum"
+                       pattern="^[0-9]{1,5}$" #houseNumRef="ngModel"
+                       [HTML5Validate]="[[!!(houseNumRef.errors&&houseNumRef.errors.pattern),'自有房产套数应少于5位整数']]"
+                /> 套
               </div>
             </div>
             <div class="col-md-6">
               <label class="control-label">住房价值:</label>
               <div class="col-md-6">
-                <input type="text" name="houseValue" class="form-control" maxlength="30" [(ngModel)]="companyAsset.houseValue"> 万元
+                <!-- <input type="text" name="houseValue" class="form-control" maxlength="30" [(ngModel)]="companyAsset.houseValue"> 万元 -->
+                <input type="text" name="houseValue" class="form-control" [(ngModel)]="companyAsset.houseValue"
+                       pattern="^[0-9]{1,9}(\.[0-9]{1,2})?$" #houseValueRef="ngModel"
+                       [HTML5Validate]="[[!!(houseValueRef.errors&&houseValueRef.errors.pattern),'住房价值输入有误，请输入9位(含)以内整数,可保留两位小数']]"
+                /> 万元
               </div>
             </div>
           </div>
@@ -132,13 +153,23 @@
             <div class="col-md-6">
               <label class="control-label">应收账款价值:</label>
               <div class="col-md-6">
-                <input type="text" name="debtReceivableValue" class="form-control" maxlength="30" [(ngModel)]="companyAsset.debtReceivableValue"> 万元
+                <!-- <input type="text" name="debtReceivableValue" class="form-control" maxlength="30" [(ngModel)]="companyAsset.debtReceivableValue"> 万元 -->
+                <input type="text" name="debtReceivableValue" class="form-control" 
+                       [(ngModel)]="companyAsset.debtReceivableValue"
+                       pattern="^[0-9]{1,9}(\.[0-9]{1,2})?$" #debtReceivableValueRef="ngModel"
+                       [HTML5Validate]="[[!!(debtReceivableValueRef.errors&&debtReceivableValueRef.errors.pattern),'应收账款价值输入有误，请输入9位(含)以内整数,可保留两位小数']]"
+                /> 万元
               </div>
             </div>
             <div class="col-md-6">
               <label class="control-label">应付账款额度:</label>
               <div class="col-md-6">
-                <input type="text" name="debtReceivableLimit" class="form-control" maxlength="30" [(ngModel)]="companyAsset.debtReceivableLimit"> 万元
+                <!-- <input type="text" name="debtReceivableLimit" class="form-control" maxlength="30" [(ngModel)]="companyAsset.debtReceivableLimit"> 万元 -->
+                <input type="text" name="debtReceivableLimit" class="form-control" 
+                       [(ngModel)]="companyAsset.debtReceivableLimit"
+                       pattern="^[0-9]{1,9}(\.[0-9]{1,2})?$" #debtReceivableLimitRef="ngModel"
+                       [HTML5Validate]="[[!!(debtReceivableLimitRef.errors&&debtReceivableLimitRef.errors.pattern),'应付账款额度输入有误，请输入9位(含)以内整数,可保留两位小数']]"
+                /> 万元
               </div>
             </div>
           </div>
@@ -228,13 +259,14 @@
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part2" (click)="cancel('part2')">取消</button>
     </div> -->
   <section class="m-t clearfix">
-    <form #part2F="ngForm" (ngSubmit)='save2()'>
+    <form #part2F="ngForm" (ngSubmit)='save2()' HTML5Validate>
       <div class="page-location">
         <a class="h4 pad-r-xs font-bold">负债信息</a>
         <i class="fa fa-caret-right text-lg" *ngIf="!part2S" (click)="part2S=!part2S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part2S" (click)="part2S=!part2S"></i>
         <a class="text-info pull-right" *ngIf="part2S&&!part2&&userName==member.serviceMan" (click)="edit('part2')">编辑</a>
-        <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part2&&part2S" [disabled]="!part2F.form.valid">保存</button>
+        <!-- <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part2&&part2S" [disabled]="!part2F.form.valid">保存</button> -->
+        <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part2&&part2S">保存</button>
         <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part2&&part2S" (click)="cancel('part2')">放弃</button>
       </div>
       <div class="padder-v clearfix col-md-12" *ngIf="!part2&&part2S">
@@ -274,13 +306,23 @@
             <div class="col-md-6">
               <label class="control-label">征信负债状况:</label>
               <div class="col-md-6">
-                <input type="text" name="creditDebtSituation" class="form-control" maxlength="30" [(ngModel)]="companyDebt.creditDebtSituation"> 万元
+                <!-- <input type="text" name="creditDebtSituation" class="form-control" maxlength="30" [(ngModel)]="companyDebt.creditDebtSituation"> 万元 -->
+                <input type="text" name="creditDebtSituation" class="form-control" 
+                       [(ngModel)]="companyDebt.creditDebtSituation"
+                       pattern="^[0-9]{1,9}(\.[0-9]{1,2})?$" #creditDebtSituationRef="ngModel"
+                       [HTML5Validate]="[[!!(creditDebtSituationRef.errors&&creditDebtSituationRef.errors.pattern),'征信负债状况输入有误，请输入9位(含)以内整数,可保留两位小数']]"
+                /> 万元
               </div>
             </div>
             <div class="col-md-6">
               <label class="control-label">住房按揭贷款金额:</label>
               <div class="col-md-6">
-                <input type="text" name="houseMortgageLoanamt" class="form-control" maxlength="30" [(ngModel)]="companyDebt.houseMortgageLoanamt"> 万元
+                <!-- <input type="text" name="houseMortgageLoanamt" class="form-control" maxlength="30" [(ngModel)]="companyDebt.houseMortgageLoanamt"> 万元 -->
+                <input type="text" name="houseMortgageLoanamt" class="form-control" 
+                       [(ngModel)]="companyDebt.houseMortgageLoanamt"
+                       pattern="^[0-9]{1,9}(\.[0-9]{1,2})?$" #houseMortgageLoanamtRef="ngModel"
+                       [HTML5Validate]="[[!!(houseMortgageLoanamtRef.errors&&houseMortgageLoanamtRef.errors.pattern),'住房按揭贷款金额输入有误，请输入9位(含)以内整数,可保留两位小数']]"
+                /> 万元
               </div>
             </div>
           </div>
@@ -288,13 +330,23 @@
             <div class="col-md-6">
               <label class="control-label">抵押贷占总贷款比例:</label>
               <div class="col-md-6">
-                <input type="text" name="mortgageLoanamtRate" class="form-control" maxlength="30" [(ngModel)]="companyDebt.mortgageLoanamtRate"> %
+                <!-- <input type="text" name="mortgageLoanamtRate" class="form-control" maxlength="30" [(ngModel)]="companyDebt.mortgageLoanamtRate"> % -->
+                <input type="text" name="mortgageLoanamtRate" class="form-control" 
+                       [(ngModel)]="companyDebt.mortgageLoanamtRate"
+                       pattern="^[0-9]{1,9}(\.[0-9]{1,2})?$" #mortgageLoanamtRateRef="ngModel"
+                       [HTML5Validate]="[[!!(mortgageLoanamtRateRef.errors&&mortgageLoanamtRateRef.errors.pattern),'抵押贷占总贷款比例输入有误，请输入9位(含)以内整数,可保留两位小数']]"
+                /> %
               </div>
             </div>
             <div class="col-md-6">
               <label class="control-label">申请人每月需偿还的贷款额:</label>
               <div class="col-md-6">
-                <input type="text" name="repayLoanamtPermonth" class="form-control" maxlength="30" [(ngModel)]="companyDebt.repayLoanamtPermonth"> 万元
+                <!-- <input type="text" name="repayLoanamtPermonth" class="form-control" maxlength="30" [(ngModel)]="companyDebt.repayLoanamtPermonth"> 万元 -->
+                <input type="text" name="repayLoanamtPermonth" class="form-control" 
+                       [(ngModel)]="companyDebt.repayLoanamtPermonth"
+                       pattern="^[0-9]{1,9}(\.[0-9]{1,2})?$" #repayLoanamtPermonthRef="ngModel"
+                       [HTML5Validate]="[[!!(repayLoanamtPermonthRef.errors&&repayLoanamtPermonthRef.errors.pattern),'申请人每月需偿还的贷款额输入有误，请输入9位(含)以内整数,可保留两位小数']]"
+                /> 万元
               </div>
             </div>
           </div>
@@ -302,7 +354,11 @@
             <div class="col-md-6">
               <label class="control-label">应付账款:</label>
               <div class="col-md-6">
-                <input type="text" name="accountspayable" class="form-control" maxlength="30" [(ngModel)]="companyDebt.accountspayable"> 万元
+                <!-- <input type="text" name="accountspayable" class="form-control" maxlength="30" [(ngModel)]="companyDebt.accountspayable"> 万元 -->
+                <input type="text" name="accountspayable" class="form-control" [(ngModel)]="companyDebt.accountspayable"
+                       pattern="^[0-9]{1,9}(\.[0-9]{1,2})?$" #accountspayableRef="ngModel"
+                       [HTML5Validate]="[[!!(accountspayableRef.errors&&accountspayableRef.errors.pattern),'应付账款输入有误，请输入9位(含)以内整数,可保留两位小数']]"
+                /> 万元
               </div>
             </div>
           </div>
@@ -318,13 +374,14 @@
       <button type="button" class="btn pull-right m-r-xs" *ngIf="part3" (click)="cancel('part3')">取消</button>
     </div> -->
   <section class="m-t clearfix">
-    <form #part3F="ngForm" (ngSubmit)='save3()'>
+    <form #part3F="ngForm" (ngSubmit)='save3()' HTML5Validate>
       <div class="page-location">
         <a class="h4 pad-r-xs font-bold">履约信息</a>
         <i class="fa fa-caret-right text-lg" *ngIf="!part3S" (click)="part3S=!part3S"></i>
         <i class="fa fa-caret-down text-lg" *ngIf="part3S" (click)="part3S=!part3S"></i>
         <a class="text-info pull-right" *ngIf="part3S&&!part3&&userName==member.serviceMan" (click)="edit('part3')">编辑</a>
-        <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part3&&part3S" [disabled]="!part3F.form.valid">保存</button>
+        <!-- <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part3&&part3S" [disabled]="!part3F.form.valid">保存</button> -->
+        <button type="submit" class="btn btn-info btn-sm pull-right" *ngIf="part3&&part3S">保存</button>
         <button type="button" class="btn btn-default btn-sm pull-right m-r-xs" *ngIf="part3&&part3S" (click)="cancel('part3')">放弃</button>
       </div>
       <div class="padder-v clearfix col-md-12" *ngIf="!part3&&part3S">
@@ -388,13 +445,23 @@
             <div class="col-md-6">
               <label class="control-label">信用卡最大逾期金额:</label>
               <div class="col-md-6">
-                <input type="text" name="maxamtofoverdueCreditcard" class="form-control" maxlength="30" [(ngModel)]="companyCredit.maxamtofoverdueCreditcard"> 万元
+                <!-- <input type="text" name="maxamtofoverdueCreditcard" class="form-control" maxlength="30" [(ngModel)]="companyCredit.maxamtofoverdueCreditcard"> 万元 -->
+                <input type="text" name="maxamtofoverdueCreditcard" class="form-control" 
+                       [(ngModel)]="companyCredit.maxamtofoverdueCreditcard"
+                       pattern="^[0-9]{1,9}(\.[0-9]{1,2})?$" #maxamtofoverdueCreditcardRef="ngModel"
+                       [HTML5Validate]="[[!!(maxamtofoverdueCreditcardRef.errors&&maxamtofoverdueCreditcardRef.errors.pattern),'信用卡最大逾期金额输入有误，请输入9位(含)以内整数,可保留两位小数']]"
+                /> 万元
               </div>
             </div>
             <div class="col-md-6">
               <label class="control-label">贷款最大逾期金额:</label>
               <div class="col-md-6">
-                <input type="text" name="maxamtofoverdueLoan" class="form-control" maxlength="30" [(ngModel)]="companyCredit.maxamtofoverdueLoan"> 万元
+                <!-- <input type="text" name="maxamtofoverdueLoan" class="form-control" maxlength="30" [(ngModel)]="companyCredit.maxamtofoverdueLoan"> 万元 -->
+                <input type="text" name="maxamtofoverdueLoan" class="form-control" 
+                       [(ngModel)]="companyCredit.maxamtofoverdueLoan"
+                       pattern="^[0-9]{1,9}(\.[0-9]{1,2})?$" #maxamtofoverdueLoanRef="ngModel"
+                       [HTML5Validate]="[[!!(maxamtofoverdueLoanRef.errors&&maxamtofoverdueLoanRef.errors.pattern),'贷款最大逾期金额输入有误，请输入9位(含)以内整数,可保留两位小数']]"
+                /> 万元
               </div>
             </div>
           </div>
@@ -402,13 +469,21 @@
             <div class="col-md-6">
               <label class="control-label">信用卡/贷款逾期次数:</label>
               <div class="col-md-6">
-                <input type="text" name="overdueNum" class="form-control" maxlength="30" [(ngModel)]="companyCredit.overdueNum"> 次
+                <!-- <input type="text" name="overdueNum" class="form-control" maxlength="30" [(ngModel)]="companyCredit.overdueNum"> 次 -->
+                <input type="text" name="overdueNum" class="form-control" [(ngModel)]="companyCredit.overdueNum"
+                       pattern="^[0-9]{1,5}$" #overdueNumRef="ngModel"
+                       [HTML5Validate]="[[!!(overdueNumRef.errors&&overdueNumRef.errors.pattern),'信用卡/贷款逾期次数应少于5位整数']]"
+                /> 次
               </div>
             </div>
             <div class="col-md-6">
               <label class="control-label">信用卡/贷款最大逾期天数:</label>
               <div class="col-md-6">
-                <input type="text" name="overdueDay" class="form-control" maxlength="30" [(ngModel)]="companyCredit.overdueDay"> 天
+                <!-- <input type="text" name="overdueDay" class="form-control" maxlength="30" [(ngModel)]="companyCredit.overdueDay"> 天 -->
+                <input type="text" name="overdueDay" class="form-control" [(ngModel)]="companyCredit.overdueDay"
+                       pattern="^[0-9]{1,5}$" #overdueDayRef="ngModel"
+                       [HTML5Validate]="[[!!(overdueDayRef.errors&&overdueDayRef.errors.pattern),'信用卡/贷款最大逾期天数应少于5位整数']]"
+                /> 天
               </div>
             </div>
           </div>
@@ -416,13 +491,23 @@
             <div class="col-md-6">
               <label class="control-label">住房按揭贷款逾期次数:</label>
               <div class="col-md-6">
-                <input type="text" name="inquiriesnumWithintwoyear" class="form-control" maxlength="30" [(ngModel)]="companyCredit.inquiriesnumWithintwoyear"> 次
+                <!-- <input type="text" name="inquiriesnumWithintwoyear" class="form-control" maxlength="30" [(ngModel)]="companyCredit.inquiriesnumWithintwoyear"> 次 -->
+                <input type="text" name="inquiriesnumWithintwoyear" class="form-control" 
+                       [(ngModel)]="companyCredit.inquiriesnumWithintwoyear"
+                       pattern="^[0-9]{1,5}$" #inquiriesnumWithintwoyearRef="ngModel"
+                       [HTML5Validate]="[[!!(inquiriesnumWithintwoyearRef.errors&&inquiriesnumWithintwoyearRef.errors.pattern),'住房按揭贷款逾期次数应少于5位整数']]"
+                /> 次
               </div>
             </div>
             <div class="col-md-6">
               <label class="control-label">两年内征信被查询次数:</label>
               <div class="col-md-6">
-                <input type="text" name="housemortgageloanOverdueNum" class="form-control" maxlength="30" [(ngModel)]="companyCredit.housemortgageloanOverdueNum"> 次
+                <!-- <input type="text" name="housemortgageloanOverdueNum" class="form-control" maxlength="30" [(ngModel)]="companyCredit.housemortgageloanOverdueNum"> 次 -->
+                <input type="text" name="housemortgageloanOverdueNum" class="form-control" 
+                       [(ngModel)]="companyCredit.housemortgageloanOverdueNum"
+                       pattern="^[0-9]{1,5}$" #housemortgageloanOverdueNumRef="ngModel"
+                       [HTML5Validate]="[[!!(housemortgageloanOverdueNumRef.errors&&housemortgageloanOverdueNumRef.errors.pattern),'两年内征信被查询次数应少于5位整数']]"
+                /> 次
               </div>
             </div>
           </div>
@@ -430,7 +515,12 @@
             <div class="col-md-6">
               <label class="control-label">3个月内征信被查询次数:</label>
               <div class="col-md-6">
-                <input type="text" name="inquiriesnumWithinthreemonth" class="form-control" maxlength="30" [(ngModel)]="companyCredit.inquiriesnumWithinthreemonth"> 次
+                <!-- <input type="text" name="inquiriesnumWithinthreemonth" class="form-control" maxlength="30" [(ngModel)]="companyCredit.inquiriesnumWithinthreemonth"> 次 -->
+                <input type="text" name="inquiriesnumWithinthreemonth" class="form-control" 
+                       [(ngModel)]="companyCredit.inquiriesnumWithinthreemonth"
+                       pattern="^[0-9]{1,5}$" #inquiriesnumWithinthreemonthRef="ngModel"
+                       [HTML5Validate]="[[!!(inquiriesnumWithinthreemonthRef.errors&&inquiriesnumWithinthreemonthRef.errors.pattern),'3个月内征信被查询次数应少于5位整数']]"
+                /> 次
               </div>
             </div>
             <!-- <div class="col-md-6">
