@@ -137,3 +137,7 @@ select option{
 input[type="file"] {
     display: none;
 }
+
+.width-textarea{
+  width: 500px !important;
+}

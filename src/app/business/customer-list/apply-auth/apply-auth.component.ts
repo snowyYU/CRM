@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild,ReflectiveInjector } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { PopService } from 'dolphinng'
 import { ApplyAuthService } from './apply-auth.service'
@@ -18,14 +18,25 @@ class Attachment {
 		this.uploader=new Uploader()
 		this.applyAuth=applyAuth
 		this.id=id
+		this.pop=ReflectiveInjector.resolveAndCreate([PopService]).get(PopService)
 		//上传方法和参数
 		this.uploader.url='http://121.46.18.25:9090/fileserver/file/upload';
 	    this.uploader.isCompress=true;
 	    this.uploader.onSelect((files)=>{//文件选择完毕
-	      console.log(files);
+
+
+	      console.log(files[0].name.length);
 	    });
 	    this.uploader.onQueue((uploadFile)=>{//文件加入队列
 	      //uploadFile.addSubmitData('fileId','文件ID');  //发送此字段删除该指定ID的文件
+	      console.log(uploadFile)
+	      if (uploadFile.file.name.length>45) {
+	    		this.pop.info({
+	    			title:"提示信息",
+	    			text:"文件名过长"
+	    		})
+	    		this.uploader.queue=[]
+	    	}
 	      uploadFile.addSubmitData('businessType',this.secondType);
 	      uploadFile.addSubmitData('fileName',uploadFile.fileName);
 	      uploadFile.addSubmitData('fileType',uploadFile.fileExtension);
@@ -36,7 +47,7 @@ class Attachment {
 	      console.log('文件全部加入队列',uploadFiles);
 	      this.uploader.upload()
 	    });
-	    
+
 	    this.uploader.onProgress((progress,uploadFile,uploader,index)=>{//上传中
 	      console.log(progress);
 	      console.log(uploadFile);
@@ -66,9 +77,9 @@ class Attachment {
 	      			setTimeout(()=>{
 	      				this.uploader.queue[0].setSuccess()
 	      			},1000)
-			      	
-			      	
-			      	
+
+
+
 			     }
 	    	}
 
@@ -86,7 +97,9 @@ class Attachment {
 	secondList:any[]//第二个下拉列表数据
 	secondType//第二个下拉列表model数据
 	attachLoadId:any[]
-	
+
+	pop
+
 	deleteClick(){
 		this.uploader.queue.forEach(e=>{
 			let data=e.response.json()
@@ -166,6 +179,9 @@ export class ApplyAuthComponent implements OnInit {
 
 	originalArray:number[]=[]
 
+	//这个变量用来存放已选择的附件下拉列表
+	selectedAttachTypeL:any[]=[]
+
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
 
 	constructor(
@@ -228,15 +244,15 @@ export class ApplyAuthComponent implements OnInit {
 
 		this.guestId=this.route.params['value']['id']
 
-		//给原数组originalArray赋值 
-		for (let i=0;i<300;i++){ 
-		this.originalArray[i]=i+1; 
-		} 
+		//给原数组originalArray赋值
+		for (let i=0;i<300;i++){
+		this.originalArray[i]=i+1;
+		}
 
 		this.getIsLegal()
 		this.getTypeList()
 		this.getFistList()
-		
+
 
 		this.applyAuth
 			.getData(this.route.params['value']['id'])
@@ -254,7 +270,7 @@ export class ApplyAuthComponent implements OnInit {
 	getTypeList(){
 		this.applyAuth.getTypeList()
 		.then(res=>{
-			console.log(res.body)
+			// console.log(res.body)
 
 			this.typeList=res.body.records
 		})
@@ -269,7 +285,7 @@ export class ApplyAuthComponent implements OnInit {
 	getIsLegal(){
 		this.applyAuth.getIsLegal()
 		.then(res=>{
-			console.log(res.body)
+			// console.log(res.body)
 			this.isLegalList=res.body.records
 		})
 		.catch(res=>{
@@ -334,16 +350,51 @@ export class ApplyAuthComponent implements OnInit {
 					this.city=array[1];
 					break;
 				default:
-					
+					for(let i=0;i<array.length;i++){
+						this.getCityList("2");
+							if(i==0){
+								this.province=array[i];
+							}else if(i==1){
+								this.city=array[i];
+							}else if(i==2){
+								this.detailAddress=array[i];
+							}else{
+								this.detailAddress+='-'+array[i];
+							}
+						}
 					break;
 			}
 		}
-		
+
+	}
+
+	selectSecondL(){
+		this.selectedAttachTypeL=[]
+		if (this.attachmentList.length>0) {
+			this.attachmentList.forEach(e=>{
+				this.selectedAttachTypeL.push(e.secondType)
+			})
+		}
+
+		console.log(this.selectedAttachTypeL)
+
+	}
+
+	ifHidden(type){
+		// console.log(this.selectedAttachTypeL.indexOf(type.code+''))
+		let i=this.selectedAttachTypeL.indexOf(type+'')
+		if(i<0) {
+			return false
+		}else{
+			// console.log(i)
+			return true
+		}
+
 	}
 
 	addAttachment(){
 		console.log(this.firstList)
-		console.log(this.attachmentList.length)
+		console.log("attachmentList数组的长度",this.attachmentList.length)
 		if (this.attachmentList.length>=5) {
 			this.pop.info({
 				title:"提示信息",
@@ -351,13 +402,16 @@ export class ApplyAuthComponent implements OnInit {
 			})
 			return;
 		}
-
-		let ele=new Attachment(this.firstList,this.applyAuth,this.createUniqueId())
+		let unique=this.createUniqueId()
+		console.log("随机数+1",unique)
+		let ele=new Attachment(this.firstList,this.applyAuth,unique)
+		console.log(ele)
 		this.attachmentList.push(ele)
 	}
 
 	deleteFile(item){
-		console.log(item.id)
+		console.log("点击删除时取到的项",item)
+
 		if (item.uploader.customData.data&&item.uploader.customData.data.status==200) {
 			this.applyAuth.deleteAttachment(item.uploader.customData.data.body.fileId)
 				.then(res=>{
@@ -366,21 +420,21 @@ export class ApplyAuthComponent implements OnInit {
 		}
 		let deleteIndex
 		this.attachmentList.forEach((e,i)=>{
-			if (e.id=item.id) {
+			if (e.id==item.id) {
 				deleteIndex=i
 				return
 			}
 		})
+		console.log(deleteIndex)
 		this.attachmentList.splice(deleteIndex,1)
-
-
+		console.log("全局的附件数组",this.attachmentList)
+		//更新每个附件第二个下拉列表的小黑屋
+		this.selectSecondL()
 	}
 
 	show(e,item){
 		let url:any=this.applyAuth.getFileUrl(item.uploader.customData.data.body.fileId)
 		this.gallery.open(e,url);
-
-		
 	}
 
 	cancel(){
@@ -413,7 +467,7 @@ export class ApplyAuthComponent implements OnInit {
 			foundTime:this.foundTime,
 			companyAddress:companyAddress,
 
-		} 
+		}
 		console.log(this.attachmentList[0])
 		if (this.attachmentList[0]&&this.attachmentList[0].uploader.customData.data){
 			this.attachmentList.forEach((e,i)=>{
@@ -422,7 +476,7 @@ export class ApplyAuthComponent implements OnInit {
 					sendData['attch'+(i+1)+'Loadid']=e.uploader.customData.data.body.fileId
 
 				}
-				
+
 			})
 		}
 
@@ -451,8 +505,8 @@ export class ApplyAuthComponent implements OnInit {
 	createUniqueId():number{
 		let index=Math.floor(Math.random()*this.originalArray.length);
 		this.originalArray.splice(index,1)
-		console.log(index); 
-		console.log(this.originalArray); 
+		console.log("生成一个不重复的随机数",index);
+		// console.log(this.originalArray);
 		return index+1
 	}
 
@@ -461,7 +515,7 @@ export class ApplyAuthComponent implements OnInit {
 	inputSelect(type:string):Promise<any>{
 		return this.applyAuth
 			.getDictListData(type)
-			
+
 	}
 
 	//获取地址下拉列表
@@ -480,7 +534,7 @@ export class ApplyAuthComponent implements OnInit {
 				})
 			})
 	}
-	
+
 	getCityList(v){
 		console.log(v);
 		//获取省code
@@ -499,7 +553,7 @@ export class ApplyAuthComponent implements OnInit {
 					this.city=""
 					console.log("fffffffffff")
 				}
-				
+
 				this.cityList=res.body.records
 			}).catch(res=>{
 				this.pop.error({
@@ -507,7 +561,7 @@ export class ApplyAuthComponent implements OnInit {
 					text:res.message
 				})
 			})
-			
+
 		})
 	}
 

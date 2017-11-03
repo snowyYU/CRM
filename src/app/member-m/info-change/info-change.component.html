@@ -1,8 +1,7 @@
-
 <div class="page-location">
-  <a class="h4 pad-r-xs font-bold">资料变更审核</a>
+  <a class="h4 pad-r-xs font-bold">资料变更审批</a>
   <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
-  <a class="page-location-item active">资料变更审核</a>
+  <a class="page-location-item active">资料变更审批</a>
 </div>
 <div class="pad-l-def pad-r-def pad-b-def pad-t-sm">
   <div class="tab-container">
@@ -16,36 +15,41 @@
     </ul>
     <div class="tab-content">
       <div class="tab-pane active">
-        <p-dataTable  [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}"
-                     [loading]="loading" scrollable="true" scrollHeight="375px">
-          <p-column field="updateApplyId" header="变更申请ID" [style]="{'width':'150px'}"></p-column>
-          <p-column field="memberName" header="会员名称" [style]="{'width':'220px'}"></p-column>
-          <p-column field="appName" header="归属渠道" [style]="{'width':'160px'}"></p-column>
+        <p-dataTable [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading" scrollable="true" scrollHeight="375px">
+          <p-column field="updateApplyId" header="变更申请单号" [style]="{'width':'150px'}"></p-column>
+          <!-- <p-column field="memberName" header="会员名称" [style]="{'width':'250px'}"></p-column> -->
+          <p-column header='会员名称' [style]="{'width':'240px'}">
+            <ng-template let-operation="rowData" pTemplate="body">
+              <div textMaxLength="240px" title="{{operation.memberName}}">
+                {{operation.memberName}}
+              </div>
+            </ng-template>
+          </p-column>
+          <!-- <p-column field="appName" header="归属渠道" [style]="{'width':'160px'}"></p-column> -->
+          <p-column header='归属渠道' [style]="{'width':'150px'}">
+            <ng-template let-operation="rowData" pTemplate="body">
+              <div textMaxLength="150px" title="{{operation.appName}}">
+                {{operation.appName}}
+              </div>
+            </ng-template>
+          </p-column>
           <p-column field="updateApplyWhatDic" header="变更对象" [style]="{'width':'100px'}"></p-column>
           <p-column field="sourceDic" header="变更来源" [style]="{'width':'100px'}"></p-column>
           <p-column field="statusDic" header="状态" [style]="{'width':'80px'}"></p-column>
           <p-column field="createTime" header="申请时间" styleClass="text-center" [style]="{'width':'180px'}"></p-column>
-
           <p-column field="color" header="操作" [style]="{'width':'80px'}" *ngIf="status===0">
-
-
             <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
               <div class="text-center">
                 <div *ngIf="auth.roleIn(['008'])">
-                  <a class="table-btn text-info" *ngIf="status===0&&operation.source=='1'"
-                   (click)="check(operation)">审核</a>
-                  <a class="table-btn text-info" *ngIf="(status===2||operation.source!='1')&&!auth.roleIn(['007'])"
-                   (click)="detail(operation)">详情</a>
+                  <a class="table-btn text-info" *ngIf="status===0&&operation.source=='1'" (click)="check(operation)">审批</a>
+                  <a class="table-btn text-info" *ngIf="(status===2||operation.source!='1')&&!auth.roleIn(['007'])" (click)="detail(operation)">详情</a>
                 </div>
                 <div *ngIf="auth.roleIn(['007'])">
-                  <a class="table-btn text-info" *ngIf="status===0&&operation.source!='1'"
-                   (click)="check(operation)">审核</a>
-                  <a class="table-btn text-info" *ngIf="(status===2||operation.source=='1')&&!auth.roleIn(['008'])"
-                   (click)="detail(operation)">详情</a>
+                  <a class="table-btn text-info" *ngIf="status===0&&operation.source!='1'" (click)="check(operation)">审批</a>
+                  <a class="table-btn text-info" *ngIf="(status===2||operation.source=='1')&&!auth.roleIn(['008'])" (click)="detail(operation)">详情</a>
                 </div>
                 <div *ngIf="auth.roleIn(['002'])">
-                  <a class="table-btn text-info"
-                   (click)="detail(operation)">详情</a>
+                  <a class="table-btn text-info" (click)="detail(operation)">详情</a>
                 </div>
               </div>
             </ng-template>
@@ -53,8 +57,7 @@
           <p-footer>
             <div class="clearfix">
               <div class="pull-right">
-                <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows"
-                           (onChangePage)="queryData()" size="sm" [showTotal]="true"></paginator>
+                <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="queryData()" size="sm" [showTotal]="true"></paginator>
               </div>
             </div>
           </p-footer>

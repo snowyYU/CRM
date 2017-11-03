@@ -32,7 +32,7 @@
         <ng-template let-row="rowData" pTemplate="body">
           <div class="text-right">
             <!-- {{addCreditValue.addCreditValue | currency:'CNY' :true}} -->
-            {{row.amount | yuanFormat}}
+            {{row.amount | yuanFormat:2:true}}
           </div>
         </ng-template>
       </p-column>

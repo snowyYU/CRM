@@ -109,13 +109,15 @@ export class AuthRoleService {
 		if (this.token) {
 			// code...
 			this.myhttp.post({
-			url:this.myhttp.api.loginHost+this.myhttp.api.refreshToken,
+			url:this.myhttp.api.loginHost+this.myhttp.api.refreshToken.url,
 			body:{
 				accessToken:this.token
 			}
 			}).toPromise()
 		  	  .then(res=>{
+		  	  	let data=res.json()
 
+		  	  	this.token=data.body.accessToken
 		  	})
 		}
 		

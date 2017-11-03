@@ -1,7 +1,7 @@
 <div class="page-location">
-  <a class="h4 pad-r-xs font-bold">资料变更详情</a>
+  <a class="h4 pad-r-xs font-bold">变更审批详情</a>
   <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
-  <a class="page-location-item active">资料变更审核<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">资料变更审批<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">详情</a>
 </div>
 <div class="wrapper">
@@ -290,10 +290,10 @@
         </div>
       </div> -->
       <div class="clearfix">
-        <label class="label-control label-special-w">审核意见:</label>
+        <label class="label-control label-special-w">审批意见:</label>
         <div class="col-md-8 m-t-xs">
           <div class="text-content" *ngIf="!isCheck">{{applyMessage | filterNull:false}}</div>
-          <textarea name="applyMessage" class="form-control" cols="30" rows="4" maxlength="200" placeholder="小于200字" *ngIf="isCheck" [(ngModel)]="applyMessage"></textarea>
+          <textarea name="applyMessage" class="form-control width-textarea" cols="30" rows="4" maxlength="200" placeholder="小于200字" *ngIf="isCheck" [(ngModel)]="applyMessage"></textarea>
 
         </div>
       </div>

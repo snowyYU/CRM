@@ -57,9 +57,9 @@ export class VisitReportComponent implements OnInit{
 		this.vistReportService.getManageL()
 			.then(res=>{
 				console.log(res)
-				res.body.unshift({employeeName:''})
+				res.body.records.unshift({employeeName:''})
 
-				this.serviceManL=res.body
+				this.serviceManL=res.body.records
 			})
 			.catch(res=>{
 				this.pop.error({

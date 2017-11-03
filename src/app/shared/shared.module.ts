@@ -9,6 +9,8 @@ import {CheckboxComponent} from 'dolphinng';
 import {RadioComponent} from 'dolphinng';
 import {ToggleComponent} from 'dolphinng';
 import {PaginatorComponent} from 'dolphinng';
+import { SubmitLoadingComponent } from '../../utils/submit-loading/submit-loading.component'
+
 import {TextMaxLengthDirective} from 'dolphinng';
 import {HTML5ValidateDirective}   from '../../directives/HTML5Validate/HTML5Validate.directive';
 
@@ -41,6 +43,7 @@ import { ModalComponent,ModalHeaderComponent,ModalBodyComponent,ModalFooterCompo
     ModalHeaderComponent,
     ModalBodyComponent,
     ModalFooterComponent,
+    SubmitLoadingComponent,
     YuanFormatPipe,
     EffDateFormatPipe,
     DigestContentPipe,
@@ -67,6 +70,7 @@ import { ModalComponent,ModalHeaderComponent,ModalBodyComponent,ModalFooterCompo
     ModalHeaderComponent,
     ModalBodyComponent,
     ModalFooterComponent,
+    SubmitLoadingComponent,
     YuanFormatPipe,
     EffDateFormatPipe,
     DigestContentPipe,
