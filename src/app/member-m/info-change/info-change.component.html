@@ -1,7 +1,7 @@
 <div class="page-location">
-  <a class="h4 pad-r-xs font-bold">资料变更审核</a>
+  <a class="h4 pad-r-xs font-bold">资料变更审批</a>
   <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
-  <a class="page-location-item active">资料变更审核</a>
+  <a class="page-location-item active">资料变更审批</a>
 </div>
 <div class="pad-l-def pad-r-def pad-b-def pad-t-sm">
   <div class="tab-container">
@@ -41,11 +41,11 @@
             <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
               <div class="text-center">
                 <div *ngIf="auth.roleIn(['008'])">
-                  <a class="table-btn text-info" *ngIf="status===0&&operation.source=='1'" (click)="check(operation)">审核</a>
+                  <a class="table-btn text-info" *ngIf="status===0&&operation.source=='1'" (click)="check(operation)">审批</a>
                   <a class="table-btn text-info" *ngIf="(status===2||operation.source!='1')&&!auth.roleIn(['007'])" (click)="detail(operation)">详情</a>
                 </div>
                 <div *ngIf="auth.roleIn(['007'])">
-                  <a class="table-btn text-info" *ngIf="status===0&&operation.source!='1'" (click)="check(operation)">审核</a>
+                  <a class="table-btn text-info" *ngIf="status===0&&operation.source!='1'" (click)="check(operation)">审批</a>
                   <a class="table-btn text-info" *ngIf="(status===2||operation.source=='1')&&!auth.roleIn(['008'])" (click)="detail(operation)">详情</a>
                 </div>
                 <div *ngIf="auth.roleIn(['002'])">
