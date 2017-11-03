@@ -125,7 +125,7 @@ export class AddEditComponent implements OnInit{
 						break;
 
 					default:
-
+					
 						break;
 				}
 			}
@@ -219,7 +219,18 @@ export class AddEditComponent implements OnInit{
 						break;
 
 					default:
-
+						for(let i=0;i<array.length;i++){
+							if(i==0){
+								this.province=array[i];
+								this.getCityList(this.province);
+							}else if(i==1){
+								this.city=array[i];
+							}else if(i==2){
+								this.companyAddress=array[i];
+							}else{
+								this.companyAddress+='-'+array[i];
+							}
+						}
 						break;
 				}
 			}

@@ -257,7 +257,18 @@ export class CustomerAddEditComponent implements OnInit{
 						this.city=array[1];
 						break;
 					default:
-
+						for(let i=0;i<array.length;i++){
+							this.getCityList("2");
+							if(i==0){
+								this.province=array[i];
+							}else if(i==1){
+								this.city=array[i];
+							}else if(i==2){
+								this.detailAddress=array[i];
+							}else{
+								this.detailAddress+='-'+array[i];
+							}
+						}
 						break;
 				}
 			}

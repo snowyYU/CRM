@@ -29,8 +29,8 @@
         <div class="input-group">
           <!-- <input type="number" name="addCreditValue" class="form-control" max="9999999999999.99" [(ngModel)]="addCreditValue" required> -->
           <input type="text" name="addCreditValue" class="form-control" [(ngModel)]="addCreditValue" required
-                 pattern="^[0-9]{1,9}$" #addCreditValueRef="ngModel"
-                 [HTML5Validate]="[[addCreditValue==='','请输入申请额度！'],[!!(addCreditValueRef.errors&&addCreditValueRef.errors.pattern),'申请额度输入有误，请输入9位以内数字']]"
+                 pattern="^[0-9]{1,13}(\.[0-9]{1,2})?$" #addCreditValueRef="ngModel"
+                 [HTML5Validate]="[[addCreditValue==='','请输入申请额度！'],[!!(addCreditValueRef.errors&&addCreditValueRef.errors.pattern),'申请额度输入有误，请输入13位(含)以内整数,可保留两位小数']]"
           />
 
           <span class="input-group-addon">元</span>

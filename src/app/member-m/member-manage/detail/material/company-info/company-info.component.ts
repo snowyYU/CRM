@@ -478,6 +478,7 @@ export class CompanyInfoComponent implements OnInit {
 
 		this.companyVo.registerCapital=data.body.companyVo.registerCapital/10000
 		//处理公司地址
+		this.companyVo.foundTime=this.companyVo.foundTime?this.companyVo.foundTime.substr(0,10):''
 
 			if (this.companyVo.companyAddress) {
 				let array=this.companyVo.companyAddress.split('-')
@@ -497,7 +498,18 @@ export class CompanyInfoComponent implements OnInit {
 						this.getCityList(this.province);
 						break;
 					default:
-
+						for(let i=0;i<array.length;i++){
+							if(i==0){
+								this.province=array[i];
+								this.getCityList(this.province);
+							}else if(i==1){
+								this.city=array[i];
+							}else if(i==2){
+								this.detailAddress=array[i];
+							}else{
+								this.detailAddress+='-'+array[i];
+							}
+						}
 						break;
 				}
 			}
@@ -610,7 +622,7 @@ export class CompanyInfoComponent implements OnInit {
 			borrwerIdcard:this.companyborrowerVo.borrwerIdcard,//身份证号码
 			borrwerDegree:this.companyborrowerVo.borrwerDegree,//最高学历:
 			borrwerMobile:this.companyborrowerVo.borrwerMobile,//联系手机
-			borrwerMarry:this.borrwerMarry,//婚姻状况(字典：marryType)：
+			borrwerMarry:this.borrwerMarry=='null'?'':this.borrwerMarry,//婚姻状况(字典：marryType)：
 			attachList:listJson
 		}
 
@@ -637,7 +649,7 @@ export class CompanyInfoComponent implements OnInit {
 			companyName:this.memberVo.companyName,//公司名称：
 			companyType:this.companyVo.companyType,//公司类型（字典:guest_company_type）
 			registerCapital:this.companyVo.registerCapital*10000,//注册资金
-			foundTime:this.companyVo.foundTime,//注册时间
+			foundTime:this.companyVo.foundTime+' '+'00:00:00',//注册时间
 		 	linkName:this.companyVo.linkName,//联系人
 		 	linkMobile:this.companyVo.linkMobile,//联系手机
 			licenceNum:this.companyVo.licenceNum,//营业执照号
