@@ -90,7 +90,7 @@ export class AccBalanceComponent implements OnInit {
 			.then(res=>{
 				console.log(res)
 				this.isOpenAccount=res.body.isOpenAccount
-				this.isOpenAccountRate=res.body.isOpenAccountRate*100
+				this.isOpenAccountRate=res.body.isOpenAccountRate
 				this.memberTotal=res.body.memberTotal
 				this.notOpenAccount=res.body.notOpenAccount
 			})

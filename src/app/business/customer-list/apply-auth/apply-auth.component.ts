@@ -6,6 +6,8 @@ import { Uploader } from '../../../../utils/uploader/Uploader'
 import { GalleryComponent} from 'dolphinng';
 import { DateService } from "../../../../services/date/date.service"
 
+import { API } from "../../../../services/config/app.config"
+
 class Attachment {
 
 
@@ -20,7 +22,7 @@ class Attachment {
 		this.id=id
 		this.pop=ReflectiveInjector.resolveAndCreate([PopService]).get(PopService)
 		//上传方法和参数
-		this.uploader.url='http://121.46.18.25:9090/fileserver/file/upload';
+		this.uploader.url=API.fileServer+'upload';
 	    this.uploader.isCompress=true;
 	    this.uploader.onSelect((files)=>{//文件选择完毕
 
@@ -120,7 +122,6 @@ class Attachment {
 	// openAttach(data){
 	// 	console.log(data.response)
 	// 	let fileId=JSON.parse(data.response).body.fileId
-	// 	window.open('http://121.46.18.25:9090/fileserver/file/download?fileId='+fileId+'&mode='+'1')
 
 	// }
 

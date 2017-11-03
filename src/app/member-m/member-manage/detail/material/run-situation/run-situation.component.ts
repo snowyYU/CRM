@@ -187,7 +187,7 @@ export class RunSituationComponent implements OnInit {
 
 	uploaderFun(type,upName){
 		//uploader1_7
-		this[upName].url=API.fileServer+'/fileserver/file/upload';
+		this[upName].url=API.fileServer+'upload';
 	    this[upName].isCompress=true;
 	    this[upName].onSelect((files)=>{//文件选择完毕
 	      console.log(files);
