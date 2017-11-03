@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="signin-form">
-                <form class="form-horizontal" (submit)="signIn()">
+                <form class="form-horizontal" (submit)="signIn()" autocomplete="off">
                     <fieldset class="h3">客户关系管理系统</fieldset>
                     <div class="signin-form-lines">
                     </div>
@@ -39,13 +39,13 @@
                     <div class="form-group">
                         <label class="control-label col-md-4 no-r-padding">UserID:</label>
                         <div class="col-md-6">
-                            <input class="form-control" placeholder="" [(ngModel)]="user" name="user"/>
+                            <input class="form-control" placeholder="" [(ngModel)]="user" name="user" autocomplete="new-user"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-4 no-r-padding">Password:</label>
                         <div class="col-md-6">
-                            <input class="form-control" type="password" placeholder="" [(ngModel)]="password" name="password"/>
+                            <input class="form-control" type="password" placeholder="" [(ngModel)]="password" name="password" autocomplete="new-password"/>
                         </div>
                     </div>
                     <div class="form-group mar-t-md">

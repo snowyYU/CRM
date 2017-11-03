@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../services/myHttp/myhttp.service';
 import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
-
+import { API } from '../../../services/config/app.config'
 import { DateService } from '../../../services/date/date.service';
 import { SendData } from './sendDate';
 
@@ -62,8 +62,11 @@ constructor(private myHttp:MyHttpClient){}
 	}
 
 	getManageL():Promise<any>{
-		return this.myHttp.get({
-			api:this.myHttp.api.getServiceManList
+		return this.myHttp.post({
+			url:API.loginHost+API.getByDepart.url,
+			body:{
+				departCode:'003'
+			}
 		})
 		.toPromise()
 		.then(res=>{

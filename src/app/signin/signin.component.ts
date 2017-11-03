@@ -16,8 +16,8 @@ import { config } from '../../services/config/app.config'
 })
 export class SigninComponent {
 
-  user:string='拓展人员';
-  password:string='123456';
+  user:string='';
+  password:string='';
   submiting:boolean=false;
   msg:string;
 
