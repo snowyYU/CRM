@@ -53,6 +53,7 @@ export class AccBalanceComponent implements OnInit {
 			.then(res=>{
 				console.log(res)
 				this.appIdList=res.body.records
+				this.appId=res.body.records[0].resourceId
 			})
 			.catch(res=>{
 				this.pop.error({

@@ -8,6 +8,10 @@
 <div class="pad-l-def pad-r-def pad-b-def pad-t-sm">
   <div class="mar-b-sm clearfix">
     <div class="col-md-12 form-inline">
+      <label class="">来源渠道：</label>
+      <select type="text" name="appId" class="form-control app-w" [(ngModel)]="appId">
+        <option [value]="item.resourceId" *ngFor="let item of appIdList">{{item.resourceName}}</option>
+      </select>
       <label class="">交易类型：</label>
       <select type="text" name="tradeType" class="form-control" [(ngModel)]="tradeType">
         <option [value]="item.value" *ngFor="let item of tradeTypeList">{{item.label}}</option>
