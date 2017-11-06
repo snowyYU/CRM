@@ -183,6 +183,9 @@ export class ApplyAuthComponent implements OnInit {
 	//这个变量用来存放已选择的附件下拉列表
 	selectedAttachTypeL:any[]=[]
 
+	//用来触发提交时的遮罩
+	submitting:boolean=false
+
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
 
 	constructor(
@@ -443,6 +446,9 @@ export class ApplyAuthComponent implements OnInit {
 	}
 
 	submit(){
+
+		//遮罩出现
+		this.submitting=true
 		//整理提交的数据
 		//整理地址
 		let companyAddress:string;
@@ -490,7 +496,7 @@ export class ApplyAuthComponent implements OnInit {
 					title:'提示信息',
 					text:res.message
 				})
-
+				this.submitting=false
 				this.router.navigate(['business/customerList'])
 			})
 			.catch(res=>{
@@ -498,6 +504,8 @@ export class ApplyAuthComponent implements OnInit {
 					title:'错误信息',
 					text:res.message
 				})
+				this.submitting=false
+				
 			})
 
 	}

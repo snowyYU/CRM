@@ -132,6 +132,9 @@ export class RiskMComponent implements OnInit {
 	uploader2:Uploader=new Uploader()
 
 
+	//用来触发提交时的遮罩
+	submitting:boolean=false
+
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
 
 
@@ -186,7 +189,7 @@ export class RiskMComponent implements OnInit {
 		this.companyDebt=res.body.companyDebt
 		this.companyCredit=res.body.companyCredit
 		this.member=res.body.member
-		this.companyAsset.nativeRenting=res.body.companyAsset.nativeRenting+""  //本地租房状况
+		this.companyAsset.nativeRenting=res.body.companyAsset.nativeRenting?res.body.companyAsset.nativeRenting:""  //本地租房状况
 
 		this.companyAsset.carValue=res.body.companyAsset.carValue/10000
 		this.companyAsset.houseValue=res.body.companyAsset.houseValue/10000
@@ -368,18 +371,21 @@ export class RiskMComponent implements OnInit {
 	
 
 	save1(){
+		this.submitting=true
+
 		let data:Part1Data={
 			memberId:this.memberId,	//会员ID：
 			buyCarYear:this.companyAsset.buyCarYear,    //家用轿车购买年份					
 			carValue:this.companyAsset.carValue*10000,    //轿车价值
 			carNum:this.companyAsset.carNum,    //自有运营车辆数量						
-			nativeRenting:this.companyAsset.nativeRenting,    //本地租房状况(字典)	
+			nativeRenting:this.companyAsset.nativeRenting||(this.companyAsset.nativeRenting=="0")?this.companyAsset.nativeRenting:"",    //本地租房状况(字典)	
 			houseNum:this.companyAsset.houseNum,    //自有房产套数					
 			houseValue:this.companyAsset.houseValue*10000,    //住房价值
 			debtReceivableValue:this.companyAsset.debtReceivableValue*10000,    //应收账款价值		    
 			debtReceivableLimit:this.companyAsset.debtReceivableLimit*10000,    //应付账款额度
 			attachList:this.handleAttachData(),
 		}
+		
 		this.riskM.save1(data)
 			.then(res=>{
 				console.log(res)
@@ -387,6 +393,8 @@ export class RiskMComponent implements OnInit {
 					title:'提示信息',
 					text:'保存成功'
 				})
+				this.submitting=false
+
 				this.cancel('part1')
 			})
 			.catch(res=>{
@@ -394,10 +402,14 @@ export class RiskMComponent implements OnInit {
 					title:'错误信息',
 					text:res.message
 				})
+				this.submitting=false
+
 			})
 	}
 
 	save2(){
+		this.submitting=true
+
 		let data:Part2Data={
 			memberId:this.memberId,		//会员ID：
 			creditDebtSituation:this.companyDebt.creditDebtSituation*10000,		//征信负债状况			
@@ -414,6 +426,8 @@ export class RiskMComponent implements OnInit {
 					title:'提示信息',
 					text:'保存成功'
 				})
+				this.submitting=false
+
 				this.cancel('part2')
 			})
 			.catch(res=>{
@@ -421,12 +435,16 @@ export class RiskMComponent implements OnInit {
 					title:'错误信息',
 					text:res.message
 				})
+				this.submitting=false
+
 			})
 
 
 	}
 
 	save3(){
+		this.submitting=true
+
 		let data:Part3Data={
 			memberId:this.memberId,		//会员ID：
 			maxamtofoverdueCreditcard:this.companyCredit.maxamtofoverdueCreditcard*10000,  //信用卡最大逾期金额			
@@ -448,6 +466,8 @@ export class RiskMComponent implements OnInit {
 					title:'提示信息',
 					text:'保存成功'
 				})
+				this.submitting=false
+
 				this.cancel('part3')
 			})
 			.catch(res=>{
@@ -455,6 +475,8 @@ export class RiskMComponent implements OnInit {
 					title:'错误信息',
 					text:res.message
 				})
+				this.submitting=false
+
 			})
 
 

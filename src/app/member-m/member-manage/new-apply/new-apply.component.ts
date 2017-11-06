@@ -36,6 +36,8 @@ export class NewApplyComponent implements OnInit {
 
 	checkApplyExist:boolean=false
 
+	//用来触发提交时的遮罩
+	submitting:boolean=false
 	constructor(
 		private route:ActivatedRoute,
 		private router:Router,
@@ -109,6 +111,8 @@ export class NewApplyComponent implements OnInit {
 	}
 
 	submit(){
+		this.submitting=true
+
 		let data:SendData={
 			memberId:this.memberId,
 			productId:this.productId,			//产品ID
@@ -125,6 +129,8 @@ export class NewApplyComponent implements OnInit {
 					title:'提示框',
 					text:'已提交授信申请，请等待风控审核！'
 				})
+				this.submitting=false
+
 				this.router.navigate(['memberM/memberManage'])
 			})
 			.catch(res=>{
@@ -132,6 +138,8 @@ export class NewApplyComponent implements OnInit {
 						title:'错误提示',
 						text:res.message
 					})
+				this.submitting=false
+				
 			})
 
 	}

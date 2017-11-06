@@ -59,6 +59,9 @@ export class RunSituationComponent implements OnInit {
 
 	attachment:object={}
 
+	//用来触发提交时的遮罩
+	submitting:boolean=false
+
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
 
 
@@ -350,6 +353,8 @@ export class RunSituationComponent implements OnInit {
 	}
 
 	save(){
+		this.submitting=true
+
 		if (this.operateArea2=="全国") {
 			this.operateArea=null
 		}
@@ -379,6 +384,8 @@ export class RunSituationComponent implements OnInit {
 					title:'提示信息',
 					text:'保存成功'
 				})
+				this.submitting=false
+
 				this.cancel('part')
 
 			})
@@ -387,6 +394,8 @@ export class RunSituationComponent implements OnInit {
 					title:'错误信息',
 					text:res.message
 				})
+				this.submitting=false
+				
 			})
 	}
 
