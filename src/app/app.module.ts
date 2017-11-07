@@ -15,6 +15,7 @@ import {SharedModule} from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { SigninComponent } from './signin/signin.component';
 import { IndexComponent } from './index/index.component';
+import { RouterProgressComponent } from '../utils/router-progress/router-progress.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FocusDirective } from '../directives/focus/focus.directive';
@@ -43,6 +44,7 @@ import {HttpClientModule} from '@angular/common/http';
     AppComponent,
     SigninComponent,
     IndexComponent,
+    RouterProgressComponent,
     RootContainerComponent,
     AsideLeftComponent,
     HeaderComponent,

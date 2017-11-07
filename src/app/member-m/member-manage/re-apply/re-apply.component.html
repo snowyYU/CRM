@@ -93,7 +93,7 @@
                       <td>{{item.rateCycle}}</td>
                       <td>{{item.paymentWayName}}</td>
                       <td>{{item.interestTypeName}}</td>
-                      <td>{{item.interestValue}}</td>
+                      <td>{{item.interestValue | percent:'.2'}}</td>
                   </tr>
                   <tr *ngIf="!productDetailL||productDetailL.length===0">
                     <td colspan="4" class="text-disabled text-center"> 无</td>
