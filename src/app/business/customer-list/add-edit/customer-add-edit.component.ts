@@ -280,7 +280,7 @@ export class CustomerAddEditComponent implements OnInit{
 	change(){
 		if(this.guestFrom!=1){
 			this.app_list=this.app_list_temp
-			this.appId='C00001'
+			this.appId='00001'
 		}else{
 			this.appId='undefined'
 			this.app_list=this.arrayCopy(this.app_list)
@@ -292,7 +292,7 @@ export class CustomerAddEditComponent implements OnInit{
 		let add:boolean=false
 		let resource:Resource
 		 for(let i=0;i<app_array.length;i++){
-		 	if(str[i].resourceId=='C00001'){
+		 	if(str[i].resourceId=='00001'){
 				add=true
 			}
 		 	if(add){
@@ -319,7 +319,7 @@ export class CustomerAddEditComponent implements OnInit{
 			guestName:this.guestName,	//客户名称
 			status:this.ifEdit?this.status:0,	//状态
 			guestFrom:this.guestFrom,	//获取途径
-			appId:this.guestFrom=='1'?this.appId:'C00001',	//	归属渠道
+			appId:this.guestFrom=='1'?this.appId:'00001',	//	归属渠道
 			serviceMan:this.serviceMan, //服务经理
 			companyType:this.companyType,	//公司类型
 			foundTime:this.foundTime,	//成立时间

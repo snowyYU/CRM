@@ -577,7 +577,7 @@ export class ApplyAuthComponent implements OnInit {
 	change(){
 		if(this.guestFrom!=1){
 			this.app_list=this.app_list_temp
-			this.appId='C00001'
+			this.appId='00001'
 		}else{
 			this.appId='undefined'
 			this.app_list=this.arrayCopy(this.app_list)
@@ -589,7 +589,7 @@ export class ApplyAuthComponent implements OnInit {
 		let add:boolean=false
 		let resource:Resource
 		 for(let i=0;i<app_array.length;i++){
-		 	if(str[i].resourceId=='C00001'){
+		 	if(str[i].resourceId=='00001'){
 				add=true
 			}
 		 	if(add){
