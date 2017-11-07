@@ -5,6 +5,7 @@ import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
 export interface SendData{
 	rows:number
 	page:number
+	appId
 	startTime?
 	endTime?
 	tradeType?

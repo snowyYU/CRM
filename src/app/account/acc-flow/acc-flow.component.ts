@@ -25,7 +25,7 @@ export class AccFlowComponent implements OnInit {
 
 	appId=''
 	appIdList:any[]
-	
+
 	constructor(
 		private pop:PopService,
 		private accF:AccFlowService,
@@ -35,7 +35,7 @@ export class AccFlowComponent implements OnInit {
 	ngOnInit() {
 		this.getTradeTypeList()
 		this.getAppIdList()
-		
+
 		this.todayDate=this.dateService.format({
 			date:this.dateService.todayDate(),
 			formatType:"yyyy-MM-dd"
@@ -89,7 +89,8 @@ export class AccFlowComponent implements OnInit {
 			startTime:this.startTime,
 			endTime:this.endTime,
 			tradeType:this.tradeType,
-			memberName:this.memberName
+			memberName:this.memberName,
+			appId:this.appId
 
 		}
 		this.accF.getDataList(data)
