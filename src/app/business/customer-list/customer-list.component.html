@@ -47,7 +47,7 @@
 <!--      <p-column field="index" header="序号" styleClass="text-center " [style]="{'width':'100px'}"></p-column>-->
       <p-column field="guestName" header="客户名称" [style]="{'width':'250px'}">
       	<ng-template let-guestName="rowData" pTemplate="body">
-      		<div>
+      		<div textMaxLength="300px" title="{{guestName.guestName}}">
       			<a (click)="detail(guestName)" class="text-info">{{guestName.guestName}}</a>
       		</div>
       	</ng-template>
