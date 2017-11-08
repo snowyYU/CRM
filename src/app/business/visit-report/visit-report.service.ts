@@ -18,15 +18,19 @@ class Item{
 @Injectable()
 export class VistReportService{
 constructor(private myHttp:MyHttpClient){}
-	getList(sendDate:SendData):Promise<{
-		timetableId
-		visitWhatDic
-		serial
-		guestName
-		visitDate
-		serviceMan
-		remark
-		records}[]
+	getList(sendDate:SendData):Promise<
+		any
+		// {
+
+		// timetableId
+		// visitWhatDic
+		// serial
+		// guestName
+		// visitDate
+		// serviceMan
+		// remark
+		// records
+		// }[]
 		>{
 		return this.myHttp.post({
 			api:this.myHttp.api.visitReportList,
