@@ -17,12 +17,18 @@
     <div class="tab-content">
       <div class="tab-pane active">
         <p-dataTable  [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading"
-                     scrollable="true" scrollHeight="360px">
+                     scrollable="true" scrollHeight="375px">
 
           <p-column field="authId" header="申请单号" [style]="{'width':'150px'}"></p-column>
           <p-column field="companyName" header="客户名称" [style]="{'width':'250px'}"></p-column>
           <!-- <p-column field="companyTypeDic" header="类别" [style]="{'width':'100px'}"></p-column> -->
-          <p-column field="serviceMan" header="服务经理" [style]="{'width':'120px'}"></p-column>
+          <p-column field="serviceMan" header="服务经理" [style]="{'width':'120px'}">
+            <ng-template let-serviceMan="rowData" pTemplate="body">
+              <div textMaxLength="120px" title="{{serviceMan.serviceMan}}">
+                {{serviceMan.serviceMan}}
+              </div>
+            </ng-template>
+          </p-column>
           <p-column field="statusDic" header="状态" [style]="{'width':'100px'}"></p-column>
           <p-column field="createTime" header="申请时间" styleClass="text-center" [style]="{'width':'200px'}"></p-column>
           <p-column field="ooo" header="操作" [style]="{'width':'100px'}">
