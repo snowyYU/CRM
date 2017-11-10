@@ -1,0 +1,8 @@
+<div>
+	<div *ngIf="fileId">
+		<ng-content select=".fa-search" *ngIf="preShow"></ng-content>
+		<ng-content select=".fa-download"></ng-content>
+	</div>
+	
+	<!-- <a *ngIf="!fileId" class="fa fa-search text-disabled" title="查看"></a> -->
+</div>
