@@ -588,7 +588,7 @@ export class CompanyInfoComponent implements OnInit {
 			})
 			.catch(res=>{
 				this.pop.error({
-					titile:"错误信息",
+					title:"错误信息",
 					text:res.message
 				})
 			})

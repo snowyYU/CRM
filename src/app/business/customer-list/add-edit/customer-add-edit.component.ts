@@ -283,7 +283,8 @@ export class CustomerAddEditComponent implements OnInit{
 			this.appId='00001'
 		}else{
 			this.appId='undefined'
-			this.app_list=this.arrayCopy(this.app_list)
+			// this.app_list=this.arrayCopy(this.app_list)
+			
 		}
 	}
 

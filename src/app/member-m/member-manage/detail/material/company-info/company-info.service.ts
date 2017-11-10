@@ -84,8 +84,8 @@ export class CompanyInfoService {
 	 * @param  {[type]}       id [description]
 	 * @return {Promise<any>}    [description]
 	 */
-	getFileUrl(id){
-		return this.myHttp.sShow(id,1)
+	getFileUrl(id,mode?){
+		return this.myHttp.sShow(id,mode)
 				
 	}
 
