@@ -3,11 +3,12 @@ import { ActivatedRoute,Router } from '@angular/router';
 import { PopService } from 'dolphinng'
 import { ApplyAuthService } from './apply-auth.service'
 import { Uploader } from '../../../../utils/uploader/Uploader'
+import { PreviewerComponent } from '../../../../utils/previewer/previewer.component'
 import { GalleryComponent} from 'dolphinng';
 import { DateService } from "../../../../services/date/date.service"
 
 import { API } from "../../../../services/config/app.config"
-
+import {img,file } from "../../../../utils/previewer/filetype"
 class Attachment {
 
 
@@ -187,6 +188,7 @@ export class ApplyAuthComponent implements OnInit {
 	submitting:boolean=false
 
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
+	@ViewChild(PreviewerComponent) previewer:PreviewerComponent;
 
 	constructor(
 			private applyAuth:ApplyAuthService,
@@ -436,9 +438,29 @@ export class ApplyAuthComponent implements OnInit {
 		this.selectSecondL()
 	}
 
+	fileExtension
 	show(e,item){
+		this.fileExtension=item.uploader.queue[0].fileExtension
+		console.log(item)
+		let extension=item.uploader.queue[0].fileExtension
 		let url:any=this.applyAuth.getFileUrl(item.uploader.customData.data.body.fileId)
-		this.gallery.open(e,url);
+		let event=e
+		console.log(extension)
+		console.log(img.indexOf(extension)>=0)
+		// this.gallery.open(e,url);
+		//这里判断上传文件的类型
+		//分为可以预览的和不可以预览的，不可以预览的需要下载
+		if(img.indexOf(extension)>=0||file.indexOf(extension)>=0){
+			if (img.indexOf(extension)>=0) {
+				this.previewer.open(event,url,"img")
+				
+			}else if (file.indexOf(extension)>=0) {
+				this.previewer.open(event,url,"file")
+				
+			}
+		}else{
+			console.info("下载")
+		}
 	}
 
 	cancel(){

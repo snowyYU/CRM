@@ -3,6 +3,8 @@ import { Router,ActivatedRoute } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { EleAttachmentService } from './ele-attachment.service'
 import { GalleryComponent} from 'dolphinng';
+import { PreviewerComponent } from '../../../../../utils/previewer/previewer.component'
+import {img,file } from "../../../../../utils/previewer/filetype"
 
 @Component({
 	moduleId: module.id,
@@ -16,6 +18,7 @@ export class EleAttachmentComponent implements OnInit {
 	memberId:number
 
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
+	@ViewChild(PreviewerComponent) previewer:PreviewerComponent;
 
 
 	constructor(
@@ -76,6 +79,11 @@ export class EleAttachmentComponent implements OnInit {
 		}
 	}
 
+	tranferFileType(fileType,type){
+		this.attachment[type].extension=fileType
+		console.log(fileType)
+	}
+
 
 	show(e,type){
 		console.log(type)
@@ -83,14 +91,37 @@ export class EleAttachmentComponent implements OnInit {
 		console.log(!this.attachment[type])
 		if (!!this.attachment[type]) {
 			let url:any=this.eleAttach.getFileUrl(this.attachment[type].fileLoadId)
-			this.gallery.open(e,url);
-			
+			let extension=this.attachment[type].extension
+			let event=e
+
+			// this.gallery.open(e,url);
+			//这里判断上传文件的类型
+			//分为可以预览的和不可以预览的，不可以预览的需要下载
+			console.log(extension)
+			if(img.indexOf(extension)>=0||file.indexOf(extension)>=0){
+				if (img.indexOf(extension)>=0) {
+					this.previewer.open(event,url,"img")
+					
+				}else if (file.indexOf(extension)>=0) {
+					this.previewer.open(event,url,"file")
+					
+				}
+			}else{
+				console.info("下载")
+			}
 		}/*else{
 			this.pop.error({
 				title:'错误提示',
 				text:'无此文件！'
 			})
 		}*/
+	}
+
+	download(type){
+		if (!!this.attachment[type]) {
+			let url=this.eleAttach.downLoadFile(this.attachment[type].fileLoadId)
+			window.open(url)
+		}
 	}
 
 	back(){
