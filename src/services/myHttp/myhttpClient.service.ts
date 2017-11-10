@@ -159,9 +159,33 @@ export class MyHttpClient {
      * @param  {number}          mode   [description]
      * @return {Observable<any>}        [description]
      */
-    sShow(fileId:number,mode:number){
-        let url=this.api.fileServer+'download?fileId='+fileId+'&mode='+mode
-        return url
+    sShow(fileId:number,mode?:string){
+        if (mode) {
+          let url=this.api.fileServer+'preview?fileId='+fileId+'&mode='+mode
+          return url
+        }else{
+          let url=this.api.fileServer+'preview?fileId='+fileId
+          return url
+        }
+
+        
+    }
+
+    // sInfo(fileId:number){
+    //   let url=this.api.fileServer+'getInfo?fileId='+fileId
+    //   return url
+    // }
+
+
+    sDownLoad(fileId:number,mode?:string){
+        if (mode) {
+          let url=this.api.fileServer+'download?fileId='+fileId+'&mode='+mode
+          return url
+        }else{
+          let url=this.api.fileServer+'download?fileId='+fileId
+          return url
+        }
+        
     }
 
     /**
