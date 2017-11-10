@@ -3,13 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing } from './app.routing';
-import { RootContainerComponent } from 'dolphinng';
-import { AsideLeftComponent } from 'dolphinng';
-import { HeaderComponent,HeaderLeftComponent,HeaderRightComponent} from 'dolphinng';
-import {NavWrapComponent} from 'dolphinng';
-import {NavItemComponent} from 'dolphinng';
-import {SubNavItemComponent} from 'dolphinng';
-import {ThirthNavItemComponent} from 'dolphinng';
 import {SharedModule} from './shared/shared.module';
 
 import { AppComponent } from './app.component';
@@ -45,15 +38,6 @@ import {HttpClientModule} from '@angular/common/http';
     SigninComponent,
     IndexComponent,
     RouterProgressComponent,
-    RootContainerComponent,
-    AsideLeftComponent,
-    HeaderComponent,
-    HeaderLeftComponent,
-    HeaderRightComponent,
-    NavWrapComponent,
-    NavItemComponent,
-    SubNavItemComponent,
-    ThirthNavItemComponent,
     ModifyPasswordComponent,
     FocusDirective,
   ],
