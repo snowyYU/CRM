@@ -1816,7 +1816,7 @@
 <gallery #gallery size="md"></gallery>
 <!-- 更改银行卡模态框部分 -->
 <modal [(visible)]="bankCardModal" size="lg" [overflow]="true">
-  <form #formBankCard="ngForm">
+  <form #formBankCard="ngForm" autocomplete="false">
     <modal-header>
       <h4 class="modal-title">银行卡变更</h4>
     </modal-header>
@@ -1888,3 +1888,4 @@
     </modal-footer>
   </form>
 </modal>
+<submit-loading [show]="submitting"></submit-loading>

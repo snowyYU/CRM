@@ -44,12 +44,24 @@
   </div>
   <div>
     <p-dataTable  [value]="dateList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading"
-                 scrollable="true" scrollHeight="360px">
+                 scrollable="true" scrollHeight="375px">
       <!--<p-column field="serial" header="序号" styleClass="text-center" [style]="{'width':'100px'}"></p-column>-->
-      <p-column field="guestName" header="客户名称" [style]="{'width':'250px'}"></p-column>
+      <p-column field="guestName" header="客户名称" [style]="{'width':'250px'}">
+        <ng-template let-guestName="rowData" pTemplate="body" >
+          <div textMaxLength="250px" title="{{guestName.guestName}}">
+            {{guestName.guestName}}
+          </div>
+        </ng-template>
+      </p-column>
       <p-column field="visitDate" header="拜访日期" styleClass="text-center" [style]="{'width':'120px'}"></p-column>
       <p-column field="visitWhatDic" header="拜访目的" [style]="{'width':'120px'}"></p-column>
-      <p-column field="serviceMan" header="服务经理"  [style]="{'width':'120px'}"></p-column>
+      <p-column field="serviceMan" header="服务经理"  [style]="{'width':'120px'}">
+        <ng-template let-serviceMan="rowData" pTemplate="body">
+          <div textMaxLength="120px" title="{{serviceMan.serviceMan}}">
+            {{serviceMan.serviceMan}}
+          </div>
+        </ng-template>
+      </p-column>
       <p-column field="remark" header="备忘录" [style]="{'width':'320px'}">
          <ng-template let-operation="rowData" pTemplate="body" >
           <!-- <div class="remark"> -->

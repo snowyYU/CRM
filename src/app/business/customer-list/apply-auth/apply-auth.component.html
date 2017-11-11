@@ -21,7 +21,7 @@
         <div class="form-group">
           <label class="control-label pull-left required">获客途径：</label>
           <div class="pull-left">
-            <!-- <select class="form-control min-width" name="guestFrom" required [(ngModel)]="guestFrom" (change)="appId='C00001'"> -->
+            <!-- <select class="form-control min-width" name="guestFrom" required [(ngModel)]="guestFrom" (change)="appId='00001'"> -->
 
               <!-- <select class="form-control min-width" name="guestFrom" required [(ngModel)]="guestFrom" (change)="change()"> -->
               <select class="form-control min-width" name="guestFrom" required [(ngModel)]="guestFrom" pattern="^\S+$"
@@ -413,5 +413,6 @@
   </form>
 </div>
 <gallery #gallery size="md"></gallery>
-
+<previewer [syn]="fileExtension"></previewer>
+<submit-loading [show]="submitting"></submit-loading>
 <!-- &&licenceNum&&companyType&&registerCapital&&foundTime&&companyAddress -->

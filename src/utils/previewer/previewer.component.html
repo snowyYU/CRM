@@ -1,0 +1,16 @@
+<div *ngIf="previewer">
+  <modal [(visible)]="modalVisible" [size]="size">
+    <modal-header>
+      <h4 class="modal-title">预览</h4>
+    </modal-header>
+    <modal-body>
+      <div>
+        <iframe [mySrc]="src" frameborder="0" height="600px" width="100%"></iframe>
+      </div>
+    </modal-body>
+    <modal-footer styleClass="no-t-padding">
+      <button class="btn btn-default" type="button" (click)="close()">关闭</button>
+    </modal-footer>
+  </modal>
+  <gallery #ga [size]="size"></gallery>
+</div>

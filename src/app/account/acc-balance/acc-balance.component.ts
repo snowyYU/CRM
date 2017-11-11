@@ -53,6 +53,7 @@ export class AccBalanceComponent implements OnInit {
 			.then(res=>{
 				console.log(res)
 				this.appIdList=res.body.records
+				this.appId=res.body.records[0].resourceId
 			})
 			.catch(res=>{
 				this.pop.error({
@@ -90,7 +91,7 @@ export class AccBalanceComponent implements OnInit {
 			.then(res=>{
 				console.log(res)
 				this.isOpenAccount=res.body.isOpenAccount
-				this.isOpenAccountRate=res.body.isOpenAccountRate*100
+				this.isOpenAccountRate=res.body.isOpenAccountRate
 				this.memberTotal=res.body.memberTotal
 				this.notOpenAccount=res.body.notOpenAccount
 			})

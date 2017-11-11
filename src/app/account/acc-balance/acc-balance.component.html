@@ -20,7 +20,7 @@
 			共<span class="text-info text-lg">{{memberTotal}}</span>名会员，其中配置电子账户有<span class="text-info text-lg">{{isOpenAccount}}</span>名，配置率 <span class="text-info text-lg">{{isOpenAccountRate}}%</span>
 		</div> -->
 		<div class="col-md-5 l-h-2x" *ngIf="authRole.roleIn(['002'])||authRole.roleIn(['008'])">
-			已配置电子账户有<span class="text-info text-lg">{{isOpenAccount}}</span>名，未配置电子账户<a class="text-info text-lg text-underline" (click)="showModal()">{{notOpenAccount}}</a>名，配置率 <span class="text-info text-lg">{{isOpenAccountRate}}%</span>
+			已配置电子账户有<span class="text-info text-lg">{{isOpenAccount}}</span>名，未配置电子账户<a class="text-info text-lg text-underline" (click)="showModal()">{{notOpenAccount}}</a>名，配置率 <span class="text-info text-lg">{{isOpenAccountRate | percent:'.2'}}</span>
 		</div>
 	</div>
 	<div>

@@ -43,6 +43,10 @@ export class InfoChangeDetailComponent implements OnInit {
 
 	//审核意见
 	applyMessage	
+
+	//用来触发提交时的遮罩
+	submitting:boolean=false
+
 	constructor(
 		private route:ActivatedRoute,
 		private router:Router,
@@ -103,6 +107,8 @@ export class InfoChangeDetailComponent implements OnInit {
 	}
 
 	submit(param:number){
+		this.submitting=true
+
 		let id:number=this.route.params['value']['id']
 		let sendData:SendData={
 			updateApplyId:id,
@@ -111,6 +117,8 @@ export class InfoChangeDetailComponent implements OnInit {
 		}
 		this.infoChangeDetailService.submitData(sendData)
 			.then(res=>{
+				this.submitting=false
+				
 				console.log(res)
 				this.pop.info({
 					title:'提示信息',
@@ -130,6 +138,8 @@ export class InfoChangeDetailComponent implements OnInit {
 					title:'错误提示',
 					text:res.message
 				})
+				this.submitting=false
+
 			})
 	}
 

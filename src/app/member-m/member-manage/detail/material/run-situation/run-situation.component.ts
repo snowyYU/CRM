@@ -59,6 +59,9 @@ export class RunSituationComponent implements OnInit {
 
 	attachment:object={}
 
+	//用来触发提交时的遮罩
+	submitting:boolean=false
+
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
 
 
@@ -187,7 +190,7 @@ export class RunSituationComponent implements OnInit {
 
 	uploaderFun(type,upName){
 		//uploader1_7
-		this[upName].url=API.fileServer+'/fileserver/file/upload';
+		this[upName].url=API.fileServer+'upload';
 	    this[upName].isCompress=true;
 	    this[upName].onSelect((files)=>{//文件选择完毕
 	      console.log(files);
@@ -350,6 +353,8 @@ export class RunSituationComponent implements OnInit {
 	}
 
 	save(){
+		this.submitting=true
+
 		if (this.operateArea2=="全国") {
 			this.operateArea=null
 		}
@@ -379,6 +384,8 @@ export class RunSituationComponent implements OnInit {
 					title:'提示信息',
 					text:'保存成功'
 				})
+				this.submitting=false
+
 				this.cancel('part')
 
 			})
@@ -387,6 +394,8 @@ export class RunSituationComponent implements OnInit {
 					title:'错误信息',
 					text:res.message
 				})
+				this.submitting=false
+				
 			})
 	}
 

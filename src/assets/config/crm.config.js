@@ -67,7 +67,7 @@ env 全局环境变量
     name:'银行账户管理系统',
     link:{//链接
       dev:'',
-      test:'',
+      test:'http://192.168.10.10:9090/ams',
       prod:''
     },
     active:false

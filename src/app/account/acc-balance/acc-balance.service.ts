@@ -24,7 +24,7 @@ export class AccBalanceService {
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {
-				data.body.records.unshift({resourceName:'全部',resourceId:''})
+				// data.body.records.unshift({resourceName:'全部',resourceId:''})
 				return Promise.resolve(data)
 			}else{
 				return Promise.reject(data)

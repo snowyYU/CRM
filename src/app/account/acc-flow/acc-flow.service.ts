@@ -5,6 +5,7 @@ import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
 export interface SendData{
 	rows:number
 	page:number
+	appId
 	startTime?
 	endTime?
 	tradeType?
@@ -17,7 +18,22 @@ export class AccFlowService {
 	constructor(
 			private myHttp:MyHttpClient
 		) {}
+	//appId
+	getAllApp():Promise<any>{
+		return this.myHttp.get({
+			api:this.myHttp.api.getAllApp,
 
+		}).toPromise().then(res=>{
+			let data=res
+			if (data.status==200) {
+				// data.body.records.unshift({resourceName:'全部',resourceId:''})
+				return Promise.resolve(data)
+			}else{
+				return Promise.reject(data)
+			}
+		})
+
+	}
 	//tradeType
 	getTradeType():Promise<any>{
 		return this.myHttp.get({

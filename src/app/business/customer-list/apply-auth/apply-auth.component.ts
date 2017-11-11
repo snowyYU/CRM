@@ -3,9 +3,12 @@ import { ActivatedRoute,Router } from '@angular/router';
 import { PopService } from 'dolphinng'
 import { ApplyAuthService } from './apply-auth.service'
 import { Uploader } from '../../../../utils/uploader/Uploader'
+import { PreviewerComponent } from '../../../../utils/previewer/previewer.component'
 import { GalleryComponent} from 'dolphinng';
 import { DateService } from "../../../../services/date/date.service"
 
+import { API } from "../../../../services/config/app.config"
+import {img,file } from "../../../../utils/previewer/filetype"
 class Attachment {
 
 
@@ -20,7 +23,7 @@ class Attachment {
 		this.id=id
 		this.pop=ReflectiveInjector.resolveAndCreate([PopService]).get(PopService)
 		//上传方法和参数
-		this.uploader.url='http://121.46.18.25:9090/fileserver/file/upload';
+		this.uploader.url=API.fileServer+'upload';
 	    this.uploader.isCompress=true;
 	    this.uploader.onSelect((files)=>{//文件选择完毕
 
@@ -120,7 +123,6 @@ class Attachment {
 	// openAttach(data){
 	// 	console.log(data.response)
 	// 	let fileId=JSON.parse(data.response).body.fileId
-	// 	window.open('http://121.46.18.25:9090/fileserver/file/download?fileId='+fileId+'&mode='+'1')
 
 	// }
 
@@ -182,7 +184,11 @@ export class ApplyAuthComponent implements OnInit {
 	//这个变量用来存放已选择的附件下拉列表
 	selectedAttachTypeL:any[]=[]
 
+	//用来触发提交时的遮罩
+	submitting:boolean=false
+
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
+	@ViewChild(PreviewerComponent) previewer:PreviewerComponent;
 
 	constructor(
 			private applyAuth:ApplyAuthService,
@@ -432,9 +438,29 @@ export class ApplyAuthComponent implements OnInit {
 		this.selectSecondL()
 	}
 
+	fileExtension
 	show(e,item){
+		this.fileExtension=item.uploader.queue[0].fileExtension
+		console.log(item)
+		let extension=item.uploader.queue[0].fileExtension
 		let url:any=this.applyAuth.getFileUrl(item.uploader.customData.data.body.fileId)
-		this.gallery.open(e,url);
+		let event=e
+		console.log(extension)
+		console.log(img.indexOf(extension)>=0)
+		// this.gallery.open(e,url);
+		//这里判断上传文件的类型
+		//分为可以预览的和不可以预览的，不可以预览的需要下载
+		if(img.indexOf(extension)>=0||file.indexOf(extension)>=0){
+			if (img.indexOf(extension)>=0) {
+				this.previewer.open(event,url,"img")
+				
+			}else if (file.indexOf(extension)>=0) {
+				this.previewer.open(event,url,"file")
+				
+			}
+		}else{
+			console.info("下载")
+		}
 	}
 
 	cancel(){
@@ -442,6 +468,9 @@ export class ApplyAuthComponent implements OnInit {
 	}
 
 	submit(){
+
+		//遮罩出现
+		this.submitting=true
 		//整理提交的数据
 		//整理地址
 		let companyAddress:string;
@@ -489,7 +518,7 @@ export class ApplyAuthComponent implements OnInit {
 					title:'提示信息',
 					text:res.message
 				})
-
+				this.submitting=false
 				this.router.navigate(['business/customerList'])
 			})
 			.catch(res=>{
@@ -497,6 +526,8 @@ export class ApplyAuthComponent implements OnInit {
 					title:'错误信息',
 					text:res.message
 				})
+				this.submitting=false
+				
 			})
 
 	}
@@ -568,7 +599,7 @@ export class ApplyAuthComponent implements OnInit {
 	change(){
 		if(this.guestFrom!=1){
 			this.app_list=this.app_list_temp
-			this.appId='C00001'
+			this.appId='00001'
 		}else{
 			this.appId='undefined'
 			this.app_list=this.arrayCopy(this.app_list)
@@ -580,7 +611,7 @@ export class ApplyAuthComponent implements OnInit {
 		let add:boolean=false
 		let resource:Resource
 		 for(let i=0;i<app_array.length;i++){
-		 	if(str[i].resourceId=='C00001'){
+		 	if(str[i].resourceId=='00001'){
 				add=true
 			}
 		 	if(add){

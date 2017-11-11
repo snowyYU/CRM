@@ -24,8 +24,8 @@ export class AuthDetailService{
 		})
 	}
 
-	getAttachUrl(id):any{
-		return this.myHttp.sShow(id,1)
+	getAttachUrl(id,mode?):any{
+		return this.myHttp.sShow(id,mode)
 
 	}
 

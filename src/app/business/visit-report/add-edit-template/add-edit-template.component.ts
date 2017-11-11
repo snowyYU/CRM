@@ -52,6 +52,8 @@ export class AddEditComponent implements OnInit{
 	//拜访日期在当日之前
 	maxDate
 
+	//用来触发提交时的遮罩
+	submitting:boolean=false
 	constructor(
 		private route:ActivatedRoute,
 		private router:Router,
@@ -259,6 +261,7 @@ export class AddEditComponent implements OnInit{
 	//以下三个方法都是提交相同的参数，分别为新增，修改，保存客户信息
 	//保存新增报告
 	saveNewReport(){
+		this.submitting=true
 		let sendData:SendData={
 			serviceMan:this.serviceMan,// :服务经理
 			guestName:this.guestName,//   客户名称
@@ -273,6 +276,8 @@ export class AddEditComponent implements OnInit{
 		}
 		this.addEdit.saveNewReport(sendData)
 					.then(res=>{
+						this.submitting=false
+
 						this.pop.info({
 						// this.pop.confirm({
 							title:'提示',
@@ -287,10 +292,14 @@ export class AddEditComponent implements OnInit{
 							title:'提示',
 							text:res.message
 						})
+						this.submitting=false
+
 					})
 	}
 	//保存编辑报告
 	saveEditReport(){
+		this.submitting=true
+
 		let sendData:SendData={
 			serviceMan:this.serviceMan,// :服务经理
 			guestName:this.guestName,//   客户名称
@@ -306,6 +315,8 @@ export class AddEditComponent implements OnInit{
 		}
 		this.addEdit.saveEditReport(sendData)
 					.then(res=>{
+						this.submitting=false
+
 						this.pop.info({
 						// this.pop.confirm({
 							title:'提示',
@@ -320,11 +331,15 @@ export class AddEditComponent implements OnInit{
 							title:'提示',
 							text:res.message
 						})
+						this.submitting=false
+
 					})
 	}
 	//保存客户信息
 	saveCustomerInfo(){
 		// this.addEdit.test()
+		this.submitting=true
+
 		let sendData:SendData={
 			serviceMan:this.serviceMan,// :服务经理
 			guestName:this.guestName,//   客户名称
@@ -341,6 +356,8 @@ export class AddEditComponent implements OnInit{
 		this.addEdit.saveCustomerInfo(sendData)
 					.then(res=>{
 						console.log(res);
+						this.submitting=false
+
 						this.pop.info({
 						// this.pop.confirm({
 							title:'提示',
@@ -356,6 +373,8 @@ export class AddEditComponent implements OnInit{
 							title:'提示',
 							text:res.message
 						})
+						this.submitting=false
+						
 					})
 	}
 

@@ -22,6 +22,10 @@ export class AccFlowComponent implements OnInit {
 	loading:boolean=false
 
 	todayDate
+
+	appId=''
+	appIdList:any[]
+
 	constructor(
 		private pop:PopService,
 		private accF:AccFlowService,
@@ -30,6 +34,7 @@ export class AccFlowComponent implements OnInit {
 
 	ngOnInit() {
 		this.getTradeTypeList()
+		this.getAppIdList()
 
 		this.todayDate=this.dateService.format({
 			date:this.dateService.todayDate(),
@@ -37,6 +42,23 @@ export class AccFlowComponent implements OnInit {
 
 		})
 		// this.getDataList()
+	}
+
+	//获取归属渠道下拉列表数据
+	getAppIdList(){
+		this.accF
+			.getAllApp()
+			.then(res=>{
+				console.log(res)
+				this.appIdList=res.body.records
+				this.appId=res.body.records[0].resourceId
+			})
+			.catch(res=>{
+				this.pop.error({
+					title:'错误提示',
+					text:res.message
+				})
+			})
 	}
 
 	getTradeTypeList(){
@@ -67,7 +89,8 @@ export class AccFlowComponent implements OnInit {
 			startTime:this.startTime,
 			endTime:this.endTime,
 			tradeType:this.tradeType,
-			memberName:this.memberName
+			memberName:this.memberName,
+			appId:this.appId
 
 		}
 		this.accF.getDataList(data)

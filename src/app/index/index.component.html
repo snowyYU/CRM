@@ -6,30 +6,30 @@
   [container]="setting.container"
   [offScreen]="setting.offScreen">
   <header theme="cerulean">
-
+  <router-progress></router-progress>
+  
   <a class="sys-name hidden-xs" routerLink="/home">
-  </ a>
+  </a>
   <a class="btn-toggle-aside" (click)="toggleOffScreen()">
     <i class="fa fa-reorder"></i>
-  </ a>
+  </a>
   <a class="sys-name-xs" routerLink="/home">客户关系管理系统</a>
   <div class="dropdown user-box" toggleClass="open" [opt-revokable]="true">
     <a  class="dropdown-toggle clear">
       <i class="fa fa-user pad-r-xxs"></i><span class="hidden-xs">{{userName}}</span> <b class="caret"></b>
-    </ a>
+    </a>
     <ul class="dropdown-menu animated fadeInRight w">
       <li>
         <a routerLink="/modifyPassword">
           <span class="label bg-info pull-right"></span>
           修改密码
-        </ a>
+        </a>
       </li>
       <li>
-        <a (click)="logOut()">退出登录</ a>
+        <a (click)="logOut()">退出登录</a>
       </li>
     </ul>
   </div>
-
 
 </header>
   <!-- <header theme="cerulean">

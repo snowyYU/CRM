@@ -233,6 +233,9 @@ export class CompanyInfoComponent implements OnInit {
 	// 		对私网银流水	0504
 	// 		对公网银流水	0504
 
+	//用来触发提交时的遮罩
+	submitting:boolean=false
+
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
 
 
@@ -308,7 +311,7 @@ export class CompanyInfoComponent implements OnInit {
 
 	uploaderFun(type,upName){
 		//uploader1_7
-		this[upName].url=API.fileServer+'/fileserver/file/upload';
+		this[upName].url=API.fileServer+'upload';
 	    this[upName].isCompress=true;
 	    this[upName].onSelect((files)=>{//文件选择完毕
 	      console.log(files);
@@ -585,7 +588,7 @@ export class CompanyInfoComponent implements OnInit {
 			})
 			.catch(res=>{
 				this.pop.error({
-					titile:"错误信息",
+					title:"错误信息",
 					text:res.message
 				})
 			})
@@ -614,6 +617,8 @@ export class CompanyInfoComponent implements OnInit {
 
 
 	save1(){
+		this.submitting=true
+
 		let listJson=this.handleAttachData()
 
 		let data:Part1Data={
@@ -633,6 +638,8 @@ export class CompanyInfoComponent implements OnInit {
 					title:'提示',
 					text:'保存成功'
 				})
+				this.submitting=false
+				
 				this.cancel('part1')
 			})
 			.catch(res=>{
@@ -640,10 +647,14 @@ export class CompanyInfoComponent implements OnInit {
 					title:'错误提示',
 					text:res.message
 				})
+				this.submitting=false
+
 			})
 
 	}
 	save2(){
+		this.submitting=true
+
 		let data:Part2Data={
 			memberId:this.memberId,//会员ID：
 			companyName:this.memberVo.companyName,//公司名称：
@@ -662,6 +673,8 @@ export class CompanyInfoComponent implements OnInit {
 					title:'提示',
 					text:'保存成功'
 				})
+				this.submitting=false
+
 				this.cancel('part2')
 
 			})
@@ -670,9 +683,13 @@ export class CompanyInfoComponent implements OnInit {
 					title:'错误提示',
 					text:res.message
 				})
+				this.submitting=false
+
 			})
 	}
 	save3(){
+		this.submitting=true
+
 		let data:Part3Data={
 			memberId:this.memberId,//会员ID：
 			legalPerson:this.companyLegalVo.legalPerson,//法人姓名
@@ -687,6 +704,8 @@ export class CompanyInfoComponent implements OnInit {
 					title:'提示',
 					text:'保存成功'
 				})
+				this.submitting=false
+
 				this.cancel('part3')
 
 			})
@@ -695,9 +714,13 @@ export class CompanyInfoComponent implements OnInit {
 					title:'错误提示',
 					text:res.message
 				})
+				this.submitting=false
+
 			})
 	}
 	save4(){
+		this.submitting=true
+
 		let data:Part4Data={
 			memberId:this.memberId,//会员ID：
 			attachList:this.handleAttachData()
@@ -709,6 +732,8 @@ export class CompanyInfoComponent implements OnInit {
 					title:'提示',
 					text:'保存成功'
 				})
+				this.submitting=false
+
 				this.cancel('part4_2')
 
 			})
@@ -717,12 +742,16 @@ export class CompanyInfoComponent implements OnInit {
 					title:'错误提示',
 					text:res.message
 				})
+				this.submitting=false
+
 			})
 
 
 	}
 
 	save5(){
+		this.submitting=true
+
 		let data=[]
 		if (this.companyBankCardDatas.length>0) {
 			this.companyBankCardDatas.forEach(e=>{
@@ -748,6 +777,8 @@ export class CompanyInfoComponent implements OnInit {
 					title:'提示',
 					text:'提交成功'
 				})
+				this.submitting=false
+
 				this.cancel('part4_1')
 			})
 			.catch(res=>{
@@ -755,6 +786,8 @@ export class CompanyInfoComponent implements OnInit {
 					title:'错误提示',
 					text:res.message
 				})
+				this.submitting=false
+
 			})
 	}
 
