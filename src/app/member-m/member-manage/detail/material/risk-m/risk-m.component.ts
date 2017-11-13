@@ -7,6 +7,8 @@ import { API } from '../../../../../../services/config/app.config'
 import { GalleryComponent} from 'dolphinng';
 import { AuthRoleService } from '../../../../../../services/authRole/authRole.service';
 
+import { PreviewerComponent } from '../../../../../../utils/previewer/previewer.component'
+import {img,file } from "../../../../../../utils/previewer/filetype"
 @Component({
 	moduleId: module.id,
 	selector: 'risk-m',
@@ -137,6 +139,7 @@ export class RiskMComponent implements OnInit {
 
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
 
+	@ViewChild(PreviewerComponent) previewer:PreviewerComponent;
 
 	constructor(
 			private router:Router,
@@ -300,7 +303,8 @@ export class RiskMComponent implements OnInit {
 			      		attachId:null,
 			      		attachName:uploader.queue[0].fileName,
 			      		fileType:type,
-			      		fileLoadId:data.body.fileId
+			      		fileLoadId:data.body.fileId,
+			      		extension:uploader.queue[0].fileExtension
 			      		}
 			      		console.log(this.attachment)
 
@@ -325,15 +329,39 @@ export class RiskMComponent implements OnInit {
 			})
 	}
 
-
+	//2017.11.13
+	//附件部分大改
+	//show方法，获取文件信息方法，下载方法--start
 	show(e,type){
 		console.log(type)
 		console.log(this.attachment[type])
 		console.log(!this.attachment[type])
 		if (!!this.attachment[type]) {
 			let url:any=this.riskM.getFileUrl(this.attachment[type].fileLoadId)
-			this.gallery.open(e,url)
-			
+			let extension=this.attachment[type].extension
+			let event=e
+
+			// this.gallery.open(e,url);
+			//这里判断上传文件的类型
+			//分为可以预览的和不可以预览的，不可以预览的需要下载
+			console.log("show 方法中的文件后缀",extension)
+
+			if(img.indexOf(extension)>=0||file.indexOf(extension)>=0){
+				if (img.indexOf(extension)>=0) {
+					this.previewer.open(event,url,"img")
+					
+				}else if (file.indexOf(extension)>=0) {
+					this.previewer.open(event,url,"file")
+					
+				}
+			}else{
+				this.pop.confirm({
+					title:"提示框",
+					text:"此文件不支持预览，是否下载查看？"
+				}).onConfirm(()=>{
+					this.download(type)
+				})
+			}
 		}/*else{
 			this.pop.error({
 				title:'错误提示',
@@ -341,6 +369,38 @@ export class RiskMComponent implements OnInit {
 			})
 		}*/
 	}
+
+	tranferFileType(fileType,type){
+		this.attachment[type].extension=fileType
+		console.log(fileType)
+	}
+
+	download(type){
+		if (!!this.attachment[type]) {
+			let url=this.riskM.downLoadFile(this.attachment[type].fileLoadId)
+			// window.open(url)
+			window.location.href =url
+			
+		}else{
+			this.pop.info({
+				title:"提示信息",
+				text:"下载失败"
+			})
+		}
+	}
+
+	//--end
+
+	// show(e,type){
+	// 	console.log(type)
+	// 	console.log(this.attachment[type])
+	// 	console.log(!this.attachment[type])
+	// 	if (!!this.attachment[type]) {
+	// 		let url:any=this.riskM.getFileUrl(this.attachment[type].fileLoadId)
+	// 		this.gallery.open(e,url)
+			
+	// 	}
+	// }
 
 	edit(part){
 		this[part]=!this[part]

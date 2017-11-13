@@ -24,10 +24,12 @@ export class AuthDetailService{
 		})
 	}
 
-	getAttachUrl(id,mode?):any{
+	getFileUrl(id,mode?):any{
 		return this.myHttp.sShow(id,mode)
 
 	}
-
+	downLoadFile(id){
+		return this.myHttp.sDownLoad(id)
+	}
 
 }

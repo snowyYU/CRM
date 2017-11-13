@@ -39,8 +39,8 @@
       <!-- <p-column field='prmResourceRegister.resourceName' header='归属渠道' [style]="{'width':'150px'}"></p-column> -->
       <p-column header='归属渠道' [style]="{'width':'150px'}">
         <ng-template let-operation="rowData" pTemplate="body">
-          <div textMaxLength="150px" title="{{operation.prmResourceRegister.resourceName}}">
-            {{operation.prmResourceRegister.resourceName}}
+          <div textMaxLength="150px" title="{{operation.prmResourceRegister.resourceName | filterNull:false}}">
+            {{operation.prmResourceRegister.resourceName | filterNull:false}}
           </div>
         </ng-template>
       </p-column>

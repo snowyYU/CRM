@@ -459,7 +459,10 @@ export class ApplyAuthComponent implements OnInit {
 				
 			}
 		}else{
-			console.info("下载")
+			this.pop.info({
+				title:"提示框",
+				text:"此文件不支持预览"
+			})
 		}
 	}
 
