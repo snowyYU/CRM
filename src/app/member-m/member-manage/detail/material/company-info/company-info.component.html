@@ -61,7 +61,14 @@
                 <div class="col-md-6">
                   <div class="col-md-7 p-l-none">申请人身份证（正面）</div>
                   <!-- <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0104']" (click)="show('0104',$event)">查看</a></div> -->
-                  <div class="col-md-5"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0104']" (click)="show('0104',$event)" title="查看"></a></div>
+                  <div class="col-md-5">
+                    <preview-or-download [fileId]="attachment['0104'].fileLoadId" *ngIf="attachment['0104']" (tranferFileType)="tranferFileType($event,'0104')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0104']" (click)="show($event,'0104')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0104']" (click)="download('0104')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0104']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0104']" (click)="show('0104',$event)" title="查看"></a> -->
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="col-md-7">申请人身份证（反面）</div>
@@ -173,7 +180,7 @@
                 <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0104']">
-                      <a class="text-info" (click)="show('0104',$event)">申请人身份证（正面）</a>
+                      <a class="text-info" (click)="show($event,'0104')">申请人身份证（正面）</a>
                     </div>
                     <div *ngIf="!attachment['0104']">申请人身份证（正面）</div>
                   </div>
@@ -1889,3 +1896,4 @@
   </form>
 </modal>
 <submit-loading [show]="submitting"></submit-loading>
+<previewer></previewer>
