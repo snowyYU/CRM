@@ -14,7 +14,14 @@
           <tbody>
             <tr>
               <td class="col-md-10">四证合一</td>
-              <td><a class="fa fa-search text-disabled" [class.text-info]="attachment['0101']" (click)="show($event,'0101')" title="查看"></a></td>
+              <td>
+                <preview-or-download [fileId]="attachment['0101'].fileLoadId" *ngIf="attachment['0101']" (tranferFileType)="tranferFileType($event,'0101')">
+                  <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0101']" (click)="show($event,'0101')" title="查看"></a>
+                  <a class="fa fa-download" [class.text-info]="attachment['0101']" (click)="download('0101')" title="下载"></a>
+                </preview-or-download>
+                <a *ngIf="!attachment['0101']" class="fa fa-search text-disabled" title="查看"></a>
+                <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0101']" (click)="show($event,'0101')" title="查看"></a> -->
+              </td>
             </tr>
             <tr>
               <td class="col-md-10">公司章程</td>
