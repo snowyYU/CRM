@@ -73,43 +73,92 @@
                 <div class="col-md-6">
                   <div class="col-md-7">申请人身份证（反面）</div>
                   <!-- <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0105']" (click)="show('0105',$event)">查看</a></div> -->
-                  <div class="col-md-5"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0105']" (click)="show('0105',$event)" title="查看"></a></div>
+                  <div class="col-md-5">
+                    <preview-or-download [fileId]="attachment['0105'].fileLoadId" *ngIf="attachment['0105']" (tranferFileType)="tranferFileType($event,'0105')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0105']" (click)="show($event,'0105')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0105']" (click)="download('0105')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0105']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0105']" (click)="show('0105',$event)" title="查看"></a> -->
+                  </div>
                 </div>
               </div>
               <div class="form-group clearfix">
                 <div class="col-md-6">
                   <div class="col-md-7 p-l-none">户口本</div>
                   <!-- <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0110']" (click)="show('0110',$event)">查看</a></div> -->
-                  <div class="col-md-5"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0110']" (click)="show('0110',$event)" title="查看"></a></div>
+                  <div class="col-md-5">
+                    <preview-or-download [fileId]="attachment['0110'].fileLoadId" *ngIf="attachment['0110']" (tranferFileType)="tranferFileType($event,'0110')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0110']" (click)="show($event,'0110')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0110']" (click)="download('0110')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0110']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0110']" (click)="show('0110',$event)" title="查看"></a> -->
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="col-md-7">申请人与经营场所合照</div>
                   <!-- <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0112']" (click)="show('0112',$event)">查看</a></div> -->
-                  <div class="col-md-5"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0112']" (click)="show('0112',$event)" title="查看"></a></div>
+                  <div class="col-md-5">
+                    <preview-or-download [fileId]="attachment['0112'].fileLoadId" *ngIf="attachment['0112']" (tranferFileType)="tranferFileType($event,'0112')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0112']" (click)="show($event,'0112')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0112']" (click)="download('0112')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0112']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0112']" (click)="show('0112',$event)" title="查看"></a> -->
+                  </div>
                 </div>
               </div>
               <div class="form-group clearfix">
                 <div class="col-md-6">
                   <div class="col-md-7 p-l-none">结婚证（正面）</div>
                   <!-- <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0108']" (click)="show('0108',$event)">查看</a></div> -->
-                  <div class="col-md-5"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0108']" (click)="show('0108',$event)" title="查看"></a></div>
+                  <div class="col-md-5">
+                    <preview-or-download [fileId]="attachment['0108'].fileLoadId" *ngIf="attachment['0108']" (tranferFileType)="tranferFileType($event,'0108')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0108']" (click)="show($event,'0108')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0108']" (click)="download('0108')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0108']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0108']" (click)="show('0108',$event)" title="查看"></a> -->
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="col-md-7">结婚证（反面）</div>
                   <!-- <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0109']" (click)="show('0109',$event)">查看</a></div> -->
-                  <div class="col-md-5"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0109']" (click)="show('0109',$event)" title="查看"></a></div>
+                  <div class="col-md-5">
+                    <preview-or-download [fileId]="attachment['0109'].fileLoadId" *ngIf="attachment['0109']" (tranferFileType)="tranferFileType($event,'0109')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0109']" (click)="show($event,'0109')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0109']" (click)="download('0109')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0109']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0109']" (click)="show('0109',$event)" title="查看"></a> -->
+                  </div>
                 </div>
               </div>
               <div class="clearfix">
                 <div class="col-md-6">
                   <div class="col-md-7 p-l-none">配偶身份证（正面）</div>
                   <!-- <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0106']" (click)="show('0106',$event)">查看</a></div> -->
-                  <div class="col-md-5"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0106']" (click)="show('0106',$event)" title="查看"></a></div>
+                  <div class="col-md-5">
+                    <preview-or-download [fileId]="attachment['0106'].fileLoadId" *ngIf="attachment['0106']" (tranferFileType)="tranferFileType($event,'0106')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0106']" (click)="show($event,'0106')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0106']" (click)="download('0106')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0106']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0106']" (click)="show('0106',$event)" title="查看"></a> -->
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="col-md-7">配偶身份证（反面）</div>
                   <!-- <div class="col-md-5"><a class="text-disabled" [class.text-info]="attachment['0107']" (click)="show('0107',$event)">查看</a></div> -->
-                  <div class="col-md-5"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0107']" (click)="show('0107',$event)" title="查看"></a></div>
+                  <div class="col-md-5">
+                    <preview-or-download [fileId]="attachment['0107'].fileLoadId" *ngIf="attachment['0107']" (tranferFileType)="tranferFileType($event,'0107')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0107']" (click)="show($event,'0107')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0107']" (click)="download('0107')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0107']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0107']" (click)="show('0107',$event)" title="查看"></a> -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -296,7 +345,7 @@
                 <div class="col-md-6">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0105']">
-                      <a class="text-info" (click)="show('0105',$event)">申请人身份证（反面）</a>
+                      <a class="text-info" (click)="show($event,'0105')">申请人身份证（反面）</a>
                     </div>
                     <div *ngIf="!attachment['0105']">申请人身份证（反面）</div>
                   </div>
@@ -367,7 +416,7 @@
                 <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0110']">
-                      <a class="text-info" (click)="show('0110',$event)">户口本</a>
+                      <a class="text-info" (click)="show($event,'0110')">户口本</a>
                     </div>
                     <div *ngIf="!attachment['0110']">户口本</div>
                   </div>
@@ -436,7 +485,7 @@
                 <div class="col-md-6">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0112']">
-                      <a class="text-info" (click)="show('0112',$event)">申请人与经营场所合照</a>
+                      <a class="text-info" (click)="show($event,'0112')">申请人与经营场所合照</a>
                     </div>
                     <div *ngIf="!attachment['0112']">申请人与经营场所合照</div>
                   </div>
@@ -507,7 +556,7 @@
                 <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0108']">
-                      <a class="text-info" (click)="show('0108',$event)">结婚证（正面）</a>
+                      <a class="text-info" (click)="show($event,'0108')">结婚证（正面）</a>
                     </div>
                     <div *ngIf="!attachment['0108']">结婚证（正面）</div>
                   </div>
@@ -576,7 +625,7 @@
                 <div class="col-md-6">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0109']">
-                      <a class="text-info" (click)="show('0109',$event)">结婚证（反面）</a>
+                      <a class="text-info" (click)="show($event,'0109')">结婚证（反面）</a>
                     </div>
                     <div *ngIf="!attachment['0109']">结婚证（反面）</div>
                   </div>
@@ -647,7 +696,7 @@
                 <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0106']">
-                      <a class="text-info" (click)="show('0106',$event)">配偶身份证（正面）</a>
+                      <a class="text-info" (click)="show($event,'0106')">配偶身份证（正面）</a>
                     </div>
                     <div *ngIf="!attachment['0106']">配偶身份证（正面）</div>
                   </div>
@@ -716,7 +765,7 @@
                 <div class="col-md-6">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0107']">
-                      <a class="text-info" (click)="show('0107',$event)">配偶身份证（反面）</a>
+                      <a class="text-info" (click)="show($event,'0107')">配偶身份证（反面）</a>
                     </div>
                     <div *ngIf="!attachment['0107']">配偶身份证（反面）</div>
                   </div>
@@ -844,7 +893,7 @@
             </div>
             <div class="col-md-6">
               <label for="" class="control-label">企业地址:</label>
-              <div class="col-md-7 text-content">{{companyVo.companyAddress | filterNull:false}}</div>
+              <div class="col-md-7 text-content word-wrap">{{companyVo.companyAddress | filterNull:false}}</div>
             </div>
           </div>
         </div>
@@ -856,31 +905,66 @@
                 <div class="col-md-6">
                   <div class="col-md-6 p-l-none">公司章程</div>
                   <!-- <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0102']" (click)="show('0102',$event)">查看</a></div> -->
-                  <div class="col-md-6"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0102']" (click)="show('0102',$event)" title="查看"></a></div>
+                  <div class="col-md-6">
+                    <preview-or-download [fileId]="attachment['0102'].fileLoadId" *ngIf="attachment['0102']" (tranferFileType)="tranferFileType($event,'0102')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0102']" (click)="show($event,'0102')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0102']" (click)="download('0102')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0102']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0102']" (click)="show('0102',$event)" title="查看"></a> -->
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="col-md-6">验资报告</div>
                   <!-- <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0103']" (click)="show('0103',$event)">查看</a></div> -->
-                  <div class="col-md-6"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0103']" (click)="show('0103',$event)" title="查看"></a></div>
+                  <div class="col-md-6">
+                    <preview-or-download [fileId]="attachment['0103'].fileLoadId" *ngIf="attachment['0103']" (tranferFileType)="tranferFileType($event,'0103')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0103']" (click)="show($event,'0103')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0103']" (click)="download('0103')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0103']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0103']" (click)="show('0103',$event)" title="查看"></a> -->
+                  </div>
                 </div>
               </div>
               <div class="form-group clearfix">
                 <div class="col-md-6">
                   <div class="col-md-6 p-l-none">公司门面照</div>
                   <!-- <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0113']" (click)="show('0113',$event)">查看</a></div> -->
-                  <div class="col-md-6"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0113']" (click)="show('0113',$event)" title="查看"></a></div>
+                  <div class="col-md-6">
+                    <preview-or-download [fileId]="attachment['0113'].fileLoadId" *ngIf="attachment['0113']" (tranferFileType)="tranferFileType($event,'0113')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0113']" (click)="show($event,'0113')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0113']" (click)="download('0113')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0113']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0113']" (click)="show('0113',$event)" title="查看"></a> -->
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="col-md-6">职业资格证书（财务）</div>
                   <!-- <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0201']" (click)="show('0201',$event)">查看</a></div> -->
-                  <div class="col-md-6"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0201']" (click)="show('0201',$event)" title="查看"></a></div>
+                  <div class="col-md-6">
+                    <preview-or-download [fileId]="attachment['0201'].fileLoadId" *ngIf="attachment['0201']" (tranferFileType)="tranferFileType($event,'0201')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0201']" (click)="show($event,'0201')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0201']" (click)="download('0201')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0201']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0201']" (click)="show('0201',$event)" title="查看"></a> -->
+                  </div>
                 </div>
               </div>
               <div class="clearfix">
                 <div class="col-md-6">
                   <div class="col-md-6 p-l-none">四证合一</div>
                   <!-- <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0101']" (click)="show('0101',$event)">查看</a></div> -->
-                  <div class="col-md-6"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0101']" (click)="show('0101',$event)" title="查看"></a></div>
+                  <div class="col-md-6">
+                    <preview-or-download [fileId]="attachment['0101'].fileLoadId" *ngIf="attachment['0101']" (tranferFileType)="tranferFileType($event,'0101')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0101']" (click)="show($event,'0101')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0101']" (click)="download('0101')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0101']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0101']" (click)="show('0101',$event)" title="查看"></a> -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -983,7 +1067,7 @@
                 <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0102']">
-                      <a class="text-info" (click)="show('0102',$event)">公司章程</a>
+                      <a class="text-info" (click)="show($event,'0102')">公司章程</a>
                     </div>
                     <div *ngIf="!attachment['0102']">公司章程</div>
                   </div>
@@ -1052,7 +1136,7 @@
                 <div class="col-md-6">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0103']">
-                      <a class="text-info" (click)="show('0103',$event)">验资报告</a>
+                      <a class="text-info" (click)="show($event,'0103')">验资报告</a>
                     </div>
                     <div *ngIf="!attachment['0103']">验资报告</div>
                   </div>
@@ -1123,7 +1207,7 @@
                 <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0113']">
-                      <a class="text-info" (click)="show('0113',$event)">公司门面照</a>
+                      <a class="text-info" (click)="show($event,'0113')">公司门面照</a>
                     </div>
                     <div *ngIf="!attachment['0113']">公司门面照</div>
                   </div>
@@ -1192,7 +1276,7 @@
                 <div class="col-md-6">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0201']">
-                      <a class="text-info" (click)="show('0201',$event)">职业资格证书（财务）</a>
+                      <a class="text-info" (click)="show($event,'0201')">职业资格证书（财务）</a>
                     </div>
                     <div *ngIf="!attachment['0201']">职业资格证书（财务）</div>
                   </div>
@@ -1263,7 +1347,7 @@
                 <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0101']">
-                      <a class="text-info" (click)="show('0101',$event)">四证合一</a>
+                      <a class="text-info" (click)="show($event,'0101')">四证合一</a>
                     </div>
                     <div *ngIf="!attachment['0101']">四证合一</div>
                   </div>
@@ -1578,19 +1662,40 @@
                 <div class="col-md-6">
                   <div class="col-md-6 p-l-none">开户证明</div>
                   <!-- <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0501']" (click)="show('0501',$event)">查看</a></div> -->
-                  <div class="col-md-6"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0501']" (click)="show('0501',$event)" title="查看"></a></div>
+                  <div class="col-md-6">
+                    <preview-or-download [fileId]="attachment['0501'].fileLoadId" *ngIf="attachment['0501']" (tranferFileType)="tranferFileType($event,'0501')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0501']" (click)="show($event,'0501')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0501']" (click)="download('0501')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0501']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0501']" (click)="show('0501',$event)" title="查看"></a> -->
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="col-md-6">银行卡</div>
                   <!-- <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0502']" (click)="show('0502',$event)">查看</a></div> -->
-                  <div class="col-md-6"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0502']" (click)="show('0502',$event)" title="查看"></a></div>
+                  <div class="col-md-6">
+                    <preview-or-download [fileId]="attachment['0502'].fileLoadId" *ngIf="attachment['0502']" (tranferFileType)="tranferFileType($event,'0502')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0502']" (click)="show($event,'0502')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0502']" (click)="download('0502')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0502']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0502']" (click)="show('0502',$event)" title="查看"></a> -->
+                  </div>
                 </div>
               </div>
               <div class="clearfix">
                 <div class="col-md-6">
                   <div class="col-md-6 p-l-none">网银流水</div>
                   <!-- <div class="col-md-6"><a class="text-disabled" [class.text-info]="attachment['0504']" (click)="show('0504',$event)">查看</a></div> -->
-                  <div class="col-md-6"><a class="fa fa-search text-disabled" [class.text-info]="attachment['0504']" (click)="show('0504',$event)" title="查看"></a></div>
+                  <div class="col-md-6">
+                    <preview-or-download [fileId]="attachment['0504'].fileLoadId" *ngIf="attachment['0504']" (tranferFileType)="tranferFileType($event,'0504')">
+                      <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0504']" (click)="show($event,'0504')" title="查看"></a>
+                      <a class="fa fa-download" [class.text-info]="attachment['0504']" (click)="download('0504')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0504']" class="fa fa-search text-disabled" title="查看"></a>
+                    <!-- <a class="fa fa-search text-disabled" [class.text-info]="attachment['0504']" (click)="show('0504',$event)" title="查看"></a> -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -1601,7 +1706,7 @@
                 <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0501']">
-                      <a class="text-info" (click)="show('0501',$event)">开户证明</a>
+                      <a class="text-info" (click)="show($event,'0501')">开户证明</a>
                     </div>
                     <div *ngIf="!attachment['0501']">开户证明</div>
                   </div>
@@ -1670,7 +1775,7 @@
                 <div class="col-md-6">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0502']">
-                      <a class="text-info" (click)="show('0502',$event)">银行卡</a>
+                      <a class="text-info" (click)="show($event,'0502')">银行卡</a>
                     </div>
                     <div *ngIf="!attachment['0502']">银行卡</div>
                   </div>
@@ -1741,7 +1846,7 @@
                 <div class="col-md-6 p-r-none p-l-none">
                   <div class="col-md-7">
                     <div *ngIf="attachment['0504']">
-                      <a class="text-info" (click)="show('0504',$event)">网银流水</a>
+                      <a class="text-info" (click)="show($event,'0504')">网银流水</a>
                     </div>
                     <div *ngIf="!attachment['0504']">网银流水</div>
                   </div>
