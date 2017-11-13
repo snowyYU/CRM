@@ -88,7 +88,7 @@ const routes: Routes =[
 		component:RelativeCompanyComponent
 	},
 	{
-		path:'relativeCompany/detail/:id',
+		path:'relativeCompany/detail/:data',
 		component:RelativeDetailComponent
 	}
 ]
