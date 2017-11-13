@@ -23,7 +23,7 @@
         <div class="col-md-4">
           <label class="label-control label-width-md">注册资本:</label>
           <div class="col-md-8 text-content">
-            {{companyList.registeredCapital | filterNull:false}}<span *ngIf="companyList.registeredCapital"> 万元</span>
+            {{companyList.registeredCapital | filterNull:false | yuanFormat:2:true}}<span *ngIf="companyList.registeredCapital"> 万元</span>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
         <div class="col-md-4">
           <label class="label-control label-width-md">年总产值:</label>
           <div class="col-md-8 text-content">
-            {{companyList.yeartotalValue | filterNull:false}}<span *ngIf="companyList.yeartotalValue"> 万元</span>
+            {{companyList.yeartotalValue | filterNull:false | yuanFormat:2:true}}<span *ngIf="companyList.yeartotalValue"> 万元</span>
           </div>
         </div>
         <div class="col-md-4">
@@ -213,19 +213,19 @@
                   <div class="col-md-4">
                     <label class="label-control label-width-lg">合同预计金额:</label>
                     <div class="col-md-7 text-content">
-                      {{member.createBy | filterNull:false}}<span *ngIf="member.createBy"> 万元</span>
+                      {{member.createBy | filterNull:false | yuanFormat:2:true}}<span *ngIf="member.createBy"> 万元</span>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <label class="label-control label-width-lg">每次回款金额:</label>
                     <div class="col-md-7 text-content">
-                      {{member.createBy | filterNull:false}}<span *ngIf="member.createBy"> 万元</span>
+                      {{member.createBy | filterNull:false | yuanFormat:2:true}}<span *ngIf="member.createBy"> 万元</span>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <label class="label-control label-width-lg">回款最大差额:</label>
                     <div class="col-md-7 text-content">
-                      {{member.createBy | filterNull:false}}<span *ngIf="member.createBy"> 万元</span>
+                      {{member.createBy | filterNull:false | yuanFormat:2:true}}<span *ngIf="member.createBy"> 万元</span>
                     </div>
                   </div>
                 </div>
