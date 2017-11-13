@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../services/myHttp/myhttp.service'
 import { MyHttpClient } from '../../../services/myHttp/myhttpClient.service'
 
+export interface SendData{
+	rows:number
+	page:number
+}
 
 @Injectable()
 export class RelativeCompanyService {
@@ -10,13 +14,10 @@ export class RelativeCompanyService {
 		private myHttp:MyHttpClient
 		) {}
 
-	getDataList(page,rows):Promise<any>{
-		return this.myHttp.get({
+	getDataList(sendData:SendData):Promise<any>{
+		return this.myHttp.post({
 			api:this.myHttp.api.getRcCompanyList,
-			query:{
-				page:page,
-				rows:rows
-			}
+			query:sendData
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {

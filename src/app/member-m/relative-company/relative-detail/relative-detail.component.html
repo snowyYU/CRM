@@ -1,115 +1,258 @@
 <div class="page-location">
-  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-user"></i>会员管理<i class="pad-l-min fa fa-angle-right"></i></a>
-  <a class="page-location-item active">关联企业</a>
+  <a class="h4 pad-r-xs font-bold">关联企业详情</a>
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i><span>会员管理</span><i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">关联企业<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">详情</a>
 </div>
 <div class="wrapper">
-  	<div class="wrapper clearfix">
-		<div class="form-group">
-			<div class="col-md-10">
-				<div class="form-group">
-					<div class="col-md-4">
-						<label class="pull-left label-width">企业名称:</label>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-					<div class="col-md-4">
-						<label class="pull-left label-width">企业性质:</label>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-					<div class="col-md-4">
-						<label class="pull-left label-width">注册资本:</label>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-md-4">
-						<label class="pull-left label-width">总部所在地:</label>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-					<div class="col-md-4">
-						<label class="pull-left label-width">实际控制人:</label>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-					<div class="col-md-4">
-						<label class="pull-left label-width">持股比例:</label>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-md-4">
-						<label class="pull-left label-width">股东数:</label>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-					<div class="col-md-4">
-						<label class="pull-left label-width">年总产值:</label>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-					<div class="col-md-4">
-						<label class="pull-left label-width">年发货总量:</label>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-md-4">
-						<label class="pull-left label-width">财务纠纷:</label>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-					<div class="col-md-4">
-						<label class="pull-left label-width">动产抵押:</label>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-					 
-				</div>
-				
-			</div>
-			<div class="col-md-2">
-				<div class="col-md-12 form-group">
-					<label class="pull-left label-width">评级:</label>
-						<div class="col-md-8">
-							
-						</div>
-				</div>
-				<div class="col-md-12 form-group">
-					<label class="pull-left label-width">评分:</label>
-						<div class="col-md-8">
-							
-						</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="wrapper">
-		<div>
-			<div class="wrapper col-md-12">
-				<i class="pull-right"></i>
-			</div>
-			<div></div>
-		</div>
-	</div>
-
+  <section class="form-group clearfix">
+    <div class="col-md-10 border-content ">
+      <div class="form-group clearfix m-t" >
+        <div class="col-md-4">
+          <label class="label-control label-width-md">企业名称:</label>
+          <div class="col-md-8 text-content">
+            {{companyList.companyName | filterNull:false}}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label class="label-control label-width-md">企业性质:</label>
+          <div class="col-md-8 text-content">
+            {{companyList.natureofBusinessDic | filterNull:false}}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label class="label-control label-width-md">注册资本:</label>
+          <div class="col-md-8 text-content">
+            {{companyList.registeredCapital | filterNull:false}}<span *ngIf="companyList.registeredCapital"> 万元</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <div class="col-md-4">
+          <label class="label-control label-width-md">总部所在地:</label>
+          <div class="col-md-8 text-content">
+            {{companyList.companyAddress | filterNull:false}}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label class="label-control label-width-md">实际控制人:</label>
+          <div class="col-md-8 text-content">
+            {{companyList.realoperator | filterNull:false}}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label class="label-control label-width-md">持股比例:</label>
+          <div class="col-md-8 text-content">
+            {{companyList.realoperatorInsto | filterNull:false}}<span *ngIf="companyList.realoperatorInsto"> %</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <div class="col-md-4">
+          <label class="label-control label-width-md">股东数:</label>
+          <div class="col-md-8 text-content">
+            {{companyList.shareholderNum | filterNull:false}}<span *ngIf="companyList.shareholderNum"> 人</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label class="label-control label-width-md">年总产值:</label>
+          <div class="col-md-8 text-content">
+            {{companyList.yeartotalValue | filterNull:false}}<span *ngIf="companyList.yeartotalValue"> 万元</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label class="label-control label-width-md">年发货总量:</label>
+          <div class="col-md-8 text-content">
+            {{companyList.yeartotalGoods | filterNull:false}}<span *ngIf="companyList.yeartotalGoods"> 吨</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <div class="col-md-4">
+          <label class="label-control label-width-md">财务纠纷:</label>
+          <div class="col-md-8 text-content">
+            {{companyList.num1 | filterNull:false}}<span *ngIf="companyList.num1"> 次</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label class="label-control label-width-md">动产抵押:</label>
+          <div class="col-md-8 text-content">
+            {{companyList.num2 | filterNull:false}}<span *ngIf="companyList.num2"> 次</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2 p-r-none">
+      <div class="group clearfix wrapper-md" style="height: 157px">
+        <div class="col-md-12 form-group m-t">
+          <label class="label-control label-width-sm text-md">评级:</label>
+          <div class="col-md-7 p-r-none text-md text-danger">
+            {{companyList.companyRating | filterNull:false}}
+          </div>
+        </div>
+        <div class="col-md-12 form-group m-t">
+          <label class="label-control label-width-sm text-md">评分:</label>
+          <div class="col-md-7 p-r-none text-md text-danger">
+            {{companyList.companyRatingGrate | filterNull:false}}<span *ngIf="companyList.companyRatingGrate"> 分</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="form-group clearfix">
+    <div class="clearfix">
+      <ul *ngIf="memberList">
+        <li *ngFor="let member of memberList">
+          <div class="clearfix">
+            <div class="clearfix group wrapper">
+              <span class="text-lg m-l-lg">{{member.member.companyName}}</span>
+              <span class="pull-right m-r-lg text-lg icon" *ngIf="!member.show"><i class="fa fa-chevron-right" (click)="member.show=!member.show"></i></span>
+              <span class="pull-right m-r-lg text-lg icon" *ngIf="member.show"><i class="fa fa-chevron-down" (click)="member.show=!member.show"></i></span>
+              <span class="pull-right m-r-xxl text-lg text-danger">{{member.member.memberRatingGrate}}</span>
+            </div>
+            <div class="col-md-12 border-content" *ngIf="!member.show">
+              <div class="col-md-12">
+                <div class="form-group clearfix m-t">
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">类别:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">年承担发货量:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}<span *ngIf="member.createBy"> 吨</span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">付款周期:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}<span *ngIf="member.createBy"> 个月</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">承兑比例:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}<span *ngIf="member.createBy"> %</span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">货物性质:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">装卸类型:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">运输区域:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">物流企业数:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}<span *ngIf="member.createBy"> 家</span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">外围口碑:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">合同强制条款:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}<span *ngIf="member.createBy"> 条</span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">企业配合程度:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="splitLine"></span>
+              <div class="col-md-12">
+                <div class="form-group clearfix m-t">
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">合同编号:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">合同开始时间:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">合同结束时间:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group clearfix">
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">合同预计金额:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}<span *ngIf="member.createBy"> 万元</span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">每次回款金额:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}<span *ngIf="member.createBy"> 万元</span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">回款最大差额:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}<span *ngIf="member.createBy"> 万元</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group clearfix m-b-lg">
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">回款最大间隔:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}<span *ngIf="member.createBy"> 天</span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="label-control label-width-lg">回款最大波动天数:</label>
+                    <div class="col-md-7 text-content">
+                      {{member.createBy | filterNull:false}}<span *ngIf="member.createBy"> 天</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="clearfix">
+    <div class="col-md-12 m-t text-center">
+      <button class="btn-def" (click)="back()">返回<i class="fa fa-arrow-circle-o-left"></i></button>
+    </div>
+  </section>
 </div>

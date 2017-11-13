@@ -1,21 +1,37 @@
+<div class="page-location">
+  <a class="h4 pad-r-xs font-bold">关联企业</a>
+  <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i><span>会员管理</span><i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">关联企业</a>
+</div>
 <div class="wrapper">
   <div>
-    <p-dataTable tableStyleClass="table-style" [value]="dataList" emptyMessage="{{loading?'正在加载...':'没有查询到符合条件的记录'}}" [loading]="loading">
-      <p-column field="companyName" header="企业名称"></p-column>
-      <p-column field="memberName" header="企业性质"></p-column>
-      <p-column field="yeartotalValue" header="年度总产值(万元)">
-        <ng-template let-operation="rowData" pTemplate="body">
-          <div class="text-right">
-            {{operation.yeartotalValue | yuanFormat}}
+    <p-dataTable [value]="dataList" emptyMessage="{{loading?'正在加载...':'没有查询到符合条件的记录'}}" [loading]="loading"  scrollable="true" scrollHeight="375px">
+      <p-column field="companyName" header="企业名称" [style]="{'width':'280px'}">
+        <ng-template let-companyName="rowData" pTemplate="body">
+          <div textMaxLength="280px" title="{{companyName.companyName}}">
+            {{companyName.companyName}}
           </div>
         </ng-template>
       </p-column>
-      <p-column field="yeartotalGoods" header="年度发货总量(吨)"></p-column>
-      <p-column field="statusDic" header="财务纠纷"></p-column>
-      <p-column field="createTime" header="动产抵押"></p-column>
-      <p-column field="companyRating" header="评级"></p-column>
-      <p-column field="companyRatingGrate" header="评分"></p-column>
-      <p-column field="color" header="操作">
+      <p-column field="natureofBusinessDic" header="企业性质" [style]="{'width':'160px'}"></p-column>
+        <ng-template let-natureofBusinessDic="rowData" pTemplate="body">
+          <div textMaxLength="160px" title="{{natureofBusinessDic.natureofBusinessDic}}">
+            {{natureofBusinessDic.natureofBusinessDic}}
+          </div>
+        </ng-template>
+      <p-column field="yeartotalValue" header="年度总产值(万元)" [style]="{'width':'150px'}">
+        <ng-template let-operation="rowData" pTemplate="body">
+          <div class="text-right">
+            {{operation.yeartotalValue | yuanFormat:2:true}}
+          </div>
+        </ng-template>
+      </p-column>
+      <p-column field="yeartotalGoods" header="年度发货总量(吨)" [style]="{'width':'150px'}"></p-column>
+      <p-column field="num1" header="财务纠纷" [style]="{'width':'100px'}"></p-column>
+      <p-column field="num2" header="动产抵押" [style]="{'width':'100px'}"></p-column>
+      <p-column field="companyRating" header="评级" styleClass="text-center" [style]="{'width':'100px'}"></p-column>
+      <p-column field="companyRatingGrate" header="评分" [style]="{'width':'100px'}"></p-column>
+      <p-column field="color" header="操作" [style]="{'width':'100px'}">
         <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
           <div class="text-center">
             <a class="table-btn text-info"  (click)="detail(operation)">详情</a>
