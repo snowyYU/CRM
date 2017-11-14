@@ -78,6 +78,11 @@ export class SigninComponent {
       '23':"/account/electricAcc/signature",
       '24':"/account/memberAccBalance",
       '25':"/account/memberAccFlow",
+      '31':"/financingM/loanTrack",
+      '32':"/financingM/getMission",
+      '33':"/financingM/loanHistory",
+      '35':"/financingM/dataCenter/businessData",
+      '36':"/financingM/dataCenter/financingDeal"
     }
 
   	extractData(res: any){

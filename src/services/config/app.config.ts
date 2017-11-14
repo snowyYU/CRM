@@ -600,6 +600,17 @@ export const API = {
     method:'post'
   },
 
+  /*-----------------------------------融资管理---------------------------------------*/
+  /*-----------------------------------在贷跟踪---------------------------------------*/
+  getLoanList:{
+    url:'fam/LoanTracking/getByPage',
+    method:'post'
+  },
+  getLoanDetails:{
+    url:'fam/LoanTracking/getDetails',
+    method:'post'
+  },
+
   /*-----------------------------------删除附件接口---------------------------------------*/
   deleteAttach:{
     url:'file/deleteAttach',
