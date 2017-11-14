@@ -81,7 +81,7 @@ export class MemberDetailComponent implements OnInit {
 		this.companyName=data.body.companyName    	//客户名称	
 		// this.memberId=data.body.memberId
 		this.createTime=data.body.createTime	//创建日期 
-		this.prmResourceRegister=data.body.prmResourceRegister//prmResourceRegister.resourceName归属渠道
+		this.prmResourceRegister=data.body.prmResourceRegister?data.body.prmResourceRegister:{}//prmResourceRegister.resourceName归属渠道
 		this.memberTypeDic=data.body.memberTypeDic//类别
 		this.memberStatusDic=data.body.memberStatusDic//状态
 		this.serviceMan=data.body.serviceMan//服务经理
