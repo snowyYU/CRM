@@ -26,6 +26,16 @@ export class LoanTrackComponent implements OnInit {
 	repaymentWay:number       //还款方式
 	remarks:string            //状态备注
 
+	startTime
+	endTime
+
+	todayDate
+
+	appId=''
+	appIdList:any[]
+
+	productId=''
+	productList:any[]
 	constructor(
 		private router:Router,
 		private pop:PopService,
@@ -35,6 +45,47 @@ export class LoanTrackComponent implements OnInit {
 
 	ngOnInit() {
 		this.getLoanList()
+		this.getAppIdList()
+
+		this.todayDate=this.dateService.format({
+			date:this.dateService.todayDate(),
+			formatType:"yyyy-MM-dd"
+		})
+	}
+
+	//获取归属渠道下拉列表数据
+	getAppIdList(){
+		this.loanTrack.getAllApp()
+			.then(res=>{
+				console.log(res)
+				this.appIdList=res.body.records
+				this.appIdList.unshift({resourceId:'0',resourceName:'全部'})
+				this.appId=this.appIdList[0].resourceId
+				this.getProductsList(this.appId)
+			})
+			.catch(res=>{
+				this.pop.error({
+					title:'错误提示',
+					text:res.message
+				})
+			})
+
+	}
+
+	getProductsList(appId){
+		this.loanTrack.getProductsList(appId)
+			.then(res=>{
+				console.log(res)
+				this.productList=res.body.records
+				this.productList.unshift({productId:'0',productName:'全部'})
+				this.productId=res.body.records[0].productId
+			})
+			.catch(res=>{
+				this.pop.error({
+					title:'错误提示',
+					text:res.message
+				})
+			})
 	}
 
 	getLoanList(){

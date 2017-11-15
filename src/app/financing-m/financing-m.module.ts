@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
-
-import {routing} from './financing-m.routes';
+import { SharedModule } from '../shared/shared.module'
+//导入table组件
+import {DataTableModule as PDataTableModule,SharedModule as PSharedModule} from 'primeng/primeng';
+import {MultiSelectModule,SliderModule,DropdownModule,ContextMenuModule} from 'primeng/primeng';
 
 import { FinancingMComponent } from './financing-m.component';
 import { DataCenterComponent } from './data-center/data-center.component';
@@ -9,6 +11,8 @@ import { DataCenterComponent } from './data-center/data-center.component';
 import { GetMissonComponent } from './get-mission/get-mission.component';
 import { LoanHistoryComponent } from './loan-history/loan-history.component';
 import { LoanTrackComponent } from './loan-track/loan-track.component';
+
+import {routing} from './financing-m.routes';
 
 @NgModule({
 	declarations:[
@@ -22,6 +26,9 @@ import { LoanTrackComponent } from './loan-track/loan-track.component';
 
 	],
 	imports:[
+		SharedModule,
+		PDataTableModule,
+    	PSharedModule,
 		routing
 	]
 })

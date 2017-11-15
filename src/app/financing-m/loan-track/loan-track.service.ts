@@ -20,6 +20,38 @@ export class LoanTrackService {
 		private myHttp:MyHttpClient
 		) {}
 
+	//appId
+	getAllApp():Promise<any>{
+		return this.myHttp.get({
+			api:this.myHttp.api.getAllApp,
+
+		}).toPromise().then(res=>{
+			let data=res
+			if (data.status==200) {
+				return Promise.resolve(data)
+			}else{
+				return Promise.reject(data)
+			}
+		})
+	}
+
+	//productsId
+	getProductsList(id:string):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.getProductsList,
+			query:{
+				appId:id
+			}
+		}).toPromise().then(res=>{
+			let data=res
+			if (data.status==200) {
+				return Promise.resolve(data)
+			}else{
+				return Promise.reject(data)
+			}
+		})
+	}
+
 	getLoanList(sendData:SendData):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.getLoanList,

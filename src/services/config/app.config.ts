@@ -610,6 +610,10 @@ export const API = {
     url:'fam/LoanTracking/getDetails',
     method:'post'
   },
+  // getProductsList:{
+  //   url:'fam/LoanTracking/getProductsByAppId',
+  //   method:'post'
+  // },
 
   /*-----------------------------------删除附件接口---------------------------------------*/
   deleteAttach:{

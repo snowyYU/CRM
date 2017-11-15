@@ -1,7 +1,27 @@
 <div class="page-location">
   <a class="h4 pad-r-xs font-bold">在贷跟踪</a>
-  <a class="page-location-item">
-    <!-- <i class="page-location-icon glyphicon glyphicon-th-list"></i> -->
-    融资管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item">融资管理<i class="pad-l-min fa fa-angle-right"></i></a>
   <a class="page-location-item active">在贷跟踪</a>
+</div>
+<div class="pad-l-def pad-r-def pad-b-def pad-t-sm">
+  <div class="mar-b-sm clearfix">
+    <div class="col-md-12 form-inline">
+      <label class="">归属渠道：</label>
+      <select name="appId" class="form-control app-w" [(ngModel)]="appId" (ngModelChange)="getProductsList($event)">
+        <option [value]="item.resourceId" *ngFor="let item of appIdList">{{item.resourceName}}</option>
+      </select>
+      <label class="m-l-xs">贷款产品：</label>
+      <select name="productId" class="form-control" [(ngModel)]="productId">
+        <option [value]="item.productId" *ngFor="let item of productList">{{item.productName}}</option>
+      </select>
+      <label class="m-l-xs">签约日期：</label>
+      <div class="input-group date-input-group">
+        <input class="form-control" datePicker [opt-max]="endTime" [(ngModel)]="startTime" name="startTime" placeholder="选择日期" />
+        <span class="input-group-addon">至</span>
+        <input class="form-control" datePicker [opt-min]="startTime" [opt-max]="todayDate" [(ngModel)]="endTime" name="endTime" placeholder="选择日期" />
+      </div>
+      <input type="text" name="" class="form-control m-l-xs" maxlength="30" placeholder="会员名" />
+      <button class="btn-def m-l-xs">查询<i class="fa fa-search"></i></button>
+    </div>
+  </div>
 </div>
