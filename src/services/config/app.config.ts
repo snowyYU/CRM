@@ -85,17 +85,17 @@ class Config{
       dev:{
         api:'http://192.168.10.10:8090/crm/',
         oauth:'http://192.168.10.10:8090/ims/',
-        file:'http://121.46.18.25:9090/fileserver/file/'
+        file:'http://121.46.18.25:9090/oss/'
       },
       test:{
         api:'http://192.168.10.10:9090/crm/',
         oauth:'http://192.168.10.10:9090/ims/',
-        file:'http://121.46.18.25:9090/fileserver/file/'
+        file:'http://121.46.18.25:9090/oss/'
       },
       prod:{
         api:'http://192.168.10.10:9090/crm/',
         oauth:'http://192.168.10.10:9090/ims/',
-        file:'http://121.46.18.25:9090/fileserver/file/'
+        file:'http://121.46.18.25:9090/oss/'
       }
     };
     this.systems=[{
@@ -270,7 +270,8 @@ export const host_file=cur_host.file;
 //文件接口地址
 
 export const file_api={
-  getInfo:host_file+'getInfo',
+  getInfo:host_file+'file/getInfo',
+  upload:host_file+'file/upload'
 }
 
 export const API = {

@@ -33,9 +33,9 @@ export class ReApplyComponent implements OnInit {
 	authRemark			//申请理由
 
 	//产品信息
-	valueLimit          //额度范围
-	borrowHowlong		//借款周期
-	productRemark		//产品简介
+	// valueLimit          //额度范围
+	// borrowHowlong		//借款周期
+	// productRemark		//产品简介
 
 	productDetailL:any[]
 
@@ -52,20 +52,13 @@ export class ReApplyComponent implements OnInit {
 
 	ngOnInit() {
 		this.renderPage()
-		this.reApply.getProductsList(this.appId)
+		this.reApply.getProductsList(this.memberId)
 			.then(res=>{
-				res.body.records.forEach(e=>{
-					this.newData[e.productId]=e
-				})
+				console.log(res)
 				this.productList=res.body.records
-				//产品信息
-				console.log(this.newData)
-				this.valueLimit=this.newData[this.productId].valueLimit          //额度范围
-				this.borrowHowlong=this.newData[this.productId].borrowHowlong		//借款周期
-				this.productRemark=this.newData[this.productId].productRemark		//产品简介
 			})
 
-		this.getProductsParam()
+		// this.getProductsParam()
 
 
 	}
@@ -98,7 +91,7 @@ export class ReApplyComponent implements OnInit {
 		this.submitting=true
 		let data:SendData={
 			memberId:this.memberId,
-			productId:this.productId,			//产品ID
+			// productId:this.productId,			//产品ID
 			oldCreditValue:this.oldCreditValue,		//原授信额
 			operateType:1,			//操作类型，0：新增授信；1：重新授信型；
 			addCreditValue:this.addCreditValue,		//新增授信额

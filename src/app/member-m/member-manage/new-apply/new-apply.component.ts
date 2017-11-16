@@ -115,7 +115,7 @@ export class NewApplyComponent implements OnInit {
 
 		let data:SendData={
 			memberId:this.memberId,
-			productId:this.productId,			//产品ID
+			// productId:this.productId,			//产品ID
 			oldCreditValue:0,		//原授信额
 			operateType:0,			//操作类型，0：新增授信；1：重新授信型；
 			addCreditValue:this.addCreditValue,		//新增授信额

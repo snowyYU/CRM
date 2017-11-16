@@ -7,7 +7,7 @@ import { PreviewerComponent } from '../../../../utils/previewer/previewer.compon
 import { GalleryComponent} from 'dolphinng';
 import { DateService } from "../../../../services/date/date.service"
 
-import { API } from "../../../../services/config/app.config"
+import { file_api } from "../../../../services/config/app.config"
 import {img,file } from "../../../../utils/previewer/filetype"
 class Attachment {
 
@@ -23,7 +23,7 @@ class Attachment {
 		this.id=id
 		this.pop=ReflectiveInjector.resolveAndCreate([PopService]).get(PopService)
 		//上传方法和参数
-		this.uploader.url=API.fileServer+'upload';
+		this.uploader.url=file_api.upload;
 	    this.uploader.isCompress=true;
 	    this.uploader.onSelect((files)=>{//文件选择完毕
 

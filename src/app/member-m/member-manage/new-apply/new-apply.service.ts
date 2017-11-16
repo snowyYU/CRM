@@ -4,7 +4,7 @@ import { MyHttpClient } from '../../../../services/myHttp/myhttpClient.service'
 
 export interface SendData{
 	memberId:number			//会员ID
-	productId:number			//产品ID
+	// productId:number			//产品ID
 	oldCreditValue:number		//原授信额
 	operateType:number			//操作类型，0：新增授信；1：重新授信型；
 	addCreditValue:number		//新增授信额

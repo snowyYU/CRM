@@ -145,14 +145,14 @@
             </div>
           </ng-template>
         </p-column> -->
-        <p-column field="" header="操作" *ngIf="authRole.roleIn(['007'])&&authRole.userName==modalApplyServiceMan">
+        <!-- <p-column field="" header="操作" *ngIf="authRole.roleIn(['007'])&&authRole.userName==modalApplyServiceMan">
         	<ng-template let-operation="rowData" pTemplate="body">
         		<div class="table-btn-group">
               <button class="table-btn" *ngIf="!operation.lineThrough" (click)='checkApplyExist(1,operation)'>重新授信</button>
-              <button class="table-btn" *ngIf="operation.lineThrough" (click)='checkApplyExist(1,operation)'>重新授信<!-- 添加 --></button>
+              <button class="table-btn" *ngIf="operation.lineThrough" (click)='checkApplyExist(1,operation)'>重新授信</button>
             </div>
         	</ng-template>
-        </p-column>
+        </p-column> -->
         <p-footer>
         <div class="clearfix">
         	<div class="pull-left form-control-static no-b-padding">
@@ -160,7 +160,7 @@
         		<span class="m-l-md">可用总额(元):{{totalCreditBanlance | yuanFormat:2:true}}</span>
         	</div>
           <div class="pull-right" *ngIf="authRole.roleIn(['007'])&&authRole.userName==modalApplyServiceMan">
-           	<a class="btn btn-default-dk btn-sm" (click)="goToNew()" *ngIf="authRole.roleIn(['007'])"><i class="fa fa-plus"></i>添加</a>
+           	<a class="btn btn-default-dk btn-sm" (click)="goToRe()" *ngIf="authRole.roleIn(['007'])">重新授信</a>
           </div>
         </div>
       </p-footer>

@@ -3,6 +3,7 @@ import { Router } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { LoanTrackService,SendData } from './loan-track.service'
 import { DateService } from '../../../services/date/date.service'
+import { config } from '../../../../protractor.conf';
 
 @Component({
 	moduleId: module.id,
@@ -13,11 +14,11 @@ import { DateService } from '../../../services/date/date.service'
 })
 
 export class LoanTrackComponent implements OnInit {
-	dataList:any[]
+	dataList:any[]            //在贷跟踪数据列表
 
-	rows:number=10
-	page:number=0
-	count:number=0
+	rows:number=10            //显示条数
+	page:number=0             //页数
+	count:number=0            //数据总数
 
 	borrowApplyId:string      //借款申请ID
 	companyName:string        //企业名称
@@ -26,16 +27,18 @@ export class LoanTrackComponent implements OnInit {
 	repaymentWay:number       //还款方式
 	remarks:string            //状态备注
 
-	startTime
-	endTime
+	startTime                 //开始时间
+	endTime                   //结束时间
+	loading:boolean=false     //是否获取到数据
 
-	todayDate
+	todayDate                 //当前日期
 
-	appId=''
-	appIdList:any[]
+	resourceId=''             //渠道编号
+	resourceList:any[]        //渠道列表
 
-	productId=''
-	productList:any[]
+	productId=''              //产品编号
+	productList:any[]         //产品列表
+	status=0                  //状态
 	constructor(
 		private router:Router,
 		private pop:PopService,
@@ -45,8 +48,9 @@ export class LoanTrackComponent implements OnInit {
 
 	ngOnInit() {
 		this.getLoanList()
-		this.getAppIdList()
-
+		this.getAllApp()
+		this.getProductsList('0')
+		//格式化并获取当前日期
 		this.todayDate=this.dateService.format({
 			date:this.dateService.todayDate(),
 			formatType:"yyyy-MM-dd"
@@ -54,14 +58,14 @@ export class LoanTrackComponent implements OnInit {
 	}
 
 	//获取归属渠道下拉列表数据
-	getAppIdList(){
+	getAllApp(){
 		this.loanTrack.getAllApp()
 			.then(res=>{
 				console.log(res)
-				this.appIdList=res.body.records
-				this.appIdList.unshift({resourceId:'0',resourceName:'全部'})
-				this.appId=this.appIdList[0].resourceId
-				this.getProductsList(this.appId)
+				this.resourceList=res.body.records
+				this.resourceList.unshift({resourceId:'0',resourceName:'全部'})
+				this.resourceId=this.resourceList[0].resourceId
+				// this.getProductsList(this.appId)
 			})
 			.catch(res=>{
 				this.pop.error({
@@ -72,7 +76,18 @@ export class LoanTrackComponent implements OnInit {
 
 	}
 
+	//获取贷款产品下拉列表数据
 	getProductsList(appId){
+		if(appId=='0'){
+			let product:Product={
+				productId:'0',
+				productName:'全部'
+			}
+			let productList:Product[]=[product]
+			this.productList=productList
+			this.productId=this.productList[0].productId
+			return
+		}
 		this.loanTrack.getProductsList(appId)
 			.then(res=>{
 				console.log(res)
@@ -88,7 +103,9 @@ export class LoanTrackComponent implements OnInit {
 			})
 	}
 
+	//获取在贷跟踪列表数据
 	getLoanList(){
+		this.loading=true
 		let sendData:SendData={
 			page:this.page+1,
 			rows:this.rows,
@@ -105,6 +122,7 @@ export class LoanTrackComponent implements OnInit {
 				this.handleData(res)
 			})
 			.catch(res=>{
+				this.loading=false
 				this.pop.error({
 					title:'错误提示',
 					text:res.message
@@ -116,6 +134,21 @@ export class LoanTrackComponent implements OnInit {
 		console.log(res)
 		this.dataList=res.body.records
 		this.count=res.body.paginator.totalCount
+		this.loading=false
 
 	}
+
+	detail(row){
+		let queryList={
+			memberId:row.memberId,
+			borrowApplyId:row.borrowApplyId,
+			paymentWay:row.repaymentWay
+		}
+		this.router.navigate(['/financingM/loanTrack/detail',JSON.stringify(queryList)])
+	}
+}
+
+class Product{
+	productId:string
+	productName:string
 }
