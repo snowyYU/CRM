@@ -3,6 +3,7 @@ import { Router,ActivatedRoute } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { GetApplyService,SendData } from './get-apply.service'
 import { DateService } from '../../../services/date/date.service'
+import { stringify } from 'querystring';
 
 @Component({
 	selector:'get-apply',
@@ -87,7 +88,11 @@ export class GetApplyComponent implements OnInit{
 	}
 	//查看详情
 	detail(row){
-		this.router.navigate(['memberM/getApply/detail',row.creditAuthId])
+		let queryData={
+			creditAuthId:row.creditAuthId,
+			memberId:row.memberId
+		}
+		this.router.navigate(['memberM/getApply/detail',JSON.stringify(queryData)])
 	}
 
 	qryStatusChange(){

@@ -26,7 +26,11 @@ export class GetApplyDetailComponent implements OnInit{
 	authRemark		//申请原因
 	auditBy:string;			//审核人
     auditDate:string;		//审核时间
-    auditRemark:string;		//审核意见
+	auditRemark:string;		//审核意见
+	
+	modalDataList:any
+	modalListLoading:boolean
+
 	constructor(
 		private router:Router,
 		private route:ActivatedRoute,
@@ -35,10 +39,11 @@ export class GetApplyDetailComponent implements OnInit{
 		){}
 	ngOnInit(){
 		this.getData();
+		this.getCreditData();
 	}
 
 	getData(){
-		this.getApplyDetail.getData(this.route.params['value']['id'])
+		this.getApplyDetail.getData(JSON.parse(this.route.params['value']['data']).creditAuthId)
 						.then(res=>{
 							console.log(res)
 							this.handle(res)
@@ -49,6 +54,20 @@ export class GetApplyDetailComponent implements OnInit{
 								text:res.message
 							})
 						})
+	}
+
+	getCreditData(){
+		this.getApplyDetail.getCreditData(JSON.parse(this.route.params['value']['data']).memberId)
+			.then(res=>{
+				console.log(res)
+				this.modalDataList=res.body.records
+			})
+			.catch(res=>{
+				this.pop.error({
+					title:'错误提示',
+					text:res.message
+				})
+			})
 	}
 
 	handle(res){
