@@ -11,6 +11,7 @@ import { DataCenterComponent } from './data-center/data-center.component';
 import { GetMissonComponent } from './get-mission/get-mission.component';
 import { LoanHistoryComponent } from './loan-history/loan-history.component';
 import { LoanTrackComponent } from './loan-track/loan-track.component';
+import { DetailComponent } from './loan-track/detail/detail.component';
 
 import {routing} from './financing-m.routes';
 
@@ -22,7 +23,8 @@ import {routing} from './financing-m.routes';
 		// FinancingDealComponent,
 		GetMissonComponent,
 		LoanHistoryComponent,
-		LoanTrackComponent
+		LoanTrackComponent,
+		DetailComponent
 
 	],
 	imports:[

@@ -7,6 +7,7 @@ import { DataCenterComponent} from './data-center/data-center.component';
 import { GetMissonComponent } from './get-mission/get-mission.component';
 import { LoanHistoryComponent } from './loan-history/loan-history.component';
 import { LoanTrackComponent } from './loan-track/loan-track.component';
+import { DetailComponent } from './loan-track/detail/detail.component';
 
 const routes:Routes=[
 	{
@@ -43,6 +44,10 @@ const routes:Routes=[
 	{
 		path:'loanTrack',
 		component:LoanTrackComponent
+	},
+	{
+		path:'loanTrack/detail/:data',
+		component:DetailComponent
 	}
 
 ]
