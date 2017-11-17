@@ -611,6 +611,10 @@ export const API = {
     url:'fam/LoanTracking/getDetails',
     method:'post'
   },
+  getRepaymentPlanList:{
+    url:'fam/LoanTracking/getRepaymentPlan',
+    method:'post'
+  },
   // getProductsList:{
   //   url:'fam/LoanTracking/getProductsByAppId',
   //   method:'post'
