@@ -232,13 +232,13 @@ export class MemberManageComponent implements OnInit{
 			memberId:this.memberId,
 			companyName:this.companyName,
 			appId:this.sAppId,
-			productTypeName:this.productTypeName,				//产品类别
-			productId:this.productId,
-			productName:this.productName,				//申请产品
-			creditValue:this.creditValue,//原授信额度
-			//原有效期
-			expiryDateBegin:this.expiryDateBegin,//起
-			expiryDateEnd:this.expiryDateEnd,//止
+			// productTypeName:this.productTypeName,				//产品类别
+			// productId:this.productId,
+			// productName:this.productName,				//申请产品
+			// creditValue:this.creditValue,//原授信额度
+			// //原有效期
+			// expiryDateBegin:this.expiryDateBegin,//起
+			// expiryDateEnd:this.expiryDateEnd,//止
 
 		}
 		this.closeModal()

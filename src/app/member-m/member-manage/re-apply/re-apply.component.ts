@@ -3,6 +3,7 @@ import { ActivatedRoute,Router } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { ReApplyService,SendData } from './re-apply.service'
 import { EffDateFormatPipe } from '../../../../pipe/eff-date-format/eff-date-format.pipe'
+import { log } from 'util';
 
 @Component({
 	moduleId: module.id,
@@ -24,7 +25,7 @@ export class ReApplyComponent implements OnInit {
 	productName:string
 	//需要提交的数据
 	productId			//产品ID
-	oldCreditValue		//原授信额
+	oldCreditValue:number=0		//原授信额
 	operateType			//操作类型，0：新增授信；1：重新授信型；
 	addCreditValue		//新增授信额
 	appId				//渠道ID
@@ -56,6 +57,12 @@ export class ReApplyComponent implements OnInit {
 			.then(res=>{
 				console.log(res)
 				this.productList=res.body.records
+				console.log(this.productList.length)
+				for(let i=0;i<this.productList.length;i++){
+					console.log(i+this.productList[i].creditFacility.creditValue)
+					this.oldCreditValue=this.oldCreditValue+this.productList[i].creditFacility.creditValue
+				}
+				console.log(res)
 			})
 
 		// this.getProductsParam()
@@ -66,15 +73,15 @@ export class ReApplyComponent implements OnInit {
 	renderPage(){
 		let data=JSON.parse(this.route.params['value']['data'])
 		console.log(data)
-		this.companyName=data.companyName
-		this.productId=data.productId,
-		this.productName=data.productName
-		this.productTypeName=data.productTypeName
 		this.memberId=data.memberId
+		this.companyName=data.companyName
+		// this.productId=data.productId,
+		// this.productName=data.productName
+		// this.productTypeName=data.productTypeName
 		this.appId=data.appId
-		this.oldCreditValue=data.creditValue
-		this.expiryDateBegin=data.expiryDateBegin
-		this.expiryDateEnd=data.expiryDateEnd
+		// this.oldCreditValue=data.creditValue
+		// this.expiryDateBegin=data.expiryDateBegin
+		// this.expiryDateEnd=data.expiryDateEnd
 	}
 
 	getProductsParam(){
@@ -95,8 +102,8 @@ export class ReApplyComponent implements OnInit {
 			oldCreditValue:this.oldCreditValue,		//原授信额
 			operateType:1,			//操作类型，0：新增授信；1：重新授信型；
 			addCreditValue:this.addCreditValue,		//新增授信额
-			expiryDateBegin:this.datePipe.transform(this.expiryDateBegin,[]),
-			expiryDateEnd:this.datePipe.transform(this.expiryDateEnd,[]),
+			// expiryDateBegin:this.datePipe.transform(this.expiryDateBegin,[]),
+			// expiryDateEnd:this.datePipe.transform(this.expiryDateEnd,[]),
 			appId:this.appId,				//渠道ID
 			authRemark:this.authRemark			//申请理由
 		}

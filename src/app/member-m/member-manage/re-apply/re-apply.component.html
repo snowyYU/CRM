@@ -37,14 +37,14 @@
     </div>
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">原授信额度:</label>
-        <span class="row-body text-content">{{oldCreditValue | yuanFormat | filterNull:false}} 元</span>
+        <span class="row-body text-content">{{oldCreditValue | yuanFormat:2:true | filterNull:false}} 元</span>
 
     </div>
-    <div class="col-md-12 form-group">
+    <!-- <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">原有效期:</label>
         <span class="row-body text-content">{{expiryDateBegin | effDateFormat}}  至  {{expiryDateEnd | effDateFormat}}</span>
 
-    </div>
+    </div> -->
   </section>
 
 
@@ -70,13 +70,14 @@
                   <tr>
                       <th>产品名</th>
                       <th>授信额度(元)</th>
+                      <th>有效期</th>
                   </tr>
               </thead>
               <tbody>
                   <tr *ngFor="let item of productList">
                       <td>{{item.creditFacility.productName}}</td>
                       <td>{{item.creditFacility.creditValue | yuanFormat:2:true}}</td>
-                      
+                      <td>{{item.creditFacility.expiryDateBegin | effDateFormat}}  至  {{item.creditFacility.expiryDateEnd | effDateFormat}}</td>
                   </tr>
                   <tr *ngIf="!productList||productList.length===0">
                     <td colspan="2" class="text-disabled text-center"> 无</td>

@@ -92,8 +92,7 @@ export class GetApplyDetailComponent implements OnInit{
 	}
 
 	back(){
-		console.log(this.status)
-		this.router.navigate(['memberM/getApply'],{queryParams:{qry:this.status}})
+		window.history.back()
 	}
 
 }

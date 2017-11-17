@@ -8,7 +8,7 @@ export class GetApplyDetailService{
 		private myHttp:MyHttpClient
 		){}
 
-	getData(id:number):Promise<any>{
+	getData(id:string):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.getApplyDetail,
 			query:{
@@ -25,7 +25,7 @@ export class GetApplyDetailService{
 	}
 
 	//获取模态框的数据
-	getCreditData(id:number):Promise<any>{
+	getCreditData(id:string):Promise<any>{
 		return this.myHttp.get({
 			api:this.myHttp.api.getCreditFacilityList,
 			query:{

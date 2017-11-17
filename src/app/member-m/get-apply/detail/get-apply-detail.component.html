@@ -71,7 +71,7 @@
           </p-column>
           <p-column field="" header="类别">
             <ng-template let-productTypeName="rowData" pTemplate="body" >
-              <div [class.lineThrough]='productTypeName.lineThrough'>
+              <div [class.lineThrough]='productTypeName.lineThrough'> 
                 {{productTypeName.creditFacility.productTypeName}}
               </div>
             </ng-template>
@@ -122,12 +122,12 @@
         </div>
       </div>
       <div class="clearfix row">
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
           <label class="label-control label-special-w font-bold">有效期:</label>
           <div class="col-md-6 m-t-xs text-content">
             {{expiryDateBegin | effDateFormat}} <span *ngIf="expiryDateBegin">至</span> {{expiryDateEnd | effDateFormat}}
           </div>
-        </div>
+        </div> -->
         <div class="col-md-6">
           <label class="label-control label-special-w font-bold">申请原因:</label>
           <div class="col-md-8 m-t-xs text-content">
