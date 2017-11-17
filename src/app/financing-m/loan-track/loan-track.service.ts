@@ -66,4 +66,19 @@ export class LoanTrackService {
 		})
 	}
 
+	getRepaymentPlanList(borrowApplyId:string):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.getRepaymentPlanList,
+			query:borrowApplyId
+		}).toPromise().then(res=>{
+			let data=res
+			if (data.status==200) {
+				return Promise.resolve(data)
+			}else{
+				return Promise.reject(data)
+			}
+		})
+	}
+	
+
 }

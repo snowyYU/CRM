@@ -53,4 +53,8 @@ export class DetailComponent implements OnInit {
 			})
 		})
 	}
+
+	back(){
+		window.history.back()
+	}
 }

@@ -23,8 +23,8 @@
         <input class="form-control" datePicker [opt-min]="startTime" [opt-max]="todayDate" [(ngModel)]="endTime" name="endTime" placeholder="选择日期"
         />
       </div>
-      <input type="text" name="" class="form-control m-l-xs" maxlength="30" placeholder="会员名" />
-      <button class="btn-def m-l-xs">查询
+      <input type="text" name="" class="form-control m-l-xs" maxlength="30" [(ngModel)]="companyName" placeholder="会员名" />
+      <button class="btn-def m-l-xs" (click)="page=0;getLoanList()">查询
         <i class="fa fa-search"></i>
       </button>
     </div>
@@ -99,15 +99,15 @@
             <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
               <div>
                 <a class="table-btn text-info" (click)="detail(operation)">详情</a>
-                <a class="table-btn text-info" (click)="detail(operation)">还款计划</a>
-                <a class="table-btn text-info" (click)="detail(operation)">催收</a>
+                <a class="table-btn text-info" (click)="getRepaymentPlanList(operation)">还款计划</a>
+                <a class="table-btn text-info" (click)="detail(operation)" *ngIf="authRole.roleIn(['008'])">催收</a>
               </div>
             </ng-template>
           </p-column>
           <p-footer>
             <div class="clearfix">
               <div class="pull-right">
-                <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="queryData()"
+                <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="getLoanList()"
                   size="sm" [showTotal]="true"></paginator>
               </div>
             </div>

@@ -1,6 +1,128 @@
 <div class="page-location">
     <a class="h4 pad-r-xs font-bold">在贷跟踪详情</a>
-    <a class="page-location-item"><i class="page-location-icon glyphicon glyphicon-briefcase"></i>融资管理<i class="pad-l-min fa fa-angle-right"></i></a>
-    <a class="page-location-item active">在贷跟踪<i class="pad-l-min fa fa-angle-right"></i></a>
+    <a class="page-location-item">
+        <i class="page-location-icon glyphicon glyphicon-briefcase"></i>融资管理
+        <i class="pad-l-min fa fa-angle-right"></i>
+    </a>
+    <a class="page-location-item active">在贷跟踪
+        <i class="pad-l-min fa fa-angle-right"></i>
+    </a>
     <a class="page-location-item active">详情</a>
-  </div>
+</div>
+<div class="wrapper">
+    <section class="group clearfix form-group">
+        <div class="col-md-12 m-t form-group">
+            <div class="col-md-6">
+                <label class="label-control">借款单编号:</label>
+                <div class="col-md-8 text-content">
+                    {{borrowApplyId | filterNull:false}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="label-control">创建时间:</label>
+                <div class="col-md-8 text-content">
+                    {{createTime | filterNull:false}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 form-group">
+            <div class="col-md-6">
+                <label class="label-control">企业名称:</label>
+                <div class="col-md-8 text-content">
+                    {{borrowApplyId | filterNull:false}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="label-control">合同确认时间:</label>
+                <div class="col-md-8 text-content">
+                    {{createTime | filterNull:false}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 form-group">
+            <div class="col-md-6">
+                <label class="label-control">归属渠道:</label>
+                <div class="col-md-8 text-content">
+                    {{appName | filterNull:false}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="group clearfix form-group">
+        <div class="col-md-12 m-t form-group">
+            <div class="col-md-6">
+                <label class="label-control">借款金额:</label>
+                <div class="col-md-8 text-content">
+                    {{borrowApplyId | filterNull:false}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="label-control">贷款产品:</label>
+                <div class="col-md-8 text-content">
+                    {{createTime | filterNull:false}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 form-group">
+            <div class="col-md-6">
+                <label class="label-control">借款周期:</label>
+                <div class="col-md-8 text-content">
+                    {{borrowApplyId | filterNull:false}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="label-control">还款方式:</label>
+                <div class="col-md-8 text-content">
+                    {{createTime | filterNull:false}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 form-group">
+            <div class="col-md-6">
+                <label class="label-control">计息方式:</label>
+                <div class="col-md-8 text-content">
+                    {{borrowApplyId | filterNull:false}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="label-control">利率:</label>
+                <div class="col-md-8 text-content">
+                    {{createTime | filterNull:false}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 form-group">
+            <div class="col-md-10">
+                <label class="label-control">还款计划:</label>
+                <div class="col-md-8 text-content">
+                    {{borrowApplyId | filterNull:false}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="group clearfix form-group">
+        <div class="col-md-12 m-t form-group">
+            <div class="col-md-10">
+                <label class="label-control">运单合同:</label>
+                <div class="col-md-8 text-content">
+                    {{borrowApplyId | filterNull:false}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 m-t form-group">
+            <div class="col-md-10">
+                <label class="label-control">融资合同:</label>
+                <div class="col-md-8 text-content">
+                    {{createTime | filterNull:false}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="clearfix">
+        <div class="col-md-12 m-t text-center">
+            <button class="btn-def" (click)="back()">返回
+                <i class="fa fa-arrow-circle-o-left"></i>
+            </button>
+        </div>
+    </section>
+</div>

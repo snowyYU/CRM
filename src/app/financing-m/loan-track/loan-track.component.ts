@@ -3,7 +3,8 @@ import { Router } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { LoanTrackService,SendData } from './loan-track.service'
 import { DateService } from '../../../services/date/date.service'
-import { config } from '../../../../protractor.conf';
+// import { config } from '../../../../protractor.conf';
+import { AuthRoleService } from '../../../services/authRole/authRole.service'
 
 @Component({
 	moduleId: module.id,
@@ -39,7 +40,10 @@ export class LoanTrackComponent implements OnInit {
 	productId=''              //产品编号
 	productList:any[]         //产品列表
 	status=0                  //状态
+
+	repaymentPlanList:any[]   //还款计划列表
 	constructor(
+		public authRole:AuthRoleService,
 		private router:Router,
 		private pop:PopService,
 		private loanTrack:LoanTrackService,
@@ -130,6 +134,20 @@ export class LoanTrackComponent implements OnInit {
 			})
 	}
 
+	getRepaymentPlanList(row){
+		this.loanTrack.getRepaymentPlanList(row.borrowApplyId)
+		.then(res=>{
+			console.log(res)
+			this.repaymentPlanList=res.body.records
+		})
+		.catch(res=>{
+			this.loading=false
+			this.pop.error({
+				title:'错误提示',
+				text:res.message
+			})
+		})
+	}
 	handleData(res){
 		console.log(res)
 		this.dataList=res.body.records
