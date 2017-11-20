@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { NewApplyService,SendData } from './new-apply.service'
+import { SessionStorageService } from '../../../../services/session-storage/session-storage.service'
 
 @Component({
 	moduleId: module.id,
@@ -13,6 +14,8 @@ import { NewApplyService,SendData } from './new-apply.service'
 export class NewApplyComponent implements OnInit {
 	companyName:string
 	memberId:number
+
+	serviceMan:string
 
 	productDetailL:any[]
 
@@ -42,7 +45,8 @@ export class NewApplyComponent implements OnInit {
 		private route:ActivatedRoute,
 		private router:Router,
 		private pop:PopService,
-		private newApply:NewApplyService
+		private newApply:NewApplyService,
+		private sessionStorage:SessionStorageService
 		) {}
 
 	ngOnInit() {
@@ -56,6 +60,7 @@ export class NewApplyComponent implements OnInit {
 		this.companyName=data.companyName
 		this.memberId=data.memberId
 		this.appId=data.appId
+		this.serviceMan=data.serviceMan
 	}
 
 	getProductsList(){
@@ -115,7 +120,7 @@ export class NewApplyComponent implements OnInit {
 
 		let data:SendData={
 			memberId:this.memberId,
-			productId:this.productId,			//产品ID
+			// productId:this.productId,			//产品ID
 			oldCreditValue:0,		//原授信额
 			operateType:0,			//操作类型，0：新增授信；1：重新授信型；
 			addCreditValue:this.addCreditValue,		//新增授信额
@@ -127,11 +132,17 @@ export class NewApplyComponent implements OnInit {
 				console.log(res)
 				this.pop.info({
 					title:'提示框',
-					text:'已提交授信申请，请等待风控审核！'
+					text:'已提交授信申请，请等待风控审批！'
 				})
+				this.sessionStorage.memberDetailDomain='memberM/memberManage'
 				this.submitting=false
-
-				this.router.navigate(['memberM/memberManage'])
+				setTimeout(()=>{
+					let queryData={
+						creditAuthId:res.body.creditAuthId,
+						memberId:this.memberId
+					}
+					this.router.navigate(['memberM/getApply/detail',JSON.stringify(queryData)])
+				},0)		
 			})
 			.catch(res=>{
 				this.pop.error({

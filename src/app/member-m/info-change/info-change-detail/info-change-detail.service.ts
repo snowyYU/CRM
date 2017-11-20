@@ -33,7 +33,7 @@ export class InfoChangeDetailService {
 		})
 	}
 
-	//提交审核结果
+	//提交审批结果
 	submitData(data:SendData):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.infoChangeCheckSubmit,

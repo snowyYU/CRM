@@ -75,6 +75,6 @@ export class RelativeDetailComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['memberM/relativeCompany'])
+    window.history.back()
   }
 }

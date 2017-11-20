@@ -4,6 +4,7 @@ import { PopService } from 'dolphinng';
 import { AuthDetailService } from './auth-detail.service'
 import { ViewChild ,ElementRef} from '@angular/core';
 import { GalleryComponent} from 'dolphinng';
+import { SessionStorageService } from '../../../../services/session-storage/session-storage.service';
 
 import { PreviewerComponent } from '../../../../utils/previewer/previewer.component'
 import {img,file } from "../../../../utils/previewer/filetype"
@@ -19,7 +20,8 @@ export class AuthDetailComponent implements OnInit{
 	appName:string;			//来源渠道
 	memberTypeDic:string;	//会员类别
 	serviceMan:string;		//服务经理
-	statusDic:string;		//状态
+	status:number;          //状态
+	statusDic:string;		//状态，中文
 	createTime:string;		//申请时间	
     companyTypeDic:string;	//公司类型
     foundTime:string;		//成立时间
@@ -32,9 +34,9 @@ export class AuthDetailComponent implements OnInit{
 	linkJob:string;			//联系人职位
 	isLegalDic:string;		//是否法人
 	linkIdcard:string;		//身份证
-	auditBy:string;			//审核人
-    auditDate:string;		//审核时间
-    auditRemark:string;		//审核意见
+	auditBy:string;			//审批人
+    auditDate:string;		//审批时间
+    auditRemark:string;		//审批意见
     guestFrom:number;       //获客途径
     guestFromDic:string;    //获客途径,中文
 
@@ -64,13 +66,17 @@ export class AuthDetailComponent implements OnInit{
 	//这个变量用来控制返回页面的状态
 	backStatus
 
+	//记录授信申请前的页面,用于返回
+	memberDetailDomain
+
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
 	@ViewChild(PreviewerComponent) previewer:PreviewerComponent;
 	constructor(
 		private router:Router,
 		private route:ActivatedRoute,
 		private pop:PopService,
-		private authDetail:AuthDetailService
+		private authDetail:AuthDetailService,
+		private sessionStorage:SessionStorageService
 		){
 		// setTimeout(()=>{
 		// 	this.gallery.open();
@@ -101,7 +107,8 @@ export class AuthDetailComponent implements OnInit{
 		this.authId=res.body.authId; 			//申请ID
 		this.createTime=res.body.createTime;		//申请时间	
 		this.companyName=res.body.companyName;		//客户名称
-		this.statusDic=res.body.statusDic;		//状态
+		this.status=res.body.status;            //状态
+		this.statusDic=res.body.statusDic;		//状态，中文
 		this.guestFromDic=res.body.guestFromDic;    //获客途径
 		this.appName=res.body.appName;			//来源渠道
 		this.memberTypeDic=res.body.memberTypeDic;	//会员类别
@@ -116,10 +123,10 @@ export class AuthDetailComponent implements OnInit{
 		this.linkJob=res.body.linkJob;			//联系人职位
 		this.isLegalDic=res.body.isLegalDic;		//是否法人
 		this.linkIdcard=res.body.linkIdcard;    //身份证
-		this.auditBy=res.body.auditBy;			//审核人
-	    this.auditDate=res.body.auditDate;		//审核时间
-	    this.auditRemark=res.body.auditRemark;		//审核意见
-	    // this.auditRemark=res.body.auditRemark?res.body.auditRemark:'无';		//审核意见
+		this.auditBy=res.body.auditBy;			//审批人
+	    this.auditDate=res.body.auditDate;		//审批时间
+	    this.auditRemark=res.body.auditRemark;		//审批意见
+	    // this.auditRemark=res.body.auditRemark?res.body.auditRemark:'无';		//审批意见
 	    this.attch1Loadid=res.body.attch1Loadid?res.body.attch1Loadid:""
 		this.attch1Type=res.body.attch1Type?res.body.attch1Type:""
 		this.attch1TypeDic=res.body.attch1TypeDic?res.body.attch1TypeDic:""
@@ -250,7 +257,14 @@ export class AuthDetailComponent implements OnInit{
 	// }
 
 	back(){
-		this.router.navigate(["business/customerList/authList",this.backStatus])
+		console.log(!!this.sessionStorage.memberDetailDomain)
+		if(!!this.sessionStorage.memberDetailDomain){
+			this.memberDetailDomain=this.sessionStorage.memberDetailDomain
+			this.sessionStorage.deleteItem('memberDetailDomain')
+			this.router.navigate([this.memberDetailDomain])
+		}else{
+			this.router.navigate(["business/customerList/authList",this.backStatus])
+		}
 	}
 
 }

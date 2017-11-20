@@ -13,6 +13,10 @@
         <span class="row-body text-content">{{companyName}}  ({{memberId}})</span>
     </div>
     <div class="col-md-12 form-group">
+        <label class="pull-left w-sm label-control">服务经理:</label>
+        <span class="row-body text-content">{{serviceMan | filterNull:false}}</span>
+    </div>
+    <!-- <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control required">申请产品:</label>
         <span class="row-body text-content">{{productName | filterNull:false}}</span>
 
@@ -20,14 +24,13 @@
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">产品类别:</label>
         <span class="row-body text-content">{{productTypeName | filterNull:false}}</span>
-    </div>
+    </div> -->
 
   </section >
   <section class="panel-body border-content m-t-md form-inline ">
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control required">申请额度:</label>
         <div class="input-group">
-          <!-- <input type="number" name="addCreditValue" class="form-control" max="9999999999999.99" [(ngModel)]="addCreditValue" required> -->
           <input type="text" name="addCreditValue" class="form-control" [(ngModel)]="addCreditValue" required
                  pattern="^[0-9]{1,13}(\.[0-9]{1,2})?$" #addCreditValueRef="ngModel"
                  [HTML5Validate]="[[addCreditValue==='','请输入申请额度！'],[!!(addCreditValueRef.errors&&addCreditValueRef.errors.pattern),'申请额度输入有误，请输入13位(含)以内整数,可保留两位小数']]"
@@ -38,20 +41,19 @@
     </div>
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">原授信额度:</label>
-        <span class="row-body text-content">{{oldCreditValue | yuanFormat | filterNull:false}} 元</span>
-
+        <span class="row-body text-content">{{oldCreditValue | yuanFormat:2:true | filterNull:false}} 元</span>
     </div>
-    <div class="col-md-12 form-group">
+    <!-- <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">原有效期:</label>
         <span class="row-body text-content">{{expiryDateBegin | effDateFormat}}  至  {{expiryDateEnd | effDateFormat}}</span>
 
-    </div>
+    </div> -->
   </section>
 
 
 	<section class="panel-body border-content m-t-md form-inline">
 		<div class="col-md-12">
-			<label class="pull-left w-sm label-control">申请原因:</label>
+			<label class="pull-left w-sm label-control">备注:</label>
 			<textarea name="authRemark" id="" cols="50" rows="5" class="form-control" maxlength="200" placeholder="小于200字" [(ngModel)]="authRemark"></textarea>
 		</div>
 	</section>
@@ -64,43 +66,35 @@
         </div>
     </section>
 </form>
-<section class="bg-white clearfix productInfo pos-abt m-t-xl" *ngIf="productId" style="min-height: 420px;">
-      <!-- <div class="col-md-12 text-center padder-v">产品信息</div> -->
-      <div class="col-md-12 form-group m-t-md">
-          <label for="" class="col-md-3 label-control">额度范围:</label>
-          <div class="col-md-9 m-t-xs">{{valueLimit}}</div>
-      </div>
-      <div class="col-md-12 form-group">
-          <label for="" class="col-md-3 label-control">借款周期:</label>
-          <div class="col-md-9 m-t-xs">{{borrowHowlong}}</div>
-      </div>
-      <div class="col-md-12 form-group clearfix">
-          <label for="" class="col-md-3 label-control">产品简介:</label>
-          <div class="col-md-9 m-t-xs newLine">{{productRemark}}</div>
-      </div>
-      <div class="col-md-12">
+<section class="clearfix productInfo pos-abt m-t-xl tabel-bg-color" style="height:350px">
+      <div class="col-md-12 m-t">
           <table class="table showL b-t">
+              <caption class="text-center text-lg font-bold caption-style m-b-md">授信产品</caption>
               <thead>
                   <tr>
-                      <th>借款期限</th>
-                      <th>还款方式</th>
-                      <th>计息方式</th>
-                      <th>利率</th>
+                      <th class="text-center" style="width:150px">产品</th>
+                      <th class="text-center">额度(元)</th>
+                      <th class="text-center" style="width:200px">有效期</th>
                   </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let item of productDetailL">
-                      <td>{{item.rateCycle}}</td>
-                      <td>{{item.paymentWayName}}</td>
-                      <td>{{item.interestTypeName}}</td>
-                      <td>{{item.interestValue | percent:'.2'}}</td>
+                  <tr *ngFor="let item of productList">
+                      <td class="text-center tbody-style" *ngIf="item.creditFacility">{{item.creditFacility.productName}}</td>
+                      <td class="text-right tbody-style" *ngIf="item.creditFacility">{{item.creditFacility.creditValue | yuanFormat:2:true}}</td>
+                      <td class="text-center tbody-style" *ngIf="item.creditFacility">{{item.creditFacility.expiryDateBegin | effDateFormat}}  至  {{item.creditFacility.expiryDateEnd | effDateFormat}}</td>
                   </tr>
-                  <tr *ngIf="!productDetailL||productDetailL.length===0">
-                    <td colspan="4" class="text-disabled text-center"> 无</td>
+                  <tr *ngIf="!productList||productList.length===0||!productList[0].creditFacility">
+                    <td colspan="3" class="text-disabled text-center tbody-style"> 无</td>
                   </tr>
-
               </tbody>
+              <tfoot>
+                  <tr>
+                      <td class="text-center tfoot-style">合计：</td>
+                      <td class="text-right tfoot-style">{{oldCreditValue | yuanFormat:2:true | filterNull:false}} 元</td>
+                  </tr>
+              </tfoot>
           </table>
+          <div></div>
       </div>
   </section>
 </div>
