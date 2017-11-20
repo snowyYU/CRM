@@ -14,6 +14,12 @@ import { config } from '../../../../../protractor.conf';
 
 export class DetailComponent implements OnInit {
 
+	borrowApplyId  //借款单ID
+	createTime  //创建时间
+	appName  //渠道名称
+	
+
+
 	queryData:SendData
 	dataList:any[]
 	constructor(
