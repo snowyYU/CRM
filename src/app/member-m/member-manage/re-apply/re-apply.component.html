@@ -12,6 +12,10 @@
         <label class="pull-left w-sm label-control">会员名称:</label>
         <span class="row-body text-content">{{companyName}}  ({{memberId}})</span>
     </div>
+    <div class="col-md-12 form-group">
+        <label class="pull-left w-sm label-control">服务经理:</label>
+        <span class="row-body text-content">{{serviceMan | filterNull:false}}</span>
+    </div>
     <!-- <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control required">申请产品:</label>
         <span class="row-body text-content">{{productName | filterNull:false}}</span>
@@ -38,7 +42,6 @@
     <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">原授信额度:</label>
         <span class="row-body text-content">{{oldCreditValue | yuanFormat:2:true | filterNull:false}} 元</span>
-
     </div>
     <!-- <div class="col-md-12 form-group">
         <label class="pull-left w-sm label-control">原有效期:</label>
@@ -50,7 +53,7 @@
 
 	<section class="panel-body border-content m-t-md form-inline">
 		<div class="col-md-12">
-			<label class="pull-left w-sm label-control">申请原因:</label>
+			<label class="pull-left w-sm label-control">备注:</label>
 			<textarea name="authRemark" id="" cols="50" rows="5" class="form-control" maxlength="200" placeholder="小于200字" [(ngModel)]="authRemark"></textarea>
 		</div>
 	</section>
@@ -63,28 +66,35 @@
         </div>
     </section>
 </form>
-<section class="bg-white clearfix productInfo pos-abt m-t-xl">
+<section class="clearfix productInfo pos-abt m-t-xl tabel-bg-color" style="height:350px">
       <div class="col-md-12 m-t">
           <table class="table showL b-t">
+              <caption class="text-center text-lg font-bold caption-style m-b-md">授信产品</caption>
               <thead>
                   <tr>
-                      <th>产品名</th>
-                      <th>授信额度(元)</th>
-                      <th>有效期</th>
+                      <th class="text-center" style="width:150px">产品</th>
+                      <th class="text-center">额度(元)</th>
+                      <th class="text-center" style="width:200px">有效期</th>
                   </tr>
               </thead>
               <tbody>
                   <tr *ngFor="let item of productList">
-                      <td>{{item.creditFacility.productName}}</td>
-                      <td>{{item.creditFacility.creditValue | yuanFormat:2:true}}</td>
-                      <td>{{item.creditFacility.expiryDateBegin | effDateFormat}}  至  {{item.creditFacility.expiryDateEnd | effDateFormat}}</td>
+                      <td class="text-center tbody-style" *ngIf="item.creditFacility">{{item.creditFacility.productName}}</td>
+                      <td class="text-right tbody-style" *ngIf="item.creditFacility">{{item.creditFacility.creditValue | yuanFormat:2:true}}</td>
+                      <td class="text-center tbody-style" *ngIf="item.creditFacility">{{item.creditFacility.expiryDateBegin | effDateFormat}}  至  {{item.creditFacility.expiryDateEnd | effDateFormat}}</td>
                   </tr>
-                  <tr *ngIf="!productList||productList.length===0">
-                    <td colspan="2" class="text-disabled text-center"> 无</td>
+                  <tr *ngIf="!productList||productList.length===0||!productList[0].creditFacility">
+                    <td colspan="3" class="text-disabled text-center tbody-style"> 无</td>
                   </tr>
-
               </tbody>
+              <tfoot>
+                  <tr>
+                      <td class="text-center tfoot-style">合计：</td>
+                      <td class="text-right tfoot-style">{{oldCreditValue | yuanFormat:2:true | filterNull:false}} 元</td>
+                  </tr>
+              </tfoot>
           </table>
+          <div></div>
       </div>
   </section>
 </div>

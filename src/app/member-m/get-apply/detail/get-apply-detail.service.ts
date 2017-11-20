@@ -8,6 +8,23 @@ export class GetApplyDetailService{
 		private myHttp:MyHttpClient
 		){}
 
+	getProductsList(id:string):Promise<any>{
+		return this.myHttp.post({
+			api:this.myHttp.api.getCreditFacilityList,
+			query:{
+				memberId:id
+			}
+		}).toPromise().then(res=>{
+			let data=res
+			if (data.status==200) {
+
+				return Promise.resolve(data)
+			}else{
+				return Promise.reject(data)
+			}
+		})
+	}
+
 	getData(id:string):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.getApplyDetail,

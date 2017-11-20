@@ -470,6 +470,16 @@ export class ApplyAuthComponent implements OnInit {
 		window.history.back()
 	}
 
+	submitConfirm() {
+		this.pop.confirm({
+			title: '操作确认',
+			text: '确认提交申请吗？'
+		}).onConfirm(() => {
+			this.submit()
+		})
+
+	}
+
 	submit(){
 
 		//遮罩出现

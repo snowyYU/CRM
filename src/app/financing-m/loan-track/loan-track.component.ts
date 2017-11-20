@@ -3,7 +3,6 @@ import { Router } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { LoanTrackService,SendData } from './loan-track.service'
 import { DateService } from '../../../services/date/date.service'
-// import { config } from '../../../../protractor.conf';
 import { AuthRoleService } from '../../../services/authRole/authRole.service'
 
 @Component({

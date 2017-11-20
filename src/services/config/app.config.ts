@@ -615,10 +615,45 @@ export const API = {
     url:'fam/LoanTracking/getRepaymentPlan',
     method:'post'
   },
-  // getProductsList:{
-  //   url:'fam/LoanTracking/getProductsByAppId',
-  //   method:'post'
-  // },
+
+  /*-----------------------------------催收任务---------------------------------------*/
+  getTotalByStatus:{
+    url:'fam/overdueTask/getTotalByStatus',
+    method:'post'
+  },
+  getStatusAndRepaymentTotal:{
+    url:'fam/overdueTask/getStatusAndRepaymentTotal',
+    method:'post'
+  },
+  getOverdueTaskList:{
+    url:'fam/overdueTask/getByPage',
+    method:'post'
+  },
+  getOverdueTaskDetails:{
+    url:'fam/overdueTask/getById',
+    method:'post'
+  },
+  createOverdueTask:{
+    url:'fam/overdueTask/create',
+    method:'post'
+  },
+  updateOverdueTask:{
+    url:'fam/overdueTask/update',
+    method:'post'
+  },
+  getOverdueReportList:{
+    url:'fam/overdueReport/getByPage',
+    method:'post'
+  },
+  getOverdueReportDetails:{
+    url:'fam/overdueReport/getById',
+    method:'post'
+  },
+  createOverdueReport:{
+    url:'fam/overdueReport/create',
+    method:'post'
+  },
+
 
   /*-----------------------------------删除附件接口---------------------------------------*/
   deleteAttach:{

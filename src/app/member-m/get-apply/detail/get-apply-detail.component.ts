@@ -30,6 +30,7 @@ export class GetApplyDetailComponent implements OnInit{
 	
 	modalDataList:any
 	modalListLoading:boolean
+	productList:any[]
 
 	constructor(
 		private router:Router,
@@ -39,6 +40,7 @@ export class GetApplyDetailComponent implements OnInit{
 		){}
 	ngOnInit(){
 		this.getData();
+		this.getProductsList();
 		this.getCreditData();
 	}
 
@@ -54,6 +56,20 @@ export class GetApplyDetailComponent implements OnInit{
 								text:res.message
 							})
 						})
+	}
+
+	getProductsList(){
+		this.getApplyDetail.getProductsList(JSON.parse(this.route.params['value']['data']).memberId)
+		.then(res=>{
+			console.log(res)
+			this.productList=res.body.records
+		})
+		.catch(res=>{
+			this.pop.error({
+				title:'错误信息',
+				text:res.message
+			})
+		})
 	}
 
 	getCreditData(){

@@ -11,6 +11,10 @@
         <label class="pull-left w-sm label-control">会员名称:</label>
         <span class="row-body text-content">{{companyName}}  ({{memberId}})</span>
       </div>
+      <div class="col-md-12 form-group">
+        <label class="pull-left w-sm label-control">服务经理:</label>
+        <span class="row-body text-content">{{serviceMan | filterNull:false}}</span>
+      </div>
       <!-- <div class="col-md-12 form-group form-inline">
         <label class="pull-left w-sm label-control required">申请产品:</label>
           <select name="productId" id="" class="form-control" [(ngModel)]="productId" 
@@ -56,7 +60,7 @@
     </section>
     <section class="panel-body border-content m-t-md form-inline">
       <div class="col-md-12">
-        <label class="pull-left w-sm label-control">申请原因:</label>
+        <label class="pull-left w-sm label-control">备注:</label>
         <textarea name="authRemark"  cols="50" rows="5" class="form-control" maxlength="200" placeholder="小于200字" [(ngModel)]="authRemark"></textarea>
       </div>
     </section>

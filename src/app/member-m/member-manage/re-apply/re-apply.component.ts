@@ -15,6 +15,7 @@ import { log } from 'util';
 export class ReApplyComponent implements OnInit {
 	companyName:string
 	memberId:number
+	serviceMan:string
 
 	newData:object={}
 
@@ -75,6 +76,7 @@ export class ReApplyComponent implements OnInit {
 		console.log(data)
 		this.memberId=data.memberId
 		this.companyName=data.companyName
+		this.serviceMan=data.serviceMan
 		// this.productId=data.productId,
 		// this.productName=data.productName
 		// this.productTypeName=data.productTypeName

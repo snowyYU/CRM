@@ -218,7 +218,8 @@ export class MemberManageComponent implements OnInit{
 		let toNewData={
 			memberId:this.memberId,
 			companyName:this.companyName,
-			appId:this.sAppId
+			appId:this.sAppId,
+			serviceMan:this.modalApplyServiceMan
 		}
 		this.closeModal();
 		setTimeout(e=>{
@@ -232,6 +233,7 @@ export class MemberManageComponent implements OnInit{
 			memberId:this.memberId,
 			companyName:this.companyName,
 			appId:this.sAppId,
+			serviceMan:this.modalApplyServiceMan
 			// productTypeName:this.productTypeName,				//产品类别
 			// productId:this.productId,
 			// productName:this.productName,				//申请产品

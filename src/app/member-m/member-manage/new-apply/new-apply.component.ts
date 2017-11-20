@@ -14,6 +14,8 @@ export class NewApplyComponent implements OnInit {
 	companyName:string
 	memberId:number
 
+	serviceMan:string
+
 	productDetailL:any[]
 
 	newData:object={}
@@ -56,6 +58,7 @@ export class NewApplyComponent implements OnInit {
 		this.companyName=data.companyName
 		this.memberId=data.memberId
 		this.appId=data.appId
+		this.serviceMan=data.serviceMan
 	}
 
 	getProductsList(){
