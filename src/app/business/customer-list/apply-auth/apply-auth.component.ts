@@ -6,9 +6,11 @@ import { Uploader } from '../../../../utils/uploader/Uploader'
 import { PreviewerComponent } from '../../../../utils/previewer/previewer.component'
 import { GalleryComponent} from 'dolphinng';
 import { DateService } from "../../../../services/date/date.service"
+import { SessionStorageService } from '../../../../services/session-storage/session-storage.service'
 
 import { file_api } from "../../../../services/config/app.config"
 import {img,file } from "../../../../utils/previewer/filetype"
+
 class Attachment {
 
 
@@ -195,7 +197,8 @@ export class ApplyAuthComponent implements OnInit {
 			private route:ActivatedRoute,
 			private router:Router,
 			private pop:PopService,
-			private dateService:DateService
+			private dateService:DateService,
+			private sessionStorage:SessionStorageService
 		){
 		//获客途径下拉
 		this.inputSelect("guest_from")
@@ -531,8 +534,12 @@ export class ApplyAuthComponent implements OnInit {
 					title:'提示信息',
 					text:res.message
 				})
+				this.sessionStorage.memberDetailDomain='business/customerList'
 				this.submitting=false
-				this.router.navigate(['business/customerList'])
+				setTimeout(()=>{
+					this.router.navigate(['business/customerList/authDetail',res.body.authId])
+				
+				},0)
 			})
 			.catch(res=>{
 				this.pop.error({

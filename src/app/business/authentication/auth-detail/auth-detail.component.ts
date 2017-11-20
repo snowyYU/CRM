@@ -4,6 +4,7 @@ import { PopService } from 'dolphinng';
 import { AuthDetailService } from './auth-detail.service'
 import { ViewChild ,ElementRef} from '@angular/core';
 import { GalleryComponent} from 'dolphinng';
+import { SessionStorageService } from '../../../../services/session-storage/session-storage.service';
 
 import { PreviewerComponent } from '../../../../utils/previewer/previewer.component'
 import {img,file } from "../../../../utils/previewer/filetype"
@@ -64,13 +65,17 @@ export class AuthDetailComponent implements OnInit{
 	//这个变量用来控制返回页面的状态
 	backStatus
 
+	//记录授信申请前的页面,用于返回
+	memberDetailDomain
+
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
 	@ViewChild(PreviewerComponent) previewer:PreviewerComponent;
 	constructor(
 		private router:Router,
 		private route:ActivatedRoute,
 		private pop:PopService,
-		private authDetail:AuthDetailService
+		private authDetail:AuthDetailService,
+		private sessionStorage:SessionStorageService
 		){
 		// setTimeout(()=>{
 		// 	this.gallery.open();
@@ -250,7 +255,14 @@ export class AuthDetailComponent implements OnInit{
 	// }
 
 	back(){
-		this.router.navigate(["business/customerList/authList",this.backStatus])
+		console.log(!!this.sessionStorage.memberDetailDomain)
+		if(!!this.sessionStorage.memberDetailDomain){
+			this.memberDetailDomain=this.sessionStorage.memberDetailDomain
+			this.sessionStorage.deleteItem('memberDetailDomain')
+			this.router.navigate([this.memberDetailDomain])
+		}else{
+			this.router.navigate(["business/customerList/authList",this.backStatus])
+		}
 	}
 
 }
