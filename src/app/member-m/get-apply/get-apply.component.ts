@@ -4,6 +4,7 @@ import { PopService } from 'dolphinng'
 import { GetApplyService,SendData } from './get-apply.service'
 import { DateService } from '../../../services/date/date.service'
 import { stringify } from 'querystring';
+import { SessionStorageService } from '../../../services/session-storage/session-storage.service'
 
 @Component({
 	selector:'get-apply',
@@ -40,7 +41,8 @@ export class GetApplyComponent implements OnInit{
 		private router:Router,
 		private route:ActivatedRoute,
 		private getApply:GetApplyService,
-		private dateService:DateService
+		private dateService:DateService,
+		private sessionStorage:SessionStorageService
 		){}
 	ngOnInit(){
 		if (this.route.queryParams['value']['qry']) {

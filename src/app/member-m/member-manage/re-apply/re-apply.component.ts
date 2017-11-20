@@ -4,6 +4,7 @@ import { PopService } from 'dolphinng'
 import { ReApplyService,SendData } from './re-apply.service'
 import { EffDateFormatPipe } from '../../../../pipe/eff-date-format/eff-date-format.pipe'
 import { log } from 'util';
+import { SessionStorageService } from '../../../../services/session-storage/session-storage.service'
 
 @Component({
 	moduleId: module.id,
@@ -49,7 +50,8 @@ export class ReApplyComponent implements OnInit {
 		private router:Router,
 		private pop:PopService,
 		private reApply:ReApplyService,
-		private datePipe:EffDateFormatPipe
+		private datePipe:EffDateFormatPipe,
+		private sessionStorage:SessionStorageService
 		) {}
 
 	ngOnInit() {
@@ -116,9 +118,15 @@ export class ReApplyComponent implements OnInit {
 					title:'提示框',
 					text:'已提交授信申请，请等待风控审核！'
 				})
+				this.sessionStorage.memberDetailDomain='memberM/memberManage'
 				this.submitting=false
-
-				this.router.navigate(['memberM/memberManage'])
+				setTimeout(()=>{
+					let queryData={
+						creditAuthId:res.body.creditAuthId,
+						memberId:this.memberId
+					}
+					this.router.navigate(['memberM/getApply/detail',JSON.stringify(queryData)])
+				},0)
 			})
 			.catch(res=>{
 				this.pop.error({

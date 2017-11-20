@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { NewApplyService,SendData } from './new-apply.service'
+import { SessionStorageService } from '../../../../services/session-storage/session-storage.service'
 
 @Component({
 	moduleId: module.id,
@@ -44,7 +45,8 @@ export class NewApplyComponent implements OnInit {
 		private route:ActivatedRoute,
 		private router:Router,
 		private pop:PopService,
-		private newApply:NewApplyService
+		private newApply:NewApplyService,
+		private sessionStorage:SessionStorageService
 		) {}
 
 	ngOnInit() {
@@ -132,9 +134,15 @@ export class NewApplyComponent implements OnInit {
 					title:'提示框',
 					text:'已提交授信申请，请等待风控审核！'
 				})
+				this.sessionStorage.memberDetailDomain='memberM/memberManage'
 				this.submitting=false
-
-				this.router.navigate(['memberM/memberManage'])
+				setTimeout(()=>{
+					let queryData={
+						creditAuthId:res.body.creditAuthId,
+						memberId:this.memberId
+					}
+					this.router.navigate(['memberM/getApply/detail',JSON.stringify(queryData)])
+				},0)		
 			})
 			.catch(res=>{
 				this.pop.error({

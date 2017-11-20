@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { PopService } from 'dolphinng';
 import { GetApplyDetailService } from './get-apply-detail.service'
+import { SessionStorageService } from '../../../../services/session-storage/session-storage.service';
 
 @Component({
 	selector:'get-apply-detail',
@@ -31,12 +32,16 @@ export class GetApplyDetailComponent implements OnInit{
 	modalDataList:any
 	modalListLoading:boolean
 	productList:any[]
+	
+	//用于记录提交申请前的页面
+	memberDetailDomain
 
 	constructor(
 		private router:Router,
 		private route:ActivatedRoute,
 		private pop:PopService,
-		private getApplyDetail:GetApplyDetailService
+		private getApplyDetail:GetApplyDetailService,
+		private sessionStorage:SessionStorageService
 		){}
 	ngOnInit(){
 		this.getData();
@@ -108,7 +113,14 @@ export class GetApplyDetailComponent implements OnInit{
 	}
 
 	back(){
-		window.history.back()
+		console.log(this.sessionStorage.memberDetailDomain)
+		if(!!this.sessionStorage.memberDetailDomain){
+			this.memberDetailDomain=this.sessionStorage.memberDetailDomain
+			this.sessionStorage.deleteItem('memberDetailDomain')
+			this.router.navigate([this.memberDetailDomain])
+		}else{
+			window.history.back()
+		}
 	}
 
 }
