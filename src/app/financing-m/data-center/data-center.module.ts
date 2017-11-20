@@ -7,7 +7,7 @@ import { FinancingDealComponent } from './financing-deal/financing-deal.componen
 
 @NgModule({
 	declarations:[
-		// DataCenterComponent,
+		DataCenterComponent,
 		BusinessDataComponent,
 		FinancingDealComponent
 	],

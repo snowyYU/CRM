@@ -1,7 +1,7 @@
 import { RouterModule,Routes } from '@angular/router';
 
 import { FinancingMComponent } from './financing-m.component';
-import { DataCenterComponent} from './data-center/data-center.component';
+// import { DataCenterComponent} from './data-center/data-center.component';
 // import { BusinessDataComponent } from './data-center/business-data/business-data.component';
 // import { FinancingDealComponent } from './data-center/financing-deal/financing-deal.component'
 import { GetMissonComponent } from './get-mission/get-mission.component';
@@ -18,7 +18,7 @@ const routes:Routes=[
 	},
 	{
 		path:'',
-		component:DataCenterComponent,
+		// component:DataCenterComponent,
 		children:[
 			{
 				path:'dataCenter',
