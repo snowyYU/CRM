@@ -25,9 +25,9 @@ export class GetApplyDetailComponent implements OnInit{
 	expiryDateBegin		//有效期开始
 	expiryDateEnd		//有效期结束
 	authRemark		//申请原因
-	auditBy:string;			//审核人
-    auditDate:string;		//审核时间
-	auditRemark:string;		//审核意见
+	auditBy:string;			//审批人
+    auditDate:string;		//审批时间
+	auditRemark:string;		//审批意见
 	
 	modalDataList:any
 	modalListLoading:boolean
@@ -107,9 +107,9 @@ export class GetApplyDetailComponent implements OnInit{
 		this.expiryDateBegin=res.body.expiryDateBegin	//有效期开始
 		this.expiryDateEnd=res.body.expiryDateEnd	//有效期结束
 		this.authRemark=res.body.authRemark	//申请原因
-		this.auditBy=res.body.auditBy;			//审核人
-	    this.auditDate=res.body.auditDate;		//审核时间
-	    this.auditRemark=res.body.auditRemark;		//审核意见
+		this.auditBy=res.body.auditBy;			//审批人
+	    this.auditDate=res.body.auditDate;		//审批时间
+	    this.auditRemark=res.body.auditRemark;		//审批意见
 	}
 
 	back(){

@@ -182,13 +182,13 @@
     <section class="wrapper border-content m-b-sm padder">
       <div class="form-group clearfix row">
         <div class="col-md-6">
-          <label class="label-control label-special-w font-bold" for="geustName">审核员:</label>
+          <label class="label-control label-special-w font-bold" for="geustName">审批员:</label>
           <div class="col-md-6 m-t-xs text-content">
             {{auditBy | filterNull:false}}
           </div>
         </div>
         <div class="col-md-6 ">
-          <label class="label-control label-special-w font-bold">审核时间:</label>
+          <label class="label-control label-special-w font-bold">审批时间:</label>
           <div class="col-md-6 m-t-xs text-content">
             {{auditDate | filterNull:false}}
           </div>
@@ -242,4 +242,8 @@
       <div></div>
     </div>
   </section>
+  <div class="">
+    <img src="../../../../assets/img/true.png" class="img-control img-size" *ngIf="status==1" />
+    <img src="../../../../assets/img/false.png" class="img-control img-size" *ngIf="status==-1" />
+  </div>
 </div>

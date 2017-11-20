@@ -76,7 +76,7 @@ export class InfoChangeComponent implements OnInit{
 		let uri='memberM/infoChange'
 		this.sessionStorage.memberDetailDomain=uri
 	}
-	//审核
+	//审批
 	check(row){
 		this.sessionDispose()
 		this.router.navigate(['memberM/infoChange/detail',row.updateApplyId],{queryParams: {isCheck:true}})

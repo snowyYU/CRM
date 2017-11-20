@@ -13,7 +13,7 @@ import { AuthRoleService } from '../../../../services/authRole/authRole.service'
 })
 
 export class InfoChangeDetailComponent implements OnInit {
-	//判断是审核还是详情
+	//判断是审批还是详情
 	isCheck: boolean
 
 	//定位模板字段：
@@ -41,7 +41,7 @@ export class InfoChangeDetailComponent implements OnInit {
 	//companyBankCard.subbankName       支行名称
 	//companyBankCard.typeDic       银行卡类型
 
-	//审核意见
+	//审批意见
 	applyMessage
 
 	//用来触发提交时的遮罩

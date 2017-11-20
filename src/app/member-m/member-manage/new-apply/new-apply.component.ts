@@ -132,7 +132,7 @@ export class NewApplyComponent implements OnInit {
 				console.log(res)
 				this.pop.info({
 					title:'提示框',
-					text:'已提交授信申请，请等待风控审核！'
+					text:'已提交授信申请，请等待风控审批！'
 				})
 				this.sessionStorage.memberDetailDomain='memberM/memberManage'
 				this.submitting=false
