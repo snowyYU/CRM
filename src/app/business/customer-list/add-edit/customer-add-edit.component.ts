@@ -364,7 +364,7 @@ export class CustomerAddEditComponent implements OnInit{
 
 	//取消
 	cancel(){
-		this.router.navigate(['/business/customerList']);
+		window.history.back()
 	}
 
 

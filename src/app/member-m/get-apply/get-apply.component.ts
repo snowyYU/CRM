@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router'
+import { Router,ActivatedRoute,ParamMap } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { GetApplyService,SendData } from './get-apply.service'
 import { DateService } from '../../../services/date/date.service'
@@ -36,6 +36,8 @@ export class GetApplyComponent implements OnInit{
 
 	todayDate
 
+	thisPageRoute:string='memberM/getApply'
+	
 	constructor(
 		private pop:PopService,
 		private router:Router,
@@ -45,10 +47,7 @@ export class GetApplyComponent implements OnInit{
 		private sessionStorage:SessionStorageService
 		){}
 	ngOnInit(){
-		if (this.route.queryParams['value']['qry']) {
-			this.qryStatus=this.route.queryParams['value']['qry']
-		}
-		this.getDataList(this.qryStatus)
+		this.subscribeRouteParams()
 
 		this.todayDate=this.dateService.format({
 			date:this.dateService.todayDate(),
@@ -58,10 +57,63 @@ export class GetApplyComponent implements OnInit{
 
 	}
 
-	getDataList(s?:string){
-		
-		this.qryStatus=s
-		
+	//11.14,新增两个方法，
+	//路由中的参数和获取列表的请求参数是否要一样呢
+	//有些时候是一样的，有时候又不是，不过目前系统中是一样的
+	//规范化，1.从组件的service中导入查询条件的interface。2.组件内部定义路由的参数结构，两者不一定相同
+	//必传参数在声明时必须初始化
+	subscribeRouteParams(){
+		this.route.paramMap.subscribe((paramMap:ParamMap)=>{
+			console.log(paramMap)
+			console.log(paramMap['params']['rows'])
+			console.log(!!paramMap['params'])
+			
+				// if (paramMap['params']['rows']) {
+				// 	this.rows=paramMap['params']['rows']
+				// }
+				paramMap['params']['rows']?this.rows=parseInt(paramMap['params']['rows']):null
+				paramMap['params']['page']?this.page=parseInt(paramMap['params']['page']):null
+				paramMap['params']['startDate']?this.startDate=paramMap['params']['startDate']:null
+				paramMap['params']['endDate']?this.endDate=paramMap['params']['endDate']:null
+				paramMap['params']['qryStatus']?this.qryStatus=paramMap['params']['qryStatus']:null
+
+				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
+				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
+			this.getDataList()
+		})
+	}
+
+	navigate(){
+		let routeParam:{
+			page,
+			rows,
+			startDate?,
+			endDate?,
+			qryStatus?
+		}={
+			page:this.page,
+			rows:this.rows,
+		}
+
+		if (this.startDate) {
+			routeParam.startDate=this.startDate
+		}
+
+		if (this.endDate) {
+			routeParam.endDate=this.endDate
+		}
+
+		if (this.qryStatus) {
+			routeParam.qryStatus=this.qryStatus
+		}
+
+		console.log("router",this.router)
+		console.log("activerouter",this.route)
+
+		this.router.navigate([this.thisPageRoute,routeParam])
+	}
+
+	getDataList(){
 		this.loading=true
 		let sendData:SendData={
 			rows:this.rows,

@@ -109,7 +109,7 @@ export class MemberDetailComponent implements OnInit {
 	}
 
 	back(){
-		// window.history.back()
-		this.router.navigate(['memberM/memberManage'])
+		window.history.back()
+		// this.router.navigate(['memberM/memberManage'])
 	}
 }

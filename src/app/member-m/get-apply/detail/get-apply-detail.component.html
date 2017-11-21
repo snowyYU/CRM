@@ -242,8 +242,9 @@
       <div></div>
     </div>
   </section>
-  <div class="">
+  <!-- <div class="">
     <img src="../../../../assets/img/true.png" class="img-control img-size" *ngIf="status==1" />
     <img src="../../../../assets/img/false.png" class="img-control img-size" *ngIf="status==-1" />
-  </div>
+  </div> -->
+  <div [ngClass]="{'img-pass':status==1,'img-refuse':status==-1}"></div>
 </div>
