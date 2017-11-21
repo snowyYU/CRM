@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'approved-pass':status==1,'approved-refuse':status==-1}">
           <label class="control-label pull-left">申请时间：</label>
           <div class="form-control-static pull-left">
             {{createTime | filterNull:false}}
@@ -233,10 +233,10 @@
       </div>
     </section>
   </form>
-  <div class="">
+  <!-- <div class="">
     <img src="../../../../assets/img/true.png" class="img-control img-size" *ngIf="status==1" style="top: 17%" />
     <img src="../../../../assets/img/false.png" class="img-control img-size" *ngIf="status==-1" />
-  </div>
+  </div> -->
 </div>
 <gallery #gallery size="lg"></gallery>
 <previewer></previewer>

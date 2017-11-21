@@ -22,7 +22,7 @@
     	<input type="text" name="memberName" maxlength="30" [(ngModel)]="memberName" class="form-control">
     </div>
     <div class="form-group">
-    	<button class="btn-def" (click)='getListData()'>查询<i class="fa fa-search"></i></button>
+    	<button class="btn-def" (click)='page=0;navigate()'>查询<i class="fa fa-search"></i></button>
     </div>
   </div>
   <div>
@@ -78,7 +78,7 @@
       <p-footer>
         <div class="clearfix">
           <div class="pull-right">
-            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="getListData()" size="sm" [showTotal]="true"></paginator>
+            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="navigate()" size="sm" [showTotal]="true"></paginator>
           </div>
         </div>
       </p-footer>

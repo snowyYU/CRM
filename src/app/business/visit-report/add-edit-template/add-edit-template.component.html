@@ -24,8 +24,7 @@
             <!-- <input type="text" name="visitDate" class="form-control" datePicker required maxlength="10" [(ngModel)]="visitDate" [opt-max]="maxDate" [disabled]="isEdit"> -->
             <input type="text" name="visitDate" class="form-control" datePicker required [(ngModel)]="visitDate" 
                    [opt-max]="maxDate" [disabled]="isEdit" autocomplete="off"
-                   pattern="^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$" #visitDateRef="ngModel"
-                   [HTML5Validate]="[[visitDate==='','请输入拜访日期！'],[!!(visitDateRef.errors&&visitDateRef.errors.pattern),'拜访日期输入有误，YYYY-mm-dd']]"
+                   [HTML5Validate]="[[visitDate==='','请输入拜访日期！']]"
             />
           </div>
         </div>
