@@ -342,7 +342,10 @@ export class CustomerAddEditComponent implements OnInit{
 					text:"保存成功!"
 				})
 				this.submitting=false
-				this.router.navigate(['/business/customerList'])
+				setTimeout(()=>{
+					this.router.navigate(['/business/customerList'])
+				
+				},0)
 				// this.popService.confirm({
 				// 	titile:'系统提示',
 				// 	text:'操作成功！是否跳转至列表页面？'

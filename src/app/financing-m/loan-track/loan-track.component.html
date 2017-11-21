@@ -1,0 +1,119 @@
+<div class="page-location">
+  <a class="h4 pad-r-xs font-bold">在贷跟踪</a>
+  <a class="page-location-item">融资管理
+    <i class="pad-l-min fa fa-angle-right"></i>
+  </a>
+  <a class="page-location-item active">在贷跟踪</a>
+</div>
+<div class="pad-l-def pad-r-def pad-b-def pad-t-sm">
+  <div class="mar-b-sm clearfix">
+    <div class="col-md-12 form-inline p-l-none">
+      <label class="">归属渠道：</label>
+      <select name="appId" class="form-control select-control-md" [(ngModel)]="resourceId" (ngModelChange)="getProductsList($event)">
+        <option [value]="item.resourceId" *ngFor="let item of resourceList">{{item.resourceName}}</option>
+      </select>
+      <label class="m-l-xs">贷款产品：</label>
+      <select name="productId" class="form-control select-control-sm" [(ngModel)]="productId" [disabled]="resourceId=='0'">
+        <option [value]="item.productId" *ngFor="let item of productList">{{item.productName}}</option>
+      </select>
+      <label class="m-l-xs">签约日期：</label>
+      <div class="input-group date-input-group">
+        <input class="form-control" datePicker [opt-max]="endTime" [(ngModel)]="startTime" name="startTime" placeholder="选择日期" />
+        <span class="input-group-addon">至</span>
+        <input class="form-control" datePicker [opt-min]="startTime" [opt-max]="todayDate" [(ngModel)]="endTime" name="endTime" placeholder="选择日期"
+        />
+      </div>
+      <input type="text" name="" class="form-control m-l-xs" maxlength="30" [(ngModel)]="companyName" placeholder="会员名" />
+      <button class="btn-def m-l-xs" (click)="page=0;getLoanList()">查询
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+  <div class="tab-container">
+    <ul class="nav nav-tabs nav-tab-info">
+      <li [ngClass]="{'active':status===0}">
+        <a>全部</a>
+      </li>
+      <li [ngClass]="{'active':status===1}">
+        <a>即将到期</a>
+      </li>
+      <li [ngClass]="{'active':status===2}">
+        <a>已逾期</a>
+      </li>
+    </ul>
+    <span></span>
+    <div class="tab-content">
+      <div class="tab-pane active">
+        <p-dataTable [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading" scrollable="true" scrollHeight="375px">
+          <p-column field="borrowApplyId" header="借款申请单号" [style]="{'width':'130px'}"></p-column>
+          <p-column header='会员名称' [style]="{'width':'120px'}">
+            <ng-template let-operation="rowData" pTemplate="body">
+              <div textMaxLength="120px" title="{{operation.companyName}}">
+                {{operation.companyName}}
+              </div>
+            </ng-template>
+          </p-column>
+          <p-column header='归属渠道' [style]="{'width':'130px'}">
+            <ng-template let-operation="rowData" pTemplate="body">
+              <div textMaxLength="130px" title="{{operation.appName}}">
+                {{operation.appName}}
+              </div>
+            </ng-template>
+          </p-column>
+          <p-column header="借款金额(元)" styleClass="text-right" [style]="{'width':'110px'}">
+            <ng-template let-operation="rowData" pTemplate="body">
+              <div title="{{operation.approveAmount}}">
+                {{operation.approveAmount | yuanFormat:2:true}}
+              </div>
+            </ng-template>
+          </p-column>
+          <p-column header="贷款产品" [style]="{'width':'100px'}">
+            <ng-template let-operation="rowData" pTemplate="body">
+              <div textMaxLength="100px" title="{{operation.productName}}">
+                {{operation.productName}}
+              </div>
+            </ng-template>
+          </p-column>
+          <p-column header="还款方式" [style]="{'width':'100px'}">
+            <ng-template let-operation="rowData" pTemplate="body">
+              <div textMaxLength="100px" title="{{operation.repaymentWay}}">
+                {{operation.repaymentWay}}
+              </div>
+            </ng-template>
+          </p-column>
+          <p-column header="状态" [style]="{'width':'100px'}">
+            <ng-template let-operation="rowData" pTemplate="body">
+              <div textMaxLength="100px" title="{{operation.status}}">
+                {{operation.status}}
+              </div>
+            </ng-template>
+          </p-column>
+          <p-column header="备注" [style]="{'width':'90px'}">
+            <ng-template let-operation="rowData" pTemplate="body">
+              <div textMaxLength="90px" title="{{operation.remarks}}">
+                {{operation.remarks}}
+              </div>
+            </ng-template>
+          </p-column>
+          <p-column field="color" header="操作" [style]="{'width':'190px'}">
+            <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
+              <div>
+                <a class="table-btn text-info" (click)="detail(operation)">详情</a>
+                <a class="table-btn text-info" (click)="getRepaymentPlanList(operation)">还款计划</a>
+                <a class="table-btn text-info" (click)="detail(operation)" *ngIf="authRole.roleIn(['008'])">催收</a>
+              </div>
+            </ng-template>
+          </p-column>
+          <p-footer>
+            <div class="clearfix">
+              <div class="pull-right">
+                <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="getLoanList()"
+                  size="sm" [showTotal]="true"></paginator>
+              </div>
+            </div>
+          </p-footer>
+        </p-dataTable>
+      </div>
+    </div>
+  </div>
+</div>

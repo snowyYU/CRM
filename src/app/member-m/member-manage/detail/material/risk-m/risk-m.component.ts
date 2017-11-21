@@ -3,7 +3,7 @@ import { ActivatedRoute,Router } from '@angular/router'
 import { RiskMService,Part1Data,Part2Data,Part3Data } from './risk-m.service'
 import { PopService } from 'dolphinng'
 import { Uploader } from '../../../../../../utils/uploader/Uploader'
-import { API } from '../../../../../../services/config/app.config'
+import { file_api } from '../../../../../../services/config/app.config'
 import { GalleryComponent} from 'dolphinng';
 import { AuthRoleService } from '../../../../../../services/authRole/authRole.service';
 
@@ -261,7 +261,7 @@ export class RiskMComponent implements OnInit {
 
 	uploaderFun(type,upName){
 		//uploader1_7
-		this[upName].url=API.fileServer+'upload';
+		this[upName].url=file_api.upload;
 	    this[upName].isCompress=true;
 	    this[upName].onSelect((files)=>{//文件选择完毕
 	      console.log(files);

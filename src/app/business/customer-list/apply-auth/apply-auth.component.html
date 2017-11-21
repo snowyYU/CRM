@@ -5,7 +5,7 @@
   <a class="page-location-item active">申请认证</a>
 </div>
 <div class="wrapper">
-  <form #form="ngForm" (ngSubmit)="submit()" HTML5Validate>
+  <form #form="ngForm" (ngSubmit)="submitConfirm()" HTML5Validate>
     <section class="panel-body group mar-b-sm">
       <div class="col-md-6 form-horizontal form-label-9">
         <div class="form-group">
@@ -209,8 +209,7 @@
             <!-- <input type="text" name="foundTime" datePicker class="form-control " [opt-max]="todayDate" maxlength="10" [(ngModel)]="foundTime" required> -->
             <input type="text" name="foundTime" datePicker class="form-control" [opt-max]="todayDate" 
                    [(ngModel)]="foundTime" required autocomplete="off"
-                   pattern="^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$" #foundTimeRef="ngModel"
-                   [HTML5Validate]="[[foundTime==='','请输入成立时间！'],[!!(foundTimeRef.errors&&foundTimeRef.errors.pattern),'成立时间输入有误，YYYY-mm-dd']]"
+                   [HTML5Validate]="[[foundTime==='','请输入成立时间！']]"
             />
           </div>
         </div>

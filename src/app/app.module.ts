@@ -19,6 +19,7 @@ import { MyHttp } from '../services/myHttp/myhttp.service';
 import { AuthRoleService } from '../services/authRole/authRole.service';
 import { SignInService } from './signin/signin.service';
 import { PopService } from 'dolphinng'
+import { SessionStorageService } from '../services/session-storage/session-storage.service';
 
 import { LoginGuard } from '../services/guard/login.guard'
 import { OauthGuard } from '../services/guard/oauth.guard'
@@ -59,6 +60,7 @@ import {HttpClientModule} from '@angular/common/http';
               LoginGuard,
               OauthGuard,
               Toaster,
+              SessionStorageService,
               {
                 provide: HTTP_INTERCEPTORS,
                 useClass: MyHttpClientInterceptor,

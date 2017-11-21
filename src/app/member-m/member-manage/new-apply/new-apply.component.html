@@ -11,13 +11,15 @@
         <label class="pull-left w-sm label-control">会员名称:</label>
         <span class="row-body text-content">{{companyName}}  ({{memberId}})</span>
       </div>
-      <div class="col-md-12 form-group form-inline">
+      <div class="col-md-12 form-group">
+        <label class="pull-left w-sm label-control">服务经理:</label>
+        <span class="row-body text-content">{{serviceMan | filterNull:false}}</span>
+      </div>
+      <!-- <div class="col-md-12 form-group form-inline">
         <label class="pull-left w-sm label-control required">申请产品:</label>
-        <!-- <select name="productId" id="" class="form-control" [(ngModel)]="productId" (ngModelChange)="selectProduct($event)" required> -->
           <select name="productId" id="" class="form-control" [(ngModel)]="productId" 
                   (ngModelChange)="selectProduct($event)" required pattern="^\S+$"
                   [HTML5Validate]="[[productId==='','请选择申请产品']]">
-          <!-- <option [value]="undefined" hidden>请选择</option> -->
           <option [value]="item.productId" *ngFor="let item of productList">{{item.productName}}</option>
         </select>
       </div>
@@ -25,7 +27,7 @@
         <label class="pull-left w-sm label-control">产品类别:</label>
         <span class="row-body text-content" *ngIf="checkApplyExist">{{productTypeName}}</span>
         <span class="row-body text-content" *ngIf="!productTypeName">--</span>
-      </div>
+      </div> -->
     </section>
     <section class="panel-body border-content m-t-md">
       <div class="col-md-12 form-inline form-group">
@@ -45,11 +47,11 @@
         <span class="row-body text-content">--</span>
 
     </div>
-    <div class="col-md-12 ">
+    <!-- <div class="col-md-12 ">
         <label class="pull-left w-sm label-control">原有效期:</label>
         <span class="row-body text-content">--</span>
 
-    </div>
+    </div> -->
       <!-- <div class="col-md-12 form-group form-inline">
         <label class="pull-left w-sm label-control">原授信额度:</label>
         <span class="row-body text-content">￥0.00元</span>
@@ -58,7 +60,7 @@
     </section>
     <section class="panel-body border-content m-t-md form-inline">
       <div class="col-md-12">
-        <label class="pull-left w-sm label-control">申请原因:</label>
+        <label class="pull-left w-sm label-control">备注:</label>
         <textarea name="authRemark"  cols="50" rows="5" class="form-control" maxlength="200" placeholder="小于200字" [(ngModel)]="authRemark"></textarea>
       </div>
     </section>

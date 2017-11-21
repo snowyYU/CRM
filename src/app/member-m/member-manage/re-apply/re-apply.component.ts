@@ -3,6 +3,8 @@ import { ActivatedRoute,Router } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { ReApplyService,SendData } from './re-apply.service'
 import { EffDateFormatPipe } from '../../../../pipe/eff-date-format/eff-date-format.pipe'
+import { log } from 'util';
+import { SessionStorageService } from '../../../../services/session-storage/session-storage.service'
 
 @Component({
 	moduleId: module.id,
@@ -14,6 +16,7 @@ import { EffDateFormatPipe } from '../../../../pipe/eff-date-format/eff-date-for
 export class ReApplyComponent implements OnInit {
 	companyName:string
 	memberId:number
+	serviceMan:string
 
 	newData:object={}
 
@@ -24,7 +27,7 @@ export class ReApplyComponent implements OnInit {
 	productName:string
 	//需要提交的数据
 	productId			//产品ID
-	oldCreditValue		//原授信额
+	oldCreditValue:number=0		//原授信额
 	operateType			//操作类型，0：新增授信；1：重新授信型；
 	addCreditValue		//新增授信额
 	appId				//渠道ID
@@ -33,9 +36,9 @@ export class ReApplyComponent implements OnInit {
 	authRemark			//申请理由
 
 	//产品信息
-	valueLimit          //额度范围
-	borrowHowlong		//借款周期
-	productRemark		//产品简介
+	// valueLimit          //额度范围
+	// borrowHowlong		//借款周期
+	// productRemark		//产品简介
 
 	productDetailL:any[]
 
@@ -47,25 +50,25 @@ export class ReApplyComponent implements OnInit {
 		private router:Router,
 		private pop:PopService,
 		private reApply:ReApplyService,
-		private datePipe:EffDateFormatPipe
+		private datePipe:EffDateFormatPipe,
+		private sessionStorage:SessionStorageService
 		) {}
 
 	ngOnInit() {
 		this.renderPage()
-		this.reApply.getProductsList(this.appId)
+		this.reApply.getProductsList(this.memberId)
 			.then(res=>{
-				res.body.records.forEach(e=>{
-					this.newData[e.productId]=e
-				})
+				console.log(res)
 				this.productList=res.body.records
-				//产品信息
-				console.log(this.newData)
-				this.valueLimit=this.newData[this.productId].valueLimit          //额度范围
-				this.borrowHowlong=this.newData[this.productId].borrowHowlong		//借款周期
-				this.productRemark=this.newData[this.productId].productRemark		//产品简介
+				console.log(this.productList.length)
+				for(let i=0;i<this.productList.length;i++){
+					console.log(i+this.productList[i].creditFacility.creditValue)
+					this.oldCreditValue=this.oldCreditValue+this.productList[i].creditFacility.creditValue
+				}
+				console.log(res)
 			})
 
-		this.getProductsParam()
+		// this.getProductsParam()
 
 
 	}
@@ -73,15 +76,16 @@ export class ReApplyComponent implements OnInit {
 	renderPage(){
 		let data=JSON.parse(this.route.params['value']['data'])
 		console.log(data)
-		this.companyName=data.companyName
-		this.productId=data.productId,
-		this.productName=data.productName
-		this.productTypeName=data.productTypeName
 		this.memberId=data.memberId
+		this.companyName=data.companyName
+		this.serviceMan=data.serviceMan
+		// this.productId=data.productId,
+		// this.productName=data.productName
+		// this.productTypeName=data.productTypeName
 		this.appId=data.appId
-		this.oldCreditValue=data.creditValue
-		this.expiryDateBegin=data.expiryDateBegin
-		this.expiryDateEnd=data.expiryDateEnd
+		// this.oldCreditValue=data.creditValue
+		// this.expiryDateBegin=data.expiryDateBegin
+		// this.expiryDateEnd=data.expiryDateEnd
 	}
 
 	getProductsParam(){
@@ -98,12 +102,12 @@ export class ReApplyComponent implements OnInit {
 		this.submitting=true
 		let data:SendData={
 			memberId:this.memberId,
-			productId:this.productId,			//产品ID
+			// productId:this.productId,			//产品ID
 			oldCreditValue:this.oldCreditValue,		//原授信额
 			operateType:1,			//操作类型，0：新增授信；1：重新授信型；
 			addCreditValue:this.addCreditValue,		//新增授信额
-			expiryDateBegin:this.datePipe.transform(this.expiryDateBegin,[]),
-			expiryDateEnd:this.datePipe.transform(this.expiryDateEnd,[]),
+			// expiryDateBegin:this.datePipe.transform(this.expiryDateBegin,[]),
+			// expiryDateEnd:this.datePipe.transform(this.expiryDateEnd,[]),
 			appId:this.appId,				//渠道ID
 			authRemark:this.authRemark			//申请理由
 		}
@@ -112,11 +116,17 @@ export class ReApplyComponent implements OnInit {
 				console.log(res)
 				this.pop.info({
 					title:'提示框',
-					text:'已提交授信申请，请等待风控审核！'
+					text:'已提交授信申请，请等待风控审批！'
 				})
+				this.sessionStorage.memberDetailDomain='memberM/memberManage'
 				this.submitting=false
-
-				this.router.navigate(['memberM/memberManage'])
+				setTimeout(()=>{
+					let queryData={
+						creditAuthId:res.body.creditAuthId,
+						memberId:this.memberId
+					}
+					this.router.navigate(['memberM/getApply/detail',JSON.stringify(queryData)])
+				},0)
 			})
 			.catch(res=>{
 				this.pop.error({

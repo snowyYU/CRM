@@ -34,7 +34,7 @@ const routes: Routes =[
 
 	},
 	{
-		path:'getApply/detail/:id',
+		path:'getApply/detail/:data',
 		component:GetApplyDetailComponent
 
 	},

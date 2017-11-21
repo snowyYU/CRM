@@ -85,17 +85,17 @@ class Config{
       dev:{
         api:'http://192.168.10.10:8090/crm/',
         oauth:'http://192.168.10.10:8090/ims/',
-        file:'http://121.46.18.25:9090/fileserver/file/'
+        file:'http://121.46.18.25:9090/oss/'
       },
       test:{
         api:'http://192.168.10.10:9090/crm/',
         oauth:'http://192.168.10.10:9090/ims/',
-        file:'http://121.46.18.25:9090/fileserver/file/'
+        file:'http://121.46.18.25:9090/oss/'
       },
       prod:{
         api:'http://192.168.10.10:9090/crm/',
         oauth:'http://192.168.10.10:9090/ims/',
-        file:'http://121.46.18.25:9090/fileserver/file/'
+        file:'http://121.46.18.25:9090/oss/'
       }
     };
     this.systems=[{
@@ -270,7 +270,8 @@ export const host_file=cur_host.file;
 //文件接口地址
 
 export const file_api={
-  getInfo:host_file+'getInfo',
+  getInfo:host_file+'file/getInfo',
+  upload:host_file+'file/upload'
 }
 
 export const API = {
@@ -599,6 +600,60 @@ export const API = {
     url:'signature/user/deleteUserSeal',
     method:'post'
   },
+
+  /*-----------------------------------融资管理---------------------------------------*/
+  /*-----------------------------------在贷跟踪---------------------------------------*/
+  getLoanList:{
+    url:'fam/LoanTracking/getByPage',
+    method:'post'
+  },
+  getLoanDetails:{
+    url:'fam/LoanTracking/getDetails',
+    method:'post'
+  },
+  getRepaymentPlanList:{
+    url:'fam/LoanTracking/getRepaymentPlan',
+    method:'post'
+  },
+
+  /*-----------------------------------催收任务---------------------------------------*/
+  getTotalByStatus:{
+    url:'fam/overdueTask/getTotalByStatus',
+    method:'post'
+  },
+  getStatusAndRepaymentTotal:{
+    url:'fam/overdueTask/getStatusAndRepaymentTotal',
+    method:'post'
+  },
+  getOverdueTaskList:{
+    url:'fam/overdueTask/getByPage',
+    method:'post'
+  },
+  getOverdueTaskDetails:{
+    url:'fam/overdueTask/getById',
+    method:'post'
+  },
+  createOverdueTask:{
+    url:'fam/overdueTask/create',
+    method:'post'
+  },
+  updateOverdueTask:{
+    url:'fam/overdueTask/update',
+    method:'post'
+  },
+  getOverdueReportList:{
+    url:'fam/overdueReport/getByPage',
+    method:'post'
+  },
+  getOverdueReportDetails:{
+    url:'fam/overdueReport/getById',
+    method:'post'
+  },
+  createOverdueReport:{
+    url:'fam/overdueReport/create',
+    method:'post'
+  },
+
 
   /*-----------------------------------删除附件接口---------------------------------------*/
   deleteAttach:{

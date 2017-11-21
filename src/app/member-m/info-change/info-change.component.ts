@@ -6,6 +6,8 @@ import { SendData } from './sendData'
 import { PopService } from 'dolphinng'
 import { AuthRoleService } from '../../../services/authRole/authRole.service'
 
+import { SessionStorageService } from '../../../services/session-storage/session-storage.service'
+
 @Component({
 	selector:'info-change',
 	templateUrl:'./info-change.component.html',
@@ -25,7 +27,8 @@ export class InfoChangeComponent implements OnInit{
 		private infoChangeService:InfoChangeService,
 		private router:Router,
 		private pop:PopService,
-		private auth:AuthRoleService
+		private auth:AuthRoleService,
+		private sessionStorage:SessionStorageService
 	){}
 
 	ngOnInit(){
@@ -69,8 +72,13 @@ export class InfoChangeComponent implements OnInit{
 			}
 		}
 	}
-	//审核
+	sessionDispose(){
+		let uri='memberM/infoChange'
+		this.sessionStorage.memberDetailDomain=uri
+	}
+	//审批
 	check(row){
+		this.sessionDispose()
 		this.router.navigate(['memberM/infoChange/detail',row.updateApplyId],{queryParams: {isCheck:true}})
 	}
 
