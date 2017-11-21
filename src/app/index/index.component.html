@@ -106,16 +106,15 @@
           <sub-nav-item text="会员账户流水" link="/account/memberAccFlow"></sub-nav-item>
       </nav-item> -->
       <!-- 拓展人员, -->
-      <!-- <nav-item text="融资管理" icon="glyphicon glyphicon-usd" *ngIf="true&&authRoleService.fnIn(['31','32','33'])">
+      <nav-item text="融资管理" icon="glyphicon glyphicon-usd" *ngIf="true&&authRoleService.fnIn(['31','32','33'])">
           <sub-nav-item text="在贷跟踪" link="/financingM/loanTrack" *ngIf="authRoleService.fnIn(['31'])"></sub-nav-item>
-          <sub-nav-item text="催收任务" link="/financingM/getMission" *ngIf="authRoleService.fnIn(['32'])"></sub-nav-item>
-
+          <!-- <sub-nav-item text="催收任务" link="/financingM/getMission" *ngIf="authRoleService.fnIn(['32'])"></sub-nav-item>
           <sub-nav-item text="贷款历史" link="/financingM/loanHistory" *ngIf="authRoleService.fnIn(['33'])"></sub-nav-item>
           <sub-nav-item text="数据中心" *ngIf="true&&authRoleService.fnIn(['35','36'])">
               <thirth-nav-item text="业务数据" link="/financingM/dataCenter/businessData" *ngIf="authRoleService.fnIn(['35'])"></thirth-nav-item>
               <thirth-nav-item text="融资合同" link="/financingM/dataCenter/financingDeal" *ngIf="authRoleService.fnIn(['36'])"></thirth-nav-item>
-          </sub-nav-item>
-      </nav-item> -->
+          </sub-nav-item> -->
+      </nav-item>
 
       <nav-item icon="glyphicon glyphicon-list-alt" text="统计报告" *ngIf="role==='manage'">
           <sub-nav-item text="融资排行榜" link="/statisticsReport/financingRanking" ></sub-nav-item>

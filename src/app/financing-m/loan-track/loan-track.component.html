@@ -8,7 +8,7 @@
 <div class="pad-l-def pad-r-def pad-b-def pad-t-sm">
   <div class="mar-b-sm clearfix">
     <div class="col-md-12 form-inline p-l-none">
-      <label class="">归属渠道：</label>
+      <!-- <label class="">归属渠道：</label>
       <select name="appId" class="form-control select-control-md" [(ngModel)]="resourceId" (ngModelChange)="getProductsList($event)">
         <option [value]="item.resourceId" *ngFor="let item of resourceList">{{item.resourceName}}</option>
       </select>
@@ -22,26 +22,29 @@
         <span class="input-group-addon">至</span>
         <input class="form-control" datePicker [opt-min]="startTime" [opt-max]="todayDate" [(ngModel)]="endTime" name="endTime" placeholder="选择日期"
         />
-      </div>
-      <input type="text" name="" class="form-control m-l-xs" maxlength="30" [(ngModel)]="companyName" placeholder="会员名" />
-      <button class="btn-def m-l-xs" (click)="page=0;getLoanList()">查询
+      </div> -->
+      <label>贷款单号：</label>
+      <input type="text" name="" class="form-control m-l-xs" maxlength="13" [(ngModel)]="borrowApplyId" placeholder="贷款单号" />
+      <label class="m-l-md">企业名称：</label>
+      <input type="text" name="" class="form-control m-l-xs" maxlength="30" [(ngModel)]="companyName" placeholder="企业名称关键字" />
+      <button class="btn-def m-l-md" (click)="page=0;navigate()">查询
         <i class="fa fa-search"></i>
       </button>
     </div>
   </div>
   <div class="tab-container">
     <ul class="nav nav-tabs nav-tab-info">
-      <li [ngClass]="{'active':status===0}">
+      <li [ngClass]="{'active':status===0}" (click)="status=0;page=0;navigate()">
         <a>全部</a>
       </li>
-      <li [ngClass]="{'active':status===1}">
+      <li [ngClass]="{'active':status===1}" (click)="status=1;page=0;navigate()">
         <a>即将到期</a>
       </li>
-      <li [ngClass]="{'active':status===2}">
+      <li [ngClass]="{'active':status===2}" (click)="status=2;page=0;navigate()">
         <a>已逾期</a>
       </li>
     </ul>
-    <span></span>
+    <span class="form-inline pull-right"></span>
     <div class="tab-content">
       <div class="tab-pane active">
         <p-dataTable [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading" scrollable="true" scrollHeight="375px">
@@ -107,7 +110,7 @@
           <p-footer>
             <div class="clearfix">
               <div class="pull-right">
-                <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="getLoanList()"
+                <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="navigate()"
                   size="sm" [showTotal]="true"></paginator>
               </div>
             </div>
