@@ -49,7 +49,7 @@ export class DropDownComponent implements OnInit {
 				this.content.nativeElement.style.height=null
 				this.contentShow=value
 
-			},300)
+			},this.animateTime*1000)
 		}
 	}
 
