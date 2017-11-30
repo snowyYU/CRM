@@ -9,7 +9,8 @@ import { GetReportComponent }  from './get-mission/get-report/get-report.compone
 import { LoanHistoryComponent } from './loan-history/loan-history.component';
 import { LoanTrackComponent } from './loan-track/loan-track.component';
 import { DetailComponent } from './loan-track/detail/detail.component';
-
+import { SpreadManageComponent } from './spread-manage/spread-manage.component';
+import { SpreadManageDetailComponent } from './spread-manage/detail/spread-manage-detail.component';
 
 const routes:Routes=[
 	{
@@ -54,6 +55,14 @@ const routes:Routes=[
 	{
 		path:'loanTrack/detail/:data',
 		component:DetailComponent
+	},
+	{
+		path:'spreadManage',
+		component:SpreadManageComponent
+	},
+	{
+		path:'spreadManage/detail/:id',
+		component:SpreadManageDetailComponent
 	}
 
 ]

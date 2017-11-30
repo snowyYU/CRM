@@ -263,7 +263,7 @@ export class AuthDetailComponent implements OnInit{
 			this.sessionStorage.deleteItem('memberDetailDomain')
 			this.router.navigate([this.memberDetailDomain])
 		}else{
-			this.router.navigate(["business/customerList/authList",this.backStatus])
+			window.history.back()
 		}
 	}
 

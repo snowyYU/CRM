@@ -13,7 +13,8 @@ import { GetReportComponent }  from './get-mission/get-report/get-report.compone
 import { LoanHistoryComponent } from './loan-history/loan-history.component';
 import { LoanTrackComponent } from './loan-track/loan-track.component';
 import { DetailComponent } from './loan-track/detail/detail.component';
-
+import { SpreadManageComponent } from './spread-manage/spread-manage.component';
+import { SpreadManageDetailComponent } from './spread-manage/detail/spread-manage-detail.component';
 import {routing} from './financing-m.routes';
 
 @NgModule({
@@ -26,8 +27,9 @@ import {routing} from './financing-m.routes';
 		GetReportComponent,
 		LoanHistoryComponent,
 		LoanTrackComponent,
-		DetailComponent
-
+		DetailComponent,
+		SpreadManageComponent,
+		SpreadManageDetailComponent,
 	],
 	imports:[
 		SharedModule,

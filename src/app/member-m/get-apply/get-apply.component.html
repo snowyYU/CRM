@@ -23,7 +23,7 @@
         <input class="form-control" datePicker [(ngModel)]="endDate" name="dateEnd" [opt-min]="startDate" [opt-max]="todayDate" placeholder="选择日期" />
       </div>
     </div>
-    <button class="btn-def" (click)="getDataList(qryStatus)">查询<i class="fa fa-search"></i></button>
+    <button class="btn-def" (click)="page=0;navigate()">查询<i class="fa fa-search"></i></button>
   </div>
   <div>
     <p-dataTable [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading" scrollable="true" scrollHeight="375px">
@@ -76,7 +76,7 @@
       <p-footer>
         <div class="clearfix">
           <div class="pull-right">
-            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="getDataList(qryStatus)" size="sm" [showTotal]="true"></paginator>
+            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="navigate()" size="sm" [showTotal]="true"></paginator>
           </div>
         </div>
       </p-footer>

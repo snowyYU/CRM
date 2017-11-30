@@ -6,10 +6,10 @@
 <div class="pad-l-def pad-r-def pad-b-def pad-t-sm">
   <div class="tab-container">
     <ul class="nav nav-tabs nav-tab-info">
-      <li [ngClass]="{'active':status===0}" (click)="btnClick(0)">
+      <li [ngClass]="{'active':status===0}" (click)="status=0;page=0;navigate()">
         <a>新申请</a>
       </li>
-      <li [ngClass]="{'active':status===2}" (click)="btnClick(2)">
+      <li [ngClass]="{'active':status===2}" (click)="status=2;page=0;navigate()">
         <a>已处理</a>
       </li>
     </ul>
@@ -63,7 +63,7 @@
           <p-footer>
             <div class="clearfix">
               <div class="pull-right">
-                <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="queryData()" size="sm" [showTotal]="true"></paginator>
+                <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="navigate()" size="sm" [showTotal]="true"></paginator>
               </div>
             </div>
           </p-footer>
