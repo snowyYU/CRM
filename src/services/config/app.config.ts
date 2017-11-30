@@ -654,6 +654,31 @@ export const API = {
     method:'post'
   },
 
+  /*-----------------------------------展期管理---------------------------------------*/
+  getRolloverList:{
+    url:'fam/RolloverManage/getByPage',
+    method:'post'
+  },
+  getRolloverDetail:{
+    url:'fam/RolloverManage/getRolloverDetail',
+    method:'post'
+  },
+  getfinanceApply:{
+    url:'fam/RolloverManage/getFinanceApply',
+    method:'post'
+  },
+  getProductsAttach:{
+    url:'fam/RolloverManage/getProductsAttach',
+    method:'post'
+  },
+  getRepaymentPlan:{
+    url:'fam/RolloverManage/getRepaymentPlan',
+    method:'post'
+  },
+  saveRollover:{
+    url:'fam/RolloverManage/rolloverApprove',
+    method:'post'
+  },
 
   /*-----------------------------------删除附件接口---------------------------------------*/
   deleteAttach:{

@@ -9,7 +9,7 @@
   </a>
   <a class="page-location-item active">详情</a>
 </div>
-<div class="wrapper pos-rlt">
+<div class="wrapper pos-rlt" [ngClass]="{'approved-pass':status==1,'approved-refuse':status==-1}">
   <form #form>
     <section class="wrapper border-content m-b-sm padder">
       <div class="clearfix row form-group">
@@ -235,16 +235,11 @@
         <tfoot>
           <tr>
             <td class="text-center tfoot-style">合计：</td>
-            <td class="text-right tfoot-style">{{oldCreditValue | yuanFormat:2:true | filterNull:false}} 元</td>
+            <td class="text-right tfoot-style">{{totalCreditValue | yuanFormat:2:true | filterNull:false}} 元</td>
           </tr>
         </tfoot>
       </table>
       <div></div>
     </div>
   </section>
-  <!-- <div class="">
-    <img src="../../../../assets/img/true.png" class="img-control img-size" *ngIf="status==1" />
-    <img src="../../../../assets/img/false.png" class="img-control img-size" *ngIf="status==-1" />
-  </div> -->
-  <div [ngClass]="{'img-pass':status==1,'img-refuse':status==-1}"></div>
 </div>

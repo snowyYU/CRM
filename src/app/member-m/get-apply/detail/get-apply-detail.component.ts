@@ -28,6 +28,8 @@ export class GetApplyDetailComponent implements OnInit{
 	auditBy:string;			//审批人
     auditDate:string;		//审批时间
 	auditRemark:string;		//审批意见
+
+	totalCreditValue:number=0;        //总授信额
 	
 	modalDataList:any
 	modalListLoading:boolean
@@ -46,7 +48,7 @@ export class GetApplyDetailComponent implements OnInit{
 	ngOnInit(){
 		this.getData();
 		this.getProductsList();
-		this.getCreditData();
+		// this.getCreditData();
 	}
 
 	getData(){
@@ -68,6 +70,11 @@ export class GetApplyDetailComponent implements OnInit{
 		.then(res=>{
 			console.log(res)
 			this.productList=res.body.records
+			if(this.productList&&this.productList.length>0){
+				for(let i=0;i<this.productList.length;i++){
+					this.totalCreditValue+=this.productList[i].creditFacility.creditValue
+				}
+			}
 		})
 		.catch(res=>{
 			this.pop.error({

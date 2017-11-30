@@ -42,7 +42,7 @@ const routes: Routes = [
             {
                 path: 'financingM',
                 loadChildren: './financing-m/financing-m.module#FinancingMModule',
-                data: { title: '账户管理',icon:'glyphicon glyphicon-usd',fnIn:['31','32','33','34']},
+                data: { title: '融资管理',icon:'glyphicon glyphicon-usd',fnIn:['31','32','33','34']},
                 canActivate:[OauthGuard]
             }
 

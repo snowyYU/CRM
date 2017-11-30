@@ -108,6 +108,7 @@
       <!-- 拓展人员, -->
       <nav-item text="融资管理" icon="glyphicon glyphicon-usd" *ngIf="true&&authRoleService.fnIn(['31','32','33'])">
           <sub-nav-item text="在贷跟踪" link="/financingM/loanTrack" *ngIf="authRoleService.fnIn(['31'])"></sub-nav-item>
+          <sub-nav-item text="展期管理" link="/financingM/spreadManage" *ngIf="authRoleService.fnIn(['31'])"></sub-nav-item>
           <!-- <sub-nav-item text="催收任务" link="/financingM/getMission" *ngIf="authRoleService.fnIn(['32'])"></sub-nav-item>
           <sub-nav-item text="贷款历史" link="/financingM/loanHistory" *ngIf="authRoleService.fnIn(['33'])"></sub-nav-item>
           <sub-nav-item text="数据中心" *ngIf="true&&authRoleService.fnIn(['35','36'])">
