@@ -29,6 +29,7 @@ export class DropDownComponent implements OnInit {
 		let height;
 		
 		this.content.nativeElement.style.transition="height "+this.animateTime+"s"
+		this.content.nativeElement.style.width="100%"
 		if (value) {
 			this.contentShow=value
 			this.cssOpen=true
