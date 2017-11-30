@@ -211,6 +211,7 @@ export class LoanTrackComponent implements OnInit {
 			})
 		})
 	}
+	
 	handleData(res){
 		console.log(res)
 		this.dataList=res.body.records
