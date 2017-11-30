@@ -15,65 +15,85 @@ export class SpreadManageDetailComponent implements OnInit{
     isCheck:boolean
     down:boolean=false
 
-    rolloverApplyId              //展期单号
-    createTime                   //申请日期
-    status                       //状态
-    statusName                   //状态,中文
-    memberId                     //会员ID
-    companyName                  //会员名称
-    rolloverDate	             //承诺还款日期
-    repaymentCapital             //展期金额
-    rolloverInterest             //展期利息
-    rolloverDeposit              //展期保证金
-    rolloverRate	             //展期利率
+    rolloverApplyId			//展期单号
+	createTime				//创建时间
+	status					//状态
+    statusName				//状态，中文
+    memberId                //会员ID
+	companyName				//企业名称
+	rolloverDate			//承诺还款日期
+	repaymentCapital 	 	//展期金额	
+	repaymentInterest		//本期利息
+	rolloverDeposit			//展期保证金
+	rolloverRate			//展期利率，百分比
+    remarks					//申请理由
 
-    borrowApplyId                //贷款单号 
-    
-    
-    
-    auditOneTime	             //审批时间
-    auditOneBy	                 //审核员
-    auditOneRemarks              //审核意见
+    currentPeriod	        //还款期数
+	currentPeriodStr		//还款期数，中文
+	fileLoadId				//文件提取码
+	auditOneBy				//一审人
+    auditOneRemarks			//一审意见
+    auditOneTime			//一审时间
+ 
     auditTwoTime	             //二审时间
     auditTwoeBy	                 //二审员
     auditTwoRemarks              //二审意见
     comfirmRolloverDate	         //批准还款日期
-    realRolloverDate	         //实际还款日期
+    realRolloverDate	         //实际还款日期 
 
-    
-    
-    remarks                      //申请原因
-    currentPeriod	             //还款期数
-    
-    currentPeriodStr             //还款期数，中文    
+
+
+    borrowApplyId			//贷款单号
+	approveAmount			//贷款金额
+	productId				//产品ID
+	productName				//产品名称
+	ratedCycle				//贷款周期
+	paymentWay				//还款方式
+	paymentWayDic			//还款方式，中文
+	rate					//利率
+	rateType				//计息方式
+	rateTypeDic				//计息方式，中文
 
     rolloverData:{               //展期数据
         rolloverApplyId?
         createTime?
+        status?
         statusName?
         memberId?
         companyName?
-        resourceId?
+        rolloverDate?
+        repaymentCapital?
+        repaymentInterest?
+        rolloverDeposit?
+        rolloverRate?
         remarks?
-        borrowApplyId?
-        repaymentPlan?
-        auditOneTime?
+        currentPeriod?
+        currentPeriodStr?
+        fileLoadId?
         auditOneBy?
         auditOneRemarks?
+        auditOneTime?
+        
+        resourceId?
+        borrowApplyId?
         auditTwoTime?
         auditTwoeBy?
         auditTwoRemarks?
-        repaymentAmount?
     }={}     
                               
     financeData:{                //借款单数据
         borrowApplyId?
         approveAmount?
-        productName?
-        borrowHowlong?
-        resourceId?
         productId?
-        repaymentWay?
+        productName?
+        ratedCycle?
+        paymentWay?
+        paymentWayDic?
+        rate?
+        rateType?
+        rateTypeDic?
+
+        resourceId?
     }={}
 
     productData:{                //产品参数数据
@@ -112,8 +132,8 @@ export class SpreadManageDetailComponent implements OnInit{
             this.spreadManage.getfinanceApply(res.borrowApplyId)
             .then(res=>{
                 console.log(res)
-                this.financeData=res.body.records
-                return Promise.resolve(res.body.records)
+                this.financeData=res.body.records[0]
+                return Promise.resolve(res.body.records[0])
             })
             .then(res=>{
                 this.spreadManage.getProductsAttach(res.resourceId,res.productId,res.repaymentWay)

@@ -22,7 +22,7 @@
                 <div class="col-md-6">
                     <label class="label-control">创建时间:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverData.createTime | filterNull:false | effDateFormat}}
+                        {{rolloverData.createTime | effDateFormat | filterNull:false}}
                     </div>
                 </div>
             </div>
@@ -41,13 +41,13 @@
                 <div class="col-md-6">
                     <label class="label-control">企业名称:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverData.companyName | filterNull:false}} ({{rolloverData.memberId|filterNull:false}})
+                        {{rolloverData.companyName | filterNull:false}} ({{rolloverData.memberId | filterNull:false}})
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label class="label-control">承诺还款日期:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverDate.rolloverDate | filterNull:false}}
+                        <!-- {{rolloverDate.rolloverDate | effDateFormat | filterNull:false}} -->
                     </div>
                 </div>
             </div>
@@ -55,13 +55,13 @@
                 <div class="col-md-6">
                     <label class="label-control">展期金额:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverDate.repaymentCapital | filterNull:false}}
+                        <!-- {{rolloverDate.repaymentCapital | yuanFormat:2:true}} -->
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label class="label-control">本期利息:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverDate.rolloverInterest | filterNull:false}}
+                        <!-- {{rolloverDate.repaymentInterest | yuanFormat:2:true}} -->
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                 <div class="col-md-6">
                     <label class="label-control">展期保证金:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverData.rolloverDeposit | filterNull:false}}
+                        {{rolloverData.rolloverDeposit | yuanFormat:2:true}}
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -100,7 +100,7 @@
                 <div class="col-md-6">
                     <label class="label-control">承诺还款日期:</label>
                     <div class="col-md-8 text-content">
-                        <!-- {{rolloverDate | filterNull:false}} -->
+                        <!-- {{rolloverDate.rolloverDate | effDateFormat | filterNull:false}} -->
                     </div>
                 </div>
             </div>
@@ -108,13 +108,13 @@
                 <div class="col-md-6">
                     <label class="label-control">展期金额:</label>
                     <div class="col-md-8 text-content">
-                        <!-- {{repaymentPrinciple | filterNull:false}} -->
+                        <!-- {{rolloverDate.repaymentCapital | yuanFormat:2:true}} -->
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label class="label-control">本期利息:</label>
                     <div class="col-md-8 text-content">
-                        <!-- {{createTime | filterNull:false}} -->
+                        <!-- {{rolloverDate.repaymentInterest | yuanFormat:2:true}} -->
                     </div>
                 </div>
             </div>
@@ -122,13 +122,13 @@
                 <div class="col-md-6">
                     <label class="label-control">展期保证金:</label>
                     <div class="col-md-8 text-content">
-                        <!-- {{rolloverApplyId | filterNull:false}} -->
+                        {{rolloverData.rolloverDeposit | yuanFormat:2:true}}
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label class="label-control">展期利率:</label>
                     <div class="col-md-8 text-content">
-                        <!-- {{rolloverRate | filterNull:false}} -->
+                        {{rolloverData.rolloverRate | filterNull:false}}
                     </div>
                 </div>
             </div>
@@ -152,85 +152,89 @@
                 <div class="col-md-6">
                     <label class="label-control">还款期数:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverData.repaymentPlan | filterNull:false}}
+                        {{rolloverData.currentPeriodStr | filterNull:false}}
                         <span> 期</span>
                     </div>
                 </div>
             </div>
-            <drop-down [show]="">
-                <div class="col-md-12 form-group">
-                    <div class="col-md-6">
-                        <label class="label-control">贷款金额:</label>
-                        <div class="col-md-8 text-content">
-                            {{financeData.approveAmount | filterNull:false}}
+            <span class="dropDowm text-center" *ngIf="!down" (click)="down=true" ><i class="fa fa-angle-double-down"></i></span>
+            <drop-down [show]="down">
+                <div data-type="dropContent">
+                    <div class="col-md-12 form-group">
+                        <div class="col-md-6">
+                            <label class="label-control">贷款金额:</label>
+                            <div class="col-md-8 text-content">
+                                {{financeData.approveAmount | filterNull:false}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="label-control">贷款产品:</label>
+                            <div class="col-md-8 text-content">
+                                {{financeData.productName | filterNull:false}}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <label class="label-control">贷款产品:</label>
-                        <div class="col-md-8 text-content">
-                            {{financeData.productName | filterNull:false}}
+                    <div class="col-md-12 form-group">
+                        <div class="col-md-6">
+                            <label class="label-control">贷款周期:</label>
+                            <div class="col-md-8 text-content">
+                                {{financeData.ratedCycle | filterNull:false}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="label-control">还款方式:</label>
+                            <div class="col-md-8 text-content">
+                                {{financeData.paymentWayDic | filterNull:false}}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12 form-group">
-                    <div class="col-md-6">
-                        <label class="label-control">贷款周期:</label>
-                        <div class="col-md-8 text-content">
-                            {{financeData.borrowHowlong | filterNull:false}}
+                    <div class="col-md-12 form-group">
+                        <div class="col-md-6">
+                            <label class="label-control">利率:</label>
+                            <div class="col-md-8 text-content">
+                                {{financeData.rate | percent | filterNull:false}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="label-control">计息方式:</label>
+                            <div class="col-md-8 text-content">
+                                {{financeData.rateTypeDic | filterNull:false}}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <label class="label-control">还款方式:</label>
-                        <div class="col-md-8 text-content">
-                            {{productData.paymentWayName | filterNull:false}}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 form-group">
-                    <div class="col-md-6">
-                        <label class="label-control">利率:</label>
-                        <div class="col-md-8 text-content">
-                            {{productData.interestValue | percent | filterNull:false}}
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="label-control">计息方式:</label>
-                        <div class="col-md-8 text-content">
-                            {{productData.interestTypeName | filterNull:false}}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 form-group">
-                    <div class="col-md-12">
-                        <label class="label-control">还款计划:</label>
-                        <div class="col-md-7 text-content">
-                            <table class="table showL b-t">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">期数</th>
-                                        <th class="text-center">还款日</th>
-                                        <th class="text-center">应还本金(元)</th>
-                                        <th class="text-center">应还利息(元)</th>
-                                        <th class="text-center">状态</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let item of repaymentList" [class.bg-warning]="item.status==0">
-                                        <td class="text-center">{{'第'+item.repaymentPlan+'期'}}</td>
-                                        <td class="text-center">{{item.repaymentPlanDate | effDateFormat}}</td>
-                                        <td class="text-right">{{item.repaymentPrinciple}}</td>
-                                        <td class="text-right">{{item.repaymentInterest}}</td>
-                                        <td class="text-center">{{item.statusDic}}</td>
-                                    </tr>
-                                    <tr *ngIf="!repaymentList||repaymentList.length===0">
-                                        <td colspan="4" class="text-disabled text-center"> 无</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div class="col-md-12 form-group">
+                        <div class="col-md-12">
+                            <label class="label-control">还款计划:</label>
+                            <div class="col-md-7 text-content">
+                                <table class="table showL b-t">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">期数</th>
+                                            <th class="text-center">还款日</th>
+                                            <th class="text-center">应还本金(元)</th>
+                                            <th class="text-center">应还利息(元)</th>
+                                            <th class="text-center">状态</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of repaymentList" [class.bg-warning]="item.status==0">
+                                            <td class="text-center">{{'第'+item.repaymentPlan+'期'}}</td>
+                                            <td class="text-center">{{item.repaymentPlanDate | effDateFormat}}</td>
+                                            <td class="text-right">{{item.repaymentPrinciple}}</td>
+                                            <td class="text-right">{{item.repaymentInterest}}</td>
+                                            <td class="text-center">{{item.statusDic}}</td>
+                                        </tr>
+                                        <tr *ngIf="!repaymentList||repaymentList.length===0">
+                                            <td colspan="4" class="text-disabled text-center"> 无</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </drop-down>
+            <span class="dropUp text-center" *ngIf="down" (click)="down=false" ><i class="fa fa-angle-double-up"></i></span>            
         </section>
         <section class="group clearfix form-group" *ngIf='isCheck'>
             <div class="col-md-12 m-t form-group">
