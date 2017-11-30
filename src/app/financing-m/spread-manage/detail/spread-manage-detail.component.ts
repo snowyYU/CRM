@@ -19,6 +19,7 @@ export class SpreadManageDetailComponent implements OnInit{
 	createTime				//创建时间
 	status					//状态
     statusName				//状态，中文
+    
     memberId                //会员ID
 	companyName				//企业名称
 	rolloverDate			//承诺还款日期
