@@ -5,7 +5,7 @@ import { MyHttpClient } from '../../../../services/myHttp/myhttpClient.service'
 
 export interface SendData{
     rolloverApplyId?:string  //展期申请ID
-    remarks?:string          //申请理由
+    // remarks?:string          //申请理由
     status?:number           //展期审批状态
     auditOneRemarks?:string  //一审意见
 }
@@ -38,24 +38,6 @@ export class SpreadManageDetailService {
 			api:this.myHttp.api.getfinanceApply,
 			query:{
                 borrowApplyId:id
-            }
-		}).toPromise().then(res=>{
-			let data=res
-			if (data.status==200) {
-				return Promise.resolve(data)
-			}else{
-				return Promise.reject(data)
-			}
-		})
-    }
-
-    getProductsAttach(appId:string,productId:string,paymentWay:string):Promise<any>{
-		return this.myHttp.post({
-			api:this.myHttp.api.getProductsAttach,
-			query:{
-                appId:appId,
-                productId:productId,
-                paymentWay:paymentWay
             }
 		}).toPromise().then(res=>{
 			let data=res
