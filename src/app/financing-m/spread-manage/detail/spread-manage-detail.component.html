@@ -102,7 +102,7 @@
                 <div class="col-md-6">
                     <label class="label-control">展期金额:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverData.repaymentCapital | yuanFormat:2:true}}
+                        {{rolloverData.repaymentCapital | yuanFormat:2:true}}<span *ngIf="rolloverData.repaymentCapital"> 元</span>
                     </div>
                 </div>
             </div>
@@ -110,13 +110,13 @@
                 <div class="col-md-6">
                     <label class="label-control">保证金:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverData.rolloverDeposit | yuanFormat:2:true}}
+                        {{rolloverData.rolloverDeposit | yuanFormat:2:true}}<span *ngIf="rolloverData.rolloverDeposit"> 元</span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label class="label-control">当期利息:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverData.repaymentInterest | yuanFormat:2:true}}
+                        {{rolloverData.repaymentInterest | yuanFormat:2:true}}<span *ngIf="rolloverData.repaymentInterest"> 元</span>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                 <div class="col-md-6">
                     <label class="label-control">展期利率:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverData.rolloverRate | filterNull:false}}
+                        {{rolloverData.rolloverRate | percent | filterNull:false}}
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -172,7 +172,7 @@
                         <div class="col-md-6">
                             <label class="label-control">贷款金额:</label>
                             <div class="col-md-8 text-content">
-                                {{financeData.approveAmount | filterNull:false}}
+                                {{financeData.approveAmount | filterNull:false}}<span *ngIf="financeData.approveAmount"> 元</span>
                             </div>
                         </div>
                         <div class="col-md-6">

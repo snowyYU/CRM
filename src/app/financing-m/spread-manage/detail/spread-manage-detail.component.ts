@@ -82,7 +82,7 @@ export class SpreadManageDetailComponent implements OnInit{
         auditOneRemarks?
         auditOneTime?
         auditTwoTime?
-        auditTwoeBy?
+        auditTwoBy?
         auditTwoRemarks?
     }={}     
                               
