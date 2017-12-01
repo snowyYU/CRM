@@ -184,9 +184,9 @@ export class SpreadManageDetailComponent implements OnInit{
                 text: '处理成功'
             })
             this.sessionStorage.memberDetailDomain='financingM/spreadManage'
-            this.submitting=false
             this.isCheck=false
             this.router.navigate(['financingM/spreadManage/detail',this.rolloverApplyId])
+            this.getDetail(this.rolloverApplyId)
         })
         .catch(res => {
             this.pop.error({
