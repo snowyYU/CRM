@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router,ActivatedRoute,ParamMap } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { VistReportService } from './visit-report.service';
 import { DateService } from '../../../services/date/date.service';
@@ -34,9 +34,11 @@ export class VisitReportComponent implements OnInit{
 
 	//分页参数
 
+	thisPageRoute:string='business/visitReport'
 
 	constructor(
 				private router:Router,
+				private route:ActivatedRoute,
 				private pop:PopService,
 				private vistReportService:VistReportService,
 				private dateService:DateService,
@@ -46,10 +48,76 @@ export class VisitReportComponent implements OnInit{
 		
 	}
 	ngOnInit(){
-		this.getManages()
+		console.log(this.authRole.roleIn(['008']))
+		if (this.authRole.roleIn(['008'])) {
+			this.getManages()
+		}
+		// this.getManages()
 		this.setVistDate(1);
-		this.loading=true;
-		this.queryData();
+		this.subscribeRouteParams()
+		// this.loading=true;
+		// this.queryData();
+	}
+
+	//11.14,新增两个方法，
+	//路由中的参数和获取列表的请求参数是否要一样呢
+	//有些时候是一样的，有时候又不是，不过目前系统中是一样的
+	//规范化，1.从组件的service中导入查询条件的interface。2.组件内部定义路由的参数结构，两者不一定相同
+	//必传参数在声明时必须初始化
+	subscribeRouteParams(){
+		this.route.paramMap.subscribe((paramMap:ParamMap)=>{
+			console.log(paramMap)
+			console.log(paramMap['params']['rows'])
+			console.log(!!paramMap['params'])
+			
+				// if (paramMap['params']['rows']) {
+				// 	this.rows=paramMap['params']['rows']
+				// }
+				paramMap['params']['rows']?this.rows=parseInt(paramMap['params']['rows']):null
+				paramMap['params']['page']?this.page=parseInt(paramMap['params']['page']):null
+				paramMap['params']['startDate']?this.dateStart=paramMap['params']['startDate']:null
+				paramMap['params']['endDate']?this.dateEnd=paramMap['params']['endDate']:null
+				paramMap['params']['serviceMan']?this.serviceMan=paramMap['params']['serviceMan']:null
+				paramMap['params']['keyword']?this.customerName=paramMap['params']['keyword']:null
+
+				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
+				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
+			this.queryData()
+		})
+	}
+
+	navigate(){
+		let routeParam:{
+			page,
+			rows,
+			startDate?,
+			endDate?,
+			serviceMan?,
+			keyword?
+		}={
+			page:this.page,
+			rows:this.rows,
+		}
+
+		console.log("router",this.router)
+		console.log("activerouter",this.route)
+
+		if (this.dateStart) {
+			routeParam.startDate=this.dateStart
+		}
+
+		if (this.dateEnd) {
+			routeParam.endDate=this.dateEnd
+		}
+
+		if (this.serviceMan) {
+			routeParam.serviceMan=this.serviceMan
+		}
+
+		if (this.customerName) {
+			routeParam.keyword=this.customerName
+		}
+		this.router.navigate([this.thisPageRoute,routeParam])
 	}
 
 	//获取服务经理列表
@@ -96,6 +164,7 @@ export class VisitReportComponent implements OnInit{
 	}
 
 	queryData(){
+		this.loading=true
 		this.submitting=true;
 		console.log(this.serviceMan)
 		let data:SendData={

@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute,ParamMap } from '@angular/router';
 import { PopService } from 'dolphinng';
 import { MemberManageService,SendData } from './member-manage.service'
 import { AuthRoleService } from '../../../services/authRole/authRole.service'
@@ -34,7 +34,7 @@ export class MemberManageComponent implements OnInit{
 	totalCreditValue:number
 	totalCreditBanlance:number
 	//传往申请授信页面的数据
-	companyName:number  	//会员名称
+	companyName:string  	//会员名称
 	memberId:string	 	//会员ID
 	sAppId:number			//
 
@@ -58,8 +58,11 @@ export class MemberManageComponent implements OnInit{
 	//授信额度模态框的服务经理
 	modalApplyServiceMan
 
+	thisPageRoute:string='memberM/memberManage'
+
 	constructor(
 		private router:Router,
+		private route:ActivatedRoute,
 		private pop:PopService,
 		private memManage:MemberManageService,
 		public authRole:AuthRoleService
@@ -69,10 +72,71 @@ export class MemberManageComponent implements OnInit{
 	}
 
 	ngOnInit(){
-		
-		this.getListData()
+		this.subscribeRouteParams()
+		// this.getListData()
 
 	}
+
+	//11.14,新增两个方法，
+	//路由中的参数和获取列表的请求参数是否要一样呢
+	//有些时候是一样的，有时候又不是，不过目前系统中是一样的
+	//规范化，1.从组件的service中导入查询条件的interface。2.组件内部定义路由的参数结构，两者不一定相同
+	//必传参数在声明时必须初始化
+	subscribeRouteParams(){
+		this.route.paramMap.subscribe((paramMap:ParamMap)=>{
+			console.log(paramMap)
+			console.log(paramMap['params']['rows'])
+			console.log(!!paramMap['params'])
+			
+				// if (paramMap['params']['rows']) {
+				// 	this.rows=paramMap['params']['rows']
+				// }
+				paramMap['params']['rows']?this.rows=parseInt(paramMap['params']['rows']):null
+				paramMap['params']['page']?this.page=parseInt(paramMap['params']['page']):null
+				paramMap['params']['appId']?this.appId=paramMap['params']['appId']:null
+				paramMap['params']['memberType']?this.memberType=paramMap['params']['memberType']:null
+				paramMap['params']['keyword']?this.memberName=paramMap['params']['keyword']:null
+
+				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
+				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
+			
+
+			this.getListData()
+		})
+	}
+
+	navigate(){
+		let routeParam:{
+			page,
+			rows,
+			appId?,
+			memberType?,
+			keyword?
+		}={
+			page:this.page,
+			rows:this.rows,
+		}
+
+		if(this.appId){
+			routeParam.appId=this.appId
+		}
+
+		if(this.memberType){
+			routeParam.memberType=this.memberType
+		}
+
+		if(this.memberName){
+			routeParam.keyword=this.memberName
+		}
+
+		console.log("router",this.router)
+		console.log("activerouter",this.route)
+
+		this.router.navigate([this.thisPageRoute,routeParam])
+
+
+	}
+
 	//获取归属渠道下拉列表数据
 	getAppIdList(){
 		this.memManage
@@ -218,7 +282,8 @@ export class MemberManageComponent implements OnInit{
 		let toNewData={
 			memberId:this.memberId,
 			companyName:this.companyName,
-			appId:this.sAppId
+			appId:this.sAppId,
+			serviceMan:this.modalApplyServiceMan
 		}
 		this.closeModal();
 		setTimeout(e=>{
@@ -232,13 +297,14 @@ export class MemberManageComponent implements OnInit{
 			memberId:this.memberId,
 			companyName:this.companyName,
 			appId:this.sAppId,
-			productTypeName:this.productTypeName,				//产品类别
-			productId:this.productId,
-			productName:this.productName,				//申请产品
-			creditValue:this.creditValue,//原授信额度
-			//原有效期
-			expiryDateBegin:this.expiryDateBegin,//起
-			expiryDateEnd:this.expiryDateEnd,//止
+			serviceMan:this.modalApplyServiceMan
+			// productTypeName:this.productTypeName,				//产品类别
+			// productId:this.productId,
+			// productName:this.productName,				//申请产品
+			// creditValue:this.creditValue,//原授信额度
+			// //原有效期
+			// expiryDateBegin:this.expiryDateBegin,//起
+			// expiryDateEnd:this.expiryDateEnd,//止
 
 		}
 		this.closeModal()

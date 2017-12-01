@@ -107,7 +107,12 @@ export class EleAttachmentComponent implements OnInit {
 					
 				}
 			}else{
-				console.info("下载")
+				this.pop.confirm({
+					title:"提示框",
+					text:"此文件不支持预览，是否下载查看？"
+				}).onConfirm(()=>{
+					this.download(type)
+				})
 			}
 		}/*else{
 			this.pop.error({
@@ -120,7 +125,9 @@ export class EleAttachmentComponent implements OnInit {
 	download(type){
 		if (!!this.attachment[type]) {
 			let url=this.eleAttach.downLoadFile(this.attachment[type].fileLoadId)
-			window.open(url)
+			// window.open(url)
+			window.location.href =url
+			
 		}
 	}
 

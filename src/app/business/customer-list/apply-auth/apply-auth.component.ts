@@ -6,9 +6,11 @@ import { Uploader } from '../../../../utils/uploader/Uploader'
 import { PreviewerComponent } from '../../../../utils/previewer/previewer.component'
 import { GalleryComponent} from 'dolphinng';
 import { DateService } from "../../../../services/date/date.service"
+import { SessionStorageService } from '../../../../services/session-storage/session-storage.service'
 
-import { API } from "../../../../services/config/app.config"
+import { file_api } from "../../../../services/config/app.config"
 import {img,file } from "../../../../utils/previewer/filetype"
+
 class Attachment {
 
 
@@ -23,7 +25,7 @@ class Attachment {
 		this.id=id
 		this.pop=ReflectiveInjector.resolveAndCreate([PopService]).get(PopService)
 		//上传方法和参数
-		this.uploader.url=API.fileServer+'upload';
+		this.uploader.url=file_api.upload;
 	    this.uploader.isCompress=true;
 	    this.uploader.onSelect((files)=>{//文件选择完毕
 
@@ -195,7 +197,8 @@ export class ApplyAuthComponent implements OnInit {
 			private route:ActivatedRoute,
 			private router:Router,
 			private pop:PopService,
-			private dateService:DateService
+			private dateService:DateService,
+			private sessionStorage:SessionStorageService
 		){
 		//获客途径下拉
 		this.inputSelect("guest_from")
@@ -459,12 +462,25 @@ export class ApplyAuthComponent implements OnInit {
 				
 			}
 		}else{
-			console.info("下载")
+			this.pop.info({
+				title:"提示框",
+				text:"此文件不支持预览"
+			})
 		}
 	}
 
 	cancel(){
 		window.history.back()
+	}
+
+	submitConfirm() {
+		this.pop.confirm({
+			title: '操作确认',
+			text: '确认提交申请吗？'
+		}).onConfirm(() => {
+			this.submit()
+		})
+
 	}
 
 	submit(){
@@ -518,8 +534,12 @@ export class ApplyAuthComponent implements OnInit {
 					title:'提示信息',
 					text:res.message
 				})
+				this.sessionStorage.memberDetailDomain='business/customerList'
 				this.submitting=false
-				this.router.navigate(['business/customerList'])
+				setTimeout(()=>{
+					this.router.navigate(['business/customerList/authDetail',res.body.authId])
+				
+				},0)
 			})
 			.catch(res=>{
 				this.pop.error({

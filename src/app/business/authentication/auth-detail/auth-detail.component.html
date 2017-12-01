@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'approved-pass':status==1,'approved-refuse':status==-1}">
           <label class="control-label pull-left">申请时间：</label>
           <div class="form-control-static pull-left">
             {{createTime | filterNull:false}}
@@ -135,14 +135,14 @@
     <section class="mar-b-sm form-horizontal form-label-7 group clearfix" *ngIf="statusDic!=='认证中'">
       <div class="col-md-6">
         <div class="form-group">
-          <label class="control-label pull-left" >审核人：</label>
+          <label class="control-label pull-left" >审批人：</label>
           <div class="form-control-static pull-left">
             {{auditBy | filterNull:false}}
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label pull-left" >审核意见：</label>
-          <div class="form-control-static pull-left">
+          <label class="control-label pull-left" >审批意见：</label>
+          <div class="form-control-static pull-left newLine col-md-9 p-l-none">
             {{auditRemark | filterNull:false}}
             <!-- {{auditRemark}} -->
           </div>
@@ -150,7 +150,7 @@
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label class="control-label pull-left">审核时间：</label>
+          <label class="control-label pull-left">审批时间：</label>
           <div class="form-control-static pull-left">
             {{auditDate | filterNull:false}}
           </div>
@@ -171,27 +171,54 @@
                 <td>{{attch1TypeDic}}</td>
                 <!-- <td><a class="text-info" (click)="gallery.open($event,1, ['',''])">查看</a></td> -->
                 <!-- <td><a class="text-info" (click)="checkAttach($event,attch1Loadid)">查看</a></td> -->
-                <td><a class="fa fa-search text-disabled" [class.text-info]="attch1Loadid" (click)="checkAttach($event,attch1Loadid)" title="查看"></a></td>
+                <td>
+                  <preview-or-download [fileId]="attch1Loadid" (tranferFileType)="tranferFileType($event,attch1Loadid)">
+                    <a class="fa fa-search text-info m-r-md" (click)="show($event,attch1Loadid)" title="查看"></a>
+                    <a class="fa fa-download text-info" (click)="download(attch1Loadid)" title="下载"></a>
+                  </preview-or-download>
+                  
+                </td>
               </tr>
               <tr *ngIf="attch2Type">
                 <td>{{attch2TypeDic}}</td>
                 <!-- <td><a class="text-info" (click)="checkAttach($event,attch2Loadid)">查看</a></td> -->
-                <td><a class="fa fa-search text-disabled" [class.text-info]="attch2Loadid" (click)="checkAttach($event,attch2Loadid)" title="查看"></a></td>
+                <td>
+                  <preview-or-download [fileId]="attch2Loadid" (tranferFileType)="tranferFileType($event,attch2Loadid)">
+                    <a class="fa fa-search text-info m-r-md" (click)="show($event,attch2Loadid)" title="查看"></a>
+                    <a class="fa fa-download text-info" (click)="download(attch2Loadid)" title="下载"></a>
+                  </preview-or-download>
+                </td>
               </tr>
               <tr *ngIf="attch3Type">
                 <td>{{attch3TypeDic}}</td>
                 <!-- <td><a class="text-info" (click)="checkAttach($event,attch3Loadid)">查看</a></td> -->
-                <td><a class="fa fa-search text-disabled" [class.text-info]="attch3Loadid" (click)="checkAttach($event,attch3Loadid)" title="查看"></a></td>
+                <td>
+                  <preview-or-download [fileId]="attch3Loadid" (tranferFileType)="tranferFileType($event,attch3Loadid)">
+                    <a class="fa fa-search text-info m-r-md" (click)="show($event,attch3Loadid)" title="查看"></a>
+                    <a class="fa fa-download text-info" (click)="download(attch3Loadid)" title="下载"></a>
+                  </preview-or-download>
+                  
+                </td>
               </tr>
               <tr *ngIf="attch4Type">
                 <td>{{attch4TypeDic}}</td>
                 <!-- <td><a class="text-info" (click)="checkAttach($event,attch4Loadid)">查看</a></td> -->
-                <td><a class="fa fa-search text-disabled" [class.text-info]="attch4Loadid" (click)="checkAttach($event,attch4Loadid)" title="查看"></a></td>
+                <td>
+                  <preview-or-download [fileId]="attch4Loadid" (tranferFileType)="tranferFileType($event,attch4Loadid)">
+                    <a class="fa fa-search text-info m-r-md" (click)="show($event,attch4Loadid)" title="查看"></a>
+                    <a class="fa fa-download text-info" (click)="download(attch4Loadid)" title="下载"></a>
+                  </preview-or-download>
+                </td>
               </tr>
               <tr *ngIf="attch5Type">
                 <td>{{attch5TypeDic}}</td>
                 <!-- <td><a class="text-info" (click)="checkAttach($event,attch5Loadid)">查看</a></td> -->
-                <td><a class="fa fa-search text-disabled" [class.text-info]="attch5Loadid" (click)="checkAttach($event,attch5Loadid)" title="查看"></a></td>
+                <td>
+                  <preview-or-download [fileId]="attch5Loadid" (tranferFileType)="tranferFileType($event,attch5Loadid)">
+                    <a class="fa fa-search text-info m-r-md" (click)="show($event,attch5Loadid)" title="查看"></a>
+                    <a class="fa fa-download text-info" (click)="download(attch5Loadid)" title="下载"></a>
+                  </preview-or-download>
+                </td>
               </tr>
 
             </tbody>
@@ -206,5 +233,12 @@
       </div>
     </section>
   </form>
+  <!-- <div class="">
+    <img src="../../../../assets/img/true.png" class="img-control img-size" *ngIf="status==1" style="top: 17%" />
+    <img src="../../../../assets/img/false.png" class="img-control img-size" *ngIf="status==-1" />
+  </div> -->
 </div>
 <gallery #gallery size="lg"></gallery>
+<previewer></previewer>
+
+

@@ -4,13 +4,13 @@ import { MyHttpClient } from '../../../../services/myHttp/myhttpClient.service'
 
 export interface SendData{
 	memberId:number			//会员ID
-	productId:number			//产品ID
+	// productId:number			//产品ID
 	oldCreditValue:number		//原授信额
 	operateType:number			//操作类型，0：新增授信；1：重新授信型；
 	addCreditValue:number		//新增授信额
 	appId:number				//渠道ID
-	expiryDateBegin?:string		//有效期(开始)：格式：yyyy-MM-dd
-	expiryDateEnd?:string		//有效期(结束)：格式：yyyy-MM-dd
+	// expiryDateBegin?:string		//有效期(开始)：格式：yyyy-MM-dd
+	// expiryDateEnd?:string		//有效期(结束)：格式：yyyy-MM-dd
 	authRemark:string			//申请理由
 }
 

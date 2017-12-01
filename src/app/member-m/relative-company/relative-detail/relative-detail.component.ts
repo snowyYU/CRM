@@ -6,12 +6,12 @@ import { RelativeDetailService } from './relative-detail.service'
 @Component({
   selector: 'app-relative-detail',
   templateUrl: './relative-detail.component.html',
-  styleUrls: ['./relative-detail.component.less']
+  styleUrls: ['./relative-detail.component.less'],
+  providers:[RelativeDetailService]
 })
 export class RelativeDetailComponent implements OnInit {
-
 	companyId
-
+  companyList
 	memberList:{
 		companyId? //企业ID
 		carryingGoodsRate?		//运输比例
@@ -29,21 +29,30 @@ export class RelativeDetailComponent implements OnInit {
 		transitArea?		//运输区域1 华南2 华中3 西北4 华北5 华东
 		yeartotalGoods?		//年物流发货总量
 		member?		//会员
+    show?
 	}[]=[]
 
 	
 
   constructor(
+    private router:Router,
   	private route:ActivatedRoute,
   	private pop:PopService,
   	private relativeD:RelativeDetailService
   	) { }
 
   ngOnInit() {
-  	this.companyId=this.route.params['value']['id']
+    this.getCompanyData()
+  	// this.companyId=this.route.params['value']['id']
   	this.getDetailData()
   }
 
+  getCompanyData(){
+    let data=JSON.parse(this.route.params['value']['data'])
+    console.log(data)
+    this.companyId=data.companyId
+    this.companyList=data
+  }
 
   getDetailData(){
   	this.relativeD.getDetailData(this.companyId)
@@ -61,6 +70,11 @@ export class RelativeDetailComponent implements OnInit {
 
   handleData(res){
   	console.log(res)
+    this.memberList=res.body.records
+
   }
 
+  back(){
+    window.history.back()
+  }
 }

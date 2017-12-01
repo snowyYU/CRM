@@ -30,7 +30,7 @@
         /> -->
       </div>
       <div class="form-group">
-        <button class="btn-def" (click)='queryData()'>查询<i class="fa fa-search"></i></button>
+        <button class="btn-def" (click)='page=0;navigate()'>查询<i class="fa fa-search"></i></button>
       </div>
     </div>
     <div class="col-md-2 pad-t-xs pull-right text-right" [class.pad-t-xs]="authRole.roleIn(['008'])" >
@@ -43,7 +43,7 @@
   </div>
   <div>
     <p-dataTable  [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading"
-                 scrollable="true" scrollHeight="375px">
+                 scrollable="true" scrollHeight="385px">
 <!--      <p-column field="index" header="序号" styleClass="text-center " [style]="{'width':'100px'}"></p-column>-->
       <p-column field="guestName" header="客户名称" [style]="{'width':'250px'}">
       	<ng-template let-guestName="rowData" pTemplate="body">
@@ -87,7 +87,7 @@
         <div class="clearfix">
           <button class="btn btn-default-dk btn-sm-s pull-left" [routerLink]="['/business/customerList/add']" *ngIf="authRole.roleIn(['007'])"><i class="fa fa-plus"></i>新增</button>
           <div class="pull-right">
-            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="queryData()" size="sm" [showTotal]="true"></paginator>
+            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="navigate()" size="sm" [showTotal]="true"></paginator>
           </div>
         </div>
       </p-footer>

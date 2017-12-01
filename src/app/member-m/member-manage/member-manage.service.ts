@@ -102,8 +102,6 @@ export class MemberManageService{
 					return Promise.resolve(data)
 				}
 				
-				
-				
 			}else{
 				return Promise.reject(data)
 			}

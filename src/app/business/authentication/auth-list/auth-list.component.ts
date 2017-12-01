@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router,ActivatedRoute,ParamMap } from '@angular/router';
 import { AuthListService,SendData } from './auth-list.service';
 import { PopService } from 'dolphinng'
 import { AuthRoleService } from '../../../../services/authRole/authRole.service'
@@ -20,6 +20,8 @@ export class AuthListComponent implements OnInit{
 	count:number
 	rows:number=10;
 	authApplyReplyNum:number
+
+	thisPageRoute:string='business/customerList/authList'
 	constructor(
 		private authList:AuthListService,
 		private router:Router,
@@ -31,9 +33,47 @@ export class AuthListComponent implements OnInit{
 
 	ngOnInit(){
 		this.authApplyReplyNum=this.route.params['value']['count'];
-		this.getList(this.authApplyReplyNum)
-
+		this.subscribeRouteParams()
 	}
+
+	//11.14,新增两个方法，
+	//路由中的参数和获取列表的请求参数是否要一样呢
+	//有些时候是一样的，有时候又不是，不过目前系统中是一样的
+	//规范化，1.从组件的service中导入查询条件的interface。2.组件内部定义路由的参数结构，两者不一定相同
+	//必传参数在声明时必须初始化
+	subscribeRouteParams(){
+		this.route.paramMap.subscribe((paramMap:ParamMap)=>{
+			console.log(paramMap)
+			console.log(paramMap['params']['rows'])
+			console.log(!!paramMap['params'])
+			
+				// if (paramMap['params']['rows']) {
+				// 	this.rows=paramMap['params']['rows']
+				// }
+				paramMap['params']['rows']?this.rows=parseInt(paramMap['params']['rows']):null
+				paramMap['params']['page']?this.page=parseInt(paramMap['params']['page']):null
+
+				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
+				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
+			this.getList(this.authApplyReplyNum)
+		})
+	}
+
+	navigate(){
+		let routeParam:{
+			page,
+			rows,
+		}={
+			page:this.page,
+			rows:this.rows,
+		}
+
+		console.log("router",this.router)
+		console.log("activerouter",this.route)
+
+		this.router.navigate([this.thisPageRoute+'/'+this.authApplyReplyNum,routeParam])
+	}
+	
 	getList(type){
 		this.loading=true;
 

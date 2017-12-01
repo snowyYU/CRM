@@ -1,0 +1,68 @@
+<div class="page-location">
+  <a class="h4 pad-r-xs font-bold">展期管理</a>
+  <a class="page-location-item">融资管理<i class="pad-l-min fa fa-angle-right"></i></a>
+  <a class="page-location-item active">展期管理</a>
+</div>
+<div class="pad-l-def pad-r-def pad-b-def pad-t-sm">
+  <div class="mar-b-sm form-inline">
+    <div class="form-group">
+      <label class="">展期状态：</label>
+      <select name="qryStatus" class="form-control" [(ngModel)]="qryStatus">
+        <option [value]="item.value" *ngFor="let item of dictList">{{item.label}}</option>
+      </select>
+      <label class="m-l-md">企业名称：</label>
+      <input type="text" class="form-control" maxlength="30" [(ngModel)]="keyWord" placeholder="企业名称关键字" />
+    </div>
+    <button class="btn-def m-l-md" (click)="page=0;navigate()">查询<i class="fa fa-search"></i></button>
+  </div>
+  <div>
+    <p-dataTable [value]="dataList" emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading" scrollable="true" scrollHeight="375px">
+      <p-column field="rolloverApplyId" header="展期单号" styleClass="text-center" [style]="{'width':'120px'}"></p-column>
+      <p-column header="企业名称" [style]="{'width':'200px'}">
+        <ng-template let-data="rowData" pTemplate="body">
+          <div textMaxLength="200px" title="{{data.companyName}}">
+            {{data.companyName}}
+          </div>
+        </ng-template>
+      </p-column>
+      <p-column field="borrowApplyId" header="贷款单号" styleClass="text-center" [style]="{'width':'120px'}"></p-column>
+      <p-column header="展期金额(元)" styleClass="text-right" [style]="{'width':'120px'}">
+        <ng-template let-data="rowData" pTemplate="body">
+          <div textMaxLength="120px" title="{{data.repaymentAmount}}">
+            {{data.repaymentAmount | yuanFormat:2:true}}
+          </div>
+        </ng-template>
+      </p-column>
+      <p-column header="还款期数" styleClass="text-center" [style]="{'width':'80px'}">
+        <ng-template let-data="rowData" pTemplate="body">
+          <div textMaxLength="80px" title="{{data.currentPeriodStr}}">
+            {{data.currentPeriodStr}}
+          </div>
+        </ng-template>
+      </p-column>
+      <p-column header="展期开始日期" styleClass="text-center" [style]="{'width':'100px'}">
+        <ng-template let-data="rowData" pTemplate="body">
+          <div textMaxLength="100px" title="{{data.rolloverStartDate}}">
+            {{data.rolloverStartDate | effDateFormat}}
+          </div>
+        </ng-template>
+      </p-column>
+      <p-column field="statusName" header="状态" [style]="{'width':'140px'}"></p-column>
+      <p-column field="color" header="操作" [style]="{'width':'100px'}">
+        <ng-template let-operation="rowData" pTemplate="body" styleClass="text-center">
+          <div class="text-center">
+            <a class="table-btn text-info" (click)="check(operation)" *ngIf="(operation.status==0)||(operation.status==1)">审批</a>
+            <a class="table-btn text-info" (click)="detail(operation)" *ngIf="(operation.status!=0)&&(operation.status!=1)">详情</a>
+          </div>
+        </ng-template>
+      </p-column>
+      <p-footer>
+        <div class="clearfix">
+          <div class="pull-right">
+            <paginator [(index)]="page" [count]="count" [changePageSizeAble]="true" [(pageSize)]="rows" (onChangePage)="navigate()" size="sm" [showTotal]="true"></paginator>
+          </div>
+        </div>
+      </p-footer>
+    </p-dataTable>
+  </div>
+</div>
