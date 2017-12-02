@@ -72,7 +72,10 @@ export class GetApplyDetailComponent implements OnInit{
 			this.productList=res.body.records
 			if(this.productList&&this.productList.length>0){
 				for(let i=0;i<this.productList.length;i++){
-					this.totalCreditValue+=this.productList[i].creditFacility.creditValue
+					if (this.productList[i].creditFacility) {
+						this.totalCreditValue+=this.productList[i].creditFacility.creditValue
+						
+					}
 				}
 			}
 		})
