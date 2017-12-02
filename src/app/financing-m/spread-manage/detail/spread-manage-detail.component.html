@@ -22,7 +22,7 @@
                 <div class="col-md-6">
                     <label class="label-control">创建时间:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverData.createTime | effDateFormat | filterNull:false}}
+                        {{rolloverData.createTime | filterNull:false | effDateFormat}}
                     </div>
                 </div>
             </div>
@@ -35,8 +35,9 @@
                 </div>
             </div>
         </section>
+
         <!-- 审核 -->
-        <section class="group clearfix form-group" *ngIf="isCheck">
+        <!-- <section class="group clearfix form-group" *ngIf="isCheck">
             <div class="col-md-12 m-t form-group">
                 <div class="col-md-6">
                     <label class="label-control">企业名称:</label>
@@ -47,7 +48,7 @@
                 <div class="col-md-6">
                     <label class="label-control">承诺还款日期:</label>
                     <div class="col-md-8 text-content">
-                        <!-- {{rolloverDate.rolloverDate | effDateFormat | filterNull:false}} -->
+                        {{rolloverData.rolloverDate | filterNull:false | effDateFormat}}
                     </div>
                 </div>
             </div>
@@ -55,13 +56,13 @@
                 <div class="col-md-6">
                     <label class="label-control">展期金额:</label>
                     <div class="col-md-8 text-content">
-                        <!-- {{rolloverDate.repaymentCapital | yuanFormat:2:true}} -->
+                        {{rolloverData.repaymentCapital | yuanFormat:2:true}}
                     </div>
                 </div>
                 <div class="col-md-6">
                     <label class="label-control">本期利息:</label>
                     <div class="col-md-8 text-content">
-                        <!-- {{rolloverDate.repaymentInterest | yuanFormat:2:true}} -->
+                        {{rolloverData.repaymentInterest | yuanFormat:2:true}}
                     </div>
                 </div>
             </div>
@@ -79,17 +80,18 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-md-12 form-group">
+            <div class="col-md-12 form-group">
                 <div class="col-md-6">
                     <label class="label-control">申请原因:</label>
                     <div class="col-md-8 text-content">
                         <textarea class="form-control" name="remarks" cols="45" rows="5" maxlength="50" [(ngModel)]="remarks" placeholder="小于50字"></textarea>
                     </div>
                 </div>
-            </div> -->
-        </section>
+            </div>
+        </section> -->
+
         <!-- 详情 -->
-        <section class="group clearfix form-group" *ngIf="!isCheck">
+        <section class="group clearfix form-group">
             <div class="col-md-12 m-t form-group">
                 <div class="col-md-6">
                     <label class="label-control">企业名称:</label>
@@ -98,37 +100,45 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label class="label-control">承诺还款日期:</label>
-                    <div class="col-md-8 text-content">
-                        <!-- {{rolloverDate.rolloverDate | effDateFormat | filterNull:false}} -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 form-group">
-                <div class="col-md-6">
                     <label class="label-control">展期金额:</label>
                     <div class="col-md-8 text-content">
-                        <!-- {{rolloverDate.repaymentCapital | yuanFormat:2:true}} -->
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label class="label-control">本期利息:</label>
-                    <div class="col-md-8 text-content">
-                        <!-- {{rolloverDate.repaymentInterest | yuanFormat:2:true}} -->
+                        {{rolloverData.repaymentCapital | yuanFormat:2:true}}<span *ngIf="rolloverData.repaymentCapital"> 元</span>
                     </div>
                 </div>
             </div>
             <div class="col-md-12 form-group">
                 <div class="col-md-6">
-                    <label class="label-control">展期保证金:</label>
+                    <label class="label-control">保证金:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverData.rolloverDeposit | yuanFormat:2:true}}
+                        {{rolloverData.rolloverDeposit | yuanFormat:2:true}}<span *ngIf="rolloverData.rolloverDeposit"> 元</span>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <label class="label-control">当期利息:</label>
+                    <div class="col-md-8 text-content">
+                        {{rolloverData.repaymentInterest | yuanFormat:2:true}}<span *ngIf="rolloverData.repaymentInterest"> 元</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
                 <div class="col-md-6">
                     <label class="label-control">展期利率:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverData.rolloverRate | filterNull:false}}
+                        {{rolloverData.rolloverRate | percent | filterNull:false}}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="label-control">承诺还款日期:</label>
+                    <div class="col-md-8 text-content">
+                        {{rolloverData.rolloverDate | filterNull:false | effDateFormat}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <div class="col-md-6">
+                    <label class="label-control">批准还款日期:</label>
+                    <div class="col-md-8 text-content">
+                        {{rolloverData.comfirmRolloverDate | filterNull:false | effDateFormat}}
                     </div>
                 </div>
             </div>
@@ -142,7 +152,7 @@
             </div> -->
         </section>
         <section class="group clearfix form-group">
-            <div class="col-md-12 m-t" [ngClass]="{'form-group':down}">
+            <div class="col-md-12 m-t form-group">
                 <div class="col-md-6">
                     <label class="label-control">贷款单号:</label>
                     <div class="col-md-8 text-content">
@@ -153,18 +163,16 @@
                     <label class="label-control">还款期数:</label>
                     <div class="col-md-8 text-content">
                         {{rolloverData.currentPeriodStr | filterNull:false}}
-                        <span> 期</span>
                     </div>
                 </div>
             </div>
-            <span class="dropDowm text-center" *ngIf="!down" (click)="down=true" ><i class="fa fa-angle-double-down"></i></span>
-            <drop-down [show]="down">
+            <drop-down [show]="show">
                 <div data-type="dropContent">
                     <div class="col-md-12 form-group">
                         <div class="col-md-6">
                             <label class="label-control">贷款金额:</label>
                             <div class="col-md-8 text-content">
-                                {{financeData.approveAmount | filterNull:false}}
+                                {{financeData.approveAmount | filterNull:false}}<span *ngIf="financeData.approveAmount"> 元</span>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -205,7 +213,7 @@
                     <div class="col-md-12 form-group">
                         <div class="col-md-12">
                             <label class="label-control">还款计划:</label>
-                            <div class="col-md-7 text-content">
+                            <div class="col-md-7 m-t-xs">
                                 <table class="table showL b-t">
                                     <thead>
                                         <tr>
@@ -218,11 +226,11 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let item of repaymentList" [class.bg-warning]="item.status==0">
-                                            <td class="text-center">{{'第'+item.repaymentPlan+'期'}}</td>
-                                            <td class="text-center">{{item.repaymentPlanDate | effDateFormat}}</td>
-                                            <td class="text-right">{{item.repaymentPrinciple}}</td>
-                                            <td class="text-right">{{item.repaymentInterest}}</td>
-                                            <td class="text-center">{{item.statusDic}}</td>
+                                            <td class="text-center">{{'第'+item.currentPeriod+'期'}}</td>
+                                            <td class="text-center">{{item.repaymentDate | effDateFormat}}</td>
+                                            <td class="text-right">{{item.repaymentCapital | yuanFormat:2:true}}</td>
+                                            <td class="text-right">{{item.repaymentInterest | yuanFormat:2:true}}</td>
+                                            <td class="text-center">{{item.statusName}}</td>
                                         </tr>
                                         <tr *ngIf="!repaymentList||repaymentList.length===0">
                                             <td colspan="4" class="text-disabled text-center"> 无</td>
@@ -234,14 +242,45 @@
                     </div>
                 </div>
             </drop-down>
-            <span class="dropUp text-center" *ngIf="down" (click)="down=false" ><i class="fa fa-angle-double-up"></i></span>            
+            <span class="dropDowm text-center" *ngIf="!down">
+                <i class="fa fa-angle-double-down" (click)="downEvent()"></i>
+            </span>
+            <span class="dropUp text-center" *ngIf="down">
+                <i class="fa fa-angle-double-up" (click)="upEvent()"></i>
+            </span>
         </section>
+        <!--审批-->
         <section class="group clearfix form-group" *ngIf='isCheck'>
             <div class="col-md-12 m-t form-group">
                 <div class="col-md-6">
-                    <label class="label-control">一审意见：</label>
-                    <div class="form-control-static pull-left">
-                        <textarea class="form-control" name="auditOneRemarks" cols="45" rows="5" maxlength="50" [(ngModel)]="auditOneRemarks" placeholder="小于50字"></textarea>
+                    <label class="label-control">一审意见:</label>
+                    <div class="col-md-8 text-content">
+                        <textarea class="form-control mar-b-xs width-textarea" name="auditOneRemarks" cols="40" rows="5" maxlength="50" [(ngModel)]="auditOneRemarks" placeholder="小于50字"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--详情-->
+        <section class="group clearfix form-group" *ngIf='!isCheck'>
+            <div class="col-md-12 m-t form-group">
+                <div class="col-md-6">
+                    <label class="label-control">一审人员:</label>
+                    <div class="col-md-8 text-content">
+                        {{rolloverData.auditOneBy | filterNull:false}}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="label-control">一审时间:</label>
+                    <div class="col-md-8 text-content">
+                        {{rolloverData.auditOneTime | filterNull:false | effDateFormat}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <div class="col-md-6">
+                    <label class="label-control">一审意见:</label>
+                    <div class="col-md-8 text-content">
+                        {{rolloverData.auditOneRemarks | filterNull:false}}
                     </div>
                 </div>
             </div>
@@ -249,9 +288,23 @@
         <section class="group clearfix form-group" *ngIf='!isCheck'>
             <div class="col-md-12 m-t form-group">
                 <div class="col-md-6">
-                    <label class="label-control">一审意见:</label>
+                    <label class="label-control">二审人员:</label>
                     <div class="col-md-8 text-content">
-                        {{rolloverData.auditOneRemarks | filterNull:false}}
+                        {{rolloverData.auditTwoBy | filterNull:false}}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="label-control">二审时间:</label>
+                    <div class="col-md-8 text-content">
+                        {{rolloverData.auditTwoTime | filterNull:false | effDateFormat}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <div class="col-md-6">
+                    <label class="label-control">二审意见:</label>
+                    <div class="col-md-8 text-content">
+                        {{rolloverData.auditTwoRemarks | filterNull:false}}
                     </div>
                 </div>
             </div>

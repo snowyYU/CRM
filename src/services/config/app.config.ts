@@ -667,10 +667,6 @@ export const API = {
     url:'fam/RolloverManage/getFinanceApply',
     method:'post'
   },
-  getProductsAttach:{
-    url:'fam/RolloverManage/getProductsAttach',
-    method:'post'
-  },
   getRepaymentPlan:{
     url:'fam/RolloverManage/getRepaymentPlan',
     method:'post'
