@@ -35,7 +35,7 @@ export class MemberManageComponent implements OnInit{
 	totalCreditBanlance:number
 	//传往申请授信页面的数据
 	companyName:string  	//会员名称
-	memberId:string	 	//会员ID
+	memberId:number	 	//会员ID
 	sAppId:number			//
 
 	productTypeName:string				//产品类别
@@ -242,7 +242,20 @@ export class MemberManageComponent implements OnInit{
 						})
 						return
 					}
-					this.goToNew()
+					//检查
+					this.memManage.checkApplyExist(row.memberId)
+						.then(res=>{
+							console.log(res)
+							this.goToNew()
+						})
+						.catch(res=>{
+							this.pop.error({
+								title:"提示信息",
+								text:res.message
+							})
+						})
+
+					
 				}
 			})
 			.catch(res=>{
@@ -253,18 +266,33 @@ export class MemberManageComponent implements OnInit{
 			})
 	}
 
-	checkApplyExist(operateType,row){
-		//为传到申请授信页面的参数赋值
-		this.productTypeName=row.creditFacility.productTypeName				//产品类别
-		this.productName=row.creditFacility.productName				//申请产品
-		this.productId=row.creditFacility.productId
-		this.creditValue=row.creditFacility.creditValue//原授信额度
-		//原有效期
-		this.expiryDateBegin=row.creditFacility.expiryDateBegin//起
-		this.expiryDateEnd=row.creditFacility.expiryDateEnd//止
+	// checkApplyExist(row){
+	// 	//为传到申请授信页面的参数赋值
+	// 	this.productTypeName=row.creditFacility.productTypeName				//产品类别
+	// 	this.productName=row.creditFacility.productName				//申请产品
+	// 	this.productId=row.creditFacility.productId
+	// 	this.creditValue=row.creditFacility.creditValue//原授信额度
+	// 	//原有效期
+	// 	this.expiryDateBegin=row.creditFacility.expiryDateBegin//起
+	// 	this.expiryDateEnd=row.creditFacility.expiryDateEnd//止
 
 
-		this.memManage.checkApplyExist(operateType,row.memberId,row.creditFacility.productId)
+	// 	this.memManage.checkApplyExist(row.memberId)
+	// 		.then(res=>{
+	// 			console.log(res)
+	// 			this.goToRe()
+	// 		})
+	// 		.catch(res=>{
+	// 			this.pop.error({
+	// 				title:'错误提示',
+	// 				text:res.message
+	// 			})
+	// 		})
+	// }
+
+	reCredit(){
+		//新增一个校验
+		this.memManage.checkApplyExist(this.memberId)
 			.then(res=>{
 				console.log(res)
 				this.goToRe()
@@ -293,6 +321,10 @@ export class MemberManageComponent implements OnInit{
 
 	}
 	goToRe(){
+
+		
+
+
 		let toReData={
 			memberId:this.memberId,
 			companyName:this.companyName,

@@ -108,13 +108,30 @@ export class MemberManageService{
 		})
 	}
 	//会员对应产品进行重新授信时，校验对应产品是否已经申请授信且正在审批
-	checkApplyExist(operateType,memberId:number,productId:number):Promise<any>{
+	// checkApplyExist(operateType,memberId:number,productId:number):Promise<any>{
+	// 	return this.myHttp.post({
+	// 		api:this.myHttp.api.checkApplyExist,
+	// 		query:{
+	// 			operateType:operateType,
+	// 			memberId:memberId,
+	// 			productId:productId
+	// 		}
+	// 	}).toPromise().then(res=>{
+	// 		let data=res
+	// 		if (data.status==200) {
+	// 			return Promise.resolve(data)
+				
+	// 		}else{
+	// 			return Promise.reject(data)
+	// 		}
+	// 	})
+	// }
+
+	checkApplyExist(memberId:number):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.checkApplyExist,
 			query:{
-				operateType:operateType,
-				memberId:memberId,
-				productId:productId
+				memberId:memberId
 			}
 		}).toPromise().then(res=>{
 			let data=res
