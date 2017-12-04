@@ -352,7 +352,7 @@ export class MemberManageComponent implements OnInit{
 		this.modalMemberId=row.memberId
 		this.modalMemberName=row.companyName
 		this.modalServiceManO=row.serviceMan
-		this.modalAppName=row.prmResourceRegister.resourceName
+		this.modalAppName=row.prmResourceRegister?row.prmResourceRegister.resourceName:""
 		
 		this.memManage.getManageL()
 			.then(res=>{

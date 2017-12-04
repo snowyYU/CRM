@@ -66,12 +66,12 @@
           </div>
         </ng-template>
       </p-column>
-      <p-column field='' header='操作'[style]="{'width':'180px'}" >
+      <p-column field='' header='操作'[style]="{'width':'200px'}" >
       	<ng-template let-operation="rowData" pTemplate="body">
           <div>
             <a class="table-btn text-info" (click)="detail(operation)">详情</a>
             <a class="table-btn text-info" (click)="getModalList(operation)">授信额度</a>
-            <a *ngIf="authRole.roleIn(['008'])" class="table-btn text-info" (click)="changeManage(operation)">变更</a>
+            <a *ngIf="authRole.roleIn(['008'])" class="table-btn text-info" (click)="changeManage(operation)">变更经理</a>
           </div>
         </ng-template>
       </p-column>

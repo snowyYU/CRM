@@ -141,7 +141,7 @@ export class InfoChangeDetailComponent implements OnInit {
 					title: '提示信息',
 					text: '处理成功'
 				})
-				this.router.navigate(['business/customerList/authDetail'],res.body.authId)
+				window.history.back()
 			})
 			.catch(res => {
 				this.pop.error({
