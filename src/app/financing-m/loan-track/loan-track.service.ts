@@ -70,7 +70,7 @@ export class LoanTrackService {
 	getRepaymentPlanList(borrowApplyId:string):Promise<any>{
 		return this.myHttp.post({
 			api:this.myHttp.api.getRepaymentPlanList,
-			query:{'borrowApplyId':borrowApplyId}
+			query:{borrowApplyId:borrowApplyId}
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {
