@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
 import { InfoChangeDetailService, SendData } from './info-change-detail.service'
 import { PopService } from 'dolphinng'
+import { SessionStorageService } from '../../../../services/session-storage/session-storage.service';
 
 import { AuthRoleService } from '../../../../services/authRole/authRole.service'
 
@@ -48,12 +49,16 @@ export class InfoChangeDetailComponent implements OnInit {
 	submitting: boolean = false
 
 	authId
+
+	//用于记录提交申请前的页面
+	memberDetailDomain
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
 		private infoChangeDetailService: InfoChangeDetailService,
 		private pop: PopService,
 		private auth: AuthRoleService,
+		private sessionStorage:SessionStorageService
 	) { }
 
 	ngOnInit() {
@@ -103,10 +108,6 @@ export class InfoChangeDetailComponent implements OnInit {
 		this.applyMessage = res.body.applyMessage
 	}
 
-	back() {
-		window.history.back()
-	}
-
 	submitConfirm(param: number) {
 		let str:string
 		if(param==2){
@@ -141,7 +142,10 @@ export class InfoChangeDetailComponent implements OnInit {
 					title: '提示信息',
 					text: '处理成功'
 				})
-				this.router.navigate(['business/customerList/authDetail'],res.body.authId)
+				this.sessionStorage.memberDetailDomain='memberM/infoChange'
+				this.isCheck=false
+				this.router.navigate(['memberM/infoChange/detail'],res.body.authId)
+				this.getDetailData()
 			})
 			.catch(res => {
 				this.pop.error({
@@ -151,6 +155,16 @@ export class InfoChangeDetailComponent implements OnInit {
 				this.submitting = false
 
 			})
+	}
+	
+	back() {
+		if(!!this.sessionStorage.memberDetailDomain){
+			this.memberDetailDomain=this.sessionStorage.memberDetailDomain
+			this.sessionStorage.deleteItem('memberDetailDomain')
+			this.router.navigate([this.memberDetailDomain])
+		}else{
+			window.history.back()
+		}
 	}
 
 }
