@@ -34,6 +34,7 @@ export class IndexComponent {
 
   logOut(){
     this.authRoleService.deleteAllCookies()
+    this.authRoleService.clear()
     this.router.navigate(['signin'])
     
     console.log('done')

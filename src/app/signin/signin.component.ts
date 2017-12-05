@@ -11,8 +11,7 @@ import { config } from '../../services/config/app.config'
 @Component({
   selector: 'signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.less'],
-  providers:[AuthRoleService]
+  styleUrls: ['./signin.component.less']
 })
 export class SigninComponent {
 
@@ -123,27 +122,32 @@ export class SigninComponent {
 
         this.authRoleService.eTime=res.body.expiresIn*500
         // this.authTokenService.expiresT=response.body.expiresIn*500
-        this.authRoleService.userName=res.body.employeeName;
-  			this.authRoleService.token=res.body.accessToken
-        this.authRoleService.employeeId=res.body.employeeId
+        this.authRoleService.setCookie("userName",res.body.employeeName)
+        this.authRoleService.setCookie("token",res.body.accessToken)
+        this.authRoleService.setCookie("employeeId",res.body.employeeId)
+        
+     //    this.authRoleService.userName=res.body.employeeName;
+  			// this.authRoleService.token=res.body.accessToken
+     //    this.authRoleService.employeeId=res.body.employeeId
 
         let roles:any[]=[]
         res.body.roles.forEach(e=>{
           roles.push(e.roleCode)
         })
-        this.authRoleService.role=JSON.stringify(roles)
+        this.authRoleService.setCookie("role",JSON.stringify(roles))
+        
         // let subsysFuncs:any[]=[]
         // res.body.subsysFuncs.forEach(e=>{
         //   subsysFuncs.push(e.functionPoint)
         // })
-        this.authRoleService.subsysFuncs=JSON.stringify(subsysFuncsFunctionPoint)
-        console.log(this.authRoleService.subsysFuncs)
+        this.authRoleService.setCookie("subsysFuncs",JSON.stringify(subsysFuncsFunctionPoint))
+ 
 
         setInterval(e=>{
           this.authRoleService.refreshToken()
         },res.body.expiresIn*500)
 
-
+        this.authRoleService.init()
         this.router.navigate([this.o[subsysFuncsFunctionPoint[0]]])
 
 

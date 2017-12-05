@@ -13,48 +13,86 @@ export class AuthRoleService {
 	constructor(
 		private cookie:CookieService,
 		private myhttp:MyHttp
-		){}
-	// cookie:CookieService=new CookieService;
+		){
+
+		this.init()
+		
+
+		//监听window刷新事件
+		//
+
+	}
+
+	//设置cookie
+	setCookie(key,value){
+		this.cookie.set(this.sysName+key,value,this.eTime,'/')
+	}
+
+	role
+	subsysFuncs
+	userName
+	employeeId
+	token
+
+
+	//初始化内存中的变量
+	init(){
+		this.role=this.cookie.get(this.sysName+'role')
+		this.subsysFuncs=this.cookie.get(this.sysName+'subsysFuncs')
+		this.userName=this.cookie.get(this.sysName+'userName')
+		this.employeeId=this.cookie.get(this.sysName+'employeeId')
+		this.token=this.cookie.get(this.sysName+'token')
+	}
+	//清空内存中的这几个变量
+	clear(){
+		this.role=""
+		this.subsysFuncs=""
+		this.userName=""
+		this.employeeId=""
+		this.token=""
+	}
 	
-	set role(type:string){
-		this.cookie.set(this.sysName+'role',type,this.eTime,'/')
-	}
+	// set role(type:string){
+		
 
-	get role(){
-		return this.cookie.get(this.sysName+'role')
-	}
+	// 	this.cookie.set(this.sysName+'role',type,this.eTime,'/')
+	// }
 
-	set subsysFuncs(type:string){
-		this.cookie.set(this.sysName+'subsysFuncs',type,this.eTime,'/')
-	}
+	// get role(){
+	// 	return this.cookie.get(this.sysName+'role')
+	// }
 
-	get subsysFuncs(){
-		return this.cookie.get(this.sysName+'subsysFuncs')
-	}
+	// set subsysFuncs(type:string){
+	// 	this.cookie.set(this.sysName+'subsysFuncs',type,this.eTime,'/')
+	// }
 
-	set userName(name:string){
-		this.cookie.set(this.sysName+'userName',name,this.eTime,'/')
-	}
+	// get subsysFuncs(){
+	// 	return this.cookie.get(this.sysName+'subsysFuncs')
+	// }
 
-	get userName(){
-		return this.cookie.get(this.sysName+'userName')
-	}
+	// set userName(name:string){
+	// 	this.cookie.set(this.sysName+'userName',name,this.eTime,'/')
+	// }
 
-	set employeeId(name:string){
-		this.cookie.set(this.sysName+'employeeId',name,this.eTime,'/')
-	}
+	// get userName(){
+	// 	return this.cookie.get(this.sysName+'userName')
+	// }
 
-	get employeeId(){
-		return this.cookie.get(this.sysName+'employeeId')
-	}
+	// set employeeId(name:string){
+	// 	this.cookie.set(this.sysName+'employeeId',name,this.eTime,'/')
+	// }
+
+	// get employeeId(){
+	// 	return this.cookie.get(this.sysName+'employeeId')
+	// }
 	
-	set token(token:string){
-		this.cookie.set(this.sysName+"token",token,this.eTime,'/');
-	}
+	// set token(token:string){
+	// 	this.cookie.set(this.sysName+"token",token,this.eTime,'/');
+	// }
 
-	get token():string{
-		return this.cookie.get(this.sysName+"token");
-	}
+	// get token():string{
+	// 	return this.cookie.get(this.sysName+"token");
+	// }
 
 	fnIn(param:string[]):boolean{
     for(let o of param){
@@ -123,6 +161,8 @@ export class AuthRoleService {
 		
 		
 	}
+
+
 
 	deleteAllCookies(){
 		this.cookie.set(this.sysName+'role','',1,'/')
