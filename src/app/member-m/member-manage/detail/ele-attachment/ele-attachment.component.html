@@ -38,7 +38,7 @@
               <td class="col-md-10">验资报告</td>
               <td>
                 <preview-or-download [fileId]="attachment['0103'].fileLoadId" *ngIf="attachment['0103']" (tranferFileType)="tranferFileType($event,'0103')">
-                  <a class="fa fa-search text-disabled" [class.text-info]="attachment['0103']" (click)="show($event,'0103')" title="查看"></a>
+                  <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0103']" (click)="show($event,'0103')" title="查看"></a>
                   <a class="fa fa-download" [class.text-info]="attachment['0103']" (click)="download('0103')" title="下载"></a>
                 </preview-or-download>
                 <a *ngIf="!attachment['0103']" class="fa fa-search text-disabled" title="查看"></a>
