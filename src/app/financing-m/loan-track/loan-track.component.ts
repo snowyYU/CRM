@@ -20,6 +20,10 @@ export class LoanTrackComponent implements OnInit {
 	page:number=0             //页数
 	count:number=0            //数据总数
 
+	repaymentPlanModal:boolean  //还款计划模态框
+	modalSize:string='lg'  		//模态框大小
+	modalListLoading:boolean    //等待模态框价值
+
 	borrowApplyId:string      //借款申请ID
 	companyName:string        //企业名称
 	approveAmount:number      //借款金额
@@ -198,9 +202,10 @@ export class LoanTrackComponent implements OnInit {
 	}
 
 	getRepaymentPlanList(row){
+		console.log(row)
 		this.loanTrack.getRepaymentPlanList(row.borrowApplyId)
 		.then(res=>{
-			console.log(res)
+			this.repaymentPlanModal=true
 			this.repaymentPlanList=res.body.records
 		})
 		.catch(res=>{
@@ -220,12 +225,11 @@ export class LoanTrackComponent implements OnInit {
 	}
 
 	detail(row){
-		let queryList={
-			memberId:row.memberId,
-			borrowApplyId:row.borrowApplyId,
-			paymentWay:row.paymentWay
-		}
-		this.router.navigate(['/financingM/loanTrack/detail',JSON.stringify(queryList)])
+		this.router.navigate(['/financingM/loanTrack/detail',row.borrowApplyId])
+	}
+
+	closeModal(){
+		this.repaymentPlanModal=false
 	}
 }
 

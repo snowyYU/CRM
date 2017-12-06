@@ -2,12 +2,6 @@ import { Injectable } from '@angular/core';
 import { MyHttp } from '../../../../services/myHttp/myhttp.service'
 import { MyHttpClient } from '../../../../services/myHttp/myhttpClient.service'
 
-export interface SendData {
-	memberId:string            //会员ID
-	borrowApplyId: string      //借款申请ID
-	paymentWay: number         //还款方式
-}
-
 @Injectable()
 export class DetailService {
 
@@ -15,11 +9,28 @@ export class DetailService {
 		private myHttp: MyHttpClient
 	) { }
 
-
-	getLoanDetails(queryData): Promise<any> {
+	getLoanDetails(id:string): Promise<any> {
 		return this.myHttp.post({
 			api: this.myHttp.api.getLoanDetails,
-			query: queryData
+			query: {
+				borrowApplyId:id
+			}
+		}).toPromise().then(res=>{
+			let data=res
+			if (data.status==200) {
+				return Promise.resolve(data)
+			} else {
+				return Promise.reject(data)
+			}
+		})
+	}
+
+	getRepaymentPlan(id:string): Promise<any> {
+		return this.myHttp.post({
+			api: this.myHttp.api.getRepaymentPlanList,
+			query: {
+				borrowApplyId:id
+			}
 		}).toPromise().then(res=>{
 			let data=res
 			if (data.status==200) {

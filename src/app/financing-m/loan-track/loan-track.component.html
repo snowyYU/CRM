@@ -100,7 +100,7 @@
               <div>
                 <a class="table-btn text-info" (click)="detail(operation)">详情</a>
                 <a class="table-btn text-info" (click)="getRepaymentPlanList(operation)">还款计划</a>
-                <a class="table-btn text-info" (click)="detail(operation)" *ngIf="authRole.roleIn(['008'])">催收</a>
+                <!-- <a class="table-btn text-info" (click)="detail(operation)" *ngIf="authRole.roleIn(['008'])">催收</a> -->
               </div>
             </ng-template>
           </p-column>
@@ -132,3 +132,69 @@
     </div>
   </div>
 </div>
+
+<!-- 还款计划模态框部分 -->
+<modal [(visible)]="repaymentPlanModal" [size]="modalSize">
+  <modal-header>
+    <h4 class="modal-title">还款计划</h4>
+  </modal-header>
+  <modal-body>
+    <div>
+      <p-dataTable tableStyleClass="table-style" [value]="repaymentPlanList"   emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="modalListLoading"
+                   >
+        <p-column field="" header="期数">
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-center">
+              {{data.totalPeriod | filterNull:false}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="计划还款日">
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-center">
+              {{data.repaymentDate | effDateFormat}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="应还本金(元)">
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-right">
+              {{data.repaymentCapital | yuanFormat:2:true}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="应还利息(元)">
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-right">
+              {{data.repaymentInterest | yuanFormat:2:true}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="罚息(元)" >
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-right">
+              {{data.overdueInterest | yuanFormat:2:true}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="应还总额(元)">
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-right">
+              {{data.repaymentAmount | yuanFormat:2:true}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="状态">
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-center">
+              {{data.statusName | filterNull:false}}
+            </div>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </modal-body>
+  <modal-footer styleClass="no-t-padding">
+    <button class="btn btn-default" (click)="closeModal()">关闭</button>
+  </modal-footer>
+</modal>
