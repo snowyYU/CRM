@@ -213,7 +213,6 @@ export class LoanTrackComponent implements OnInit {
 	}
 	
 	handleData(res){
-		console.log(res)
 		this.dataList=res.body.records
 		this.count=res.body.paginator.totalCount
 		this.loading=false
@@ -224,7 +223,7 @@ export class LoanTrackComponent implements OnInit {
 		let queryList={
 			memberId:row.memberId,
 			borrowApplyId:row.borrowApplyId,
-			paymentWay:row.repaymentWay
+			paymentWay:row.paymentWay
 		}
 		this.router.navigate(['/financingM/loanTrack/detail',JSON.stringify(queryList)])
 	}

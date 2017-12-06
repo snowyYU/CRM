@@ -22,6 +22,11 @@ export class DetailComponent implements OnInit {
 
 	queryData:SendData
 	dataList:any[]
+	financeApply:any[]
+	member:any[]
+	productsAttach:any[]
+	repaymentPlan:any[]
+	resource:any[]		
 	constructor(
 		private router:Router,
 		private route:ActivatedRoute,
@@ -36,13 +41,11 @@ export class DetailComponent implements OnInit {
 
 	getLoanData(){
 		let data=JSON.parse(this.route.params['value']['data'])
-		console.log(data)
 		this.queryData={
 			memberId:data.memberId,
 			borrowApplyId:data.borrowApplyId,
-			paymentWay:parseInt(data.paymentWay)
+			paymentWay:data.paymentWay
 		}
-		console.log(this.queryData)
 	  }
 
 	getLoanDetails(){
