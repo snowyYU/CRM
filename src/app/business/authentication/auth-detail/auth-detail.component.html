@@ -86,7 +86,7 @@
             {{linkJob | filterNull:false}}
           </div>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label  class="control-label pull-left">是否法人：</label>
           <div class="form-control-static pull-left">
             {{isLegalDic | filterNull:false}}
@@ -96,6 +96,18 @@
           <label  class="control-label pull-left">身份证号：</label>
           <div class="form-control-static pull-left">
             {{linkIdcard | filterNull:false}}
+          </div>
+        </div> -->
+        <div class="form-group">
+          <label  class="control-label pull-left">法人姓名：</label>
+          <div class="form-control-static pull-left">
+            {{legalName | filterNull:false}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label  class="control-label pull-left">法人身份证：</label>
+          <div class="form-control-static pull-left">
+            {{legalIdcard | filterNull:false}}
           </div>
         </div>
       </div>
