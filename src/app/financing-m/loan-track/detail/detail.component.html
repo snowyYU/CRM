@@ -153,7 +153,7 @@
                 <label class="label-control">合同:</label>
                 <div class="col-md-8 text-content">
                     <ul *ngFor="let item of contractList">
-                        <li><span class="text-info" (click)="openModal(item)">《{{item.contractTitle}}》</span></li>
+                        <li class="inline-block"><span class="text-info" (click)="openModal(item)">《{{item.contractTitle}}》</span></li>
                     </ul>
                 </div>
             </div>
@@ -188,7 +188,7 @@
         <div class="col-md-12 form-group" *ngIf="toWhere==2">
             <div class="col-md-12">
                 <label class="label-control">电子账户流水:</label>
-                <div class="col-md-8 text-content">
+                <div class="col-md-10 text-content">
                     <div>
                         <p-dataTable tableStyleClass="table-style" [value]="borrowFlowList"   emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="modalListLoading">
                             <p-column field="" header="交易时间">
