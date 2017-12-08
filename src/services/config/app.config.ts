@@ -650,6 +650,17 @@ export const API = {
     method:'post',
     host:host_fbps
   },
+  getList:{
+    url:'base/resource/getList',
+    method:'get',
+    host:host_fbps
+  },
+  getSignList:{
+    url:'tw/contract/getSignList',
+    method:'post',
+    host:host_fbps
+  },
+  
   
 
   /*-----------------------------------催收任务---------------------------------------*/

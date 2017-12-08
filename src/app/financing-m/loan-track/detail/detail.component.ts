@@ -22,13 +22,15 @@ export class DetailComponent implements OnInit {
 	modalSize:string='lg'  //模态框大小
 	modalListLoading:boolean  //等待模态框价值
 
+	contractModal:boolean  //合同模态框
+
+
 	applyAmount
 	applyVos
 	beginTime
 	cardNo
 	contracts
 	createBy
-	createTime
 	deadlineDate
 	endTime
 	extendCycle
@@ -49,57 +51,66 @@ export class DetailComponent implements OnInit {
 	resourceId
 	rolloverDeposit
 	stage
-	toWhere
 	toWhereDic
 	updateBy
 	updateTime
 	waybills
 
-	approveAmount
-	borrowApplyId
-	companyName
-	loanTime
-	memberId
-	paymentWay
-	paymentWayDic
-	productId
-	productName
-	rate
-	rateType
-	rateTypeDic
-	ratedCycle
-	status
-	statusName
-	statusName2
+	approveAmount//审批金额（实际放款金额）
+	createTime//申请时间
+	borrowApplyId//借款单编号
+	companyName//公司名称
+	loanTime//放款时间
+	memberId//会员编码
+	paymentWay//还款方式
+	paymentWayDic//还款方式，中文
+	productId//产品编号
+	productName//产品名称
+	rate//利率
+	rateType//计息方式
+	rateTypeDic//计息方式，中文
+	ratedCycle//贷款周期
+	status//状态
+	statusName//状态名称
+	statusName2//状态名称2
+	toWhere//放款去向（放款类型：1：线下，2：线上）	
 
-	auditOneBy
-	auditOneTime
-	auditOneRemarks
-	auditTwoBy
-	auditTwoTime
-	auditTwoRemarks
+	auditOneBy//一审人员
+	auditOneTime//一审时间
+	auditOneRemarks//一审意见
+	auditTwoBy//二审人员
+	auditTwoTime//二审时间
+	auditTwoRemarks//二审意见
 
-	repaymentPlanList:{
+	fileLoadId//文件读取码
+
+	contractList:any[]//合同列表
+	contractData:{//合同对象
 		borrowApplyId?
-		currentPeriod?
-		errorAmount?
+		companyName?
+		contractId?
+		contractNum?
+		contractTitle?
+		contractType?
+		createTime?
+		eSignatureId?
+		eSignatureStatus?
+		eSignatureStatusDic?
+		eSignatureTime?
+		fileLoadId?
+		fileName?
 		isNewRecord?
-		isRollover?
-		overTime?
-		overdueInterest?
-		repaymentAmount?
-		repaymentCapital?
-		repaymentDate?
-		repaymentInterest?
-		repaymentRelDate?
-		rolloverDeposit?
-		rolloverInterest?
-		status?
-		statusName?
-		statusName2?
-		totalPeriod?
-		totalRelAmount?
-	}[]=[]
+		memberId?
+		resourceId?
+		resourceName?
+		isSign?
+	}={}
+
+	borrowFlowList:any[]//借款列表
+
+	repaymentPlanList:any[]//还款计划列表
+
+	signList:any[]//签章列表
 
 	@ViewChild(GalleryComponent) gallery:GalleryComponent;
 	@ViewChild(PreviewerComponent) previewer:PreviewerComponent;
@@ -113,7 +124,7 @@ export class DetailComponent implements OnInit {
 	ngOnInit() {
 		this.applyDetail()
 		this.proveDataList()
-		this.contractList()
+		this.getContractList()
 		this.getBorrowFlowList()
 		this.logList()
 	}
@@ -170,11 +181,11 @@ export class DetailComponent implements OnInit {
 		})
 	}
 
-	contractList(){
+	getContractList(){
 		this.detail.contractList(this.route.params['value']['data'])
 		.then(res=>{
 			console.log(res)
-			
+			this.contractList=res.body.records
 		})
 		.catch(res=>{
 			this.pop.error({
@@ -188,9 +199,12 @@ export class DetailComponent implements OnInit {
 		this.detail.getBorrowFlowList(this.route.params['value']['data'])
 		.then(res=>{
 			console.log(res)
-			// this.dataList=res.body.records[0]
+			this.borrowFlowList=res.body.records
+			this.fileLoadId=res.body.records[0].fileLoadId?res.body.records[0].fileLoadId:null
+			this.loading=res.body.records[0].fileLoadId?false:true
 		})
 		.catch(res=>{
+			this.loading=false
 			this.pop.error({
 				title:'错误信息',
 				text:res.message
@@ -215,8 +229,41 @@ export class DetailComponent implements OnInit {
 		})
 	}
 
+	getList(data:string){
+		this.detail.getList()
+		.then(res=>{
+			console.log(res)
+			for(let i=0;i<res.body.records.length;i++){
+				if(res.body.records[i].resourceId==data){
+					this.contractData.resourceName=res.body.records[i].resourceName
+				}
+			}
+		})
+		.catch(res=>{
+			this.pop.error({
+				title:'错误信息',
+				text:res.message
+			})
+		})
+	}
+
+	getSignList(id:string){
+		this.detail.getSignList(id)
+		.then(res=>{
+			console.log(res)
+			this.signList=res.body.records
+		})
+		.catch(res=>{
+			this.pop.error({
+				title:'错误信息',
+				text:res.message
+			})
+		})
+	}
+
 	handleData(res:any){
 		this.approveAmount=res.body.approveAmount
+		this.createTime=res.body.createTime
 		this.borrowApplyId=res.body.borrowApplyId
 		this.companyName=res.body.companyName
 		this.loanTime=res.body.loanTime
@@ -232,6 +279,7 @@ export class DetailComponent implements OnInit {
 		this.status=res.body.status
 		this.statusName=res.body.statusName
 		this.statusName2=res.body.statusName2
+		this.toWhere=res.body.toWhere
 	}
 
 	renderData(res:any){
@@ -256,49 +304,16 @@ export class DetailComponent implements OnInit {
 		}
 	}
 
-	tranferFileType(fileType,type){
-		this.attachment[type].extension=fileType
-		console.log(fileType)
-	}
-
-
-	show(e,type){
-		console.log(type)
-		console.log(this.attachment[type])
-		console.log(!this.attachment[type])
-		if (!!this.attachment[type]) {
-			let url:any=this.detail.getFileUrl(this.attachment[type].fileLoadId)
-			let extension=this.attachment[type].extension
-			let event=e
-
-			// this.gallery.open(e,url);
-			//这里判断上传文件的类型
-			//分为可以预览的和不可以预览的，不可以预览的需要下载
-			console.log(extension)
-			if(img.indexOf(extension)>=0||file.indexOf(extension)>=0){
-				if (img.indexOf(extension)>=0) {
-					this.previewer.open(event,url,"img")
-					
-				}else if (file.indexOf(extension)>=0) {
-					this.previewer.open(event,url,"file")
-					
-				}
-			}else{
-				this.pop.confirm({
-					title:"提示框",
-					text:"此文件不支持预览，是否下载查看？"
-				}).onConfirm(()=>{
-					this.download(type)
-				})
-			}
+	openModal(data:any){
+		this.contractModal=true
+		this.contractData=data
+		if(this.contractData.eSignatureStatus==2){
+			this.contractData.isSign='否'
+		}else{
+			this.contractData.isSign='是'
 		}
-	}
-
-	download(type){
-		if (!!this.attachment[type]) {
-			let url=this.detail.downLoadFile(this.attachment[type].fileLoadId)
-			window.location.href=url
-		}
+		this.getList(data.resourceId)
+		this.getSignList(data.contractId)
 	}
 
 	back(){
@@ -307,5 +322,6 @@ export class DetailComponent implements OnInit {
 
 	closeModal(){
 		this.repaymentPlanModal=false
+		this.contractModal=false
 	}
 }
