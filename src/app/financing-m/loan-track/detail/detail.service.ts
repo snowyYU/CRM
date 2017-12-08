@@ -107,17 +107,35 @@ export class DetailService {
 		})
 	}
 
-		/**
-	 * 查看图片或文件的地址
-	 * @param  {[type]}       id [description]
-	 * @return {Promise<any>}    [description]
-	 */
-	getFileUrl(id,mode?){
-		return this.myHttp.sShow(id,mode)
-				
+	getList(): Promise<any> {
+		return this.myHttp.get({
+			api: this.myHttp.api.getList,
+			query: {
+				resourceType:1,
+			}
+		}).toPromise().then(res=>{
+			let data=res
+			if (data.status==200) {
+				return Promise.resolve(data)
+			} else {
+				return Promise.reject(data)
+			}
+		})
 	}
 
-	downLoadFile(id){
-		return this.myHttp.sDownLoad(id)
+	getSignList(id:string): Promise<any> {
+		return this.myHttp.post({
+			api: this.myHttp.api.getSignList,
+			query: {
+				contractId:id,
+			}
+		}).toPromise().then(res=>{
+			let data=res
+			if (data.status==200) {
+				return Promise.resolve(data)
+			} else {
+				return Promise.reject(data)
+			}
+		})
 	}
 }
