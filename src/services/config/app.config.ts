@@ -12,6 +12,7 @@ interface Host{
   api:string;
   oauth:string;
   file:string;
+  fbps:string;
 }
 interface System{
   name:string;
@@ -74,7 +75,7 @@ class Config{
     this.initSystems();
   }
   init(){
-    this.name='fbps_web';
+    this.name='crm_web';
     this.version='0.01';
     this.env={
       production:environment.production,
@@ -85,17 +86,20 @@ class Config{
       dev:{
         api:'http://192.168.10.10:8090/crm/',
         oauth:'http://192.168.10.10:8090/ims/',
-        file:'http://121.46.18.25:9090/oss/'
+        file:'http://121.46.18.25:9090/oss/',
+        fbps:'http://192.168.10.10:8090/fbps/'
       },
       test:{
         api:'http://192.168.10.10:9090/crm/',
         oauth:'http://192.168.10.10:9090/ims/',
-        file:'http://121.46.18.25:9090/oss/'
+        file:'http://121.46.18.25:9090/oss/',
+        fbps:'http://192.168.10.10:9090/fbps/'
       },
       prod:{
         api:'http://192.168.10.10:9090/crm/',
         oauth:'http://192.168.10.10:9090/ims/',
-        file:'http://121.46.18.25:9090/oss/'
+        file:'http://121.46.18.25:9090/oss/',
+        fbps:'http://192.168.10.10:9090/fbps/'
       }
     };
     this.systems=[{
@@ -260,6 +264,9 @@ export const cur_host=config.getHost();
 
 //项目主接口地址
 export  const host=cur_host.api;
+
+//业务系统接口地址
+export const host_fbps=cur_host.fbps;
 
 //认证相关接口地址
 export const host_ims=cur_host.oauth;
@@ -604,17 +611,46 @@ export const API = {
   /*-----------------------------------融资管理---------------------------------------*/
   /*-----------------------------------在贷跟踪---------------------------------------*/
   getLoanList:{
-    url:'fam/LoanTracking/getByPage',
-    method:'post'
+    url:'lms/financeApply/applyList',
+    method:'get',
+    host:host_fbps
   },
-  getLoanDetails:{
-    url:'fam/LoanTracking/getDetails',
-    method:'post'
+  dictionaryList:{
+    url:'base/dictionary/dictionaryList',
+    method:'get',
+    host:host_fbps
   },
   getRepaymentPlanList:{
-    url:'fam/LoanTracking/getRepaymentPlan',
-    method:'post'
+    url:'lms/repaymentPlan/repaymentPlanList',
+    method:'post',
+    host:host_fbps
   },
+  applyDetail:{
+    url:'lms/financeApply/applyDetail',
+    method:'get',
+    host:host_fbps
+  },
+  proveDataList:{
+    url:'lms/financeApply/proveDataList',
+    method:'post',
+    host:host_fbps
+  },
+  contractList:{
+    url:'tw/contract/contractList',
+    method:'post',
+    host:host_fbps
+  },
+  getBorrowFlowList:{
+    url:'acct/account/getBorrowFlowList',
+    method:'get',
+    host:host_fbps
+  },
+  logList:{
+    url:'sys/log/logList',
+    method:'post',
+    host:host_fbps
+  },
+  
 
   /*-----------------------------------催收任务---------------------------------------*/
   getTotalByStatus:{
