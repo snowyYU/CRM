@@ -1,0 +1,8 @@
+<div>
+	<div *ngIf="fileId">
+		<a class="fa fa-search text-info m-r-md" (click)="show($event)" title="查看" *ngIf="preShow"></a>
+        <a class="fa fa-download text-info" (click)="download()" title="下载"></a>
+	</div>
+	
+	<!-- <a *ngIf="!fileId" class="fa fa-search text-disabled" title="查看"></a> -->
+</div>
