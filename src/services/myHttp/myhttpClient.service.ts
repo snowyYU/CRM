@@ -7,6 +7,7 @@ import {Observable} from "rxjs/Observable";
 export interface MyHttpAPIOptions {
   url: string;
   method: string;
+  host?:string
 }
 export interface HttpClientOptions {
   body?: any,
@@ -56,7 +57,8 @@ export class MyHttpClient {
           url += '?' + urlParams;
         }
       }
-      url = host + url;
+      url = parameters.api.host?(parameters.api.host+url):(host+url);
+      
       return url;
     }
   }

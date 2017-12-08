@@ -13,107 +13,229 @@
     <section class="group clearfix form-group">
         <div class="col-md-12 m-t form-group">
             <div class="col-md-6">
-                <label class="label-control">借款单编号:</label>
+                <label class="label-control">贷款单号:</label>
                 <div class="col-md-8 text-content">
                     {{borrowApplyId | filterNull:false}}
                 </div>
             </div>
             <div class="col-md-6">
-                <label class="label-control">创建时间:</label>
+                <label class="label-control">申请时间:</label>
                 <div class="col-md-8 text-content">
-                    {{createTime | filterNull:false}}
+                    {{loanTime | effDateFormat | filterNull:false}}
                 </div>
             </div>
         </div>
         <div class="col-md-12 form-group">
             <div class="col-md-6">
-                <label class="label-control">企业名称:</label>
+                <label class="label-control">状态:</label>
                 <div class="col-md-8 text-content">
-                    {{borrowApplyId | filterNull:false}}
-                </div>
-            </div>
-            <div class="col-md-6">
-                <label class="label-control">合同确认时间:</label>
-                <div class="col-md-8 text-content">
-                    {{createTime | filterNull:false}}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 form-group">
-            <div class="col-md-6">
-                <label class="label-control">归属渠道:</label>
-                <div class="col-md-8 text-content">
-                    {{appName | filterNull:false}}
+                    {{statusName | filterNull:false}}
                 </div>
             </div>
         </div>
     </section>
     <section class="group clearfix form-group">
-        <div class="col-md-12 m-t form-group">
+        <div class="col-md-12  m-t form-group">
             <div class="col-md-6">
-                <label class="label-control">借款金额:</label>
+                <label class="label-control">企业名称:</label>
                 <div class="col-md-8 text-content">
-                    {{borrowApplyId | filterNull:false}}
+                    {{companyName | filterNull:false}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="label-control">企业ID:</label>
+                <div class="col-md-8 text-content">
+                    {{memberId | filterNull:false}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 form-group">
+            <div class="col-md-6">
+                <label class="label-control">申请金额:</label>
+                <div class="col-md-8 text-content">
+                    {{approveAmount | yuanFormat:2:true}}<span *ngIf="approveAmount"> 元</span>
                 </div>
             </div>
             <div class="col-md-6">
                 <label class="label-control">贷款产品:</label>
                 <div class="col-md-8 text-content">
-                    {{createTime | filterNull:false}}
+                    {{productName | filterNull:false}}
                 </div>
             </div>
         </div>
         <div class="col-md-12 form-group">
             <div class="col-md-6">
-                <label class="label-control">借款周期:</label>
+                <label class="label-control">贷款周期:</label>
                 <div class="col-md-8 text-content">
-                    {{borrowApplyId | filterNull:false}}
+                    {{ratedCycle | filterNull:false}}
                 </div>
             </div>
             <div class="col-md-6">
                 <label class="label-control">还款方式:</label>
                 <div class="col-md-8 text-content">
-                    {{createTime | filterNull:false}}
+                    {{paymentWayDic | filterNull:false}}
                 </div>
             </div>
         </div>
         <div class="col-md-12 form-group">
-            <div class="col-md-6">
-                <label class="label-control">计息方式:</label>
-                <div class="col-md-8 text-content">
-                    {{borrowApplyId | filterNull:false}}
-                </div>
-            </div>
             <div class="col-md-6">
                 <label class="label-control">利率:</label>
                 <div class="col-md-8 text-content">
-                    {{createTime | filterNull:false}}
+                    {{rate | percent | filterNull:false}}
                 </div>
             </div>
-        </div>
-        <div class="col-md-12 form-group">
-            <div class="col-md-10">
-                <label class="label-control">还款计划:</label>
+            <div class="col-md-6">
+                <label class="label-control">计息方式:</label>
                 <div class="col-md-8 text-content">
-                    {{borrowApplyId | filterNull:false}}
+                    {{rateTypeDic | filterNull:false}}
                 </div>
             </div>
         </div>
     </section>
     <section class="group clearfix form-group">
         <div class="col-md-12 m-t form-group">
-            <div class="col-md-10">
-                <label class="label-control">运单合同:</label>
+            <div class="col-md-6">
+                <label class="label-control">运单:</label>
                 <div class="col-md-8 text-content">
-                    {{borrowApplyId | filterNull:false}}
+                    <preview-or-download [fileId]="attachment['0401'].fileLoadId" *ngIf="attachment['0401']" (tranferFileType)="tranferFileType($event,'0401')">
+                        <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0401']" (click)="show($event,'0401')" title="查看"></a>
+                        <a class="fa fa-download" [class.text-info]="attachment['0401']" (click)="download('0401')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0401']" class="fa fa-search text-disabled" title="查看"></a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="label-control">回单:</label>
+                <div class="col-md-8 text-content">
+                    <preview-or-download [fileId]="attachment['0402'].fileLoadId" *ngIf="attachment['0402']" (tranferFileType)="tranferFileType($event,'0402')">
+                        <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0402']" (click)="show($event,'0402')" title="查看"></a>
+                        <a class="fa fa-download" [class.text-info]="attachment['0402']" (click)="download('0402')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0402']" class="fa fa-search text-disabled" title="查看"></a>
                 </div>
             </div>
         </div>
-        <div class="col-md-12 m-t form-group">
-            <div class="col-md-10">
-                <label class="label-control">融资合同:</label>
+        <div class="col-md-12 form-group">
+            <div class="col-md-6">
+                <label class="label-control">发票:</label>
                 <div class="col-md-8 text-content">
-                    {{createTime | filterNull:false}}
+                    <preview-or-download [fileId]="attachment['0403'].fileLoadId" *ngIf="attachment['0403']" (tranferFileType)="tranferFileType($event,'0403')">
+                        <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0403']" (click)="show($event,'0403')" title="查看"></a>
+                        <a class="fa fa-download" [class.text-info]="attachment['0403']" (click)="download('0403')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0403']" class="fa fa-search text-disabled" title="查看"></a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="label-control">TMS截图:</label>
+                <div class="col-md-8 text-content">
+                    <preview-or-download [fileId]="attachment['0408'].fileLoadId" *ngIf="attachment['0408']" (tranferFileType)="tranferFileType($event,'0408')">
+                        <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0408']" (click)="show($event,'0408')" title="查看"></a>
+                        <a class="fa fa-download" [class.text-info]="attachment['0408']" (click)="download('0408')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0408']" class="fa fa-search text-disabled" title="查看"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 form-group">
+            <div class="col-md-6">
+                <label class="label-control">对账单:</label>
+                <div class="col-md-8 text-content">
+                    <preview-or-download [fileId]="attachment['0409'].fileLoadId" *ngIf="attachment['0409']" (tranferFileType)="tranferFileType($event,'0409')">
+                        <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0409']" (click)="show($event,'0409')" title="查看"></a>
+                        <a class="fa fa-download" [class.text-info]="attachment['0409']" (click)="download('0409')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0409']" class="fa fa-search text-disabled" title="查看"></a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="label-control">大合同:</label>
+                <div class="col-md-8 text-content">
+                    <preview-or-download [fileId]="attachment['0410'].fileLoadId" *ngIf="attachment['0410']" (tranferFileType)="tranferFileType($event,'0410')">
+                        <a class="fa fa-search text-disabled m-r-md" [class.text-info]="attachment['0410']" (click)="show($event,'0410')" title="查看"></a>
+                        <a class="fa fa-download" [class.text-info]="attachment['0410']" (click)="download('0410')" title="下载"></a>
+                    </preview-or-download>
+                    <a *ngIf="!attachment['0410']" class="fa fa-search text-disabled" title="查看"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 form-group">
+            <div class="col-md-6">
+                <label class="label-control">合同:</label>
+                <div class="col-md-8 text-content">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="group clearfix form-group">
+        <div class="col-md-12 m-t form-group">
+            <div class="col-md-6">
+                <label class="label-control">放款时间:</label>
+                <div class="col-md-8 text-content">
+                    <!-- {{borrowApplyId | effDateFormat | filterNull:false}} -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="label-control">还款计划:</label>
+                <div class="col-md-8 text-info" (click)="getRepaymentPlan()">
+                    查看
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 form-group">
+            <div class="col-md-10">
+                <label class="label-control">放款凭证:</label>
+                <div class="col-md-8 text-content">
+                    <!-- {{createTime | filterNull:false}} -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="group clearfix form-group">
+        <div class="col-md-12 m-t form-group">
+            <div class="col-md-6">
+                <label class="label-control">一审人员:</label>
+                <div class="col-md-8 text-content">
+                    {{auditOneBy | filterNull:false}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="label-control">一审时间:</label>
+                <div class="col-md-8 text-content">
+                    {{auditOneTime | filterNull:false}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 form-group">
+            <div class="col-md-6">
+                <label class="label-control">一审意见:</label>
+                <div class="col-md-8 text-content">
+                    {{auditOneRemarks | filterNull:false}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="group clearfix form-group">
+        <div class="col-md-12 m-t form-group">
+            <div class="col-md-6">
+                <label class="label-control">二审人员:</label>
+                <div class="col-md-8 text-content">
+                    {{auditTwoBy | filterNull:false}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="label-control">二审时间:</label>
+                <div class="col-md-8 text-content">
+                    {{auditTwoTime | filterNull:false}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 form-group">
+            <div class="col-md-6">
+                <label class="label-control">二审意见:</label>
+                <div class="col-md-8 text-content">
+                    {{auditTwoRemarks | filterNull:false}}
                 </div>
             </div>
         </div>
@@ -126,3 +248,71 @@
         </div>
     </section>
 </div>
+<gallery #gallery size="lg"></gallery>
+<previewer></previewer>
+
+
+<!-- 还款计划模态框部分 -->
+<modal [(visible)]="repaymentPlanModal" [size]="modalSize">
+  <modal-header>
+    <h4 class="modal-title">还款计划</h4>
+  </modal-header>
+  <modal-body>
+    <div>
+      <p-dataTable tableStyleClass="table-style" [value]="repaymentPlanList"   emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="modalListLoading">
+        <p-column field="" header="期数">
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-center">
+              {{data.totalPeriod | filterNull:false}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="计划还款日">
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-center">
+              {{data.repaymentDate | effDateFormat}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="应还本金(元)">
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-right">
+              {{data.repaymentCapital | yuanFormat:2:true}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="应还利息(元)">
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-right">
+              {{data.repaymentInterest | yuanFormat:2:true}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="罚息(元)" >
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-right">
+              {{data.overdueInterest | yuanFormat:2:true}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="应还总额(元)">
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-right">
+              {{data.repaymentAmount | yuanFormat:2:true}}
+            </div>
+          </ng-template>
+        </p-column>
+        <p-column field="" header="状态">
+          <ng-template let-data="rowData" pTemplate="body">
+            <div class="text-center">
+              {{data.statusName | filterNull:false}}
+            </div>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </modal-body>
+  <modal-footer styleClass="no-t-padding">
+    <button class="btn btn-default" (click)="closeModal()">关闭</button>
+  </modal-footer>
+</modal>

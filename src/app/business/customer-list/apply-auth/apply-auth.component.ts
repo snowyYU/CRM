@@ -176,6 +176,8 @@ export class ApplyAuthComponent implements OnInit {
 	memberType
 	typeList:any[]
 	isLegal
+	legalName//法人姓名
+	legalIdcard//法人身份证
 	isLegalList:any[]=[]
 	firstList:any[]//附件第一个列表数据
 
@@ -503,9 +505,11 @@ export class ApplyAuthComponent implements OnInit {
 			guestId:this.guestId,			//客户跟踪ID
 			linkName:this.linkName,			//联系人
 			linkMobile:this.linkMobile,		//联系人手机
-			isLegal:this.isLegal,			//是否法人
+			// isLegal:this.isLegal,			//是否法人
 			linkJob:this.linkJob,			//联系人职位
-			linkIdcard:this.linkIdcard,		//联系人身份证
+			// linkIdcard:this.linkIdcard,		//联系人身份证
+			legalName:this.legalName,       //法人姓名
+			legalIdcard:this.legalIdcard,   //法人身份证
 			licenceNum:this.licenceNum,		//营业执照号
 			companyType:this.companyType,	//公司类型
 			registerCapital:this.registerCapital?this.registerCapital*10000:null,	//注册资金

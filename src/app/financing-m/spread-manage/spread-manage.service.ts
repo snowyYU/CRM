@@ -25,6 +25,7 @@ export class SpreadManageService {
             }
 		}).toPromise().then(res=>{
 			let data=res
+			data.body.records.unshift({label:'全部',value:'-1'})
 			if (data.status==200) {
 				return Promise.resolve(data)
 			}else{
