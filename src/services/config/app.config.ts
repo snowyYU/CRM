@@ -11,8 +11,8 @@ interface Environment{
 interface Host{
   api:string;
   oauth:string;
-  file:string;
   fbps:string;
+  file:string;
 }
 interface System{
   name:string;
@@ -86,20 +86,20 @@ class Config{
       dev:{
         api:'http://192.168.10.10:8090/crm/',
         oauth:'http://192.168.10.10:8090/ims/',
+        fbps:'http://192.168.10.10:8090/fbps/',
         file:'http://121.46.18.25:9090/oss/',
-        fbps:'http://192.168.10.10:8090/fbps/'
       },
       test:{
         api:'http://192.168.10.10:9090/crm/',
         oauth:'http://192.168.10.10:9090/ims/',
-        file:'http://121.46.18.25:9090/oss/',
-        fbps:'http://192.168.10.10:9090/fbps/'
+        fbps:'http://192.168.10.10:9090/fbps/',
+        file:'http://121.46.18.25:9090/oss/'
       },
       prod:{
-        api:'http://192.168.10.10:9090/crm/',
-        oauth:'http://192.168.10.10:9090/ims/',
-        file:'http://121.46.18.25:9090/oss/',
-        fbps:'http://192.168.10.10:9090/fbps/'
+        api:'http://120.76.244.160:8080/crm/',
+        oauth:'http://120.76.244.160:8080/ims/',
+        fbps:'http://120.76.244.160:8080/fbps/',
+        file:'http://121.46.18.25:9090/oss/'
       }
     };
     this.systems=[{
@@ -115,31 +115,31 @@ class Config{
       link:{//链接
         dev:'http://192.168.10.10:8091/fbps',
         test:'http://192.168.10.10:9091/fbps',
-        prod:'',
+        prod:'http://fsmp.money56.com/fbps',
       },
       active:false
     },{
       name:'客户关系管理系统',
       link:{//链接
-        dev:'http://192.168.10.10:8090/crm',
-        test:'http://192.168.10.10:9090/crm',
-        prod:'',
+        dev:'http://192.168.10.10:8091/crm',
+        test:'http://192.168.10.10:9091/crm',
+        prod:'http://fsmp.money56.com/crm',
       },
-      active:true
+      active:false
     },{
       name:'金融风控管理系统',
       link:{//链接
         dev:'http://192.168.10.10:8091/rcm',
         test:'http://192.168.10.10:9091/rcm',
-        prod:'',
+        prod:'http://fsmp.money56.com/rcm',
       },
       active:false
     },{
       name:'银行账户管理系统',
       link:{//链接
         dev:'',
-        test:'',
-        prod:'',
+        test:'http://192.168.10.10:9091/ams',
+        prod:'http://fsmp.money56.com/ams',
       },
       active:false
     },{
@@ -147,9 +147,9 @@ class Config{
       link:{//链接
         dev:'http://192.168.10.10:8091/ims',
         test:'http://192.168.10.10:9091/ims',
-        prod:'',
+        prod:'http://fsmp.money56.com/ims',
       },
-      active:false
+      active:true
     }];
   }
 
