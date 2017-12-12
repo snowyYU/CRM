@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router'
 import { PopService } from 'dolphinng'
 import { MemberDetailService } from './member-detail.service'
+import { SessionStorageService } from '../../../../services/session-storage/session-storage.service'
 
 @Component({
 	moduleId: module.id,
@@ -58,11 +59,14 @@ export class MemberDetailComponent implements OnInit {
 	memberRating //信用等级
 	memberRatingGrate //信用评分法				评估日期(暂无)
 
+	//用于记录提交申请前的页面
+	memberDetailDomain
 	constructor(
 			private router:Router,
 			private route:ActivatedRoute,
 			private pop:PopService,
-			private memDetail:MemberDetailService
+			private memDetail:MemberDetailService,
+			private sessionStorage:SessionStorageService
 		) {}
 
 	ngOnInit() {
@@ -109,7 +113,8 @@ export class MemberDetailComponent implements OnInit {
 	}
 
 	back(){
-		window.history.back()
-		// this.router.navigate(['memberM/memberManage'])
+		this.memberDetailDomain=this.sessionStorage.memberDetailDomain
+		this.sessionStorage.deleteItem('memberDetailDomain')
+		this.router.navigate([this.memberDetailDomain])
 	}
 }
