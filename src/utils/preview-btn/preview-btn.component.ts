@@ -19,6 +19,8 @@ import { img,file } from '../previewer/filetype'
 })
 export class PreviewBtnComponent implements OnInit {
 	@Input() fileId
+
+	@Input() showName:boolean=false
 	fileType
 	// @Output() tranferFileType=new EventEmitter<any>()
 
@@ -27,6 +29,8 @@ export class PreviewBtnComponent implements OnInit {
 
 	//判断文件类型是否可以预览，注意，只要存在fileId，下载肯定会出现的
 	preShow:boolean=false
+
+	fileInfo={}
 
 	constructor(
 		private preBtn:PreviewBtnService,
