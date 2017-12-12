@@ -53,6 +53,7 @@ export class PreviewBtnComponent implements OnInit {
 						console.log("显示查看")
 					}
 					// console.log("准备触发emit事件",res.body.fileType)
+					this.fileInfo=res.body
 					this.fileType=res.body.fileType
 					// this.tranferFileType.emit(res.body.fileType)
 					// this.pop.info({
