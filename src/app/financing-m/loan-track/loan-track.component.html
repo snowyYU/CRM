@@ -97,7 +97,7 @@
   </modal-header>
   <modal-body>
     <div>
-      <p-dataTable tableStyleClass="table-style" [value]="repaymentPlanList"   emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="modalListLoading"
+      <p-dataTable tableStyleClass="table-style" [value]="repaymentPlanList"   emptyMessage="{{modalListLoading?'':'没有查询到符合条件的记录'}}" [loading]="modalListLoading"
                    >
         <p-column field="" header="期数">
           <ng-template let-data="rowData" pTemplate="body">

@@ -17,10 +17,11 @@ import {img,file } from "../../../../utils/previewer/filetype"
 export class DetailComponent implements OnInit {
 	attachment:object={}
 	
-	loading:boolean=false     //是否获取到数据
+	loading1:boolean     //是否获取到数据1
+	loading2:boolean    //是否获取到数据2
+	loading3:boolean    //是否获取到数据3
 	repaymentPlanModal:boolean  //还款计划模态框
 	modalSize:string='lg'  //模态框大小
-	modalListLoading:boolean  //等待模态框价值
 
 	contractModal:boolean  //合同模态框
 
@@ -196,15 +197,16 @@ export class DetailComponent implements OnInit {
 	}
 
 	getBorrowFlowList(){
+		this.loading1=true
 		this.detail.getBorrowFlowList(this.route.params['value']['data'])
 		.then(res=>{
 			console.log(res)
 			this.borrowFlowList=res.body.records
 			this.fileLoadId=res.body.records[0].fileLoadId?res.body.records[0].fileLoadId:null
-			this.loading=res.body.records[0].fileLoadId?false:true
+			this.loading1=false
 		})
 		.catch(res=>{
-			this.loading=false
+			this.loading1=false
 			this.pop.error({
 				title:'错误信息',
 				text:res.message
@@ -213,15 +215,16 @@ export class DetailComponent implements OnInit {
 	}
 
 	getRepaymentPlan(){
+		this.loading2=true
 		this.detail.getRepaymentPlan(this.route.params['value']['data'])
 		.then(res=>{
 			this.repaymentPlanModal=true
-			this.loading=true
+			this.loading2=false
 			console.log(res)
 			this.repaymentPlanList=res.body.records
 		})
 		.catch(res=>{
-			this.loading=false
+			this.loading2=false
 			this.pop.error({
 				title:'错误信息',
 				text:res.message
@@ -248,12 +251,15 @@ export class DetailComponent implements OnInit {
 	}
 
 	getSignList(id:string){
+		this.loading3=true
 		this.detail.getSignList(id)
 		.then(res=>{
+			this.loading3=false
 			console.log(res)
 			this.signList=res.body.records
 		})
 		.catch(res=>{
+			this.loading3=false
 			this.pop.error({
 				title:'错误信息',
 				text:res.message

@@ -129,6 +129,7 @@ export class LoanTrackComponent implements OnInit {
 
 		this.loanTrack.getLoanList(sendData)
 			.then(res=>{
+				this.loading=false
 				this.handleData(res)
 			})
 			.catch(res=>{
@@ -141,14 +142,15 @@ export class LoanTrackComponent implements OnInit {
 	}
 
 	getRepaymentPlanList(row){
-		console.log(row)
+		this.modalListLoading=true
 		this.loanTrack.getRepaymentPlanList(row.borrowApplyId)
 		.then(res=>{
+			this.modalListLoading=false
 			this.repaymentPlanModal=true
 			this.repaymentPlanList=res.body.records
 		})
 		.catch(res=>{
-			this.loading=false
+			this.modalListLoading=false
 			this.pop.error({
 				title:'错误提示',
 				text:res.message
@@ -159,7 +161,6 @@ export class LoanTrackComponent implements OnInit {
 	handleData(res){
 		this.dataList=res.body.records
 		this.count=res.body.paginator.totalCount
-		this.loading=false
 
 	}
 
