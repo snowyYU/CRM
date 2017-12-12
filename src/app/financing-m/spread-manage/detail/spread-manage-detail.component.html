@@ -213,7 +213,45 @@
                     <div class="col-md-12 form-group">
                         <div class="col-md-12">
                             <label class="label-control">还款计划:</label>
-                            <div class="col-md-7 m-t-xs">
+                            <div class="col-md-10 m-t-xs">
+                                <!-- <p-dataTable tableStyleClass="table-style" [value]="repaymentList"   emptyMessage="{{loading?'':'没有查询到符合条件的记录'}}" [loading]="loading">
+                                    <p-column field="" header="期数">
+                                        <ng-template let-data="rowData" pTemplate="body">
+                                            <div class="text-center">
+                                                {{data.repaymentDate | effDateFormat}}
+                                            </div>
+                                        </ng-template>
+                                    </p-column>
+                                    <p-column field="" header="还款日">
+                                        <ng-template let-data="rowData" pTemplate="body">
+                                            <div class="text-center">
+                                                {{data.repaymentDate | effDateFormat}}
+                                            </div>
+                                        </ng-template>
+                                    </p-column>
+                                    <p-column field="" header="应还本金(元)">
+                                        <ng-template let-data="rowData" pTemplate="body">
+                                            <div class="text-right">
+                                                {{data.repaymentCapital | yuanFormat:2:true}}
+                                            </div>
+                                        </ng-template>
+                                    </p-column>
+                                    <p-column field="" header="应还利息(元)">
+                                        <ng-template let-data="rowData" pTemplate="body">
+                                            <div class="text-right">
+                                                {{data.repaymentInterest | yuanFormat:2:true}}
+                                            </div>
+                                        </ng-template>
+                                    </p-column>
+                                    <p-column field="" header="状态" >
+                                        <ng-template let-data="rowData" pTemplate="body">
+                                            <div class="text-center">
+                                                {{data.statusName}}
+                                            </div>
+                                        </ng-template>
+                                    </p-column>
+                                </p-dataTable> -->
+
                                 <table class="table showL b-t">
                                     <thead>
                                         <tr>
