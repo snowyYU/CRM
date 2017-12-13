@@ -9,7 +9,7 @@ env 全局环境变量
 测试环境 test
 测试环境 dev development
 */
-  env:'test',
+  env:'dev',
   host:{
     //开发访问地址
     dev:{
@@ -27,8 +27,8 @@ env 全局环境变量
     },
     //生产访问地址
     prod:{
-      api:'http://120.76.244.160:8080/crm/',//api地址
-      oauth:'http://120.76.244.160:8080/ims/',//认证地址
+      api:'http://120.76.244.160:8082/crm/',//api地址
+      oauth:'http://120.76.244.160:8082/ims/',//认证地址
       file:'http://121.46.18.25:9090/oss/'//文件服务器地址
     }
   },
@@ -46,7 +46,7 @@ env 全局环境变量
     link:{//链接
       dev:'http://192.168.10.10:8091/fbps',
       test:'http://192.168.10.10:9091/fbps',
-      prod:'http://fsmp.money56.com/fbps'
+      prod:'http://fsmp.money56.com:8083/fbps'
     },
     active:false
   },{
@@ -54,7 +54,7 @@ env 全局环境变量
     link:{//链接
       dev:'http://192.168.10.10:8091/crm',
       test:'http://192.168.10.10:9091/crm',
-      prod:'http://fsmp.money56.com/crm'
+      prod:'http://fsmp.money56.com:8083/crm'
     },
     active:false
   },{
@@ -62,7 +62,7 @@ env 全局环境变量
     link:{//链接
       dev:'http://192.168.10.10:8091/rcm',
       test:'http://192.168.10.10:9091/rcm',
-      prod:'http://fsmp.money56.com/rcm'
+      prod:'http://fsmp.money56.com:8083/rcm'
     },
     active:false
   },{
@@ -70,7 +70,7 @@ env 全局环境变量
     link:{//链接
       dev:'',
       test:'http://192.168.10.10:9090/ams',
-      prod:'http://fsmp.money56.com/ams'
+      prod:'http://fsmp.money56.com:8082/ams'
     },
     active:false
   },{
@@ -78,7 +78,7 @@ env 全局环境变量
     link:{//链接
       dev:'http://192.168.10.10:8091/ims',
       test:'http://192.168.10.10:9091/ims',
-      prod:'http://fsmp.money56.com/ims'
+      prod:'http://fsmp.money56.com:8083/ims'
     },
     active:true
   }]
