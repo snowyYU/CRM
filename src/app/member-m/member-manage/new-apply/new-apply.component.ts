@@ -74,12 +74,12 @@ export class NewApplyComponent implements OnInit {
 				})
 				this.productList=res.body.records
 			})
-			.catch(res=>{
-				this.pop.error({
-					title:'错误提示',
-					text:res.message
-				})
-			})
+			// .catch(res=>{
+			// 	this.pop.error({
+			// 		title:'错误提示',
+			// 		text:res.message
+			// 	})
+			// })
 	}
 
 	selectProduct(id){
