@@ -96,9 +96,9 @@ class Config{
         file:'http://121.46.18.25:9090/oss/'
       },
       prod:{
-        api:'http://120.76.244.160:8080/crm/',
-        oauth:'http://120.76.244.160:8080/ims/',
-        fbps:'http://120.76.244.160:8080/fbps/',
+        api:'http://120.76.244.160:8082/crm/',
+        oauth:'http://120.76.244.160:8082/ims/',
+        fbps:'http://120.76.244.160:8082/fbps/',
         file:'http://121.46.18.25:9090/oss/'
       }
     };
@@ -115,7 +115,7 @@ class Config{
       link:{//链接
         dev:'http://192.168.10.10:8091/fbps',
         test:'http://192.168.10.10:9091/fbps',
-        prod:'http://fsmp.money56.com/fbps',
+        prod:'http://fsmp.money56.com:8083/fbps',
       },
       active:false
     },{
@@ -123,7 +123,7 @@ class Config{
       link:{//链接
         dev:'http://192.168.10.10:8091/crm',
         test:'http://192.168.10.10:9091/crm',
-        prod:'http://fsmp.money56.com/crm',
+        prod:'http://fsmp.money56.com:8083/crm',
       },
       active:false
     },{
@@ -131,7 +131,7 @@ class Config{
       link:{//链接
         dev:'http://192.168.10.10:8091/rcm',
         test:'http://192.168.10.10:9091/rcm',
-        prod:'http://fsmp.money56.com/rcm',
+        prod:'http://fsmp.money56.com:8083/rcm',
       },
       active:false
     },{
@@ -139,7 +139,7 @@ class Config{
       link:{//链接
         dev:'',
         test:'http://192.168.10.10:9091/ams',
-        prod:'http://fsmp.money56.com/ams',
+        prod:'http://fsmp.money56.com:8082/ams',
       },
       active:false
     },{
@@ -147,7 +147,7 @@ class Config{
       link:{//链接
         dev:'http://192.168.10.10:8091/ims',
         test:'http://192.168.10.10:9091/ims',
-        prod:'http://fsmp.money56.com/ims',
+        prod:'http://fsmp.money56.com:8083/ims',
       },
       active:true
     }];

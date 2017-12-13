@@ -9,7 +9,7 @@ env 全局环境变量
 测试环境 test
 测试环境 dev development
 */
-  env:'dev',
+  env:'test',
   host:{
     //开发访问地址
     dev:{
