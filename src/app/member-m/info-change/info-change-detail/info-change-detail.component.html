@@ -301,8 +301,8 @@
     </section>
     <section class="wrapper">
       <div class="text-center">
-        <button class="btn-def btn-def-success mar-r-xs" *ngIf="isCheck" (click)="submitConfirm(2)">通过<i class="fa fa-check-circle-o"></i></button>
-        <button class="btn-def btn-def-danger mar-r-xs" *ngIf="isCheck" (click)="submitConfirm(-1)">拒绝<i class="fa fa-ban"></i></button>
+        <button class="btn-def mar-r-xs" *ngIf="isCheck" (click)="submitConfirm(2)">通过<i class="fa fa-check-circle-o text-success"></i></button>
+        <button class="btn-def mar-r-xs" *ngIf="isCheck" (click)="submitConfirm(-1)">拒绝<i class="fa fa-ban text-danger"></i></button>
         <a (click)="back()" class="btn-def mar-r-xs" *ngIf="isCheck">放弃<i class="fa fa-arrow-circle-o-left"></i></a>
         <a (click)="back()" class="btn-def mar-r-xs" *ngIf="!isCheck">返回<i class="fa fa-arrow-circle-o-left"></i></a>
       </div>
