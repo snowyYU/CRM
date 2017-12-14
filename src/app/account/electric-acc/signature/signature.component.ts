@@ -256,8 +256,8 @@ export class SignatureComponent implements OnInit {
 					title:'提示信息',
 					text:'注销成功!'
 				})
-
-				this.secondShow=false
+				this.getDetailData()
+				// this.secondShow=false
 				
 
 			})

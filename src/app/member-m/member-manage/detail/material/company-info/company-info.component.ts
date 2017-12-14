@@ -428,7 +428,7 @@ export class CompanyInfoComponent implements OnInit {
 	}
 
 	getCityList(v){
-		console.log(v);
+		// console.log(v);
 		//获取省code
 		this.companyInfo.getAddress({
 			parentCode:0,
@@ -613,8 +613,14 @@ export class CompanyInfoComponent implements OnInit {
 	}
 
 	tranferFileType(fileType,type){
-		this.attachment[type].extension=fileType
-		console.log(fileType)
+		if (this.attachment[type]) {
+			console.log("tranferFileType方法传过来后",this.attachment[type])
+
+			this.attachment[type].extension=fileType
+			console.log("tranferFileType方法传过来的后缀名",fileType)
+			console.log("tranferFileType执行后的attachment",this.attachment)
+		}
+		
 	}
 
 	download(type){

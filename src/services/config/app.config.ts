@@ -11,6 +11,7 @@ interface Environment{
 interface Host{
   api:string;
   oauth:string;
+  fbps:string;
   file:string;
 }
 interface System{
@@ -74,7 +75,7 @@ class Config{
     this.initSystems();
   }
   init(){
-    this.name='fbps_web';
+    this.name='crm_web';
     this.version='0.01';
     this.env={
       production:environment.production,
@@ -85,16 +86,19 @@ class Config{
       dev:{
         api:'http://192.168.10.10:8090/crm/',
         oauth:'http://192.168.10.10:8090/ims/',
-        file:'http://121.46.18.25:9090/oss/'
+        fbps:'http://192.168.10.10:8090/fbps/',
+        file:'http://121.46.18.25:9090/oss/',
       },
       test:{
         api:'http://192.168.10.10:9090/crm/',
         oauth:'http://192.168.10.10:9090/ims/',
+        fbps:'http://192.168.10.10:9090/fbps/',
         file:'http://121.46.18.25:9090/oss/'
       },
       prod:{
-        api:'http://192.168.10.10:9090/crm/',
-        oauth:'http://192.168.10.10:9090/ims/',
+        api:'http://120.76.244.160:8082/crm/',
+        oauth:'http://120.76.244.160:8082/ims/',
+        fbps:'http://120.76.244.160:8082/fbps/',
         file:'http://121.46.18.25:9090/oss/'
       }
     };
@@ -111,31 +115,31 @@ class Config{
       link:{//链接
         dev:'http://192.168.10.10:8091/fbps',
         test:'http://192.168.10.10:9091/fbps',
-        prod:'',
+        prod:'http://fsmp.money56.com:8083/fbps',
       },
       active:false
     },{
       name:'客户关系管理系统',
       link:{//链接
-        dev:'http://192.168.10.10:8090/crm',
-        test:'http://192.168.10.10:9090/crm',
-        prod:'',
+        dev:'http://192.168.10.10:8091/crm',
+        test:'http://192.168.10.10:9091/crm',
+        prod:'http://fsmp.money56.com:8083/crm',
       },
-      active:true
+      active:false
     },{
       name:'金融风控管理系统',
       link:{//链接
         dev:'http://192.168.10.10:8091/rcm',
         test:'http://192.168.10.10:9091/rcm',
-        prod:'',
+        prod:'http://fsmp.money56.com:8083/rcm',
       },
       active:false
     },{
       name:'银行账户管理系统',
       link:{//链接
         dev:'',
-        test:'',
-        prod:'',
+        test:'http://192.168.10.10:9091/ams',
+        prod:'http://fsmp.money56.com:8082/ams',
       },
       active:false
     },{
@@ -143,9 +147,9 @@ class Config{
       link:{//链接
         dev:'http://192.168.10.10:8091/ims',
         test:'http://192.168.10.10:9091/ims',
-        prod:'',
+        prod:'http://fsmp.money56.com:8083/ims',
       },
-      active:false
+      active:true
     }];
   }
 
@@ -260,6 +264,9 @@ export const cur_host=config.getHost();
 
 //项目主接口地址
 export  const host=cur_host.api;
+
+//业务系统接口地址
+export const host_fbps=cur_host.fbps;
 
 //认证相关接口地址
 export const host_ims=cur_host.oauth;
@@ -604,17 +611,57 @@ export const API = {
   /*-----------------------------------融资管理---------------------------------------*/
   /*-----------------------------------在贷跟踪---------------------------------------*/
   getLoanList:{
-    url:'fam/LoanTracking/getByPage',
-    method:'post'
+    url:'lms/financeApply/applyList',
+    method:'get',
+    host:host_fbps
   },
-  getLoanDetails:{
-    url:'fam/LoanTracking/getDetails',
-    method:'post'
+  dictionaryList:{
+    url:'base/dictionary/dictionaryList',
+    method:'get',
+    host:host_fbps
   },
   getRepaymentPlanList:{
-    url:'fam/LoanTracking/getRepaymentPlan',
-    method:'post'
+    url:'lms/repaymentPlan/repaymentPlanList',
+    method:'post',
+    host:host_fbps
   },
+  applyDetail:{
+    url:'lms/financeApply/applyDetail',
+    method:'get',
+    host:host_fbps
+  },
+  proveDataList:{
+    url:'lms/financeApply/proveDataList',
+    method:'post',
+    host:host_fbps
+  },
+  contractList:{
+    url:'tw/contract/contractList',
+    method:'post',
+    host:host_fbps
+  },
+  getBorrowFlowList:{
+    url:'acct/account/getBorrowFlowList',
+    method:'get',
+    host:host_fbps
+  },
+  logList:{
+    url:'sys/log/logList',
+    method:'post',
+    host:host_fbps
+  },
+  getList:{
+    url:'base/resource/getList',
+    method:'get',
+    host:host_fbps
+  },
+  getSignList:{
+    url:'tw/contract/getSignList',
+    method:'post',
+    host:host_fbps
+  },
+  
+  
 
   /*-----------------------------------催收任务---------------------------------------*/
   getTotalByStatus:{

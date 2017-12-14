@@ -70,8 +70,8 @@
       	<ng-template let-operation="rowData" pTemplate="body">
           <div>
             <a class="table-btn text-info" (click)="detail(operation)">详情</a>
-            <a class="table-btn text-info" (click)="getModalList(operation)">授信额度</a>
-            <a *ngIf="authRole.roleIn(['008'])" class="table-btn text-info" (click)="changeManage(operation)">变更</a>
+            <a class="table-btn text-info" (click)="getModalList(operation)">授信</a>
+            <a *ngIf="authRole.roleIn(['008'])" class="table-btn text-info" (click)="changeManage(operation)">变更经理</a>
           </div>
         </ng-template>
       </p-column>
@@ -160,7 +160,7 @@
         		<span class="m-l-md">可用总额(元):{{totalCreditBanlance | yuanFormat:2:true}}</span>
         	</div>
           <div class="pull-right" *ngIf="authRole.roleIn(['007'])&&authRole.userName==modalApplyServiceMan">
-           	<a class="btn btn-default-dk btn-sm" (click)="goToRe()" *ngIf="authRole.roleIn(['007'])">重新授信</a>
+           	<a class="btn btn-default-dk btn-sm" (click)="reCredit()" *ngIf="authRole.roleIn(['007'])">重新授信</a>
           </div>
         </div>
       </p-footer>

@@ -30,7 +30,7 @@ export class MyHttpClientInterceptor implements HttpInterceptor {
           if (event.ok) {
             let body = event.body;
             if (body&&typeof body === 'object') {
-              if (body.status == '110') {
+              if (body.status == '411') {
                 if(!this.router.isActive('/signin',false)){
                   // this.toaster.error('', '您的操作已超时，请重新登录！');
                   this.router.navigate(['/signin']);

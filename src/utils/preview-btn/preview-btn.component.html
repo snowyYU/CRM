@@ -1,0 +1,14 @@
+<div>
+	<div *ngIf="fileId">
+		<div *ngIf="showName" class="col-md-6 p-l-none" textMaxLength="140px">
+			<span>{{fileInfo["fileName"]}}</span>
+		</div>
+		<div [class.col-md-6]="showName">
+			<a class="fa fa-search text-info m-r-md" (click)="show($event)" title="查看" *ngIf="preShow"></a>
+	        <a class="fa fa-download text-info" (click)="download()" title="下载"></a>
+		</div>
+			
+	</div>
+	
+	<!-- <a *ngIf="!fileId" class="fa fa-search text-disabled" title="查看"></a> -->
+</div>

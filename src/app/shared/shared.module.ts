@@ -18,6 +18,7 @@ import { FilterMultiplyPipe } from '../../pipe/filter-multiply/filter-multiply.p
 
 import { PreviewOrDownloadComponent } from '../../utils/preview-or-download/preview-or-download.component'
 import { DropDownComponent } from '../../utils/drop-down/drop-down.component'
+import { PreviewBtnComponent } from '../../utils/preview-btn/preview-btn.component'
 import { MySrcDirective } from '../../utils/previewer/mySrc.directive'
 //导入模态框
 
@@ -58,6 +59,7 @@ import { CommonModule as MyCommonModule } from 'dolphinng'
     FilterNullPipe,
     FilterMultiplyPipe,
     PreviewOrDownloadComponent,
+    PreviewBtnComponent,
     DropDownComponent,
     MySrcDirective
   ],
@@ -85,6 +87,7 @@ import { CommonModule as MyCommonModule } from 'dolphinng'
     FilterNullPipe,
     FilterMultiplyPipe,
     PreviewOrDownloadComponent,
+    PreviewBtnComponent,
     DropDownComponent,
   ]
 })

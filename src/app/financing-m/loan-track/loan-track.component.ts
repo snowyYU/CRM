@@ -20,6 +20,10 @@ export class LoanTrackComponent implements OnInit {
 	page:number=0             //页数
 	count:number=0            //数据总数
 
+	repaymentPlanModal:boolean  //还款计划模态框
+	modalSize:string='lg'  		//模态框大小
+	modalListLoading:boolean    //等待模态框价值
+
 	borrowApplyId:string      //借款申请ID
 	companyName:string        //企业名称
 	approveAmount:number      //借款金额
@@ -33,12 +37,16 @@ export class LoanTrackComponent implements OnInit {
 
 	todayDate                 //当前日期
 
-	resourceId=''             //渠道编号
-	resourceList:any[]        //渠道列表
+	// resourceId=''             //渠道编号
+	// resourceList:any[]        //渠道列表
 
 	productId=''              //产品编号
 	productList:any[]         //产品列表
-	status=0                  //状态
+	status:string='8,9'       //状态
+	tab:string='0'            //tab选项
+	isOver:string             //是否查询逾期,逾期传1 不逾期不传
+	limitDay:string           //距离到期天数
+	// serviceMan:string         //服务经理
 
 	repaymentPlanList:any[]   //还款计划列表
 
@@ -54,15 +62,6 @@ export class LoanTrackComponent implements OnInit {
 		) {}
 
 	ngOnInit() {
-		// this.getLoanList()
-		// this.getAllApp()
-		// this.getProductsList('0')
-		//格式化并获取当前日期
-		
-		// this.todayDate=this.dateService.format({
-		// 	date:this.dateService.todayDate(),
-		// 	formatType:"yyyy-MM-dd"
-		// })
 		this.subscribeRouteParams()
 	}
 
@@ -76,19 +75,12 @@ export class LoanTrackComponent implements OnInit {
 			console.log(paramMap)
 			console.log(paramMap['params']['rows'])
 			console.log(!!paramMap['params'])
-			
-				// if (paramMap['params']['rows']) {
-				// 	this.rows=paramMap['params']['rows']
-				// }
-				paramMap['params']['rows']?this.rows=parseInt(paramMap['params']['rows']):null
-				paramMap['params']['page']?this.page=parseInt(paramMap['params']['page']):null
-				paramMap['params']['status']?this.status=paramMap['params']['status']:null
-				paramMap['params']['borrowApplyId']?this.borrowApplyId=paramMap['params']['borrowApplyId']:null
-				paramMap['params']['keyword']?this.companyName=paramMap['params']['keyword']:null
 
-				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
-				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
-			
+			paramMap['params']['tab']?this.tab=paramMap['params']['tab']:null
+			paramMap['params']['rows']?this.rows=parseInt(paramMap['params']['rows']):null
+			paramMap['params']['page']?this.page=parseInt(paramMap['params']['page']):null
+			paramMap['params']['borrowApplyId']?this.borrowApplyId=paramMap['params']['borrowApplyId']:null
+			paramMap['params']['keyword']?this.companyName=paramMap['params']['keyword']:null
 
 			this.getLoanList()
 		})
@@ -96,15 +88,15 @@ export class LoanTrackComponent implements OnInit {
 
 	navigate(){
 		let routeParam:{
+			tab,
 			page,
 			rows,
-			status,
 			borrowApplyId?,
 			keyword?
 		}={
+			tab:this.tab,
 			page:this.page,
-			rows:this.rows,
-			status:this.status
+			rows:this.rows
 		}
 
 		if (this.borrowApplyId) {
@@ -119,55 +111,7 @@ export class LoanTrackComponent implements OnInit {
 		console.log("activerouter",this.route)
 
 		this.router.navigate([this.thisPageRoute,routeParam])
-
-
 	}
-
-	//获取归属渠道下拉列表数据
-	// getAllApp(){
-	// 	this.loanTrack.getAllApp()
-	// 		.then(res=>{
-	// 			console.log(res)
-	// 			this.resourceList=res.body.records
-	// 			this.resourceList.unshift({resourceId:'0',resourceName:'全部'})
-	// 			this.resourceId=this.resourceList[0].resourceId
-	// 			// this.getProductsList(this.appId)
-	// 		})
-	// 		.catch(res=>{
-	// 			this.pop.error({
-	// 				title:'错误提示',
-	// 				text:res.message
-	// 			})
-	// 		})
-
-	// }
-
-	//获取贷款产品下拉列表数据
-	// getProductsList(appId){
-	// 	if(appId=='0'){
-	// 		let product:Product={
-	// 			productId:'0',
-	// 			productName:'全部'
-	// 		}
-	// 		let productList:Product[]=[product]
-	// 		this.productList=productList
-	// 		this.productId=this.productList[0].productId
-	// 		return
-	// 	}
-	// 	this.loanTrack.getProductsList(appId)
-	// 		.then(res=>{
-	// 			console.log(res)
-	// 			this.productList=res.body.records
-	// 			this.productList.unshift({productId:'0',productName:'全部'})
-	// 			this.productId=res.body.records[0].productId
-	// 		})
-	// 		.catch(res=>{
-	// 			this.pop.error({
-	// 				title:'错误提示',
-	// 				text:res.message
-	// 			})
-	// 		})
-	// }
 
 	//获取在贷跟踪列表数据
 	getLoanList(){
@@ -175,17 +119,17 @@ export class LoanTrackComponent implements OnInit {
 		let sendData:SendData={
 			page:this.page+1,
 			rows:this.rows,
+			status:this.status,
+			serviceMan:this.authRole.userName,
 			borrowApplyId:this.borrowApplyId,
 			companyName:this.companyName,
-			// approveAmount:this.approveAmount,
-			// productName:this.productName,
-			// repaymentWay:this.repaymentWay,
-			// remarks:this.remarks
-			status:this.status
+			isOver:this.isOver?this.isOver:null,
+			limitDay:this.limitDay?this.limitDay:null
 		}
 
 		this.loanTrack.getLoanList(sendData)
 			.then(res=>{
+				this.loading=false
 				this.handleData(res)
 			})
 			.catch(res=>{
@@ -198,13 +142,15 @@ export class LoanTrackComponent implements OnInit {
 	}
 
 	getRepaymentPlanList(row){
+		this.modalListLoading=true
 		this.loanTrack.getRepaymentPlanList(row.borrowApplyId)
 		.then(res=>{
-			console.log(res)
+			this.modalListLoading=false
+			this.repaymentPlanModal=true
 			this.repaymentPlanList=res.body.records
 		})
 		.catch(res=>{
-			this.loading=false
+			this.modalListLoading=false
 			this.pop.error({
 				title:'错误提示',
 				text:res.message
@@ -213,20 +159,17 @@ export class LoanTrackComponent implements OnInit {
 	}
 	
 	handleData(res){
-		console.log(res)
 		this.dataList=res.body.records
 		this.count=res.body.paginator.totalCount
-		this.loading=false
 
 	}
 
 	detail(row){
-		let queryList={
-			memberId:row.memberId,
-			borrowApplyId:row.borrowApplyId,
-			paymentWay:row.repaymentWay
-		}
-		this.router.navigate(['/financingM/loanTrack/detail',JSON.stringify(queryList)])
+		this.router.navigate(['/financingM/loanTrack/detail',row.borrowApplyId])
+	}
+
+	closeModal(){
+		this.repaymentPlanModal=false
 	}
 }
 

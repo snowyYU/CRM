@@ -136,12 +136,15 @@ export class SpreadManageDetailComponent implements OnInit{
                 return Promise.resolve(res.body.records[0])
             })
             .then(res=>{
+                this.loading=true
                 this.spreadManage.getRepaymentPlan(res.borrowApplyId)
                 .then(res=>{
                     console.log(res)
+                    this.loading=false
                     this.repaymentList=res.body.records
                 })
                 .catch(res=>{
+                    this.loading=false
                     this.pop.error({
                         title:'错误信息',
                         text:res.message

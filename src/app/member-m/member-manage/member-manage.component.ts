@@ -3,6 +3,7 @@ import { Router,ActivatedRoute,ParamMap } from '@angular/router';
 import { PopService } from 'dolphinng';
 import { MemberManageService,SendData } from './member-manage.service'
 import { AuthRoleService } from '../../../services/authRole/authRole.service'
+import { SessionStorageService } from '../../../services/session-storage/session-storage.service'
 
 @Component({
 	selector:'member-manage',
@@ -35,7 +36,7 @@ export class MemberManageComponent implements OnInit{
 	totalCreditBanlance:number
 	//传往申请授信页面的数据
 	companyName:string  	//会员名称
-	memberId:string	 	//会员ID
+	memberId:number	 	//会员ID
 	sAppId:number			//
 
 	productTypeName:string				//产品类别
@@ -60,12 +61,16 @@ export class MemberManageComponent implements OnInit{
 
 	thisPageRoute:string='memberM/memberManage'
 
+	//用于记录提交申请前的页面
+	memberDetailDomain
+
 	constructor(
 		private router:Router,
 		private route:ActivatedRoute,
 		private pop:PopService,
 		private memManage:MemberManageService,
-		public authRole:AuthRoleService
+		public authRole:AuthRoleService,
+		private sessionStorage:SessionStorageService
 		){
 		this.getAppIdList()
 		this.getMemberTypeList()
@@ -74,7 +79,6 @@ export class MemberManageComponent implements OnInit{
 	ngOnInit(){
 		this.subscribeRouteParams()
 		// this.getListData()
-
 	}
 
 	//11.14,新增两个方法，
@@ -84,22 +88,12 @@ export class MemberManageComponent implements OnInit{
 	//必传参数在声明时必须初始化
 	subscribeRouteParams(){
 		this.route.paramMap.subscribe((paramMap:ParamMap)=>{
-			console.log(paramMap)
-			console.log(paramMap['params']['rows'])
-			console.log(!!paramMap['params'])
-			
-				// if (paramMap['params']['rows']) {
-				// 	this.rows=paramMap['params']['rows']
-				// }
-				paramMap['params']['rows']?this.rows=parseInt(paramMap['params']['rows']):null
-				paramMap['params']['page']?this.page=parseInt(paramMap['params']['page']):null
-				paramMap['params']['appId']?this.appId=paramMap['params']['appId']:null
-				paramMap['params']['memberType']?this.memberType=paramMap['params']['memberType']:null
-				paramMap['params']['keyword']?this.memberName=paramMap['params']['keyword']:null
 
-				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
-				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
-			
+			paramMap['params']['rows']?this.rows=parseInt(paramMap['params']['rows']):null
+			paramMap['params']['page']?this.page=parseInt(paramMap['params']['page']):null
+			paramMap['params']['appId']?this.appId=paramMap['params']['appId']:null
+			paramMap['params']['memberType']?this.memberType=paramMap['params']['memberType']:null
+			paramMap['params']['keyword']?this.memberName=paramMap['params']['keyword']:null
 
 			this.getListData()
 		})
@@ -129,9 +123,6 @@ export class MemberManageComponent implements OnInit{
 			routeParam.keyword=this.memberName
 		}
 
-		console.log("router",this.router)
-		console.log("activerouter",this.route)
-
 		this.router.navigate([this.thisPageRoute,routeParam])
 
 
@@ -142,7 +133,6 @@ export class MemberManageComponent implements OnInit{
 		this.memManage
 			.getAllApp()
 			.then(res=>{
-				console.log(res)
 				this.appIdList=res.body.records
 			})
 			.catch(res=>{
@@ -157,7 +147,6 @@ export class MemberManageComponent implements OnInit{
 		this.memManage
 			.getMemberType()
 			.then(res=>{
-				console.log(res)
 				this.memberTypeList=res.body.records
 			})
 			.catch(res=>{
@@ -180,7 +169,6 @@ export class MemberManageComponent implements OnInit{
 		this.memManage
 			.getListData(sendData)
 			.then(res=>{
-				console.log(res)
 				this.loading=false
 				this.handleListData(res)
 			})
@@ -212,7 +200,16 @@ export class MemberManageComponent implements OnInit{
 		this.changeManageModal=false
 
 	}
+
+	isEmptyObject(object:object){
+		for(let o in object){
+			return false
+		}
+		return true
+	}
+
 	detail(row){
+		this.sessionStorage.memberDetailDomain=this.thisPageRoute
 		this.router.navigate(['memberM/memberManage/detail',row.memberId])
 	}
 	/**
@@ -230,7 +227,6 @@ export class MemberManageComponent implements OnInit{
 				if (res.body.records[0].creditFacility) {
 					// 模态框出现
 					this.vipMangeModal=true
-					console.log(res)
 					this.totalCreditValue=res.body.totalCreditValue
 					this.totalCreditBanlance=res.body.totalCreditBanlance
 					this.modalDataList=res.body.records
@@ -242,7 +238,19 @@ export class MemberManageComponent implements OnInit{
 						})
 						return
 					}
-					this.goToNew()
+					//检查
+					this.memManage.checkApplyExist(row.memberId)
+						.then(res=>{
+							this.goToNew()
+						})
+						.catch(res=>{
+							this.pop.error({
+								title:"提示信息",
+								text:res.message
+							})
+						})
+
+					
 				}
 			})
 			.catch(res=>{
@@ -253,20 +261,34 @@ export class MemberManageComponent implements OnInit{
 			})
 	}
 
-	checkApplyExist(operateType,row){
-		//为传到申请授信页面的参数赋值
-		this.productTypeName=row.creditFacility.productTypeName				//产品类别
-		this.productName=row.creditFacility.productName				//申请产品
-		this.productId=row.creditFacility.productId
-		this.creditValue=row.creditFacility.creditValue//原授信额度
-		//原有效期
-		this.expiryDateBegin=row.creditFacility.expiryDateBegin//起
-		this.expiryDateEnd=row.creditFacility.expiryDateEnd//止
+	// checkApplyExist(row){
+	// 	//为传到申请授信页面的参数赋值
+	// 	this.productTypeName=row.creditFacility.productTypeName				//产品类别
+	// 	this.productName=row.creditFacility.productName				//申请产品
+	// 	this.productId=row.creditFacility.productId
+	// 	this.creditValue=row.creditFacility.creditValue//原授信额度
+	// 	//原有效期
+	// 	this.expiryDateBegin=row.creditFacility.expiryDateBegin//起
+	// 	this.expiryDateEnd=row.creditFacility.expiryDateEnd//止
 
 
-		this.memManage.checkApplyExist(operateType,row.memberId,row.creditFacility.productId)
+	// 	this.memManage.checkApplyExist(row.memberId)
+	// 		.then(res=>{
+	// 			console.log(res)
+	// 			this.goToRe()
+	// 		})
+	// 		.catch(res=>{
+	// 			this.pop.error({
+	// 				title:'错误提示',
+	// 				text:res.message
+	// 			})
+	// 		})
+	// }
+
+	reCredit(){
+		//新增一个校验
+		this.memManage.checkApplyExist(this.memberId)
 			.then(res=>{
-				console.log(res)
 				this.goToRe()
 			})
 			.catch(res=>{
@@ -293,6 +315,10 @@ export class MemberManageComponent implements OnInit{
 
 	}
 	goToRe(){
+
+		
+
+
 		let toReData={
 			memberId:this.memberId,
 			companyName:this.companyName,
@@ -314,17 +340,15 @@ export class MemberManageComponent implements OnInit{
 	}
 
 	changeManage(row){
-		console.log(row)
 		this.modalServiceManL=[]
 		this.changeManageModal=true
 		this.modalMemberId=row.memberId
 		this.modalMemberName=row.companyName
 		this.modalServiceManO=row.serviceMan
-		this.modalAppName=row.prmResourceRegister.resourceName
+		this.modalAppName=row.prmResourceRegister?row.prmResourceRegister.resourceName:""
 		
 		this.memManage.getManageL()
 			.then(res=>{
-				console.log(res)
 
 				res.body.records.forEach(e=>{
 					if (row.serviceMan!=e.employeeName) {
@@ -332,7 +356,6 @@ export class MemberManageComponent implements OnInit{
 					}
 					
 				})
-				console.log(this.modalServiceManL)
 
 			})
 			.catch(res=>{

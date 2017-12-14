@@ -14,7 +14,7 @@
 			</select>
 
 			<input type="text " name="memberName" class="form-control m-l-md mar-r-xs" maxlength="30" [(ngModel)]="memberName" placeholder="会员名">
-			<button class="btn-def" (click)="page=0;subscribeRouteParams();navigate()" >查询<i class="fa fa-search"></i></button>
+			<button class="btn-def" (click)="page=0;navigate()" >查询<i class="fa fa-search"></i></button>
 		</div>
 		<!-- <div class="col-md-6 l-h-2x">
 			共<span class="text-info text-lg">{{memberTotal}}</span>名会员，其中配置电子账户有<span class="text-info text-lg">{{isOpenAccount}}</span>名，配置率 <span class="text-info text-lg">{{isOpenAccountRate}}%</span>

@@ -30,7 +30,7 @@ export class AccBalanceComponent implements OnInit {
     notOpenAccount		//没有开户数：
 
 	loading:boolean=false
-
+	first:boolean=true
 	thisPageRoute:string='account/memberAccBalance'
 	constructor(
 		public authRole:AuthRoleService,
@@ -42,11 +42,8 @@ export class AccBalanceComponent implements OnInit {
 
 	ngOnInit() {
 		this.getAppIdList()
-
-		// this.subscribeRouteParams()
-		
 		this.getCountData()
-
+		this.subscribeRouteParams()
 	}
 
 	//11.14,新增两个方法，
@@ -60,17 +57,10 @@ export class AccBalanceComponent implements OnInit {
 			console.log(paramMap['params']['rows'])
 			console.log(!!paramMap['params'])
 			
-				// if (paramMap['params']['rows']) {
-				// 	this.rows=paramMap['params']['rows']
-				// }
-				paramMap['params']['rows']?this.rows=parseInt(paramMap['params']['rows']):null
-				paramMap['params']['page']?this.page=parseInt(paramMap['params']['page']):null
-				paramMap['params']['appId']?this.appId=paramMap['params']['appId']:null
-				paramMap['params']['keyword']?this.memberName=paramMap['params']['keyword']:null
-
-				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
-				// paramMap['params']['rows']?this.rows=paramMap['params']['rows']:null
-			
+			paramMap['params']['rows']?this.rows=parseInt(paramMap['params']['rows']):null
+			paramMap['params']['page']?this.page=parseInt(paramMap['params']['page']):null
+			paramMap['params']['appId']?this.appId=paramMap['params']['appId']:null
+			paramMap['params']['keyword']?this.memberName=paramMap['params']['keyword']:null
 
 			this.getDataList()
 		})
@@ -128,9 +118,14 @@ export class AccBalanceComponent implements OnInit {
 		}
 		this.accB.getDataList(data)
 			.then(res=>{
-				this.dataList=res.body.records
-				this.count=res.body.paginator.totalCount
-				this.loading=false
+				if(this.first){
+					this.first=false
+					this.loading=false
+				}else{
+					this.dataList=res.body.records
+					this.count=res.body.paginator.totalCount
+					this.loading=false
+				}
 			})
 			.catch(res=>{
 				this.loading=false
@@ -178,15 +173,10 @@ export class AccBalanceComponent implements OnInit {
 
 	closeModal(){
 		this.notOpenAccModal=false
-
 	}
 
 	goToOpen(key){
 		this.router.navigate(['account/electricAcc/openAcc'],{queryParams: { hash: key }})
-
 	}
-
-
-
 }
 

@@ -144,25 +144,35 @@
             {{linkJob | filterNull:false}}
           </div>
         </div> -->
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label  class="control-label pull-left required">联系人是否法人：</label>
           <div class=" pull-left" style="width:175px;">
-            <!-- <select name="isLegal"  class="form-control" [(ngModel)]="isLegal" required (change)="linkIdcard=''"> -->
+            <select name="isLegal"  class="form-control" [(ngModel)]="isLegal" required (change)="linkIdcard=''">
             <select name="isLegal"  class="form-control" [(ngModel)]="isLegal" required (change)="linkIdcard=''"
                     pattern="^\S+$" [HTML5Validate]="[[isLegal==='','请选择联系人是否法人']]">
-              <!-- <option [value]="undefined" hidden>请选择</option> -->
+              <option [value]="undefined" hidden>请选择</option>
 
               <option [value]="item.value" *ngFor="let item of isLegalList" >{{item.label}}</option>
             </select>
           </div>
+        </div> -->
+        <div class="form-group">
+          <label class="control-label pull-left required">法人：</label>
+          <div class="pull-left">
+            <!-- <input type="text" name="linkName" class="form-control " required maxlength="10" [(ngModel)]="linkName"> -->
+            <input type="text" name="legalName" class="form-control" required [(ngModel)]="legalName"
+                   pattern="^.{0,10}$" #legalNameNameRef="ngModel"
+                   [HTML5Validate]="[[legalName==='','请输入法人！'],[!!(legalNameNameRef.errors&&legalNameNameRef.errors.pattern),'法人长度应少于10字']]"
+            />
+          </div>
         </div>
         <div class="form-group">
-          <label  class="control-label pull-left" [class.required]="isLegal=='0'">身份证号：</label>
+          <label  class="control-label pull-left required">法人身份证：</label>
           <div class=" pull-left" style="width:175px;">
             <!-- <input type="text" name="linkIdcard" class="form-control" required maxlength="18" [disabled]="isLegal!=0" [(ngModel)]="linkIdcard"> -->
-            <input type="text" name="linkIdcard" class="form-control" required [disabled]="isLegal!=0" 
-                   [(ngModel)]="linkIdcard" pattern="^\d{17}[\dxX]$" #linkIdcardRef="ngModel" 
-                   [HTML5Validate]="[[linkIdcard==='','请输入联系人身份证'],[!!(linkIdcardRef.errors&&linkIdcardRef.errors.pattern),'身份证号输入有误，请输入正确的身份证号']]"
+            <input type="text" name="legalIdcard" class="form-control" required 
+                   [(ngModel)]="legalIdcard" pattern="^\d{17}[\dxX]$" #legalIdcardRef="ngModel" 
+                   [HTML5Validate]="[[legalIdcard==='','请输入法人身份证'],[!!(legalIdcardRef.errors&&legalIdcardRef.errors.pattern),'法人身份证号输入有误，请输入正确的身份证号']]"
             />
           </div>
         </div>
