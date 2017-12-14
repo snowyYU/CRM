@@ -152,8 +152,8 @@
             <div class="col-md-12">
                 <label class="label-control">合同:</label>
                 <div class="col-md-10 text-content">
-                    <ul *ngFor="let item of contractList">
-                        <li class="inline-block"><span class="text-info" (click)="openModal(item)">《{{item.contractTitle}}》</span></li>
+                    <ul>
+                        <li class="inline-block" *ngFor="let item of contractList"><span class="text-info" (click)="openModal(item)">《{{item.contractTitle}}》</span></li>
                     </ul>
                 </div>
             </div>
@@ -179,7 +179,7 @@
             <div class="col-md-10">
                 <label class="label-control">放款凭证:</label>
                 <div class="col-md-8 text-content">
-                    <preview-btn [fileId]="fileLoadId" *ngIf="fileLoadId" (imgPreview)="previewer.open($event.event,$event.url,'img')" (pdfPreview)="previewer.open($event.event,$event.url,'pdf')">
+                    <preview-btn [fileId]="fileLoadId" *ngIf="fileLoadId" [showName]=true (imgPreview)="previewer.open($event.event,$event.url,'img')" (pdfPreview)="previewer.open($event.event,$event.url,'pdf')">
                     </preview-btn>
                     <a *ngIf="!fileLoadId" class="fa fa-search text-disabled" title="查看"></a>
                 </div>
