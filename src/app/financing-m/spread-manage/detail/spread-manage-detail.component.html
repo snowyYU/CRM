@@ -263,11 +263,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of repaymentList" [class.bg-warning]="item.status==0">
+                                        <tr *ngFor="let item of repaymentList">
                                             <td class="text-center">{{'第'+item.currentPeriod+'期'}}</td>
                                             <td class="text-center">{{item.repaymentDate | effDateFormat}}</td>
-                                            <td class="text-right">{{item.repaymentCapital | yuanFormat:2:true}}</td>
-                                            <td class="text-right">{{item.repaymentInterest | yuanFormat:2:true}}</td>
+                                            <td class="text-right text-gold">{{item.repaymentCapital | yuanFormat:2:true}}</td>
+                                            <td class="text-right text-gold">{{item.repaymentInterest | yuanFormat:2:true}}</td>
                                             <td class="text-center">{{item.statusName}}</td>
                                         </tr>
                                         <tr *ngIf="!repaymentList||repaymentList.length===0">

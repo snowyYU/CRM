@@ -1,6 +1,6 @@
 <div>
 	<div *ngIf="fileId">
-		<div *ngIf="showName" class="col-md-6">
+		<div *ngIf="showName" class="col-md-6 p-l-none" textMaxLength="140px">
 			<span>{{fileInfo["fileName"]}}</span>
 		</div>
 		<div [class.col-md-6]="showName">
